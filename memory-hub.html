@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>slopshop / memory</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0a0a0a;
+      --surface: #111111;
+      --surface2: #161616;
+      --border: rgba(255,255,255,0.07);
+      --border2: rgba(255,255,255,0.12);
+      --text: #f0f0f0;
+      --text2: rgba(240,240,240,0.55);
+      --text3: rgba(240,240,240,0.28);
+      --accent: #00D4FF;
+      --accent-dim: rgba(0,212,255,0.08);
+      --accent-border: rgba(0,212,255,0.18);
+      --green: #22c55e;
+      --yellow: #f59e0b;
+      --red: #ef4444;
+      --font: 'Inter', -apple-system, sans-serif;
+      --mono: 'JetBrains Mono', monospace;
+      --nav-h: 58px;
+    }
+
+    html, body { height: 100%; }
+    body { font-family: var(--font); background: var(--bg); color: var(--text); font-size: 14px; line-height: 1.5; overflow: hidden; }
+
+    /* NAV */
+    .app-nav {
+      position: fixed; top: 0; left: 0; right: 0; height: var(--nav-h);
+      background: rgba(10,10,10,0.92); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border); display: flex; align-items: center;
+      justify-content: space-between; padding: 0 20px; z-index: 100; gap: 16px;
+    }
+    .nav-logo { font-size: 0.9375rem; font-weight: 700; color: var(--text); text-decoration: none; letter-spacing: -0.03em; white-space: nowrap; flex-shrink: 0; }
+    .nav-center { display: flex; align-items: center; gap: 2px; }
+    .nav-link { display: flex; align-items: center; gap: 6px; color: var(--text2); text-decoration: none; font-size: 0.8125rem; font-weight: 500; padding: 5px 11px; border-radius: 7px; transition: color 0.15s, background 0.15s; white-space: nowrap; }
+    .nav-link:hover { color: var(--text); background: rgba(255,255,255,0.06); }
+    .nav-link.active { color: var(--text); background: rgba(255,255,255,0.07); }
+    .nav-right { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+    .nav-user { font-size: 0.8125rem; color: var(--text2); text-decoration: none; font-weight: 500; padding: 5px 11px; border-radius: 7px; transition: color 0.15s, background 0.15s; white-space: nowrap; }
+    .nav-user:hover { color: var(--text); background: rgba(255,255,255,0.06); }
+    .nav-home { font-size: 0.8125rem; color: var(--text3); text-decoration: none; font-weight: 400; transition: color 0.15s; white-space: nowrap; }
+    .nav-home:hover { color: var(--text2); }
+    @media (max-width: 768px) { .nav-center { display: none; } }
+    @media (max-width: 520px) { .nav-user { display: none; } }
+
+    /* JOURNEY BANNER */
+    .journey-banner {
+      position: fixed; top: var(--nav-h); left: 0; right: 0; height: 32px;
+      background: var(--surface); border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center; gap: 4px; z-index: 90; font-size: 0.75rem;
+    }
+    .journey-step { color: var(--text3); text-decoration: none; padding: 2px 8px; border-radius: 4px; transition: color 0.15s; font-weight: 500; }
+    .journey-step:hover { color: var(--text2); }
+    .journey-step.current { color: var(--accent); background: var(--accent-dim); }
+    .journey-arrow { color: var(--text3); font-size: 0.6875rem; }
+
+    /* LAYOUT */
+    #app { display: flex; height: 100vh; padding-top: calc(var(--nav-h) + 32px); }
+
+    /* SIDEBAR */
+    #sidebar { width: 240px; flex-shrink: 0; background: var(--surface); border-right: 1px solid var(--border); display: flex; flex-direction: column; overflow-y: auto; padding: 14px 10px 24px; }
+    #sidebar::-webkit-scrollbar { width: 3px; }
+    #sidebar::-webkit-scrollbar-thumb { background: var(--surface2); border-radius: 3px; }
+    .sidebar-label { font-size: 0.6875rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text3); padding: 0 8px 6px; }
+    .ns-item { display: flex; align-items: center; justify-content: space-between; padding: 7px 10px; border-radius: 7px; cursor: pointer; color: var(--text2); font-size: 0.8125rem; font-weight: 500; transition: background 0.12s, color 0.12s; user-select: none; gap: 6px; border-left: 2px solid transparent; margin-left: 2px; }
+    .ns-item:hover { background: var(--surface2); color: var(--text); }
+    .ns-item.active { border-left-color: var(--accent); color: var(--accent); background: var(--accent-dim); }
+    .ns-item .ns-name { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .ns-item .ns-count { font-size: 0.6875rem; font-weight: 600; color: var(--text3); background: var(--surface2); padding: 1px 6px; border-radius: 10px; min-width: 20px; text-align: center; flex-shrink: 0; }
+    .ns-item.active .ns-count { background: rgba(0,212,255,0.15); color: var(--accent); }
+    .sidebar-divider { height: 1px; background: var(--border); margin: 10px 0; }
+    #add-ns-btn { display: flex; align-items: center; gap: 6px; padding: 7px 10px; border-radius: 7px; cursor: pointer; color: var(--text3); font-size: 0.8125rem; font-weight: 500; border: 1px dashed var(--border2); background: none; width: 100%; text-align: left; font-family: var(--font); transition: border-color 0.15s, color 0.15s; margin-top: 2px; }
+    #add-ns-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .dream-ns-link { display: block; margin-top: 12px; padding: 7px 10px; border-radius: 7px; font-size: 0.8125rem; color: var(--accent); text-decoration: none; font-weight: 500; border: 1px solid var(--accent-border); background: var(--accent-dim); text-align: center; transition: opacity 0.15s; }
+    .dream-ns-link:hover { opacity: 0.8; }
+
+    /* MAIN */
+    #main { flex: 1; display: flex; overflow: hidden; min-width: 0; }
+    #center { flex: 1; display: flex; flex-direction: column; overflow: hidden; min-width: 0; }
+
+    /* TOOLBAR */
+    #toolbar { display: flex; align-items: center; gap: 8px; padding: 12px 16px; border-bottom: 1px solid var(--border); flex-shrink: 0; background: var(--bg); }
+    .search-wrap { flex: 1; position: relative; }
+    .search-icon { position: absolute; left: 11px; top: 50%; transform: translateY(-50%); color: var(--text3); pointer-events: none; display: flex; align-items: center; }
+    #search-input { width: 100%; background: var(--surface); border: 1px solid var(--border2); color: var(--text); font-family: var(--font); font-size: 0.875rem; padding: 8px 32px 8px 34px; border-radius: 8px; outline: none; transition: border-color 0.15s; }
+    #search-input:focus { border-color: var(--accent); }
+    #search-input::placeholder { color: var(--text3); }
+    #search-clear { position: absolute; right: 9px; top: 50%; transform: translateY(-50%); color: var(--text3); cursor: pointer; display: none; background: none; border: none; font-size: 15px; line-height: 1; padding: 3px; border-radius: 3px; transition: color 0.12s; }
+    #search-clear:hover { color: var(--text); }
+
+    /* STORE DRAWER */
+    #store-drawer { overflow: hidden; max-height: 0; transition: max-height 0.22s ease; border-bottom: 0 solid var(--border); background: var(--surface); flex-shrink: 0; }
+    #store-drawer.open { max-height: 380px; border-bottom-width: 1px; }
+    .drawer-inner { padding: 16px; display: flex; flex-direction: column; gap: 10px; }
+    .drawer-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .drawer-actions { display: flex; gap: 8px; align-items: center; padding-top: 2px; }
+
+    /* META BAR */
+    #meta-bar { font-size: 0.75rem; color: var(--text3); padding: 6px 16px; flex-shrink: 0; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid var(--border); background: var(--bg); }
+
+    /* CARDS */
+    #cards-container { flex: 1; overflow-y: auto; padding: 16px; position: relative; }
+    #cards-container::-webkit-scrollbar { width: 5px; }
+    #cards-container::-webkit-scrollbar-track { background: transparent; }
+    #cards-container::-webkit-scrollbar-thumb { background: var(--surface2); border-radius: 4px; }
+    #cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 10px; }
+
+    /* LOADING */
+    #loading-overlay { position: absolute; inset: 0; background: rgba(10,10,10,0.7); display: flex; align-items: center; justify-content: center; z-index: 10; backdrop-filter: blur(2px); }
+    .loading-card { background: var(--surface); border: 1px solid var(--border2); border-radius: 10px; padding: 18px 24px; display: flex; align-items: center; gap: 12px; font-size: 0.875rem; color: var(--text2); }
+
+    /* EMPTY */
+    #empty-state { display: none; flex-direction: column; align-items: center; justify-content: center; padding: 72px 24px; text-align: center; gap: 14px; }
+    .empty-icon { width: 64px; height: 64px; background: var(--surface); border-radius: 18px; border: 1px solid var(--border2); display: flex; align-items: center; justify-content: center; font-size: 28px; }
+    #empty-state h3 { font-size: 1rem; font-weight: 600; color: var(--text); }
+    #empty-state p { font-size: 0.8125rem; color: var(--text2); max-width: 280px; line-height: 1.6; }
+
+    /* CARD */
+    .memory-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 16px; cursor: pointer; position: relative; overflow: hidden; transition: border-color 0.15s, background 0.15s; }
+    .memory-card:hover { border-color: var(--border2); }
+    .memory-card.selected { border-color: var(--accent); background: rgba(0,212,255,0.04); }
+    .memory-card.locked { border-left: 3px solid rgba(245,158,11,0.5); }
+    .card-top { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 8px; gap: 8px; }
+    .card-key { font-family: var(--mono); font-size: 0.6875rem; font-weight: 500; color: var(--accent); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; flex: 1; min-width: 0; }
+    .card-lock-icon { font-size: 0.75rem; opacity: 0.7; flex-shrink: 0; }
+    .card-value { font-size: 0.8125rem; color: var(--text2); line-height: 1.55; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 12px; word-break: break-word; }
+    .card-footer { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+    .type-badge { font-size: 0.625rem; font-weight: 600; padding: 2px 7px; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.04em; flex-shrink: 0; }
+    .type-note    { background: rgba(139,92,246,0.15); color: #a78bfa; }
+    .type-fact    { background: rgba(34,197,94,0.12);  color: #4ade80; }
+    .type-event   { background: rgba(245,158,11,0.12); color: #fbbf24; }
+    .type-project { background: rgba(59,130,246,0.12); color: #60a5fa; }
+    .type-code    { background: rgba(0,212,255,0.12);  color: var(--accent); }
+    .type-general { background: rgba(255,255,255,0.06); color: var(--text3); }
+    .card-score { font-size: 0.625rem; color: var(--text3); font-family: var(--mono); }
+    .card-date  { font-size: 0.6875rem; color: var(--text3); margin-left: auto; }
+    .card-actions { display: flex; align-items: center; gap: 4px; margin-top: 10px; opacity: 0; transition: opacity 0.15s; }
+    .memory-card:hover .card-actions, .memory-card.selected .card-actions { opacity: 1; }
+    .score-bar { position: absolute; bottom: 0; left: 0; height: 2px; border-radius: 0 2px 0 10px; }
+
+    /* RIGHT PANEL */
+    #right-panel { width: 0; flex-shrink: 0; background: var(--surface); border-left: none; display: flex; flex-direction: column; overflow: hidden; transition: width 0.18s ease, border 0.18s; }
+    #right-panel.open { width: 320px; border-left: 1px solid var(--border); }
+    #panel-header { padding: 14px 16px 12px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; }
+    #panel-title { font-size: 0.875rem; font-weight: 600; color: var(--text); }
+    #panel-close { background: none; border: none; color: var(--text3); cursor: pointer; font-size: 16px; line-height: 1; padding: 4px 6px; border-radius: 5px; transition: color 0.12s, background 0.12s; }
+    #panel-close:hover { color: var(--text); background: var(--surface2); }
+    #panel-body { flex: 1; overflow-y: auto; padding: 14px; display: flex; flex-direction: column; gap: 12px; }
+    #panel-body::-webkit-scrollbar { width: 4px; }
+    #panel-body::-webkit-scrollbar-thumb { background: var(--surface2); border-radius: 3px; }
+    #panel-footer { padding: 12px 14px; border-top: 1px solid var(--border); display: flex; gap: 8px; flex-shrink: 0; flex-wrap: wrap; }
+
+    /* BUTTON SYSTEM */
+    .btn { display: inline-flex; align-items: center; gap: 6px; padding: 9px 18px; border-radius: 8px; font-size: 0.875rem; font-weight: 500; border: none; cursor: pointer; text-decoration: none; transition: all 0.15s; white-space: nowrap; font-family: var(--font); }
+    .btn:disabled { opacity: 0.4; cursor: not-allowed; }
+    .btn-primary { background: var(--accent); color: #000; font-weight: 600; }
+    .btn-primary:hover:not(:disabled) { opacity: 0.88; box-shadow: 0 4px 16px rgba(0,212,255,0.25); }
+    .btn-secondary { background: transparent; color: var(--text); border: 1px solid var(--border2); }
+    .btn-secondary:hover:not(:disabled) { background: var(--surface2); }
+    .btn-ghost { background: transparent; color: var(--text2); }
+    .btn-ghost:hover:not(:disabled) { color: var(--text); background: var(--surface); }
+    .btn-danger { background: transparent; color: var(--red); border: 1px solid rgba(239,68,68,0.25); }
+    .btn-danger:hover:not(:disabled) { background: rgba(239,68,68,0.08); }
+    .btn-sm { padding: 6px 12px; font-size: 0.8125rem; }
+    .btn-xs { padding: 4px 8px; font-size: 0.75rem; }
+    .btn-expand { flex: 1; justify-content: center; }
+
+    /* FORM */
+    .field-group { display: flex; flex-direction: column; gap: 5px; }
+    .field-label { font-size: 0.6875rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: var(--text3); }
+    .field-label .opt { color: var(--text3); text-transform: none; letter-spacing: 0; font-weight: 400; font-size: 0.6875rem; }
+    .field-input, .field-textarea, .field-select { background: var(--surface2); border: 1px solid var(--border2); color: var(--text); font-family: var(--font); font-size: 0.875rem; padding: 8px 10px; border-radius: 7px; outline: none; transition: border-color 0.15s; width: 100%; }
+    .field-input:focus, .field-textarea:focus, .field-select:focus { border-color: var(--accent); }
+    .field-input::placeholder, .field-textarea::placeholder { color: var(--text3); }
+    .field-textarea { resize: vertical; min-height: 90px; line-height: 1.6; font-size: 0.8125rem; }
+    .field-textarea.large { min-height: 130px; }
+    .field-select { cursor: pointer; }
+    .mono { font-family: var(--mono); font-size: 0.8125rem; }
+
+    .detail-key-row { display: flex; align-items: center; gap: 8px; background: var(--surface2); border: 1px solid var(--border2); border-radius: 7px; padding: 8px 10px; }
+    .detail-key-text { font-family: var(--mono); font-size: 0.75rem; color: var(--accent); flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .copy-btn { background: var(--surface); border: 1px solid var(--border2); color: var(--text2); font-size: 0.6875rem; padding: 2px 8px; border-radius: 4px; cursor: pointer; font-family: var(--font); white-space: nowrap; flex-shrink: 0; transition: color 0.12s, border-color 0.12s; font-weight: 500; }
+    .copy-btn:hover { color: var(--accent); border-color: var(--accent-border); }
+    .meta-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+    .meta-cell { background: var(--surface2); border: 1px solid var(--border); border-radius: 7px; padding: 8px 10px; }
+    .meta-cell-label { font-size: 0.625rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: var(--text3); margin-bottom: 2px; }
+    .meta-cell-value { font-size: 0.75rem; color: var(--text); word-break: break-all; }
+    .tags-row { display: flex; flex-wrap: wrap; gap: 4px; }
+    .tag-chip { background: var(--accent-dim); color: var(--accent); border: 1px solid var(--accent-border); font-size: 0.6875rem; padding: 2px 8px; border-radius: 4px; font-weight: 500; }
+    .panel-dream-link { display: flex; align-items: center; justify-content: center; gap: 6px; padding: 9px 14px; border-radius: 8px; font-size: 0.8125rem; font-weight: 500; color: var(--accent); border: 1px solid var(--accent-border); background: var(--accent-dim); text-decoration: none; transition: opacity 0.15s; }
+    .panel-dream-link:hover { opacity: 0.8; }
+
+    /* SPINNER */
+    .spinner { display: inline-block; width: 13px; height: 13px; border: 2px solid rgba(0,212,255,0.2); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.6s linear infinite; flex-shrink: 0; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* TOASTS */
+    #toast-container { position: fixed; bottom: 20px; right: 20px; z-index: 9999; display: flex; flex-direction: column; gap: 7px; pointer-events: none; }
+    .toast { background: var(--surface2); border: 1px solid var(--border2); border-radius: 8px; padding: 10px 14px; font-size: 0.8125rem; color: var(--text); display: flex; align-items: center; gap: 9px; min-width: 230px; max-width: 340px; pointer-events: all; animation: toastIn 0.18s ease; box-shadow: 0 4px 24px rgba(0,0,0,0.5); }
+    .toast.success { border-left: 3px solid var(--green); }
+    .toast.error   { border-left: 3px solid var(--red); }
+    .toast.info    { border-left: 3px solid var(--accent); }
+    .toast-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+    .toast.success .toast-dot { background: var(--green); }
+    .toast.error   .toast-dot { background: var(--red); }
+    .toast.info    .toast-dot { background: var(--accent); }
+    @keyframes toastIn { from { opacity: 0; transform: translateX(16px); } to { opacity: 1; transform: translateX(0); } }
+    @keyframes toastOut { from { opacity: 1; max-height: 60px; } to { opacity: 0; max-height: 0; padding: 0; margin: 0; } }
+
+    /* MODAL */
+    #modal-backdrop { position: fixed; inset: 0; background: rgba(0,0,0,0.65); z-index: 200; display: none; align-items: center; justify-content: center; backdrop-filter: blur(4px); }
+    #modal-backdrop.open { display: flex; }
+    #ns-modal { background: var(--surface); border: 1px solid var(--border2); border-radius: 12px; padding: 24px; width: 340px; display: flex; flex-direction: column; gap: 16px; box-shadow: 0 8px 40px rgba(0,0,0,0.6); }
+    #ns-modal h3 { font-size: 0.9375rem; font-weight: 600; }
+    #ns-modal-actions { display: flex; gap: 8px; justify-content: flex-end; }
+
+    /* MOBILE */
+    #sidebar-toggle { display: none; background: none; border: none; color: var(--text2); font-size: 1.25rem; cursor: pointer; padding: 4px 6px; border-radius: 6px; flex-shrink: 0; }
+    #sidebar-toggle:hover { background: var(--surface2); color: var(--text); }
+    @media (max-width: 768px) {
+      #sidebar { position: fixed; top: calc(var(--nav-h) + 32px); left: 0; bottom: 0; z-index: 80; transform: translateX(-100%); transition: transform 0.2s ease; }
+      #sidebar.open { transform: translateX(0); }
+      #sidebar-toggle { display: flex; align-items: center; }
+      #right-panel.open { width: 100%; position: fixed; inset: 0; top: var(--nav-h); z-index: 85; }
+    }
+    @media (max-width: 480px) { #store-btn span { display: none; } }
+  </style>
+</head>
+<body>
+
+<nav class="app-nav">
+  <a href="/brain" class="nav-logo">Slopshop</a>
+  <div class="nav-center">
+    <a href="/memory-hub" class="nav-link active" id="nl-memory">🧠 Memory</a>
+    <a href="/dream-studio" class="nav-link" id="nl-dreams">💤 Dreams</a>
+    <a href="/team-hives" class="nav-link" id="nl-hive">🐝 Hive</a>
+  </div>
+  <div class="nav-right">
+    <a href="/profile" class="nav-user" id="navEmail">Account</a>
+    <a href="/" class="nav-home">← Home</a>
+  </div>
+</nav>
+
+<div class="journey-banner">
+  <a href="/memory-hub" class="journey-step current">🧠 Memory</a>
+  <span class="journey-arrow">→</span>
+  <a href="/dream-studio" class="journey-step">💤 Dreams</a>
+  <span class="journey-arrow">→</span>
+  <a href="/team-hives" class="journey-step">🐝 Hive</a>
+</div>
+
+<div id="app">
+  <aside id="sidebar">
+    <div class="sidebar-label">Namespaces</div>
+    <div id="ns-list"></div>
+    <button id="add-ns-btn">+ New namespace</button>
+    <div class="sidebar-divider"></div>
+    <a href="/dream-studio" class="dream-ns-link" id="dream-ns-link">Dream this namespace →</a>
+  </aside>
+
+  <div id="main">
+    <div id="center">
+      <div id="toolbar">
+        <button id="sidebar-toggle" aria-label="Toggle sidebar">≡</button>
+        <div class="search-wrap">
+          <span class="search-icon">
+            <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="6.5" cy="6.5" r="5"/><path d="m11 11 3 3"/></svg>
+          </span>
+          <input id="search-input" type="text" placeholder="Search memories..." autocomplete="off" spellcheck="false" />
+          <button id="search-clear" title="Clear">&#x2715;</button>
+        </div>
+        <button class="btn btn-primary btn-sm" id="store-btn">
+          <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M8 2v12M2 8h12"/></svg>
+          <span>Store memory</span>
+        </button>
+        <button class="btn btn-ghost btn-sm" id="refresh-btn" title="Refresh">↻</button>
+      </div>
+
+      <div id="store-drawer">
+        <div class="drawer-inner">
+          <div class="drawer-row">
+            <div class="field-group">
+              <label class="field-label">Key <span style="color:var(--red)">*</span></label>
+              <input id="f-key" class="field-input mono" type="text" placeholder="user-preferences" autocomplete="off" spellcheck="false" />
+            </div>
+            <div class="field-group">
+              <label class="field-label">Namespace</label>
+              <select id="f-ns" class="field-select mono"></select>
+            </div>
+          </div>
+          <div class="field-group">
+            <label class="field-label">Value <span style="color:var(--red)">*</span></label>
+            <textarea id="f-value" class="field-textarea" placeholder="Enter value..."></textarea>
+          </div>
+          <div class="drawer-row">
+            <div class="field-group">
+              <label class="field-label">Type</label>
+              <select id="f-type" class="field-select"></select>
+            </div>
+            <div class="field-group">
+              <label class="field-label">Tags <span class="opt">(comma-separated)</span></label>
+              <input id="f-tags" class="field-input" type="text" placeholder="ai, research" autocomplete="off" />
+            </div>
+          </div>
+          <div class="drawer-actions">
+            <button class="btn btn-secondary btn-sm" id="drawer-cancel">Cancel</button>
+            <button class="btn btn-primary btn-sm" id="drawer-store">Store Memory ▸</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="meta-bar"><span id="meta-text"></span></div>
+
+      <div id="cards-container">
+        <div id="loading-overlay">
+          <div class="loading-card"><div class="spinner"></div>Loading memories...</div>
+        </div>
+        <div id="empty-state">
+          <div class="empty-icon">🧠</div>
+          <h3>No memories yet</h3>
+          <p>Start building your memory bank — store facts, notes, code snippets, events, and more.</p>
+          <button class="btn btn-primary btn-sm" id="empty-cta" style="margin-top:4px">Store first memory</button>
+        </div>
+        <div id="cards-grid"></div>
+      </div>
+    </div>
+
+    <div id="right-panel">
+      <div id="panel-header">
+        <div id="panel-title">Memory Detail</div>
+        <button id="panel-close" title="Close (Esc)">&#x2715;</button>
+      </div>
+      <div id="panel-body"></div>
+      <div id="panel-footer"></div>
+    </div>
+  </div>
+</div>
+
+<div id="toast-container"></div>
+
+<div id="modal-backdrop">
+  <div id="ns-modal">
+    <h3>New Namespace</h3>
+    <div class="field-group">
+      <label class="field-label">Name</label>
+      <input id="ns-modal-input" class="field-input mono" type="text" placeholder="my-project" autocomplete="off" spellcheck="false" maxlength="64" />
+    </div>
+    <div id="ns-modal-actions">
+      <button class="btn btn-ghost btn-sm" id="ns-cancel-btn">Cancel</button>
+      <button class="btn btn-primary btn-sm" id="ns-create-btn">Create</button>
+    </div>
+  </div>
+</div>
+
+<script>
+'use strict';
+
+var currentKey=null, currentEmail='', currentNs='default', namespaces=['default'],
+    memories=[], selectedKey=null, panelMode=null, searchTimer=null,
+    isSearchMode=false, drawerOpen=false;
+var BASE='';
+
+async function init() {
+  try {
+    var r = await fetch(BASE+'/v1/auth/session', {credentials:'include'});
+    if (!r.ok) { window.location.replace('/'); return; }
+    var s = await r.json();
+    currentKey   = s.api_key;
+    currentEmail = (s.user && s.user.email) || s.email || '';
+    document.getElementById('navEmail').textContent = currentEmail || 'Account';
+    loadNamespaces();
+    await fetchMemories();
+  } catch(e) {
+    toast('Auth failed - redirecting...', 'error');
+    setTimeout(function(){ window.location.replace('/'); }, 1800);
+  }
+}
+
+function authHeaders() {
+  return { 'Content-Type':'application/json', 'Authorization':'Bearer '+currentKey };
+}
+
+async function api(path, body) {
+  var res = await fetch(BASE+path, {method:'POST', headers:authHeaders(), credentials:'include', body:JSON.stringify(body)});
+  var json = await res.json().catch(function(){ return {}; });
+  if (!res.ok) throw new Error(json.error || json.message || 'HTTP '+res.status);
+  return json;
+}
+
+function unwrap(json, key) {
+  if (json && json.data && json.data[key] !== undefined) return json.data[key];
+  if (json && json[key] !== undefined) return json[key];
+  return undefined;
+}
+
+function loadNamespaces() {
+  try {
+    var s = JSON.parse(localStorage.getItem('slop_ns') || '[]');
+    namespaces = ['default'].concat(s.filter(function(n){ return n!=='default'; }));
+    namespaces = namespaces.filter(function(v,i,a){ return a.indexOf(v)===i; });
+  } catch(_) { namespaces = ['default']; }
+  renderSidebar();
+}
+
+function saveNamespaces() {
+  localStorage.setItem('slop_ns', JSON.stringify(namespaces.filter(function(n){ return n!=='default'; })));
+}
+
+function renderSidebar() {
+  var list = document.getElementById('ns-list');
+  list.innerHTML = '';
+  namespaces.forEach(function(ns) {
+    var el = document.createElement('div');
+    el.className = 'ns-item' + (ns===currentNs ? ' active' : '');
+    el.innerHTML = '<span class="ns-name">'+esc(ns)+'</span><span class="ns-count" id="badge-'+esc(ns)+'">-</span>';
+    el.onclick = function(){ switchNs(ns); };
+    list.appendChild(el);
+  });
+  var dl = document.getElementById('dream-ns-link');
+  if (dl) dl.href = '/dream-studio?ns=' + encodeURIComponent(currentNs);
+}
+
+function setBadge(ns, count) {
+  var el = document.getElementById('badge-'+esc(ns));
+  if (el) el.textContent = count >= 0 ? count : '-';
+}
+
+function populateNsSelect(id) {
+  var sel = document.getElementById(id); if (!sel) return;
+  sel.innerHTML = namespaces.map(function(n){
+    return '<option value="'+escAttr(n)+'"'+(n===currentNs?' selected':'')+'>'+esc(n)+'</option>';
+  }).join('');
+}
+
+async function switchNs(ns) {
+  if (ns===currentNs && memories.length>0) return;
+  currentNs = ns; isSearchMode = false;
+  document.getElementById('search-input').value = '';
+  document.getElementById('search-clear').style.display = 'none';
+  renderSidebar(); closePanel(); await fetchMemories();
+}
+
+function openNsModal() {
+  document.getElementById('ns-modal-input').value = '';
+  document.getElementById('modal-backdrop').classList.add('open');
+  setTimeout(function(){ document.getElementById('ns-modal-input').focus(); }, 60);
+}
+function closeNsModal() { document.getElementById('modal-backdrop').classList.remove('open'); }
+
+async function createNamespace() {
+  var raw = document.getElementById('ns-modal-input').value.trim();
+  var ns = raw.toLowerCase().replace(/[^a-z0-9_\-]/g,'-').replace(/-+/g,'-').replace(/^-|-$/g,'');
+  if (!ns) { toast('Enter a valid namespace name','error'); return; }
+  if (namespaces.indexOf(ns)===-1) { namespaces.push(ns); saveNamespaces(); }
+  closeNsModal(); await switchNs(ns);
+}
+
+function typeOptions(sel) {
+  return ['general','note','fact','event','project','code'].map(function(t){
+    return '<option value="'+t+'"'+(t===sel?' selected':'')+'>'+t+'</option>';
+  }).join('');
+}
+
+function openDrawer() {
+  drawerOpen = true;
+  document.getElementById('store-drawer').classList.add('open');
+  populateNsSelect('f-ns');
+  document.getElementById('f-type').innerHTML = typeOptions('general');
+  document.getElementById('f-key').value = '';
+  document.getElementById('f-value').value = '';
+  document.getElementById('f-tags').value = '';
+  setTimeout(function(){ document.getElementById('f-key').focus(); }, 80);
+}
+function closeDrawer() { drawerOpen = false; document.getElementById('store-drawer').classList.remove('open'); }
+
+async function storeMemory() {
+  var key   = document.getElementById('f-key').value.trim();
+  var value = document.getElementById('f-value').value.trim();
+  var ns    = document.getElementById('f-ns').value;
+  var tags  = document.getElementById('f-tags').value.split(',').map(function(t){ return t.trim(); }).filter(Boolean);
+  var type  = document.getElementById('f-type').value;
+  if (!key)   { toast('Key is required','error'); return; }
+  if (!value) { toast('Value is required','error'); return; }
+  var btn = document.getElementById('drawer-store');
+  btn.disabled = true; btn.innerHTML = '<div class="spinner"></div> Storing...';
+  try {
+    await api('/v1/memory-set', {key:key, value:value, namespace:ns, tags:tags, type:type});
+    toast('Memory stored','success'); closeDrawer();
+    if (ns!==currentNs) await switchNs(ns); else await fetchMemories();
+  } catch(err) {
+    toast('Store failed: '+err.message,'error');
+    btn.disabled = false; btn.innerHTML = 'Store Memory ▸';
+  }
+}
+
+async function fetchMemories() {
+  showLoading(true);
+  try {
+    var lr = await api('/v1/memory-list', {namespace:currentNs, limit:50, offset:0});
+    var allKeys = unwrap(lr,'keys') || [];
+    var keys = allKeys.slice(0, 20);
+    setBadge(currentNs, allKeys.length);
+    if (keys.length === 0) {
+      memories = []; renderCards([], false); setMeta(0, allKeys.length, false, '');
+      showLoading(false); return;
+    }
+    var results = await Promise.allSettled(keys.map(function(k){
+      return api('/v1/memory-get', {key:k, namespace:currentNs}).then(function(r){
+        return { key:k, value:unwrap(r,'value')||'', type:unwrap(r,'type')||'general',
+          created:unwrap(r,'created')||null, updated:unwrap(r,'updated')||null,
+          tags:unwrap(r,'tags')||[], locked:unwrap(r,'locked')||0, score:null };
+      });
+    }));
+    memories = results.filter(function(r){ return r.status==='fulfilled'; }).map(function(r){ return r.value; });
+    renderCards(memories, false); setMeta(memories.length, allKeys.length, false, '');
+  } catch(err) {
+    toast('Load failed: '+err.message,'error'); memories = []; renderCards([], false);
+  } finally { showLoading(false); }
+}
+
+async function doSearch(query) {
+  query = query.trim();
+  if (!query) { isSearchMode = false; await fetchMemories(); return; }
+  isSearchMode = true; showLoading(true);
+  try {
+    var res = await api('/v1/memory-search', {query:query, namespace:currentNs, limit:30});
+    var raw = unwrap(res,'results') || [];
+    memories = raw.map(function(r){
+      return { key:r.key, value:r.value||'', type:r.type||'general',
+        created:r.created||null, updated:r.updated||null,
+        tags:r.tags||[], locked:r.locked||0, score:r.score!=null?r.score:null };
+    });
+    renderCards(memories, true); setMeta(memories.length, null, true, query);
+  } catch(err) { toast('Search error: '+err.message,'error'); }
+  finally { showLoading(false); }
+}
+
+function renderCards(items, isSearch) {
+  var grid = document.getElementById('cards-grid'), empty = document.getElementById('empty-state');
+  grid.innerHTML = '';
+  if (!items.length) { empty.style.display = 'flex'; return; }
+  empty.style.display = 'none';
+  items.forEach(function(mem){ grid.appendChild(makeCard(mem, isSearch)); });
+}
+
+function makeCard(mem, isSearch) {
+  var isLocked = mem.locked===1 || mem.locked===true;
+  var div = document.createElement('div');
+  div.className = 'memory-card' + (mem.key===selectedKey?' selected':'') + (isLocked?' locked':'');
+  div.dataset.key = mem.key;
+  var preview = (mem.value||'').slice(0,140) + ((mem.value||'').length>140?'...':'');
+  var typeCls  = 'type-' + ((mem.type||'general').toLowerCase());
+  var dateStr  = fmtDate(mem.updated||mem.created);
+  var scoreStr = (isSearch && mem.score!=null) ? '<span class="card-score">'+Math.round(mem.score*100)+'%</span>' : '';
+  var scoreBar = (isSearch && mem.score!=null)
+    ? '<div class="score-bar" style="width:'+Math.round(mem.score*100)+'%;background:'+scoreColor(mem.score)+';"></div>' : '';
+  div.innerHTML =
+    '<div class="card-top"><span class="card-key">'+esc(mem.key)+'</span>' +
+    (isLocked?'<span class="card-lock-icon" title="Protected">🔒</span>':'')+'</div>'+
+    '<div class="card-value">'+(preview?esc(preview):'<span style="color:var(--text3);font-style:italic;font-size:0.75rem;">empty</span>')+'</div>'+
+    '<div class="card-footer"><span class="type-badge '+typeCls+'">'+esc(mem.type||'general')+'</span>'+scoreStr+'<span class="card-date">'+dateStr+'</span></div>'+
+    '<div class="card-actions">'+
+      '<button class="btn btn-ghost btn-xs card-edit-btn">Edit</button>'+
+      (!isLocked?'<button class="btn btn-danger btn-xs card-del-btn" data-memkey="'+escAttr(mem.key)+'">Delete</button>':'')+
+      '<button class="btn btn-ghost btn-xs card-lock-btn">'+(isLocked?'🔒 Unlock':'🔓 Lock')+'</button>'+
+    '</div>'+scoreBar;
+  div.addEventListener('click', function(e){
+    var t = e.target;
+    if (t.classList.contains('card-del-btn')||t.classList.contains('card-edit-btn')||t.classList.contains('card-lock-btn')) return;
+    openDetail(mem);
+  });
+  div.querySelector('.card-edit-btn').addEventListener('click', function(e){ e.stopPropagation(); openDetail(mem); });
+  if (!isLocked) div.querySelector('.card-del-btn').addEventListener('click', function(e){ e.stopPropagation(); confirmDelete(mem.key); });
+  div.querySelector('.card-lock-btn').addEventListener('click', function(e){ e.stopPropagation(); toggleMemoryLock(mem.key, !isLocked); });
+  return div;
+}
+
+function scoreColor(s) { if(s>=0.75)return'#22c55e'; if(s>=0.45)return'#f59e0b'; return'#52525b'; }
+
+function setMeta(shown, total, isSearch, query) {
+  var el = document.getElementById('meta-text');
+  if (isSearch) { el.textContent = shown+' result'+(shown!==1?'s':'')+' for "'+query+'" in '+currentNs; }
+  else { var extra = total>shown?' - showing '+shown+' of '+total:''; el.textContent = shown+' memor'+(shown!==1?'ies':'y')+' in '+currentNs+extra; }
+}
+
+function showLoading(show) { document.getElementById('loading-overlay').style.display = show?'flex':'none'; }
+function openPanel() { document.getElementById('right-panel').classList.add('open'); }
+function closePanel() {
+  document.getElementById('right-panel').classList.remove('open');
+  selectedKey = null; panelMode = null;
+  document.querySelectorAll('.memory-card.selected').forEach(function(c){ c.classList.remove('selected'); });
+}
+
+function openDetail(mem) {
+  panelMode = 'detail'; selectedKey = mem.key;
+  document.querySelectorAll('.memory-card.selected').forEach(function(c){ c.classList.remove('selected'); });
+  var card = document.querySelector('.memory-card[data-key="'+CSS.escape(mem.key)+'"]');
+  if (card) card.classList.add('selected');
+  document.getElementById('panel-title').textContent = 'Memory Detail';
+  renderDetailForm(mem); openPanel();
+}
+
+function renderDetailForm(mem) {
+  var tags = Array.isArray(mem.tags) ? mem.tags : [];
+  var isLocked = mem.locked===1 || mem.locked===true;
+  document.getElementById('panel-body').innerHTML =
+    '<div class="field-group"><div class="field-label">Key</div>'+
+    '<div class="detail-key-row"><span class="detail-key-text" title="'+escAttr(mem.key)+'">'+esc(mem.key)+'</span>'+
+    '<button class="copy-btn" id="copy-key-btn">Copy</button></div></div>'+
+    '<div class="field-group"><label class="field-label">Value <span class="opt">(editable - save to update)</span></label>'+
+    '<textarea id="d-value" class="field-textarea large">'+esc(mem.value||'')+'</textarea></div>'+
+    '<div class="field-group"><label class="field-label">Type</label>'+
+    '<select id="d-type" class="field-select">'+typeOptions(mem.type||'general')+'</select></div>'+
+    '<div class="field-group"><label class="field-label">Tags <span class="opt">(comma-separated)</span></label>'+
+    '<input id="d-tags" class="field-input" type="text" value="'+escAttr(tags.join(', '))+'" /></div>'+
+    '<div class="meta-grid">'+
+    '<div class="meta-cell"><div class="meta-cell-label">Created</div><div class="meta-cell-value">'+(fmtDateFull(mem.created)||'-')+'</div></div>'+
+    '<div class="meta-cell"><div class="meta-cell-label">Updated</div><div class="meta-cell-value">'+(fmtDateFull(mem.updated)||'-')+'</div></div>'+
+    '<div class="meta-cell"><div class="meta-cell-label">Namespace</div><div class="meta-cell-value" style="font-family:var(--mono);font-size:0.6875rem;">'+esc(currentNs)+'</div></div>'+
+    '<div class="meta-cell"><div class="meta-cell-label">Score</div><div class="meta-cell-value">'+(mem.score!=null?Math.round(mem.score*100)+'%':'-')+'</div></div>'+
+    '</div>'+
+    (tags.length?'<div class="field-group"><div class="field-label">Tags</div><div class="tags-row">'+tags.map(function(t){return'<span class="tag-chip">'+esc(t)+'</span>';}).join('')+'</div></div>':'')+
+    '<a href="/dream-studio?key='+encodeURIComponent(mem.key)+'&ns='+encodeURIComponent(currentNs)+'" class="panel-dream-link">💤 Dream this memory →</a>';
+
+  document.getElementById('panel-footer').innerHTML =
+    '<button class="btn btn-danger btn-sm" id="pf-delete"'+(isLocked?' disabled title="Unprotect to delete"':'')+'>Delete</button>'+
+    '<button class="btn btn-secondary btn-sm" id="pf-lock">'+(isLocked?'🔒 Unlock':'🔓 Lock')+'</button>'+
+    '<button class="btn btn-primary btn-sm btn-expand" id="pf-save">Save Changes</button>';
+
+  document.getElementById('copy-key-btn').onclick = function(){ copyText(mem.key, document.getElementById('copy-key-btn')); };
+  document.getElementById('pf-delete').onclick = function(){ confirmDelete(mem.key); };
+  document.getElementById('pf-save').onclick   = function(){ saveDetail(mem.key); };
+  document.getElementById('pf-lock').onclick   = function(){ toggleMemoryLock(mem.key, !isLocked); };
+}
+
+async function saveDetail(key) {
+  var value = document.getElementById('d-value').value.trim();
+  var type  = document.getElementById('d-type').value;
+  var tags  = document.getElementById('d-tags').value.split(',').map(function(t){ return t.trim(); }).filter(Boolean);
+  if (!value) { toast('Value cannot be empty','error'); return; }
+  var btn = document.getElementById('pf-save');
+  btn.disabled = true; btn.innerHTML = '<div class="spinner"></div> Saving...';
+  try {
+    await api('/v1/memory-set', {key:key, value:value, namespace:currentNs, tags:tags, type:type});
+    toast('Memory updated','success'); closePanel(); await fetchMemories();
+  } catch(err) { toast('Save failed: '+err.message,'error'); btn.disabled=false; btn.innerHTML='Save Changes'; }
+}
+
+function confirmDelete(key) {
+  if (!confirm('Delete memory:\n"'+key+'"\n\nThis cannot be undone.')) return;
+  deleteMemory(key);
+}
+
+async function deleteMemory(key) {
+  try {
+    var res = await api('/v1/memory-delete', {key:key, namespace:currentNs});
+    if (res.error==='memory_protected') { toast('🔒 This memory is protected. Unlock it first.','error'); return; }
+    var deleted = unwrap(res,'deleted');
+    if (deleted===true || deleted==='true' || res.ok!==false) {
+      toast('Memory deleted','success');
+      if (selectedKey===key) closePanel();
+      await fetchMemories();
+    } else { throw new Error('Server did not confirm delete'); }
+  } catch(err) {
+    if (err.message==='memory_protected') { toast('🔒 This memory is protected. Unlock it first.','error'); }
+    else { toast('Delete failed: '+err.message,'error'); }
+  }
+}
+
+async function toggleMemoryLock(key, locked) {
+  try {
+    var r = await api('/v1/memory/lock', {key:key, namespace:currentNs, locked:locked});
+    if (r.ok!==false) { toast(locked?'🔒 Memory protected':'🔓 Memory unprotected','success'); await fetchMemories(); }
+    else { toast(r.error||'Failed to update lock','error'); }
+  } catch(e) { toast('Lock update failed: '+e.message,'error'); }
+}
+
+function toast(msg, type) {
+  type = type||'info';
+  var c = document.getElementById('toast-container'), el = document.createElement('div');
+  el.className = 'toast '+type;
+  el.innerHTML = '<span class="toast-dot"></span><span>'+esc(msg)+'</span>';
+  c.appendChild(el);
+  setTimeout(function(){
+    el.style.animation = 'toastOut 0.2s ease forwards';
+    setTimeout(function(){ el.remove(); }, 210);
+  }, 3200);
+}
+
+function esc(s) { return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function escAttr(s) { return String(s==null?'':s).replace(/'/g,'&#39;').replace(/"/g,'&quot;'); }
+
+function fmtDate(ts) {
+  if (!ts) return '';
+  var d = new Date(typeof ts==='number' && ts<1e12 ? ts*1000 : ts);
+  if (isNaN(d)) return String(ts);
+  var diff = (Date.now()-d)/1000;
+  if (diff<60)     return 'just now';
+  if (diff<3600)   return Math.floor(diff/60)+'m ago';
+  if (diff<86400)  return Math.floor(diff/3600)+'h ago';
+  if (diff<604800) return Math.floor(diff/86400)+'d ago';
+  return d.toLocaleDateString('en-US', {month:'short', day:'numeric'});
+}
+function fmtDateFull(ts) {
+  if (!ts) return '';
+  var d = new Date(typeof ts==='number' && ts<1e12 ? ts*1000 : ts);
+  if (isNaN(d)) return String(ts);
+  return d.toLocaleDateString('en-US', {month:'short', day:'numeric', year:'numeric', hour:'2-digit', minute:'2-digit'});
+}
+function copyText(text, btn) {
+  navigator.clipboard.writeText(text).then(function(){
+    var orig = btn.textContent; btn.textContent = 'Copied!'; btn.style.color = 'var(--green)';
+    setTimeout(function(){ btn.textContent = orig; btn.style.color = ''; }, 1600);
+  }).catch(function(){ toast('Copy failed','error'); });
+}
+
+/* Event wiring */
+document.getElementById('panel-close').onclick   = closePanel;
+document.getElementById('store-btn').onclick     = function(){ if(drawerOpen) closeDrawer(); else openDrawer(); };
+document.getElementById('drawer-cancel').onclick = closeDrawer;
+document.getElementById('drawer-store').onclick  = storeMemory;
+document.getElementById('refresh-btn').onclick   = fetchMemories;
+document.getElementById('empty-cta').onclick     = openDrawer;
+document.getElementById('add-ns-btn').onclick    = openNsModal;
+document.getElementById('ns-cancel-btn').onclick = closeNsModal;
+document.getElementById('ns-create-btn').onclick = createNamespace;
+document.getElementById('sidebar-toggle').onclick = function(){ document.getElementById('sidebar').classList.toggle('open'); };
+document.getElementById('modal-backdrop').onclick = function(e){ if(e.target===document.getElementById('modal-backdrop')) closeNsModal(); };
+document.getElementById('ns-modal-input').addEventListener('keydown', function(e){
+  if (e.key==='Enter')  createNamespace();
+  if (e.key==='Escape') closeNsModal();
+});
+
+var searchInput = document.getElementById('search-input');
+var searchClear = document.getElementById('search-clear');
+searchInput.addEventListener('input', function(e){
+  var val = e.target.value;
+  searchClear.style.display = val ? 'block' : 'none';
+  clearTimeout(searchTimer);
+  searchTimer = setTimeout(function(){ doSearch(val); }, 400);
+});
+searchInput.addEventListener('keydown', function(e){
+  if (e.key==='Escape') { searchInput.value=''; searchClear.style.display='none'; doSearch(''); }
+});
+searchClear.onclick = function(){
+  searchInput.value = ''; searchClear.style.display = 'none'; doSearch(''); searchInput.focus();
+};
+document.addEventListener('keydown', function(e){
+  if ((e.metaKey||e.ctrlKey) && e.key==='k') { e.preventDefault(); searchInput.focus(); searchInput.select(); }
+  if (e.key==='Escape' && panelMode) closePanel();
+  if (e.key==='Escape' && drawerOpen) closeDrawer();
+});
+
+init();
+</script>
+</body>
+</html>
