@@ -20,7 +20,8 @@
     }
   ],
   "redirects": [
-    { "source": "/dashboard", "destination": "/brain", "permanent": false },
+    { "source": "/dashboard", "destination": "/memory", "permanent": false },
+    { "source": "/brain", "destination": "/memory", "permanent": false },
     { "source": "/signup", "destination": "/", "permanent": false },
     { "source": "/login", "destination": "/", "permanent": false },
     { "source": "/dev-console", "destination": "https://slopshop.gg/dev-console", "permanent": false },

@@ -520,23 +520,23 @@ async function storeMemory() {
 async function fetchMemories() {
   showLoading(true);
   try {
-    var lr = await api('/v1/memory-list', {namespace:currentNs, limit:50, offset:0});
-    var allKeys = unwrap(lr,'keys') || [];
-    var keys = allKeys.slice(0, 20);
-    setBadge(currentNs, allKeys.length);
-    if (keys.length === 0) {
+    var res = await api('/v1/memory-search', {query:'', namespace:currentNs, limit:50});
+    var raw = unwrap(res,'results') || [];
+    if (raw.length === 0) {
+      // fallback: count via list for badge, show empty state
+      var lr = await api('/v1/memory-list', {namespace:currentNs, limit:50, offset:0});
+      var allKeys = unwrap(lr,'keys') || [];
+      setBadge(currentNs, allKeys.length);
       memories = []; renderCards([], false); setMeta(0, allKeys.length, false, '');
       showLoading(false); return;
     }
-    var results = await Promise.allSettled(keys.map(function(k){
-      return api('/v1/memory-get', {key:k, namespace:currentNs}).then(function(r){
-        return { key:k, value:unwrap(r,'value')||'', type:unwrap(r,'type')||'general',
-          created:unwrap(r,'created')||null, updated:unwrap(r,'updated')||null,
-          tags:unwrap(r,'tags')||[], locked:unwrap(r,'locked')||0, score:null };
-      });
-    }));
-    memories = results.filter(function(r){ return r.status==='fulfilled'; }).map(function(r){ return r.value; });
-    renderCards(memories, false); setMeta(memories.length, allKeys.length, false, '');
+    memories = raw.map(function(r){
+      return { key:r.key, value:r.value||'', type:r.type||'general',
+        created:r.created||null, updated:r.updated||null,
+        tags:r.tags||[], locked:r.locked||0, score:null };
+    });
+    setBadge(currentNs, memories.length);
+    renderCards(memories, false); setMeta(memories.length, memories.length, false, '');
   } catch(err) {
     toast('Load failed: '+err.message,'error'); memories = []; renderCards([], false);
   } finally { showLoading(false); }
