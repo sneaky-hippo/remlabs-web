@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Slopshop — Dashboard</title>
+  <title>REM Labs — Dashboard</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -12,17 +12,17 @@
     html { font-size: 16px; -webkit-font-smoothing: antialiased; }
 
     :root {
-      --bg: #0a0a0a;
-      --surface: #111111;
-      --surface2: #161616;
-      --border: rgba(255,255,255,0.07);
-      --border2: rgba(255,255,255,0.12);
-      --text: #f0f0f0;
-      --text2: rgba(240,240,240,0.55);
-      --text3: rgba(240,240,240,0.28);
-      --accent: #00D4FF;
-      --accent-dim: rgba(0,212,255,0.08);
-      --accent-border: rgba(0,212,255,0.18);
+      --bg: #ffffff;
+      --surface: #f5f5f7;
+      --surface2: #f0f0f5;
+      --border: rgba(0,0,0,0.07);
+      --border2: rgba(0,0,0,0.12);
+      --text: #1d1d1f;
+      --text2: #6e6e73;
+      --text3: #aeaeb2;
+      --accent: #6366f1;
+      --accent-dim: rgba(99,102,241,0.06);
+      --accent-border: rgba(99,102,241,0.2);
       --green: #22c55e;
       --yellow: #f59e0b;
       --red: #ef4444;
@@ -43,10 +43,10 @@
       position: fixed;
       top: 0; left: 0; right: 0;
       height: var(--nav-h);
-      background: rgba(10,10,10,0.92);
+      background: rgba(255,255,255,0.92);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
-      border-bottom: 1px solid rgba(255,255,255,0.06);
+      border-bottom: 1px solid rgba(0,0,0,0.06);
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -56,11 +56,11 @@
     }
 
     .nav-logo {
-      font-size: 1rem;
-      font-weight: 700;
+      font-size: 0.9rem;
+      font-weight: 400;
       color: var(--text);
       text-decoration: none;
-      letter-spacing: -0.03em;
+      letter-spacing: 0.02em;
       flex-shrink: 0;
     }
 
@@ -118,7 +118,7 @@
       text-overflow: ellipsis;
       white-space: nowrap;
     }
-    .nav-user:hover { color: var(--text); border-color: rgba(255,255,255,0.2); }
+    .nav-user:hover { color: var(--text); border-color: rgba(0,0,0,0.2); }
 
     .nav-home {
       font-size: 0.8125rem;
@@ -152,10 +152,10 @@
       white-space: nowrap;
       font-family: var(--font);
     }
-    .btn-primary { background: var(--accent); color: #000; font-weight: 600; }
-    .btn-primary:hover { opacity: 0.88; box-shadow: 0 4px 16px rgba(0,212,255,0.25); }
+    .btn-primary { background: var(--accent); color: #fff; font-weight: 600; }
+    .btn-primary:hover { opacity: 0.88; box-shadow: 0 4px 16px rgba(99,102,241,0.25); }
     .btn-secondary { background: transparent; color: var(--text); border: 1px solid var(--border2); }
-    .btn-secondary:hover { background: var(--surface2); border-color: rgba(255,255,255,0.18); }
+    .btn-secondary:hover { background: var(--surface2); border-color: rgba(0,0,0,0.18); }
     .btn-ghost { background: transparent; color: var(--text2); border: none; }
     .btn-ghost:hover { color: var(--text); background: var(--surface); }
     .btn-danger { background: transparent; color: var(--red); border: 1px solid rgba(239,68,68,0.25); }
@@ -178,7 +178,7 @@
       border: 1px solid var(--accent-border);
       font-family: var(--font);
     }
-    .btn-new:hover { background: rgba(0,212,255,0.14); }
+    .btn-new:hover { background: rgba(99,102,241,0.14); }
 
     /* ─── GREETING HERO ───────────────────────────────────── */
     .hero {
@@ -244,23 +244,23 @@
       text-transform: uppercase;
       letter-spacing: 0.06em;
     }
-    .tier-free   { background: rgba(255,255,255,0.07); color: var(--text2); }
+    .tier-free   { background: rgba(0,0,0,0.07); color: var(--text2); }
     .tier-pro    { background: var(--accent-dim); color: var(--accent); border: 1px solid var(--accent-border); }
     .tier-kraken { background: rgba(245,158,11,0.12); color: var(--yellow); border: 1px solid rgba(245,158,11,0.28); }
 
     /* ─── WELCOME BANNER ─────────────────────────────────── */
     .welcome-banner {
       display: none;
-      background: linear-gradient(135deg, rgba(0,212,255,0.07), rgba(34,197,94,0.05));
-      border: 1px solid rgba(0,212,255,0.15);
+      background: linear-gradient(135deg, rgba(99,102,241,0.07), rgba(34,197,94,0.05));
+      border: 1px solid rgba(99,102,241,0.15);
       border-radius: 14px;
       padding: 28px 32px;
       margin-bottom: 28px;
     }
     .wb-content h2 { font-size: 1.3rem; font-weight: 600; margin-bottom: 10px; }
-    .wb-content p { color: rgba(240,240,240,0.7); font-size: 0.9rem; margin-bottom: 14px; }
-    .wb-content ol { color: rgba(240,240,240,0.7); font-size: 0.875rem; padding-left: 20px; line-height: 2; margin-bottom: 20px; }
-    .wb-content ol strong { color: #f0f0f0; }
+    .wb-content p { color: rgba(29,29,31,0.7); font-size: 0.9rem; margin-bottom: 14px; }
+    .wb-content ol { color: rgba(29,29,31,0.7); font-size: 0.875rem; padding-left: 20px; line-height: 2; margin-bottom: 20px; }
+    .wb-content ol strong { color: #1d1d1f; }
     .wb-actions { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
     @media (max-width: 640px) {
       .welcome-banner { padding: 20px 16px; }
@@ -287,8 +287,8 @@
       align-items: center;
       gap: 8px;
       margin: 24px 0 32px;
-      background: var(--surface, #111111);
-      border: 1px solid rgba(255,255,255,0.07);
+      background: var(--surface, #f5f5f7);
+      border: 1px solid rgba(0,0,0,0.07);
       border-radius: 12px;
       padding: 20px 24px;
     }
@@ -306,13 +306,13 @@
       position: relative;
       text-decoration: none;
     }
-    .journey-step:hover { background: rgba(255,255,255,0.04); }
+    .journey-step:hover { background: rgba(0,0,0,0.04); }
     .journey-step.done { opacity: 1; }
     .journey-step.done .js-icon { filter: none; }
     .journey-step:not(.done) .js-icon { filter: grayscale(0.5); opacity: 0.6; }
     .js-icon { font-size: 1.6rem; }
-    .js-label { font-size: 0.875rem; font-weight: 600; color: #f0f0f0; }
-    .js-action { font-size: 0.75rem; color: rgba(240,240,240,0.45); }
+    .js-label { font-size: 0.875rem; font-weight: 600; color: #1d1d1f; }
+    .js-action { font-size: 0.75rem; color: rgba(29,29,31,0.45); }
     .js-check {
       position: absolute;
       top: 8px; right: 8px;
@@ -327,7 +327,7 @@
       font-weight: 700;
     }
     .journey-arrow {
-      color: rgba(240,240,240,0.2);
+      color: rgba(29,29,31,0.2);
       font-size: 1.2rem;
       flex-shrink: 0;
     }
@@ -366,7 +366,7 @@
     }
     .product-tile:hover {
       border-color: var(--border2);
-      box-shadow: 0 4px 20px rgba(0,212,255,0.05);
+      box-shadow: 0 4px 20px rgba(99,102,241,0.05);
     }
 
     .tile-icon {
@@ -460,7 +460,7 @@
       transition: background 0.12s;
     }
     .memory-row:last-child { border-bottom: none; }
-    .memory-row:hover { background: rgba(255,255,255,0.02); }
+    .memory-row:hover { background: rgba(0,0,0,0.02); }
 
     .memory-dot {
       width: 5px;
@@ -476,7 +476,7 @@
     .memory-key {
       font-size: 0.8125rem;
       font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
-      color: rgba(240,240,240,0.75);
+      color: rgba(29,29,31,0.75);
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -568,11 +568,11 @@
 
     .apikey-input {
       flex: 1;
-      background: rgba(255,255,255,0.04);
+      background: rgba(0,0,0,0.04);
       border: 1px solid var(--border);
       border-radius: 8px;
       padding: 10px 14px;
-      color: rgba(240,240,240,0.65);
+      color: rgba(29,29,31,0.65);
       font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
       font-size: 0.8125rem;
       letter-spacing: 0.02em;
@@ -595,7 +595,7 @@
       white-space: nowrap;
       transition: border-color 0.15s, color 0.15s;
     }
-    .icon-btn:hover { border-color: rgba(255,255,255,0.22); color: var(--text); }
+    .icon-btn:hover { border-color: rgba(0,0,0,0.22); color: var(--text); }
     .icon-btn.copied { color: var(--green); border-color: rgba(34,197,94,0.3); }
     .icon-btn.danger { color: var(--yellow); border-color: rgba(245,158,11,0.2); }
     .icon-btn.danger:hover { background: rgba(245,158,11,0.06); }
@@ -637,9 +637,9 @@
     }
     .skeleton {
       background: linear-gradient(90deg,
-        rgba(255,255,255,0.04) 25%,
-        rgba(255,255,255,0.07) 50%,
-        rgba(255,255,255,0.04) 75%);
+        rgba(0,0,0,0.04) 25%,
+        rgba(0,0,0,0.07) 50%,
+        rgba(0,0,0,0.04) 75%);
       background-size: 1200px 100%;
       animation: shimmer 1.5s infinite linear;
       border-radius: 4px;
@@ -707,11 +707,19 @@
 
   <!-- NAV -->
   <nav class="app-nav">
-    <a href="/brain" class="nav-logo">Slopshop</a>
+    <a href="/" class="nav-logo" style="display:flex;align-items:center;gap:8px;font-size:0.9rem;font-weight:400;color:#1d1d1f;letter-spacing:0.02em;text-decoration:none;">
+      <svg width="20" height="20" viewBox="0 0 28 28" fill="none">
+        <circle cx="14" cy="14" r="2.5" fill="#6366f1"/>
+        <ellipse cx="14" cy="14" rx="11" ry="5" stroke="#6366f1" stroke-width="1.5" opacity="0.8"/>
+        <ellipse cx="14" cy="14" rx="11" ry="5" stroke="#6366f1" stroke-width="1.5" opacity="0.5" transform="rotate(60 14 14)"/>
+        <ellipse cx="14" cy="14" rx="11" ry="5" stroke="#6366f1" stroke-width="1.5" opacity="0.35" transform="rotate(120 14 14)"/>
+      </svg>
+      REM Labs
+    </a>
     <div class="nav-center">
-      <a href="/memory-hub" class="nav-link" id="nl-memory">🧠 <span class="nav-link-label">Memory</span></a>
-      <a href="/dream-studio" class="nav-link" id="nl-dreams">💤 <span class="nav-link-label">Dreams</span></a>
-      <a href="/team-hives" class="nav-link" id="nl-hive">🐝 <span class="nav-link-label">Hive</span></a>
+      <a href="/memory" class="nav-link" id="nl-memory">🧠 <span class="nav-link-label">Memory</span></a>
+      <a href="/dream" class="nav-link" id="nl-dreams">💤 <span class="nav-link-label">Dreams</span></a>
+      <a href="/hive" class="nav-link" id="nl-hive">🐝 <span class="nav-link-label">Hive</span></a>
     </div>
     <div class="nav-right">
       <a href="/profile" class="nav-user" id="navEmail">Account</a>
@@ -738,7 +746,7 @@
     <!-- 2. WELCOME BANNER (first-time users) -->
     <div class="welcome-banner" id="welcome-banner">
       <div class="wb-content">
-        <h2>Welcome to Slopshop 👋</h2>
+        <h2>Welcome to REM Labs 👋</h2>
         <p>You're all set. Here's how to get the most out of your AI memory stack in 3 steps:</p>
         <ol>
           <li><strong>Memory</strong> — Store knowledge your AI should remember. Paste text, add structured notes, or use the API.</li>
@@ -746,7 +754,7 @@
           <li><strong>Hive</strong> — Invite your team. Share a collective memory space and run collaborative dreams.</li>
         </ol>
         <div class="wb-actions">
-          <a href="/memory-hub" class="btn btn-primary">Start with Memory →</a>
+          <a href="/memory" class="btn btn-primary">Start with Memory →</a>
           <button class="btn btn-ghost btn-sm" onclick="dismissWelcome()">I know what I'm doing</button>
         </div>
       </div>
@@ -754,21 +762,21 @@
 
     <!-- 3. JOURNEY INDICATOR -->
     <div class="journey-row" id="journey-row">
-      <div class="journey-step" id="js-memory" onclick="window.location='/memory-hub'">
+      <div class="journey-step" id="js-memory" onclick="window.location='/memory'">
         <div class="js-icon">🧠</div>
         <div class="js-label">Memory</div>
         <div class="js-action" id="js-memory-action">Add memories</div>
         <div class="js-check" id="js-memory-check">✓</div>
       </div>
       <div class="journey-arrow">→</div>
-      <div class="journey-step" id="js-dreams" onclick="window.location='/dream-studio'">
+      <div class="journey-step" id="js-dreams" onclick="window.location='/dream'">
         <div class="js-icon">💤</div>
         <div class="js-label">Dreams</div>
         <div class="js-action" id="js-dreams-action">Run a dream</div>
         <div class="js-check" id="js-dreams-check">✓</div>
       </div>
       <div class="journey-arrow">→</div>
-      <div class="journey-step" id="js-hive" onclick="window.location='/team-hives'">
+      <div class="journey-step" id="js-hive" onclick="window.location='/hive'">
         <div class="js-icon">🐝</div>
         <div class="js-label">Hive</div>
         <div class="js-action" id="js-hive-action">Create a hive</div>
@@ -788,7 +796,7 @@
           <div class="tile-title">Memory</div>
           <p class="tile-desc">Store knowledge, retrieve by meaning. The foundation of your AI stack.</p>
           <p class="tile-stat" id="tileMemStat">Loading…</p>
-          <a class="tile-cta" id="tileMemCta" href="/memory-hub">Open Memory Hub →</a>
+          <a class="tile-cta" id="tileMemCta" href="/memory">Open Memory Hub →</a>
         </div>
 
         <div class="product-tile">
@@ -796,7 +804,7 @@
           <div class="tile-title">Dream Engine</div>
           <p class="tile-desc">9-stage overnight synthesis. Your memory consolidates while you sleep.</p>
           <p class="tile-stat" id="tileDreamStat">Loading…</p>
-          <a class="tile-cta" id="tileDreamCta" href="/dream-studio">Open Dream Studio →</a>
+          <a class="tile-cta" id="tileDreamCta" href="/dream">Open Dream Studio →</a>
         </div>
 
         <div class="product-tile">
@@ -804,7 +812,7 @@
           <div class="tile-title">Hive</div>
           <p class="tile-desc">Multiplayer shared memory. Your team thinks together in real time.</p>
           <p class="tile-stat" id="tileHiveStat">Loading…</p>
-          <a class="tile-cta" id="tileHiveCta" href="/team-hives">Open Team Hives →</a>
+          <a class="tile-cta" id="tileHiveCta" href="/hive">Open Team Hives →</a>
         </div>
 
       </div>
@@ -814,7 +822,7 @@
     <div class="memories-section">
       <div class="section-header">
         <span class="section-title">Recent memories</span>
-        <a class="section-link" href="/memory-hub">View all →</a>
+        <a class="section-link" href="/memory">View all →</a>
       </div>
       <div class="memories-card" id="memoriesCard">
         <div style="padding:14px 18px;">
@@ -1060,7 +1068,7 @@
         card.innerHTML = `
           <div class="memories-empty">
             <p>No memories yet. Store your first to get started.</p>
-            <a class="btn btn-secondary btn-sm" href="/memory-hub">Go to Memory →</a>
+            <a class="btn btn-secondary btn-sm" href="/memory">Go to Memory →</a>
           </div>`;
         return;
       }
@@ -1110,7 +1118,7 @@
         card.innerHTML = `
           <div class="memories-empty">
             <p>No memories yet. Store your first →</p>
-            <a class="btn btn-secondary btn-sm" href="/memory-hub">Go to Memory →</a>
+            <a class="btn btn-secondary btn-sm" href="/memory">Go to Memory →</a>
           </div>`;
         return;
       }
@@ -1258,13 +1266,13 @@
         document.getElementById('memoriesCard').innerHTML = `
           <div class="memories-empty">
             <p>No memories yet. Store your first to get started.</p>
-            <a class="btn btn-secondary btn-sm" href="/memory-hub">Go to Memory →</a>
+            <a class="btn btn-secondary btn-sm" href="/memory">Go to Memory →</a>
           </div>`;
       } else {
         // Keys unknown but total > 0 — try fetching list again with higher limit
         document.getElementById('memoriesCard').innerHTML = `
           <div class="memories-empty">
-            <p>Memory data unavailable. <a href="/memory-hub" style="color:var(--accent)">View all →</a></p>
+            <p>Memory data unavailable. <a href="/memory" style="color:var(--accent)">View all →</a></p>
           </div>`;
       }
     }
