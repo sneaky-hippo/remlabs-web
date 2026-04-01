@@ -7,1534 +7,942 @@
   <meta property="og:title" content="REM Labs — Memory that compounds.">
   <meta property="og:description" content="Persistent memory for every AI. Dream Engine synthesizes overnight. Morning Brief every day.">
   <meta property="og:type" content="website">
-  <meta name="theme-color" content="#0a0a0a">
+  <meta name="theme-color" content="#ffffff">
   <title>REM Labs — Memory that compounds.</title>
   <link rel="canonical" href="https://remlabs.ai">
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
-    /* ── Design Tokens ── */
     :root {
-      --bg:            #0a0a0a;
-      --surface:       #111111;
-      --surface2:      #161616;
-      --border:        rgba(255,255,255,0.07);
-      --border2:       rgba(255,255,255,0.12);
-      --text:          #f0f0f0;
-      --text2:         rgba(240,240,240,0.55);
-      --text3:         rgba(240,240,240,0.28);
-      --accent:        #818cf8;
-      --accent-dim:    rgba(129,140,248,0.08);
-      --accent-border: rgba(129,140,248,0.20);
-      --accent-glow:   rgba(129,140,248,0.15);
-      --green:         #22c55e;
-      --yellow:        #f59e0b;
-      --red:           #ef4444;
-      --font:          'Inter', -apple-system, sans-serif;
-      --mono:          'JetBrains Mono', 'Fira Code', monospace;
-      --nav-h:         56px;
-      --max-w:         1200px;
-      --section-pad:   120px;
+      --bg:       #ffffff;
+      --bg2:      #f5f5f7;
+      --bg3:      #f0f0f5;
+      --border:   rgba(0,0,0,0.07);
+      --border2:  rgba(0,0,0,0.12);
+      --text:     #1d1d1f;
+      --text2:    #6e6e73;
+      --text3:    #aeaeb2;
+      --accent:   #6366f1;
+      --accent2:  #818cf8;
+      --accent-bg: rgba(99,102,241,0.06);
+      --accent-border: rgba(99,102,241,0.2);
+      --green:    #34c759;
+      --font:     'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --mono:     'JetBrains Mono', monospace;
+      --nav-h:    52px;
+      --max-w:    1160px;
+      --r:        12px;
     }
 
-    /* ── Reset ── */
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body {
       background: var(--bg);
       color: var(--text);
       font-family: var(--font);
+      font-size: 16px;
+      line-height: 1.5;
       -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
       overflow-x: hidden;
     }
     a { color: inherit; text-decoration: none; }
-    button { font-family: inherit; cursor: pointer; border: none; }
-    img { display: block; max-width: 100%; }
+    button { font-family: inherit; cursor: pointer; border: none; background: none; }
 
-    /* ── Scroll animations ── */
-    .reveal {
-      opacity: 0;
-      transform: translateY(28px);
-      transition: opacity 0.7s cubic-bezier(.22,1,.36,1), transform 0.7s cubic-bezier(.22,1,.36,1);
-    }
+    /* ── Reveal ── */
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
     .reveal.visible { opacity: 1; transform: none; }
-    .reveal-delay-1 { transition-delay: 0.1s; }
-    .reveal-delay-2 { transition-delay: 0.2s; }
-    .reveal-delay-3 { transition-delay: 0.3s; }
-    .reveal-delay-4 { transition-delay: 0.4s; }
-    .reveal-delay-5 { transition-delay: 0.5s; }
+    .d1 { transition-delay: 0.08s; }
+    .d2 { transition-delay: 0.16s; }
+    .d3 { transition-delay: 0.24s; }
+    .d4 { transition-delay: 0.32s; }
 
-    /* ── Nav ── */
+    /* ══════════════════════════════
+       NAV
+    ══════════════════════════════ */
     .nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 100;
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       height: var(--nav-h);
-      display: flex;
-      align-items: center;
-      padding: 0 32px;
-      background: rgba(10,10,10,0.88);
-      backdrop-filter: blur(20px) saturate(180%);
-      -webkit-backdrop-filter: blur(20px) saturate(180%);
-      border-bottom: 1px solid rgba(255,255,255,0.06);
+      background: rgba(255,255,255,0.82);
+      backdrop-filter: saturate(180%) blur(20px);
+      -webkit-backdrop-filter: saturate(180%) blur(20px);
+      border-bottom: 1px solid var(--border);
     }
     .nav-inner {
-      display: flex;
-      align-items: center;
-      width: 100%;
       max-width: var(--max-w);
       margin: 0 auto;
-      gap: 24px;
+      padding: 0 28px;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      gap: 4px;
     }
     .nav-logo {
-      font-weight: 700;
-      font-size: 1.05rem;
-      letter-spacing: -0.03em;
-      color: var(--text);
-      flex-shrink: 0;
+      display: flex; align-items: center; gap: 8px;
+      font-size: 0.95rem; font-weight: 600; color: var(--text);
+      letter-spacing: -0.01em; flex-shrink: 0; margin-right: 16px;
     }
-    .nav-logo:hover { color: var(--accent); transition: color 0.2s; }
-    .nav-spacer { flex: 1; }
-    .nav-dev {
-      font-size: 0.8rem;
-      color: var(--text2);
-      transition: color 0.2s;
+    .nav-logo-mark {
+      width: 22px; height: 22px;
+      display: flex; align-items: center; justify-content: center;
     }
-    .nav-dev:hover { color: var(--text); }
+    .nav-links { display: flex; align-items: center; gap: 0; flex: 1; }
+    .nav-link {
+      padding: 6px 12px; border-radius: 8px;
+      font-size: 0.84rem; font-weight: 400; color: var(--text2);
+      transition: color 0.15s, background 0.15s;
+    }
+    .nav-link:hover { color: var(--text); background: rgba(0,0,0,0.04); }
+    .nav-actions { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+    .nav-signin {
+      padding: 7px 14px; border-radius: 8px;
+      font-size: 0.84rem; font-weight: 500; color: var(--text2);
+      border: 1px solid var(--border2);
+      transition: all 0.15s;
+    }
+    .nav-signin:hover { color: var(--text); border-color: rgba(0,0,0,0.2); }
     .nav-cta {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 18px;
-      border-radius: 8px;
-      font-size: 0.82rem;
-      font-weight: 500;
-      transition: all 0.2s;
-      min-height: 36px;
+      padding: 7px 16px; border-radius: 8px;
+      font-size: 0.84rem; font-weight: 500;
+      background: var(--text); color: #fff;
+      transition: opacity 0.15s;
     }
-    .nav-cta-signin {
-      background: var(--accent-dim);
-      color: var(--accent);
-      border: 1px solid var(--accent-border);
+    .nav-cta:hover { opacity: 0.82; }
+    .nav-dash { display: none; }
+    .nav-dash.visible { display: flex; }
+    .hamburger {
+      display: none; flex-direction: column; gap: 4px;
+      padding: 8px; margin-left: auto; border-radius: 8px;
+      cursor: pointer; transition: background 0.15s;
     }
-    .nav-cta-signin:hover {
-      background: rgba(129,140,248,0.14);
-      border-color: rgba(129,140,248,0.3);
+    .hamburger:hover { background: rgba(0,0,0,0.04); }
+    .hamburger span { display: block; width: 18px; height: 1.5px; background: var(--text2); border-radius: 2px; transition: all 0.2s; }
+    .hamburger.open span:nth-child(1) { transform: translateY(5.5px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-5.5px) rotate(-45deg); }
+    .mob-menu {
+      display: none; flex-direction: column;
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 8px 16px 20px;
+      gap: 2px;
     }
-    .nav-cta-dashboard {
-      background: var(--accent);
-      color: #000;
-      font-weight: 600;
-      display: none;
+    .mob-menu.open { display: flex; }
+    .mob-menu a {
+      padding: 10px 12px; border-radius: 8px;
+      font-size: 0.9rem; color: var(--text2);
+      transition: background 0.12s, color 0.12s;
     }
-    .nav-cta-dashboard:hover { background: #a5b4fc; }
-    .nav-cta-dashboard.visible { display: flex; }
+    .mob-menu a:hover { background: rgba(0,0,0,0.04); color: var(--text); }
+    .mob-divider { height: 1px; background: var(--border); margin: 6px 0; }
+    .mob-cta { background: var(--text)!important; color: #fff!important; font-weight: 500!important; text-align: center; margin-top: 4px; }
+    @media (max-width: 720px) {
+      .nav-links, .nav-signin { display: none!important; }
+      .hamburger { display: flex!important; }
+    }
 
-    /* ── Nav enhanced (site-nav pattern) ── */
-.site-nav{position:fixed;top:0;left:0;right:0;z-index:200;height:56px;background:rgba(10,10,10,0.88);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);border-bottom:1px solid rgba(255,255,255,0.06);display:flex;flex-direction:column;transition:background 0.3s,box-shadow 0.3s}
-.site-nav.sn-scrolled{background:rgba(10,10,10,0.97)!important;box-shadow:0 1px 0 rgba(255,255,255,0.04),0 8px 32px rgba(0,0,0,0.5)}
-.site-nav::after{content:'';position:absolute;bottom:-1px;left:0;height:2px;background:linear-gradient(90deg,#818cf8,#6366f1);animation:snLoad 1s cubic-bezier(.4,0,.2,1) forwards}
-@keyframes snLoad{from{width:0;opacity:0}60%{opacity:1}to{width:100%;opacity:0}}
-.site-nav-inner{max-width:var(--max-w,1200px);width:100%;margin:0 auto;padding:0 32px;height:56px;display:flex;align-items:center;gap:2px}
-.site-nav-logo{display:flex;align-items:center;font-weight:700;font-size:1.05rem;color:var(--text,#f0f0f0);letter-spacing:-0.03em;text-decoration:none;flex-shrink:0;margin-right:12px;transition:color 0.2s}
-.site-nav-logo:hover{color:#818cf8}
-.sn-mark{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;flex-shrink:0;margin-right:6px;vertical-align:middle}
-.site-nav-drop{position:relative;flex-shrink:0;margin-right:4px}
-.sn-drop-btn{display:flex;align-items:center;gap:5px;padding:6px 11px;background:transparent;border:none;color:rgba(240,240,240,0.6);font-size:0.84rem;font-weight:500;cursor:pointer;border-radius:7px;transition:color 0.15s,background 0.15s;font-family:inherit}
-.sn-drop-btn:hover,.site-nav-drop.open .sn-drop-btn{color:#f0f0f0;background:rgba(255,255,255,0.06)}
-.sn-chev{transition:transform 0.2s;flex-shrink:0}
-.site-nav-drop.open .sn-chev{transform:rotate(180deg)}
-.sn-drop-panel{display:none;position:absolute;top:calc(100% + 10px);left:-8px;width:260px;background:#111113;border:1px solid rgba(255,255,255,0.09);border-radius:12px;padding:6px;flex-direction:column;gap:2px;box-shadow:0 20px 48px rgba(0,0,0,0.75),inset 0 1px 0 rgba(255,255,255,0.04)}
-.site-nav-drop.open .sn-drop-panel{display:flex}
-.sn-drop-item{display:flex;align-items:flex-start;gap:10px;padding:9px 11px;border-radius:8px;text-decoration:none;color:#f0f0f0;transition:background 0.12s}
-.sn-drop-item:hover{background:rgba(255,255,255,0.06)}
-.sdi-icon{font-size:0.95rem;opacity:0.55;flex-shrink:0;margin-top:2px;line-height:1.4;width:18px;text-align:center}
-.sn-drop-item b{display:block;font-size:0.84rem;font-weight:600;color:#f0f0f0;line-height:1.3}
-.sn-drop-item em{display:block;font-size:0.73rem;color:rgba(240,240,240,0.42);font-style:normal;margin-top:2px}
-.site-nav-links{display:flex;align-items:center;gap:2px;flex:1;margin-left:4px}
-.site-nav-link{padding:6px 11px;border-radius:7px;font-size:0.84rem;font-weight:500;color:rgba(240,240,240,0.6);text-decoration:none;transition:color 0.15s,background 0.15s}
-.site-nav-link:hover{color:#f0f0f0;background:rgba(255,255,255,0.06)}
-.site-nav-actions{display:flex;align-items:center;gap:8px;flex-shrink:0;margin-left:8px}
-.site-nav-app{font-size:0.82rem;font-weight:500;color:rgba(240,240,240,0.8);text-decoration:none;padding:7px 14px;border-radius:7px;border:1px solid rgba(255,255,255,0.12);transition:all 0.15s}
-.site-nav-app:hover{color:#f0f0f0;border-color:rgba(255,255,255,0.22);background:rgba(255,255,255,0.05)}
-.site-nav-signup{font-size:0.82rem;font-weight:600;color:#fff;background:#818cf8;padding:7px 16px;border-radius:7px;text-decoration:none;transition:background 0.15s,box-shadow 0.15s;white-space:nowrap}
-.site-nav-signup:hover{background:#a5b4fc;box-shadow:0 4px 16px rgba(129,140,248,0.3)}
-.sn-hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;background:transparent;border:none;cursor:pointer;padding:8px;margin-left:auto;border-radius:7px;transition:background 0.15s;width:38px;height:38px}
-.sn-hamburger:hover{background:rgba(255,255,255,0.06)}
-.sn-hamburger span{display:block;width:20px;height:2px;background:rgba(240,240,240,0.75);border-radius:2px;transition:all 0.22s}
-.sn-hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
-.sn-hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
-.sn-hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
-.sn-mobile{display:none;flex-direction:column;background:#0a0a0a;border-top:1px solid rgba(255,255,255,0.055);padding:12px 16px 24px;gap:2px}
-.sn-mobile.open{display:flex}
-.sn-mobile a{padding:9px 13px;border-radius:8px;font-size:0.875rem;color:rgba(240,240,240,0.72);text-decoration:none;transition:color 0.15s,background 0.15s}
-.sn-mobile a:hover{color:#f0f0f0;background:rgba(255,255,255,0.06)}
-.sn-divider{height:1px;background:rgba(255,255,255,0.055);margin:6px 0}
-.snm-app{border:1px solid rgba(255,255,255,0.12)!important;color:rgba(240,240,240,0.85)!important;text-align:center;margin-top:4px}
-.snm-signup{background:#818cf8!important;color:#fff!important;font-weight:600!important;text-align:center;margin-top:4px}
-@media(max-width:768px){.site-nav-drop,.site-nav-links{display:none!important}.site-nav-app{display:none!important}.sn-hamburger{display:flex!important}}
-@media(max-width:480px){.site-nav-inner{padding:0 16px}}
-#nav-dashboard{display:none}#nav-dashboard.visible{display:flex}
-
-    /* ── Hero ── */
+    /* ══════════════════════════════
+       HERO
+    ══════════════════════════════ */
     .hero {
       min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+      padding: calc(var(--nav-h) + 80px) 28px 100px;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
       text-align: center;
-      padding: calc(var(--nav-h) + 60px) 32px 80px;
-      position: relative;
-      overflow: hidden;
+      position: relative; overflow: hidden;
     }
-    .hero-bg {
-      position: absolute;
-      inset: 0;
+    .hero-glow {
+      position: absolute; inset: 0; pointer-events: none;
       background:
-        radial-gradient(ellipse 80% 60% at 50% 40%, rgba(129,140,248,0.06) 0%, transparent 70%),
-        radial-gradient(ellipse 40% 30% at 50% 20%, rgba(129,140,248,0.04) 0%, transparent 60%);
-      pointer-events: none;
+        radial-gradient(ellipse 70% 50% at 50% 30%, rgba(99,102,241,0.07) 0%, transparent 65%),
+        radial-gradient(ellipse 50% 40% at 30% 60%, rgba(139,92,246,0.04) 0%, transparent 60%);
     }
-    .hero-grid {
-      position: absolute;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
-      background-size: 60px 60px;
-      mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, black, transparent);
-      -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, black, transparent);
-      pointer-events: none;
+    .hero-body { position: relative; z-index: 1; max-width: 780px; }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 0.75rem; font-weight: 500; letter-spacing: 0.06em;
+      text-transform: uppercase; color: var(--accent);
+      margin-bottom: 32px;
     }
-    .hero-content { position: relative; z-index: 1; max-width: 860px; }
-    .hero-pre {
-      font-size: 0.7rem;
+    .hero-eyebrow-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--accent); opacity: 0.6; }
+    h1 {
+      font-size: clamp(2.8rem, 6.5vw, 5.5rem);
       font-weight: 600;
-      letter-spacing: 0.14em;
-      color: var(--accent);
-      text-transform: uppercase;
-      margin-bottom: 28px;
-      opacity: 0.8;
-    }
-    .hero-h1 {
-      font-size: clamp(3.5rem, 8vw, 7rem);
-      font-weight: 800;
       letter-spacing: -0.04em;
-      line-height: 1.04;
-      margin-bottom: 28px;
+      line-height: 1.06;
+      color: var(--text);
+      margin-bottom: 24px;
     }
-    .hero-h1 .line1 { display: block; color: var(--text); }
-    .hero-h1 .line2 {
-      display: block;
-      background: linear-gradient(135deg, #ffffff 0%, var(--accent) 100%);
+    h1 .grad {
+      background: linear-gradient(135deg, var(--accent) 0%, #a78bfa 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
     .hero-sub {
-      font-size: 1.1rem;
-      font-weight: 300;
-      color: var(--text2);
-      line-height: 1.65;
-      max-width: 560px;
-      margin: 0 auto 40px;
+      font-size: 1.1rem; font-weight: 300;
+      color: var(--text2); line-height: 1.7;
+      max-width: 520px; margin: 0 auto 40px;
     }
-    .hero-ctas {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 16px;
-      flex-wrap: wrap;
-      margin-bottom: 24px;
+    .hero-actions {
+      display: flex; align-items: center; justify-content: center;
+      gap: 12px; flex-wrap: wrap; margin-bottom: 20px;
     }
-    .btn-primary {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 14px 28px;
-      background: var(--accent);
-      color: #fff;
-      font-size: 0.95rem;
-      font-weight: 600;
-      border-radius: 10px;
-      transition: all 0.2s;
-      min-height: 48px;
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 24px; border-radius: 10px;
+      font-size: 0.9rem; font-weight: 500;
+      transition: all 0.18s; min-height: 44px;
     }
-    .btn-primary:hover { background: #a5b4fc; transform: translateY(-1px); box-shadow: 0 8px 32px var(--accent-glow); }
-    .btn-ghost {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 14px 28px;
-      background: transparent;
-      color: var(--text2);
-      font-size: 0.95rem;
-      font-weight: 500;
-      border-radius: 10px;
-      border: 1px solid var(--border2);
-      transition: all 0.2s;
-      min-height: 48px;
-    }
-    .btn-ghost:hover { color: var(--text); border-color: rgba(255,255,255,0.25); background: rgba(255,255,255,0.04); }
-    .hero-fine {
-      font-size: 0.78rem;
-      color: var(--text3);
-      letter-spacing: 0.01em;
-    }
+    .btn-dark { background: var(--text); color: #fff; }
+    .btn-dark:hover { opacity: 0.8; transform: translateY(-1px); }
+    .btn-outline { border: 1px solid var(--border2); color: var(--text2); }
+    .btn-outline:hover { border-color: rgba(0,0,0,0.2); color: var(--text); background: rgba(0,0,0,0.02); }
+    .hero-fine { font-size: 0.78rem; color: var(--text3); font-weight: 400; }
 
-    /* ── Stats Bar ── */
-    .stats-bar {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
+    /* ══════════════════════════════
+       STATS STRIP
+    ══════════════════════════════ */
+    .stats {
+      display: grid; grid-template-columns: repeat(4,1fr);
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
-      background: var(--surface);
+      background: var(--bg2);
     }
-    .stat-cell {
-      padding: 40px 32px;
-      text-align: center;
+    .stat {
+      padding: 36px 28px; text-align: center;
       border-right: 1px solid var(--border);
-      position: relative;
     }
-    .stat-cell:last-child { border-right: none; }
-    .stat-num {
-      font-size: 2.6rem;
-      font-weight: 800;
-      letter-spacing: -0.04em;
-      color: var(--text);
-      margin-bottom: 6px;
-      line-height: 1;
+    .stat:last-child { border-right: none; }
+    .stat-n {
+      font-size: 2.2rem; font-weight: 600;
+      letter-spacing: -0.04em; color: var(--text);
+      line-height: 1; margin-bottom: 6px;
     }
-    .stat-num span { color: var(--accent); }
-    .stat-label {
-      font-size: 0.8rem;
-      color: var(--text2);
-      font-weight: 400;
-      letter-spacing: 0.01em;
-    }
+    .stat-n em { color: var(--accent); font-style: normal; }
+    .stat-l { font-size: 0.78rem; color: var(--text2); font-weight: 400; }
 
-    /* ── Section layout ── */
-    .section { padding: var(--section-pad) 32px; }
-    .section-inner {
-      max-width: var(--max-w);
-      margin: 0 auto;
+    /* ══════════════════════════════
+       SECTION SHARED
+    ══════════════════════════════ */
+    .section { padding: 100px 28px; }
+    .section-inner { max-width: var(--max-w); margin: 0 auto; }
+    .split {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 80px; align-items: center;
     }
-    .section-split {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: center;
-    }
-    .section-split.reversed { direction: rtl; }
-    .section-split.reversed > * { direction: ltr; }
+    .split.flip { direction: rtl; }
+    .split.flip > * { direction: ltr; }
     .eyebrow {
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 16px;
-      opacity: 0.85;
+      font-size: 0.72rem; font-weight: 500;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 14px;
     }
-    .section-h2 {
-      font-size: clamp(2rem, 4vw, 3rem);
-      font-weight: 800;
-      letter-spacing: -0.035em;
-      line-height: 1.1;
-      margin-bottom: 20px;
-      color: var(--text);
+    h2 {
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      font-weight: 600; letter-spacing: -0.03em;
+      line-height: 1.12; color: var(--text);
+      margin-bottom: 18px;
     }
-    .section-para {
-      font-size: 1rem;
-      line-height: 1.7;
-      color: var(--text2);
-      margin-bottom: 32px;
-      max-width: 480px;
+    .body-text {
+      font-size: 1rem; font-weight: 300;
+      line-height: 1.75; color: var(--text2);
+      margin-bottom: 28px; max-width: 460px;
     }
+    .bullets { display: flex; flex-direction: column; gap: 12px; }
+    .bullet { display: flex; align-items: flex-start; gap: 12px; }
+    .bullet-dot {
+      width: 5px; height: 5px; border-radius: 50%;
+      background: var(--accent); flex-shrink: 0; margin-top: 9px;
+    }
+    .bullet strong { display: block; font-size: 0.88rem; font-weight: 500; color: var(--text); margin-bottom: 1px; }
+    .bullet span { font-size: 0.83rem; font-weight: 300; color: var(--text2); line-height: 1.5; }
 
-    /* ── Memory Bullets ── */
-    .feature-bullets {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
-    .feature-bullet {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-    }
-    .bullet-icon {
-      width: 28px;
-      height: 28px;
-      border-radius: 7px;
-      background: var(--accent-dim);
-      border: 1px solid var(--accent-border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      margin-top: 1px;
-    }
-    .bullet-icon svg { width: 13px; height: 13px; }
-    .bullet-text strong {
-      display: block;
-      font-size: 0.88rem;
-      font-weight: 600;
-      color: var(--text);
-      margin-bottom: 2px;
-    }
-    .bullet-text span {
-      font-size: 0.82rem;
-      color: var(--text2);
-      line-height: 1.5;
-    }
-
-    /* ── Terminal Demo ── */
-    .terminal {
-      background: #0e0e0e;
-      border: 1px solid var(--border2);
-      border-radius: 14px;
-      overflow: hidden;
-      box-shadow: 0 24px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.04);
-    }
-    .terminal-bar {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 14px 16px;
-      background: #181818;
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-    }
-    .terminal-dot {
-      width: 12px; height: 12px;
-      border-radius: 50%;
-    }
-    .terminal-dot.red   { background: #ff5f57; }
-    .terminal-dot.yellow { background: #ffbd2e; }
-    .terminal-dot.green  { background: #28c840; }
-    .terminal-title {
-      font-size: 0.75rem;
-      color: var(--text3);
-      font-family: var(--mono);
-      margin-left: 8px;
-    }
-    .terminal-body {
-      padding: 24px;
-      font-family: var(--mono);
-      font-size: 0.8rem;
-      line-height: 1.7;
-    }
-    .t-prompt { color: var(--accent); }
-    .t-cmd { color: #e2e8f0; }
-    .t-key { color: #a78bfa; }
-    .t-val { color: var(--green); }
-    .t-num { color: var(--yellow); }
-    .t-comment { color: var(--text3); }
-    .t-bracket { color: rgba(240,240,240,0.4); }
-    .terminal-input-row {
-      display: flex;
-      gap: 10px;
-      margin-top: 20px;
-      border-top: 1px solid rgba(255,255,255,0.05);
-      padding-top: 16px;
-    }
-    .terminal-input {
-      flex: 1;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid var(--border2);
-      border-radius: 8px;
-      padding: 9px 14px;
-      font-family: var(--mono);
-      font-size: 0.78rem;
-      color: var(--text);
-      outline: none;
-      transition: border-color 0.2s;
-    }
-    .terminal-input:focus { border-color: var(--accent-border); }
-    .terminal-input::placeholder { color: var(--text3); }
-    .terminal-run {
-      padding: 9px 16px;
-      background: var(--accent-dim);
-      color: var(--accent);
-      border: 1px solid var(--accent-border);
-      border-radius: 8px;
-      font-size: 0.78rem;
-      font-weight: 600;
-      transition: all 0.2s;
-      white-space: nowrap;
-      min-height: 36px;
-    }
-    .terminal-run:hover { background: rgba(129,140,248,0.14); }
-    #demo-output { margin-top: 14px; }
-
-    /* ── Dream Stage Pipeline ── */
-    .dream-stages {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-    .dream-stage {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      padding: 10px 14px;
-      border-radius: 8px;
-      border: 1px solid transparent;
-      transition: all 0.4s;
-    }
-    .dream-stage.active {
-      background: var(--accent-dim);
-      border-color: var(--accent-border);
-    }
-    .stage-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--text3);
-      flex-shrink: 0;
-      transition: all 0.4s;
-    }
-    .dream-stage.active .stage-dot {
-      background: var(--accent);
-      box-shadow: 0 0 8px var(--accent-glow);
-    }
-    .stage-name {
-      font-family: var(--mono);
-      font-size: 0.8rem;
-      color: var(--text2);
-      transition: color 0.4s;
-      flex: 1;
-    }
-    .dream-stage.active .stage-name { color: var(--accent); }
-    .stage-desc {
-      font-size: 0.74rem;
-      color: var(--text3);
-      text-align: right;
-    }
-    .dream-stage.active .stage-desc { color: rgba(129,140,248,0.6); }
-
-    /* ── Dream Stat Cards ── */
-    .dream-stats {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
-      margin-bottom: 32px;
-    }
-    .dream-stat-card {
-      background: var(--surface);
+    /* ══════════════════════════════
+       DEMO CARD
+    ══════════════════════════════ */
+    .demo-card {
+      background: var(--bg2);
       border: 1px solid var(--border);
-      border-radius: 12px;
+      border-radius: 16px;
+      overflow: hidden;
+    }
+    .demo-bar {
+      display: flex; align-items: center; gap: 6px;
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      background: var(--bg);
+    }
+    .dot { width: 10px; height: 10px; border-radius: 50%; }
+    .dot.r { background: #ff5f57; }
+    .dot.y { background: #febc2e; }
+    .dot.g { background: #28c840; }
+    .demo-label { font-size: 0.72rem; color: var(--text3); font-family: var(--mono); margin-left: 6px; }
+    .demo-body {
       padding: 20px;
-      text-align: center;
+      font-family: var(--mono); font-size: 0.77rem;
+      line-height: 1.75; color: var(--text);
     }
-    .dream-stat-card .num {
-      font-size: 1.8rem;
-      font-weight: 800;
-      letter-spacing: -0.04em;
-      color: var(--text);
-      margin-bottom: 4px;
+    .c-dim { color: var(--text3); }
+    .c-key { color: #7c3aed; }
+    .c-val { color: #059669; }
+    .c-num { color: #d97706; }
+    .c-acc { color: var(--accent); }
+    .demo-input-row {
+      display: flex; gap: 8px;
+      padding: 16px 20px; border-top: 1px solid var(--border);
+      background: var(--bg);
     }
-    .dream-stat-card .num span { color: var(--accent); }
-    .dream-stat-card .lbl {
-      font-size: 0.74rem;
-      color: var(--text2);
-      letter-spacing: 0.01em;
+    .demo-input {
+      flex: 1; background: var(--bg2); border: 1px solid var(--border2);
+      border-radius: 8px; padding: 8px 12px;
+      font-family: var(--mono); font-size: 0.76rem;
+      color: var(--text); outline: none;
+      transition: border-color 0.15s;
     }
+    .demo-input:focus { border-color: var(--accent); }
+    .demo-input::placeholder { color: var(--text3); }
+    .demo-run {
+      padding: 8px 14px; border-radius: 8px;
+      background: var(--text); color: #fff;
+      font-size: 0.77rem; font-weight: 500;
+      transition: opacity 0.15s;
+    }
+    .demo-run:hover { opacity: 0.78; }
+    #demo-out { padding: 0 20px 16px; font-family: var(--mono); font-size: 0.77rem; line-height: 1.7; }
 
-    /* ── Hive Visual ── */
-    .hive-visual {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 40px 20px;
-      position: relative;
+    /* ══════════════════════════════
+       DREAM PIPELINE CARD
+    ══════════════════════════════ */
+    .pipeline-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
     }
-    .hive-center {
-      width: 110px;
-      height: 110px;
-      border-radius: 50%;
-      background: var(--accent-dim);
-      border: 2px solid var(--accent-border);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      z-index: 2;
-      box-shadow: 0 0 40px var(--accent-glow);
+    .pipe-header {
+      display: flex; align-items: center; gap: 7px;
+      font-size: 0.7rem; font-weight: 500;
+      text-transform: uppercase; letter-spacing: 0.08em;
+      color: var(--text3); margin-bottom: 20px;
+      font-family: var(--mono);
     }
-    .hive-center-label {
-      font-size: 0.68rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      color: var(--accent);
-      text-transform: uppercase;
+    .live-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--green);
+      animation: blink 1.5s ease-in-out infinite;
     }
-    .hive-center-sub {
-      font-size: 0.62rem;
-      color: rgba(129,140,248,0.5);
-      margin-top: 2px;
+    @keyframes blink { 0%,100% { opacity:1; } 50% { opacity:0.3; } }
+    .stages { display: flex; flex-direction: column; gap: 3px; }
+    .stage {
+      display: flex; align-items: center; gap: 12px;
+      padding: 8px 12px; border-radius: 8px;
+      border: 1px solid transparent;
+      transition: all 0.35s;
     }
-    .hive-orbit {
-      position: absolute;
-      width: 280px;
-      height: 280px;
-      border-radius: 50%;
-      border: 1px dashed rgba(129,140,248,0.12);
-      animation: hive-spin 20s linear infinite;
+    .stage.on { background: var(--accent-bg); border-color: var(--accent-border); }
+    .stage-pip {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--border2); flex-shrink: 0;
+      transition: background 0.35s;
     }
-    @keyframes hive-spin {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
+    .stage.on .stage-pip { background: var(--accent); }
+    .stage-name {
+      font-family: var(--mono); font-size: 0.75rem;
+      color: var(--text3); flex: 1; transition: color 0.35s;
     }
-    .hive-user {
-      position: absolute;
-      width: 52px;
-      height: 52px;
-      border-radius: 50%;
-      background: var(--surface2);
-      border: 1px solid var(--border2);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.2rem;
+    .stage.on .stage-name { color: var(--accent); }
+    .stage-tag { font-size: 0.68rem; color: var(--text3); }
+    .pipe-footer {
+      margin-top: 16px; padding-top: 14px;
+      border-top: 1px solid var(--border);
+      display: flex; justify-content: space-between; align-items: center;
     }
-    .hive-user:nth-child(1) { top: -26px; left: 50%; transform: translateX(-50%); }
-    .hive-user:nth-child(2) { bottom: 20px; left: -20px; }
-    .hive-user:nth-child(3) { bottom: 20px; right: -20px; }
-    .hive-line {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 90px;
-      height: 1px;
-      background: linear-gradient(to right, var(--accent-border), transparent);
-      transform-origin: left center;
-    }
-    .hive-line:nth-child(4) { transform: rotate(-90deg) translateY(-1px); }
-    .hive-line:nth-child(5) { transform: rotate(150deg) translateY(-1px); }
-    .hive-line:nth-child(6) { transform: rotate(30deg) translateY(-1px); }
-    .hive-wrapper {
-      position: relative;
-      width: 280px;
-      height: 280px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+    .pipe-footer-l { font-family: var(--mono); font-size: 0.68rem; color: var(--text3); }
+    .pipe-score { font-family: var(--mono); font-size: 0.84rem; font-weight: 500; color: var(--accent); }
 
-    /* ── Product Suite ── */
-    .product-suite-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 0;
+    /* stat mini cards */
+    .mini-stats { display: grid; grid-template-columns: repeat(2,1fr); gap: 10px; margin-bottom: 24px; }
+    .mini-stat {
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: 10px; padding: 16px; text-align: center;
+    }
+    .mini-stat .n {
+      font-size: 1.5rem; font-weight: 600; letter-spacing: -0.03em;
+      color: var(--text); margin-bottom: 3px;
+    }
+    .mini-stat .n em { color: var(--accent); font-style: normal; }
+    .mini-stat .l { font-size: 0.72rem; color: var(--text2); font-weight: 300; }
+
+    /* ══════════════════════════════
+       HIVE
+    ══════════════════════════════ */
+    .hive-wrap {
+      position: relative; width: 280px; height: 280px;
+      margin: 0 auto;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .hive-ring {
+      position: absolute; width: 100%; height: 100%;
+      border-radius: 50%;
+      border: 1px dashed rgba(99,102,241,0.15);
+      animation: spin 22s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .hive-node {
+      position: absolute;
+      width: 48px; height: 48px; border-radius: 50%;
+      background: var(--bg); border: 1px solid var(--border2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+    }
+    .hive-node:nth-child(2) { top: -24px; left: 50%; transform: translateX(-50%); }
+    .hive-node:nth-child(3) { bottom: 18px; left: -18px; }
+    .hive-node:nth-child(4) { bottom: 18px; right: -18px; }
+    .hive-core {
+      width: 96px; height: 96px; border-radius: 50%;
+      background: var(--accent-bg);
+      border: 1.5px solid var(--accent-border);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      z-index: 1;
+    }
+    .hive-core-label { font-size: 0.62rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); }
+    .hive-core-sub { font-size: 0.56rem; color: var(--text3); margin-top: 2px; }
+    .hive-suppl {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 10px; margin-top: 28px; max-width: 280px; margin-left: auto; margin-right: auto;
+    }
+    .hive-suppl-card {
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: 10px; padding: 14px; text-align: center;
+    }
+    .hive-suppl-card .n { font-size: 1.1rem; font-weight: 600; color: var(--text); }
+    .hive-suppl-card .l { font-size: 0.7rem; color: var(--text2); font-weight: 300; margin-top: 2px; }
+
+    /* ══════════════════════════════
+       PRODUCT SUITE
+    ══════════════════════════════ */
+    .suite-section {
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .suite-header { padding: 72px 28px 48px; text-align: center; max-width: var(--max-w); margin: 0 auto; }
+    .suite-grid {
+      display: grid; grid-template-columns: repeat(3,1fr);
+      max-width: var(--max-w); margin: 0 auto;
       border-top: 1px solid var(--border);
     }
-    .ps-card {
-      padding: 40px 36px;
+    .suite-card {
+      padding: 36px 32px;
       border-right: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
       transition: background 0.15s;
     }
-    .ps-card:hover { background: rgba(255,255,255,0.02); }
-    .ps-card:nth-child(3n) { border-right: none; }
-    .ps-card:nth-child(4), .ps-card:nth-child(5), .ps-card:nth-child(6) { border-bottom: none; }
-    .ps-card-icon { font-size: 1.3rem; margin-bottom: 14px; }
-    .ps-card-title { font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: 8px; letter-spacing: -0.02em; }
-    .ps-card-desc { font-size: 0.84rem; color: var(--text2); line-height: 1.55; margin-bottom: 16px; }
-    .ps-card-link { font-size: 0.8rem; color: var(--accent); font-weight: 500; text-decoration: none; display: inline-flex; align-items: center; gap: 4px; transition: gap 0.2s; }
-    .ps-card-link:hover { gap: 8px; }
+    .suite-card:hover { background: rgba(0,0,0,0.015); }
+    .suite-card:nth-child(3n) { border-right: none; }
+    .suite-card:nth-child(4), .suite-card:nth-child(5), .suite-card:nth-child(6) { border-bottom: none; }
+    .suite-icon { font-size: 1.2rem; margin-bottom: 12px; opacity: 0.7; }
+    .suite-title { font-size: 0.95rem; font-weight: 600; color: var(--text); margin-bottom: 8px; letter-spacing: -0.01em; }
+    .suite-desc { font-size: 0.82rem; font-weight: 300; color: var(--text2); line-height: 1.6; margin-bottom: 14px; }
+    .suite-link { font-size: 0.78rem; color: var(--accent); font-weight: 500; display: inline-flex; align-items: center; gap: 3px; transition: gap 0.15s; }
+    .suite-link:hover { gap: 7px; }
     @media (max-width: 768px) {
-      .product-suite-grid { grid-template-columns: 1fr; }
-      .ps-card { border-right: none; }
-      .ps-card:nth-child(3n) { border-right: none; }
-      .ps-card:nth-child(4), .ps-card:nth-child(5) { border-bottom: 1px solid var(--border); }
-      .ps-card:nth-child(6) { border-bottom: none; }
+      .suite-grid { grid-template-columns: 1fr; }
+      .suite-card { border-right: none; }
+      .suite-card:nth-child(4), .suite-card:nth-child(5) { border-bottom: 1px solid var(--border); }
+      .suite-card:nth-child(6) { border-bottom: none; }
     }
 
-    /* ── How It Works ── */
-    .how-section {
-      background: var(--surface);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-    }
-    .steps {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 0;
-    }
-    .step {
-      padding: 56px 48px;
-      border-right: 1px solid var(--border);
-      position: relative;
-    }
+    /* ══════════════════════════════
+       HOW IT WORKS
+    ══════════════════════════════ */
+    .how-section { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .how-header { padding: 72px 28px 48px; text-align: center; max-width: var(--max-w); margin: 0 auto; }
+    .steps { display: grid; grid-template-columns: repeat(3,1fr); max-width: var(--max-w); margin: 0 auto; }
+    .step { padding: 48px 40px; border-right: 1px solid var(--border); }
     .step:last-child { border-right: none; }
-    .step-num {
-      font-size: 3.5rem;
-      font-weight: 800;
-      letter-spacing: -0.05em;
-      color: rgba(129,140,248,0.12);
-      line-height: 1;
-      margin-bottom: 20px;
-    }
-    .step-title {
-      font-size: 1.2rem;
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: 12px;
-      letter-spacing: -0.02em;
-    }
-    .step-body {
-      font-size: 0.9rem;
-      line-height: 1.65;
-      color: var(--text2);
+    .step-n { font-size: 2.8rem; font-weight: 300; letter-spacing: -0.05em; color: var(--border2); line-height: 1; margin-bottom: 16px; }
+    .step-t { font-size: 1rem; font-weight: 600; color: var(--text); margin-bottom: 10px; letter-spacing: -0.01em; }
+    .step-b { font-size: 0.86rem; font-weight: 300; line-height: 1.7; color: var(--text2); }
+    @media (max-width: 768px) {
+      .steps { grid-template-columns: 1fr; }
+      .step { border-right: none; border-bottom: 1px solid var(--border); padding: 36px 28px; }
+      .step:last-child { border-bottom: none; }
     }
 
-    /* ── Developer Section ── */
+    /* ══════════════════════════════
+       DEVELOPER
+    ══════════════════════════════ */
     .dev-section {
-      background: var(--surface);
+      background: var(--bg2);
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
     }
-    .dev-inner {
-      max-width: var(--max-w);
-      margin: 0 auto;
-      padding: var(--section-pad) 32px;
-    }
-    .dev-header { margin-bottom: 56px; }
-    .dev-h2 {
-      font-size: clamp(2rem, 4vw, 2.8rem);
-      font-weight: 800;
-      letter-spacing: -0.035em;
-      margin-bottom: 14px;
-    }
-    .dev-sub {
-      font-size: 1rem;
-      color: var(--text2);
-      line-height: 1.6;
-      max-width: 520px;
-    }
-    .code-tabs {
-      display: flex;
-      gap: 4px;
-      margin-bottom: -1px;
-      position: relative;
-      z-index: 1;
-    }
+    .dev-inner { max-width: var(--max-w); margin: 0 auto; padding: 100px 28px; }
+    .dev-head { margin-bottom: 48px; }
+    .dev-h2 { font-size: clamp(1.8rem,3.5vw,2.4rem); font-weight: 600; letter-spacing: -0.03em; margin-bottom: 12px; }
+    .dev-sub { font-size: 0.95rem; font-weight: 300; color: var(--text2); line-height: 1.65; max-width: 500px; }
+    .code-tabs { display: flex; gap: 3px; margin-bottom: -1px; position: relative; z-index: 1; }
     .code-tab {
-      padding: 9px 20px;
-      font-size: 0.82rem;
-      font-weight: 500;
-      color: var(--text2);
-      background: var(--surface2);
-      border: 1px solid var(--border);
-      border-bottom: none;
-      border-radius: 8px 8px 0 0;
-      cursor: pointer;
-      transition: all 0.2s;
+      padding: 8px 18px; font-size: 0.78rem; font-weight: 500;
+      color: var(--text2); background: rgba(0,0,0,0.03);
+      border: 1px solid var(--border); border-bottom: none;
+      border-radius: 8px 8px 0 0; cursor: pointer; transition: all 0.15s;
     }
-    .code-tab.active { color: var(--text); background: #1c1c1c; border-color: var(--border2); }
-    .code-tab:hover:not(.active) { color: var(--text); }
-    .code-block-wrap {
-      background: #0e0e0e;
-      border: 1px solid var(--border2);
-      border-radius: 0 12px 12px 12px;
-      overflow: hidden;
+    .code-tab.active { color: var(--text); background: var(--bg); border-color: var(--border2); }
+    .code-wrap {
+      background: var(--bg); border: 1px solid var(--border2);
+      border-radius: 0 10px 10px 10px; overflow: hidden;
     }
-    .code-panel {
-      display: none;
-      padding: 28px;
-      font-family: var(--mono);
-      font-size: 0.8rem;
-      line-height: 1.8;
-      overflow-x: auto;
-    }
+    .code-panel { display: none; padding: 24px 28px; font-family: var(--mono); font-size: 0.77rem; line-height: 1.85; overflow-x: auto; color: var(--text); }
     .code-panel.active { display: block; }
-    .c-keyword { color: #c792ea; }
-    .c-string  { color: #c3e88d; }
-    .c-comment { color: rgba(240,240,240,0.28); font-style: italic; }
-    .c-key     { color: #82aaff; }
-    .c-val     { color: var(--green); }
-    .c-accent  { color: var(--accent); }
-    .c-num     { color: var(--yellow); }
-    .c-muted   { color: rgba(240,240,240,0.4); }
+    .kw { color: #7c3aed; }
+    .str { color: #059669; }
+    .cmt { color: var(--text3); font-style: italic; }
+    .ck { color: #2563eb; }
+    .cv { color: #059669; }
+    .ca { color: var(--accent); }
+    .cm { color: var(--text3); }
     .dev-cta {
-      margin-top: 28px;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 0.88rem;
-      color: var(--accent);
-      font-weight: 500;
-      transition: gap 0.2s;
+      margin-top: 22px; display: inline-flex; align-items: center;
+      gap: 5px; font-size: 0.84rem; font-weight: 500;
+      color: var(--accent); transition: gap 0.15s;
     }
-    .dev-cta:hover { gap: 10px; }
+    .dev-cta:hover { gap: 9px; }
 
-    /* ── Final CTA ── */
-    .final-cta {
-      padding: 140px 32px;
+    /* ══════════════════════════════
+       FINAL CTA
+    ══════════════════════════════ */
+    .cta-section {
+      padding: 120px 28px;
       text-align: center;
-      position: relative;
-      overflow: hidden;
+      position: relative; overflow: hidden;
     }
-    .final-cta-bg {
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(129,140,248,0.05) 0%, transparent 70%);
-      pointer-events: none;
+    .cta-glow {
+      position: absolute; inset: 0; pointer-events: none;
+      background: radial-gradient(ellipse 60% 70% at 50% 50%, rgba(99,102,241,0.05) 0%, transparent 70%);
     }
-    .final-cta-content { position: relative; z-index: 1; }
-    .final-h2 {
-      font-size: clamp(2.2rem, 5vw, 3.5rem);
-      font-weight: 800;
-      letter-spacing: -0.04em;
-      line-height: 1.08;
-      margin-bottom: 16px;
-    }
-    .final-sub {
-      font-size: 1rem;
-      color: var(--text2);
-      margin-bottom: 40px;
-    }
-    .final-ctas {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 16px;
-    }
-    .final-link {
-      font-size: 0.85rem;
-      color: var(--text2);
-      transition: color 0.2s;
-    }
-    .final-link:hover { color: var(--accent); }
-    .final-link span { color: var(--accent); }
+    .cta-body { position: relative; z-index: 1; }
+    .cta-h2 { font-size: clamp(2rem,5vw,3.2rem); font-weight: 600; letter-spacing: -0.04em; line-height: 1.08; margin-bottom: 14px; }
+    .cta-sub { font-size: 1rem; font-weight: 300; color: var(--text2); margin-bottom: 36px; }
+    .cta-actions { display: flex; flex-direction: column; align-items: center; gap: 14px; }
+    .cta-secondary { font-size: 0.82rem; font-weight: 400; color: var(--text3); transition: color 0.15s; }
+    .cta-secondary:hover { color: var(--accent); }
+    .cta-secondary span { color: var(--accent); }
 
-    /* ── Footer ── */
-    .footer {
-      padding: 32px;
+    /* ══════════════════════════════
+       COMMUNITY
+    ══════════════════════════════ */
+    .comm-section {
+      padding: 80px 28px;
       border-top: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 16px;
+      background: var(--bg2);
+    }
+    .comm-inner { max-width: 960px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+    .comm-tag { font-size: 0.68rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text3); font-family: var(--mono); margin-bottom: 10px; }
+    .comm-h3 { font-size: 1.2rem; font-weight: 600; color: var(--text); margin-bottom: 8px; letter-spacing: -0.01em; }
+    .comm-p { font-size: 0.86rem; font-weight: 300; color: var(--text2); line-height: 1.65; margin-bottom: 18px; }
+    .discord-btn {
+      display: inline-flex; align-items: center; gap: 7px;
+      background: #5865F2; color: #fff; font-size: 0.82rem; font-weight: 500;
+      padding: 9px 18px; border-radius: 8px; transition: opacity 0.15s;
+    }
+    .discord-btn:hover { opacity: 0.85; }
+    .bw-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .bw-card {
+      background: var(--bg); border: 1px solid var(--border);
+      border-radius: 8px; padding: 11px 13px;
+      font-size: 0.78rem; font-weight: 300; color: var(--text2); line-height: 1.5;
+    }
+    @media (max-width: 768px) {
+      .comm-inner { grid-template-columns: 1fr; gap: 40px; }
+      .bw-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ══════════════════════════════
+       FOOTER
+    ══════════════════════════════ */
+    .footer {
+      padding: 28px;
+      border-top: 1px solid var(--border);
     }
     .footer-inner {
-      max-width: var(--max-w);
-      margin: 0 auto;
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 16px;
+      max-width: var(--max-w); margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 12px;
     }
-    .footer-copy {
-      font-size: 0.8rem;
-      color: var(--text3);
-    }
-    .footer-links {
-      display: flex;
-      align-items: center;
-      gap: 24px;
-      flex-wrap: wrap;
-    }
-    .footer-links a {
-      font-size: 0.8rem;
-      color: var(--text3);
-      transition: color 0.2s;
-    }
+    .footer-copy { font-size: 0.78rem; font-weight: 300; color: var(--text3); }
+    .footer-links { display: flex; gap: 20px; flex-wrap: wrap; }
+    .footer-links a { font-size: 0.78rem; font-weight: 300; color: var(--text3); transition: color 0.15s; }
     .footer-links a:hover { color: var(--text2); }
 
-    /* ── Responsive ── */
-    @media (max-width: 1024px) {
-      :root { --section-pad: 90px; }
-      .section-split { gap: 56px; }
-    }
-
+    /* ══════════════════════════════
+       RESPONSIVE
+    ══════════════════════════════ */
+    @media (max-width: 1024px) { .split { gap: 56px; } }
     @media (max-width: 768px) {
-      :root { --section-pad: 70px; }
-
-      .nav-dev { display: none; }
-
-      .hero { padding: calc(var(--nav-h) + 40px) 20px 60px; }
-      .hero-ctas { flex-direction: column; align-items: stretch; max-width: 320px; margin-left: auto; margin-right: auto; }
-      .btn-primary, .btn-ghost { justify-content: center; }
-
-      .stats-bar { grid-template-columns: repeat(2, 1fr); }
-      .stat-cell:nth-child(2) { border-right: none; }
-      .stat-cell:nth-child(3) { border-right: 1px solid var(--border); border-top: 1px solid var(--border); }
-      .stat-cell:nth-child(4) { border-top: 1px solid var(--border); border-right: none; }
-
+      .hero { padding: calc(var(--nav-h) + 60px) 20px 80px; }
+      .hero-actions { flex-direction: column; align-items: stretch; max-width: 300px; margin-left: auto; margin-right: auto; }
+      .btn { justify-content: center; }
+      .stats { grid-template-columns: repeat(2,1fr); }
+      .stat:nth-child(2) { border-right: none; }
+      .stat:nth-child(3) { border-top: 1px solid var(--border); border-right: 1px solid var(--border); }
+      .stat:nth-child(4) { border-top: 1px solid var(--border); border-right: none; }
       .section { padding: 70px 20px; }
-      .section-split { grid-template-columns: 1fr; gap: 48px; }
-      .section-split.reversed { direction: ltr; }
-
-      .steps { grid-template-columns: 1fr; }
-      .step { border-right: none; border-bottom: 1px solid var(--border); }
-      .step:last-child { border-bottom: none; }
-      .step { padding: 40px 24px; }
-
-      .dream-stats { grid-template-columns: repeat(2, 1fr); }
-
+      .split { grid-template-columns: 1fr; gap: 40px; }
+      .split.flip { direction: ltr; }
+      .mini-stats { grid-template-columns: repeat(2,1fr); }
       .dev-inner { padding: 70px 20px; }
-      .code-tabs { overflow-x: auto; }
-
-      .final-cta { padding: 80px 20px; }
-
+      .cta-section { padding: 80px 20px; }
       .footer { padding: 24px 20px; }
-      .footer-inner { flex-direction: column; gap: 12px; text-align: center; }
+      .footer-inner { flex-direction: column; gap: 10px; }
       .footer-links { justify-content: center; }
-
-      .hive-visual { transform: scale(0.85); }
     }
-
     @media (max-width: 480px) {
-      .hero-h1 { font-size: clamp(2.8rem, 12vw, 4rem); }
-      .stat-num { font-size: 2rem; }
+      h1 { font-size: clamp(2.2rem, 11vw, 3rem); }
+      .stat-n { font-size: 1.8rem; }
     }
-
-    /* ── Pulse animation for live demo ── */
-    @keyframes pulse-dot {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.3; }
-    }
-    .live-dot {
-      display: inline-block;
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--green);
-      margin-right: 6px;
-      animation: pulse-dot 1.4s ease-in-out infinite;
-    }
-
-    /* ── Shimmer for loading ── */
-    @keyframes shimmer {
-      0% { opacity: 0.3; }
-      50% { opacity: 0.7; }
-      100% { opacity: 0.3; }
-    }
-    .loading-text { animation: shimmer 1.2s ease-in-out infinite; color: var(--text3); }
-
-/* COMMUNITY SECTION */
-.community-section {
-  padding: 80px 32px;
-  border-top: 1px solid var(--border);
-}
-.comm-inner {
-  max-width: 1000px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 60px;
-  align-items: start;
-}
-.comm-tag {
-  font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  color: var(--text3);
-  font-family: var(--mono);
-  margin-bottom: 12px;
-}
-.comm-h3 {
-  font-size: 1.4rem;
-  font-weight: 700;
-  color: var(--text);
-  margin-bottom: 10px;
-  letter-spacing: -0.02em;
-}
-.comm-p {
-  font-size: 0.9rem;
-  color: var(--text2);
-  line-height: 1.65;
-  margin-bottom: 20px;
-}
-.comm-discord-btn {
-  display: inline-block;
-  background: #5865F2;
-  color: #fff;
-  font-family: var(--mono);
-  font-size: 0.8rem;
-  font-weight: 600;
-  padding: 10px 22px;
-  border-radius: 8px;
-  text-decoration: none;
-  transition: opacity 0.2s;
-}
-.comm-discord-btn:hover { opacity: 0.88; }
-.built-with-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-}
-.bw-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 12px 14px;
-  font-size: 0.78rem;
-  color: var(--text2);
-  line-height: 1.5;
-}
-@media (max-width: 768px) {
-  .comm-inner { grid-template-columns: 1fr; gap: 40px; }
-  .built-with-grid { grid-template-columns: 1fr; }
-}
+    .shimmer { animation: sh 1.2s ease-in-out infinite; color: var(--text3); }
+    @keyframes sh { 0%,100% { opacity:0.3; } 50% { opacity:0.7; } }
   </style>
 </head>
 <body>
 
-<!-- ═══════════════════════════════════════════
-     NAV
-═══════════════════════════════════════════ -->
-<nav class="site-nav" id="site-nav">
-  <div class="site-nav-inner">
-    <a href="/" class="site-nav-logo"><span class="sn-mark"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5 C3 2 9 2 11 5" stroke="white" stroke-width="1.7" stroke-linecap="round"/><path d="M2.5 7.5 C4 5.5 8 5.5 9.5 7.5" stroke="white" stroke-width="1.7" stroke-linecap="round" opacity="0.6"/><path d="M4 9.5 C5 8.2 7 8.2 8 9.5" stroke="white" stroke-width="1.7" stroke-linecap="round" opacity="0.3"/></svg></span>REM Labs</a>
-    <div class="site-nav-drop">
-      <button class="sn-drop-btn">Product <svg class="sn-chev" width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-      <div class="sn-drop-panel">
-        <a href="/dream-studio" class="sn-drop-item"><span class="sdi-icon">◑</span><span><b>Dream Engine</b><em>9-stage overnight synthesis</em></span></a>
-        <a href="/memory-hub" class="sn-drop-item"><span class="sdi-icon">⬡</span><span><b>Memory Hub</b><em>Persistent knowledge store</em></span></a>
-        <a href="/dream-reports" class="sn-drop-item"><span class="sdi-icon">◈</span><span><b>Morning Brief</b><em>Daily intelligence report</em></span></a>
-        <a href="/team-hives" class="sn-drop-item"><span class="sdi-icon">⧖</span><span><b>Team Hive</b><em>Multiplayer shared memory</em></span></a>
-        <a href="/memory-explorer" class="sn-drop-item"><span class="sdi-icon">◊</span><span><b>Memory Explorer</b><em>Visual knowledge graph</em></span></a>
-      </div>
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">
+      <span class="nav-logo-mark">
+        <svg width="18" height="14" viewBox="0 0 18 14" fill="none">
+          <path d="M1 7C4 2.5 14 2.5 17 7" stroke="#6366f1" stroke-width="2" stroke-linecap="round"/>
+          <path d="M3.5 10.5C6 7.5 12 7.5 14.5 10.5" stroke="#6366f1" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+          <path d="M6.5 13C8 11.2 10 11.2 11.5 13" stroke="#6366f1" stroke-width="2" stroke-linecap="round" opacity="0.3"/>
+        </svg>
+      </span>
+      REM Labs
+    </a>
+    <div class="nav-links">
+      <a href="#features" class="nav-link">How it works</a>
+      <a href="#suite" class="nav-link">Products</a>
+      <a href="/pricing" class="nav-link">Pricing</a>
     </div>
-    <div class="site-nav-links">
-      <a href="#features" class="site-nav-link">How it works</a>
-      <a href="/pricing" class="site-nav-link">Pricing</a>
+    <div class="nav-actions">
+      <a href="/brain" class="nav-signin nav-dash" id="nav-dash">Open App</a>
+      <a href="/auth/google" class="nav-cta google-btn" id="nav-signin">Get started</a>
     </div>
-    <div class="site-nav-actions">
-      <a href="/brain" class="site-nav-app" id="nav-dashboard">Open App ↗</a>
-      <a href="/auth/google" class="site-nav-signup" id="nav-signin">Get started free</a>
-    </div>
-    <button class="sn-hamburger" id="sn-hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
-  <div class="sn-mobile" id="sn-mobile">
-    <a href="/dream-studio">Dream Engine</a>
-    <a href="/memory-hub">Memory Hub</a>
-    <a href="/dream-reports">Morning Brief</a>
-    <a href="/team-hives">Team Hive</a>
-    <a href="/memory-explorer">Memory Explorer</a>
-    <div class="sn-divider"></div>
+  <div class="mob-menu" id="mob-menu">
     <a href="#features">How it works</a>
+    <a href="#suite">Products</a>
     <a href="/pricing">Pricing</a>
-    <div class="sn-divider"></div>
-    <a href="/brain" class="snm-app">Open App ↗</a>
-    <a href="/auth/google" class="snm-signup">Get started free</a>
+    <div class="mob-divider"></div>
+    <a href="/auth/google" class="mob-cta google-btn">Get started free</a>
   </div>
 </nav>
 
 
-<!-- ═══════════════════════════════════════════
-     HERO
-═══════════════════════════════════════════ -->
-<section class="hero" aria-label="Hero">
-  <div class="hero-bg"></div>
-  <div class="hero-grid"></div>
-  <div class="hero-content">
-    <p class="hero-pre reveal">Memory &middot; Dreams &middot; Intelligence</p>
-    <h1 class="hero-h1 reveal reveal-delay-1">
-      <span class="line1">Memory that compounds.</span>
-      <span class="line2">Every night.</span>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-body">
+    <div class="hero-eyebrow reveal">
+      <span class="hero-eyebrow-dot"></span>
+      Memory · Dreams · Intelligence
+    </div>
+    <h1 class="reveal d1">
+      Memory that compounds.<br>
+      <span class="grad">Every night.</span>
     </h1>
-    <p class="hero-sub reveal reveal-delay-2">
+    <p class="hero-sub reveal d2">
       Your AI saves everything it learns. Overnight, the Dream Engine synthesizes. Every morning, you wake to a brief.
     </p>
-    <div class="hero-ctas reveal reveal-delay-3">
-      <button class="btn-primary google-btn" aria-label="Get started for free with Google">
-        Get started free →
-      </button>
-      <a href="#features" class="btn-ghost">See how it works ↓</a>
+    <div class="hero-actions reveal d3">
+      <button class="btn btn-dark google-btn">Get started free →</button>
+      <a href="#features" class="btn btn-outline">See how it works</a>
     </div>
-    <p class="hero-fine reveal reveal-delay-4">No credit card &nbsp;·&nbsp; Memory always free &nbsp;·&nbsp; Works with any AI model</p>
+    <p class="hero-fine reveal d4">No credit card · Memory always free · Works with any AI model</p>
   </div>
 </section>
 
 
-<!-- ═══════════════════════════════════════════
-     STATS BAR
-═══════════════════════════════════════════ -->
-<div class="stats-bar" role="region" aria-label="Platform statistics">
-  <div class="stat-cell reveal">
-    <div class="stat-num">∞</div>
-    <div class="stat-label">Memory stored free</div>
+<!-- STATS -->
+<div class="stats" role="region" aria-label="Stats">
+  <div class="stat reveal">
+    <div class="stat-n">∞</div>
+    <div class="stat-l">Memory stored free</div>
   </div>
-  <div class="stat-cell reveal reveal-delay-1">
-    <div class="stat-num"><span>9</span>‑stage</div>
-    <div class="stat-label">Dream Engine</div>
+  <div class="stat reveal d1">
+    <div class="stat-n"><em>9</em>-stage</div>
+    <div class="stat-l">Dream Engine</div>
   </div>
-  <div class="stat-cell reveal reveal-delay-2">
-    <div class="stat-num">Daily</div>
-    <div class="stat-label">Morning Brief</div>
+  <div class="stat reveal d2">
+    <div class="stat-n">Daily</div>
+    <div class="stat-l">Morning Brief</div>
   </div>
-  <div class="stat-cell reveal reveal-delay-3">
-    <div class="stat-num" id="live-agents">—</div>
-    <div class="stat-label">agents dreaming tonight</div>
+  <div class="stat reveal d3">
+    <div class="stat-n" id="live-agents">—</div>
+    <div class="stat-l">agents dreaming tonight</div>
   </div>
 </div>
 
 
-<!-- ═══════════════════════════════════════════
-     MEMORY SECTION
-═══════════════════════════════════════════ -->
-<section class="section" id="features" aria-label="Memory product">
+<!-- MEMORY -->
+<section class="section" id="features">
   <div class="section-inner">
-    <div class="section-split">
-
-      <!-- Left: copy -->
+    <div class="split">
       <div>
         <p class="eyebrow reveal">Memory</p>
-        <h2 class="section-h2 reveal reveal-delay-1">Your AI<br>remembers.</h2>
-        <p class="section-para reveal reveal-delay-2">
-          Everything it encounters — stored, searchable, persistent. Not a context window. Memory that grows with every session and compounds every night.
-        </p>
-        <div class="feature-bullets reveal reveal-delay-3">
-          <div class="feature-bullet">
-            <div class="bullet-icon">
-              <svg viewBox="0 0 14 14" fill="none" stroke="#818cf8" stroke-width="1.5" stroke-linecap="round">
-                <circle cx="7" cy="7" r="5"/><path d="M5 7l1.5 1.5L9 5"/>
-              </svg>
-            </div>
-            <div class="bullet-text">
-              <strong>Semantic search</strong>
-              <span>Find any memory by meaning, not just keywords. Vector similarity out of the box.</span>
-            </div>
+        <h2 class="reveal d1">Your AI<br>remembers.</h2>
+        <p class="body-text reveal d2">Everything it encounters — stored, searchable, persistent. Not a context window. Memory that grows with every session and compounds every night.</p>
+        <div class="bullets reveal d3">
+          <div class="bullet"><span class="bullet-dot"></span><div><strong>Semantic search</strong><span>Find any memory by meaning, not just keywords.</span></div></div>
+          <div class="bullet"><span class="bullet-dot"></span><div><strong>Auto-extraction from any text</strong><span>Paste a conversation or document — structured keys surface automatically.</span></div></div>
+          <div class="bullet"><span class="bullet-dot"></span><div><strong>Memory decay and freshness scoring</strong><span>Older memories gracefully decay. Critical facts persist.</span></div></div>
+          <div class="bullet"><span class="bullet-dot"></span><div><strong>Free forever</strong><span>Store, retrieve, and search with no plan required.</span></div></div>
+        </div>
+      </div>
+      <div class="reveal d2">
+        <div class="demo-card">
+          <div class="demo-bar">
+            <div class="dot r"></div><div class="dot y"></div><div class="dot g"></div>
+            <span class="demo-label">POST /v1/demo/extract</span>
           </div>
-          <div class="feature-bullet">
-            <div class="bullet-icon">
-              <svg viewBox="0 0 14 14" fill="none" stroke="#818cf8" stroke-width="1.5" stroke-linecap="round">
-                <path d="M7 2v3M7 9v3M2 7h3M9 7h3"/>
-                <circle cx="7" cy="7" r="2"/>
-              </svg>
-            </div>
-            <div class="bullet-text">
-              <strong>Auto-extraction from any text</strong>
-              <span>Paste a conversation, document, or raw output — structured keys surface automatically.</span>
-            </div>
+          <div class="demo-body">
+            <div><span class="cmt"># Paste text, extract structured memory</span></div>
+            <div>&nbsp;</div>
+            <div><span class="ca">curl</span> -X POST /v1/demo/extract \</div>
+            <div>&nbsp;&nbsp;-d <span class="str">'{"content":"Prefers dark mode. Uses GPT-4o."}'</span></div>
+            <div>&nbsp;</div>
+            <div><span class="cmt"># →</span></div>
+            <div>{ <span class="ck">"extracted"</span>: [</div>
+            <div>&nbsp;&nbsp;{ <span class="ck">"key"</span>: <span class="cv">"ui_preference"</span>, <span class="ck">"value"</span>: <span class="cv">"dark_mode"</span>, <span class="ck">"confidence"</span>: <span class="cm">0.97</span> },</div>
+            <div>&nbsp;&nbsp;{ <span class="ck">"key"</span>: <span class="cv">"primary_model"</span>, <span class="ck">"value"</span>: <span class="cv">"gpt-4o"</span>, <span class="ck">"confidence"</span>: <span class="cm">0.94</span> }</div>
+            <div>], <span class="ck">"stored"</span>: <span class="cv">true</span> }</div>
           </div>
-          <div class="feature-bullet">
-            <div class="bullet-icon">
-              <svg viewBox="0 0 14 14" fill="none" stroke="#818cf8" stroke-width="1.5" stroke-linecap="round">
-                <path d="M7 12V7M7 7l-3-3M7 7l3-3"/><path d="M2 12h10"/>
-              </svg>
-            </div>
-            <div class="bullet-text">
-              <strong>Memory decay &amp; freshness scoring</strong>
-              <span>Older memories gracefully decay. Critical facts persist. Your context stays relevant.</span>
-            </div>
-          </div>
-          <div class="feature-bullet">
-            <div class="bullet-icon">
-              <svg viewBox="0 0 14 14" fill="none" stroke="#818cf8" stroke-width="1.5" stroke-linecap="round">
-                <rect x="2" y="3" width="10" height="8" rx="1.5"/>
-                <path d="M5 7h4M5 9.5h2"/>
-              </svg>
-            </div>
-            <div class="bullet-text">
-              <strong>Core memory always free, forever</strong>
-              <span>No paywall on the fundamentals. Store, retrieve, and search without a plan.</span>
-            </div>
+          <div id="demo-out"></div>
+          <div class="demo-input-row">
+            <input class="demo-input" id="demo-input" placeholder="Paste any text to extract memories..." maxlength="500">
+            <button class="demo-run" id="demo-run">Extract →</button>
           </div>
         </div>
       </div>
-
-      <!-- Right: terminal demo -->
-      <div class="reveal reveal-delay-2">
-        <div class="terminal">
-          <div class="terminal-bar">
-            <div class="terminal-dot red"></div>
-            <div class="terminal-dot yellow"></div>
-            <div class="terminal-dot green"></div>
-            <span class="terminal-title">POST /v1/demo/extract</span>
-          </div>
-          <div class="terminal-body">
-            <div><span class="t-comment"># Try the live extractor below ↓</span></div>
-            <div>&nbsp;</div>
-            <div><span class="t-prompt">$ </span><span class="t-cmd">curl</span> https://slopshop.gg/v1/demo/extract \</div>
-            <div>&nbsp;&nbsp;&nbsp;<span class="t-cmd">-d</span> <span class="t-bracket">'</span><span class="t-val">{"content":"Prefers dark mode. Uses GPT-4o for coding."}</span><span class="t-bracket">'</span></div>
-            <div>&nbsp;</div>
-            <div><span class="t-comment"># Response:</span></div>
-            <div><span class="t-bracket">{</span></div>
-            <div>&nbsp;&nbsp;<span class="t-key">"extracted"</span><span class="t-bracket">: [</span></div>
-            <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-bracket">{</span> <span class="t-key">"key"</span>: <span class="t-val">"ui_preference"</span>, <span class="t-key">"value"</span>: <span class="t-val">"dark_mode"</span>, <span class="t-key">"confidence"</span>: <span class="t-num">0.97</span> <span class="t-bracket">}</span>,</div>
-            <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-bracket">{</span> <span class="t-key">"key"</span>: <span class="t-val">"primary_model"</span>, <span class="t-key">"value"</span>: <span class="t-val">"gpt-4o"</span>, <span class="t-key">"confidence"</span>: <span class="t-num">0.94</span> <span class="t-bracket">}</span>,</div>
-            <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-bracket">{</span> <span class="t-key">"key"</span>: <span class="t-val">"use_case"</span>, <span class="t-key">"value"</span>: <span class="t-val">"coding"</span>, <span class="t-key">"confidence"</span>: <span class="t-num">0.91</span> <span class="t-bracket">}</span></div>
-            <div>&nbsp;&nbsp;<span class="t-bracket">]</span>,</div>
-            <div>&nbsp;&nbsp;<span class="t-key">"stored"</span><span class="t-bracket">: </span><span class="t-val">true</span>, <span class="t-key">"memory_id"</span><span class="t-bracket">: </span><span class="t-val">"mem_7x4k2"</span></div>
-            <div><span class="t-bracket">}</span></div>
-            <div id="demo-output"></div>
-            <div class="terminal-input-row">
-              <input
-                type="text"
-                class="terminal-input"
-                id="demo-input"
-                placeholder="Paste any text to extract memories..."
-                maxlength="500"
-              >
-              <button class="terminal-run" id="demo-run" aria-label="Run extraction">Extract →</button>
-            </div>
-          </div>
-        </div>
-      </div>
-
     </div>
   </div>
 </section>
 
 
-<!-- ═══════════════════════════════════════════
-     DREAM ENGINE SECTION
-═══════════════════════════════════════════ -->
-<section class="section" style="background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);" aria-label="Dream Engine product">
+<!-- DREAM ENGINE -->
+<section class="section" style="background:var(--bg2); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
   <div class="section-inner">
-    <div class="section-split reversed">
-
-      <!-- Right: copy (visually on right due to reversed grid) -->
+    <div class="split flip">
       <div>
         <p class="eyebrow reveal">Dream Engine</p>
-        <h2 class="section-h2 reveal reveal-delay-1">Synthesis<br>while you sleep.</h2>
-        <p class="section-para reveal reveal-delay-2">
-          Nine stages, every night. Memories compress, connect, and evolve. You wake to an Intelligence Score and a Morning Brief.
-        </p>
-        <div class="dream-stats reveal reveal-delay-3">
-          <div class="dream-stat-card">
-            <div class="num"><span>9</span></div>
-            <div class="lbl">Synthesis stages</div>
+        <h2 class="reveal d1">Synthesis<br>while you sleep.</h2>
+        <p class="body-text reveal d2">Nine stages, every night. Memories compress, connect, and evolve. You wake to an Intelligence Score and a Morning Brief.</p>
+        <div class="mini-stats reveal d3">
+          <div class="mini-stat"><div class="n"><em>9</em></div><div class="l">Synthesis stages</div></div>
+          <div class="mini-stat"><div class="n">84</div><div class="l">Avg Brain Glow score</div></div>
+          <div class="mini-stat"><div class="n" style="font-size:1rem;padding-top:4px;">Morning<br>Brief</div><div class="l">Daily intelligence report</div></div>
+          <div class="mini-stat"><div class="n" style="font-size:1rem;padding-top:4px;">Any<br>model</div><div class="l">Claude, GPT, Gemini…</div></div>
+        </div>
+      </div>
+      <div class="reveal d1">
+        <div class="pipeline-card">
+          <div class="pipe-header"><span class="live-dot"></span>Dream cycle running</div>
+          <div class="stages" id="stages">
+            <div class="stage on" data-i="0"><span class="stage-pip"></span><span class="stage-name">synthesize</span><span class="stage-tag">consolidate</span></div>
+            <div class="stage" data-i="1"><span class="stage-pip"></span><span class="stage-name">pattern_extract</span><span class="stage-tag">cluster</span></div>
+            <div class="stage" data-i="2"><span class="stage-pip"></span><span class="stage-name">insight_generate</span><span class="stage-tag">surface</span></div>
+            <div class="stage" data-i="3"><span class="stage-pip"></span><span class="stage-name">compress</span><span class="stage-tag">deduplicate</span></div>
+            <div class="stage" data-i="4"><span class="stage-pip"></span><span class="stage-name">associate</span><span class="stage-tag">cross-link</span></div>
+            <div class="stage" data-i="5"><span class="stage-pip"></span><span class="stage-name">validate</span><span class="stage-tag">score</span></div>
+            <div class="stage" data-i="6"><span class="stage-pip"></span><span class="stage-name">evolve</span><span class="stage-tag">adapt</span></div>
+            <div class="stage" data-i="7"><span class="stage-pip"></span><span class="stage-name">forecast</span><span class="stage-tag">predict</span></div>
+            <div class="stage" data-i="8"><span class="stage-pip"></span><span class="stage-name">reflect</span><span class="stage-tag">meta-learn</span></div>
           </div>
-          <div class="dream-stat-card">
-            <div class="num">84</div>
-            <div class="lbl">Avg Brain Glow score</div>
-          </div>
-          <div class="dream-stat-card">
-            <div class="num" style="font-size:1.2rem; padding-top:4px;">Morning<br>Brief</div>
-            <div class="lbl">Daily intelligence report</div>
-          </div>
-          <div class="dream-stat-card">
-            <div class="num" style="font-size:1.2rem; padding-top:4px;">Any model</div>
-            <div class="lbl">Claude, GPT, Gemini…</div>
+          <div class="pipe-footer">
+            <span class="pipe-footer-l">brain_glow_score</span>
+            <span class="pipe-score" id="score">—</span>
           </div>
         </div>
       </div>
-
-      <!-- Left: Pipeline visual -->
-      <div class="reveal reveal-delay-1">
-        <div style="background: #0e0e0e; border: 1px solid var(--border2); border-radius: 14px; padding: 28px; box-shadow: 0 24px 80px rgba(0,0,0,0.5);">
-          <div style="font-size: 0.7rem; letter-spacing: 0.12em; color: var(--text3); text-transform: uppercase; margin-bottom: 20px; font-family: var(--mono);">
-            <span class="live-dot"></span>Dream cycle running
-          </div>
-          <div class="dream-stages" id="dream-stages">
-            <div class="dream-stage active" data-stage="0">
-              <div class="stage-dot"></div>
-              <span class="stage-name">synthesize</span>
-              <span class="stage-desc">consolidate</span>
-            </div>
-            <div class="dream-stage" data-stage="1">
-              <div class="stage-dot"></div>
-              <span class="stage-name">pattern_extract</span>
-              <span class="stage-desc">cluster</span>
-            </div>
-            <div class="dream-stage" data-stage="2">
-              <div class="stage-dot"></div>
-              <span class="stage-name">insight_generate</span>
-              <span class="stage-desc">surface</span>
-            </div>
-            <div class="dream-stage" data-stage="3">
-              <div class="stage-dot"></div>
-              <span class="stage-name">compress</span>
-              <span class="stage-desc">deduplicate</span>
-            </div>
-            <div class="dream-stage" data-stage="4">
-              <div class="stage-dot"></div>
-              <span class="stage-name">associate</span>
-              <span class="stage-desc">cross-link</span>
-            </div>
-            <div class="dream-stage" data-stage="5">
-              <div class="stage-dot"></div>
-              <span class="stage-name">validate</span>
-              <span class="stage-desc">score</span>
-            </div>
-            <div class="dream-stage" data-stage="6">
-              <div class="stage-dot"></div>
-              <span class="stage-name">evolve</span>
-              <span class="stage-desc">adapt</span>
-            </div>
-            <div class="dream-stage" data-stage="7">
-              <div class="stage-dot"></div>
-              <span class="stage-name">forecast</span>
-              <span class="stage-desc">predict</span>
-            </div>
-            <div class="dream-stage" data-stage="8">
-              <div class="stage-dot"></div>
-              <span class="stage-name">reflect</span>
-              <span class="stage-desc">meta-learn</span>
-            </div>
-          </div>
-          <div style="margin-top: 20px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.05); display: flex; justify-content: space-between; align-items: center;">
-            <span style="font-family: var(--mono); font-size: 0.72rem; color: var(--text3);">brain_glow_score</span>
-            <span style="font-family: var(--mono); font-size: 0.88rem; color: var(--accent); font-weight: 600;" id="iq-score">—</span>
-          </div>
-        </div>
-      </div>
-
     </div>
   </div>
 </section>
 
 
-<!-- ═══════════════════════════════════════════
-     HIVE SECTION
-═══════════════════════════════════════════ -->
-<section class="section" aria-label="Team Hive product">
+<!-- TEAM HIVE -->
+<section class="section">
   <div class="section-inner">
-    <div class="section-split">
-
-      <!-- Left: copy -->
+    <div class="split">
       <div>
         <p class="eyebrow reveal">Team Hive</p>
-        <h2 class="section-h2 reveal reveal-delay-1">One brain,<br>shared.</h2>
-        <p class="section-para reveal reveal-delay-2">
-          Every teammate's knowledge flows into a shared namespace. Run Dream cycles across your whole team. Everyone wakes to the same brief.
-        </p>
-        <div class="feature-bullets reveal reveal-delay-3">
-          <div class="feature-bullet">
-            <div class="bullet-icon">
-              <svg viewBox="0 0 14 14" fill="none" stroke="#818cf8" stroke-width="1.5" stroke-linecap="round">
-                <path d="M2 11c0-2.2 1.8-4 4-4s4 1.8 4 4"/>
-                <circle cx="6" cy="4.5" r="2"/>
-                <path d="M11 11c0-1.1-.9-2-2-2"/>
-                <circle cx="11" cy="3.5" r="1.5"/>
-              </svg>
-            </div>
-            <div class="bullet-text">
-              <strong>Invite collaborators to any namespace</strong>
-              <span>Granular roles: reader, contributor, admin. Share memory without sharing credentials.</span>
-            </div>
-          </div>
-          <div class="feature-bullet">
-            <div class="bullet-icon">
-              <svg viewBox="0 0 14 14" fill="none" stroke="#818cf8" stroke-width="1.5" stroke-linecap="round">
-                <path d="M2 7h10M7 2l5 5-5 5"/>
-              </svg>
-            </div>
-            <div class="bullet-text">
-              <strong>Collective Dream cycles</strong>
-              <span>Dream Engine runs across the entire hive's memory pool. Shared insights, surfaced overnight.</span>
-            </div>
-          </div>
-          <div class="feature-bullet">
-            <div class="bullet-icon">
-              <svg viewBox="0 0 14 14" fill="none" stroke="#818cf8" stroke-width="1.5" stroke-linecap="round">
-                <rect x="2" y="2" width="4" height="4" rx="1"/>
-                <rect x="8" y="2" width="4" height="4" rx="1"/>
-                <rect x="5" y="8" width="4" height="4" rx="1"/>
-                <path d="M4 6v1.5a1 1 0 001 1h1M10 6v1.5a1 1 0 01-1 1H8"/>
-              </svg>
-            </div>
-            <div class="bullet-text">
-              <strong>Real-time knowledge sync</strong>
-              <span>Every memory written by any agent or teammate is immediately visible across the hive.</span>
-            </div>
-          </div>
+        <h2 class="reveal d1">One brain,<br>shared.</h2>
+        <p class="body-text reveal d2">Every teammate's knowledge flows into a shared namespace. Run Dream cycles across your whole team. Everyone wakes to the same brief.</p>
+        <div class="bullets reveal d3">
+          <div class="bullet"><span class="bullet-dot"></span><div><strong>Invite collaborators</strong><span>Reader, contributor, admin roles. Share memory without sharing credentials.</span></div></div>
+          <div class="bullet"><span class="bullet-dot"></span><div><strong>Collective Dream cycles</strong><span>Dream Engine runs across the entire hive's memory pool overnight.</span></div></div>
+          <div class="bullet"><span class="bullet-dot"></span><div><strong>Real-time sync</strong><span>Every memory written by any agent is immediately visible across the hive.</span></div></div>
         </div>
       </div>
-
-      <!-- Right: Hive visual -->
-      <div class="reveal reveal-delay-2">
-        <div class="hive-visual">
-          <div class="hive-wrapper">
-            <div class="hive-orbit">
-              <div class="hive-user" style="top:-26px; left:50%; transform:translateX(-50%);">👩‍💻</div>
-              <div class="hive-user" style="bottom:20px; left:-20px;">🧑‍🔬</div>
-              <div class="hive-user" style="bottom:20px; right:-20px;">👨‍💼</div>
-            </div>
-            <div class="hive-center">
-              <div class="hive-center-label">Hive</div>
-              <div class="hive-center-sub">shared memory</div>
-            </div>
+      <div class="reveal d2">
+        <div class="hive-wrap">
+          <div class="hive-ring">
+            <div class="hive-node" style="top:-24px;left:50%;transform:translateX(-50%);">👩‍💻</div>
+            <div class="hive-node" style="bottom:18px;left:-18px;">🧑‍🔬</div>
+            <div class="hive-node" style="bottom:18px;right:-18px;">👨‍💼</div>
+          </div>
+          <div class="hive-core">
+            <span class="hive-core-label">Hive</span>
+            <span class="hive-core-sub">shared memory</span>
           </div>
         </div>
-        <!-- Supplemental stat cards -->
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 24px; max-width: 320px; margin-left: auto; margin-right: auto;">
-          <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 16px; text-align: center;">
-            <div style="font-size: 1.4rem; font-weight: 800; letter-spacing: -0.04em; color: var(--text);">Unlimited</div>
-            <div style="font-size: 0.72rem; color: var(--text2); margin-top: 2px;">Team members</div>
-          </div>
-          <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 16px; text-align: center;">
-            <div style="font-size: 1.4rem; font-weight: 800; letter-spacing: -0.04em; color: var(--text);">Live</div>
-            <div style="font-size: 0.72rem; color: var(--text2); margin-top: 2px;">Memory sync</div>
-          </div>
+        <div class="hive-suppl">
+          <div class="hive-suppl-card"><div class="n">Unlimited</div><div class="l">Team members</div></div>
+          <div class="hive-suppl-card"><div class="n">Live</div><div class="l">Memory sync</div></div>
         </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-
-<!-- ═══════════════════════════════════════════
-     PRODUCT SUITE
-═══════════════════════════════════════════ -->
-<section class="how-section" aria-label="Product suite">
-  <div class="section-inner" style="padding: 0;">
-    <div style="padding: 80px 32px 48px; text-align: center;">
-      <p class="eyebrow reveal" style="display: block;">Product Suite</p>
-      <h2 class="section-h2 reveal reveal-delay-1" style="margin-bottom: 0;">Everything in one place.</h2>
-    </div>
-    <div class="product-suite-grid">
-      <div class="ps-card reveal">
-        <div class="ps-card-icon">◑</div>
-        <div class="ps-card-title">Dream Studio</div>
-        <div class="ps-card-desc">Configure 9-stage overnight synthesis cycles. Set strategies, schedule runs, review results.</div>
-        <a href="/dream-studio" class="ps-card-link">Open →</a>
-      </div>
-      <div class="ps-card reveal reveal-delay-1">
-        <div class="ps-card-icon">⬡</div>
-        <div class="ps-card-title">Memory Hub</div>
-        <div class="ps-card-desc">Store, search, and organize everything your AI learns. Your central knowledge store.</div>
-        <a href="/memory-hub" class="ps-card-link">Open →</a>
-      </div>
-      <div class="ps-card reveal reveal-delay-2">
-        <div class="ps-card-icon">◈</div>
-        <div class="ps-card-title">Morning Brief</div>
-        <div class="ps-card-desc">Daily intelligence report delivered every morning. Key insights, patterns, forecasts.</div>
-        <a href="/dream-reports" class="ps-card-link">Open →</a>
-      </div>
-      <div class="ps-card reveal reveal-delay-1">
-        <div class="ps-card-icon">⧖</div>
-        <div class="ps-card-title">Team Hive</div>
-        <div class="ps-card-desc">Multiplayer shared memory. Collective Dream cycles for teams. One brain, everyone benefits.</div>
-        <a href="/team-hives" class="ps-card-link">Open →</a>
-      </div>
-      <div class="ps-card reveal reveal-delay-2">
-        <div class="ps-card-icon">◊</div>
-        <div class="ps-card-title">Memory Explorer</div>
-        <div class="ps-card-desc">Interactive knowledge graph. Visualize connections between memories. Navigate your mind.</div>
-        <a href="/memory-explorer" class="ps-card-link">Open →</a>
-      </div>
-      <div class="ps-card reveal reveal-delay-3">
-        <div class="ps-card-icon">⚙</div>
-        <div class="ps-card-title">Skills Forge</div>
-        <div class="ps-card-desc">Procedural skills library extracted from your Dream cycles. Build and reuse capabilities.</div>
-        <a href="/skills-forge" class="ps-card-link">Open →</a>
       </div>
     </div>
   </div>
 </section>
 
 
-<!-- ═══════════════════════════════════════════
-     HOW IT WORKS
-═══════════════════════════════════════════ -->
-<section class="how-section" style="border-top: none;" aria-label="How it works">
-  <div class="section-inner" style="padding: 0;">
-    <div style="padding: 80px 32px 48px; text-align: center;">
-      <p class="eyebrow reveal" style="display: block;">How it works</p>
-      <h2 class="section-h2 reveal reveal-delay-1" style="margin-bottom: 0;">Store. Dream. Wake.</h2>
+<!-- PRODUCT SUITE -->
+<section class="suite-section" id="suite" aria-label="Product suite">
+  <div class="suite-header">
+    <p class="eyebrow reveal" style="display:block;">Product Suite</p>
+    <h2 class="reveal d1" style="margin-bottom:0;">Everything in one place.</h2>
+  </div>
+  <div class="suite-grid">
+    <div class="suite-card reveal">
+      <div class="suite-icon">◑</div>
+      <div class="suite-title">Dream Studio</div>
+      <div class="suite-desc">Configure 9-stage overnight synthesis cycles. Set strategies, schedule runs, review results.</div>
+      <a href="/dream-studio" class="suite-link">Open →</a>
     </div>
-    <div class="steps">
-      <div class="step reveal">
-        <div class="step-num">01</div>
-        <div class="step-title">Store</div>
-        <div class="step-body">Feed it what your AI learns. Paste text, send API calls, or let background extractors pull structure automatically from any content.</div>
-      </div>
-      <div class="step reveal reveal-delay-2">
-        <div class="step-num">02</div>
-        <div class="step-title">Dream</div>
-        <div class="step-body">Overnight, Dream Engine runs 9 synthesis cycles. New patterns, compressed knowledge, novel insights — waiting when you wake up.</div>
-      </div>
-      <div class="step reveal reveal-delay-4">
-        <div class="step-num">03</div>
-        <div class="step-title">Wake</div>
-        <div class="step-body">Wake to your Morning Brief. An intelligence report: key insights, connections, forecasts. Your AI gets smarter while you sleep.</div>
-      </div>
+    <div class="suite-card reveal d1">
+      <div class="suite-icon">⬡</div>
+      <div class="suite-title">Memory Hub</div>
+      <div class="suite-desc">Store, search, and organize everything your AI learns. Your central knowledge store.</div>
+      <a href="/memory-hub" class="suite-link">Open →</a>
+    </div>
+    <div class="suite-card reveal d2">
+      <div class="suite-icon">◈</div>
+      <div class="suite-title">Morning Brief</div>
+      <div class="suite-desc">Daily intelligence report delivered every morning. Key insights, patterns, forecasts.</div>
+      <a href="/dream-reports" class="suite-link">Open →</a>
+    </div>
+    <div class="suite-card reveal d1">
+      <div class="suite-icon">⧖</div>
+      <div class="suite-title">Team Hive</div>
+      <div class="suite-desc">Multiplayer shared memory. Collective Dream cycles for teams. One brain, everyone benefits.</div>
+      <a href="/team-hives" class="suite-link">Open →</a>
+    </div>
+    <div class="suite-card reveal d2">
+      <div class="suite-icon">◊</div>
+      <div class="suite-title">Memory Explorer</div>
+      <div class="suite-desc">Interactive knowledge graph. Visualize connections between memories. Navigate your mind.</div>
+      <a href="/memory-explorer" class="suite-link">Open →</a>
+    </div>
+    <div class="suite-card reveal d3">
+      <div class="suite-icon">⚙</div>
+      <div class="suite-title">Skills Forge</div>
+      <div class="suite-desc">Procedural skills library extracted from your Dream cycles. Build and reuse capabilities.</div>
+      <a href="/skills-forge" class="suite-link">Open →</a>
     </div>
   </div>
 </section>
 
 
-<!-- ═══════════════════════════════════════════
-     DEVELOPER SECTION
-═══════════════════════════════════════════ -->
-<section class="dev-section" aria-label="Developer API">
+<!-- HOW IT WORKS -->
+<section class="how-section" aria-label="How it works">
+  <div class="how-header">
+    <p class="eyebrow reveal" style="display:block;">How it works</p>
+    <h2 class="reveal d1" style="margin-bottom:0;">Store. Dream. Wake.</h2>
+  </div>
+  <div class="steps">
+    <div class="step reveal">
+      <div class="step-n">01</div>
+      <div class="step-t">Store</div>
+      <div class="step-b">Feed it what your AI learns. Paste text, send API calls, or let background extractors pull structure automatically from any content.</div>
+    </div>
+    <div class="step reveal d2">
+      <div class="step-n">02</div>
+      <div class="step-t">Dream</div>
+      <div class="step-b">Overnight, Dream Engine runs 9 synthesis cycles. New patterns, compressed knowledge, novel insights — waiting when you wake up.</div>
+    </div>
+    <div class="step reveal d4">
+      <div class="step-n">03</div>
+      <div class="step-t">Wake</div>
+      <div class="step-b">Wake to your Morning Brief. Key insights, connections, forecasts. Your AI gets measurably smarter while you sleep.</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- DEVELOPER -->
+<section class="dev-section">
   <div class="dev-inner">
-    <div class="dev-header">
+    <div class="dev-head">
       <p class="eyebrow reveal">Developer API</p>
-      <h2 class="dev-h2 reveal reveal-delay-1">Built on a real API.</h2>
-      <p class="dev-sub reveal reveal-delay-2">REM Labs is the consumer layer. Underneath is slopshop.gg — full REST API, CLI, MCP server, 1,303 endpoints.</p>
+      <h2 class="dev-h2 reveal d1">Built on a real API.</h2>
+      <p class="dev-sub reveal d2">REM Labs is the consumer layer. Underneath is slopshop.gg — full REST API, CLI, MCP server, 1,303 endpoints.</p>
     </div>
-
-    <div class="reveal reveal-delay-2">
-      <div class="code-tabs" role="tablist" aria-label="Code examples">
-        <button class="code-tab active" role="tab" aria-selected="true" data-tab="rest">REST</button>
-        <button class="code-tab" role="tab" aria-selected="false" data-tab="cli">CLI</button>
-        <button class="code-tab" role="tab" aria-selected="false" data-tab="mcp">MCP</button>
+    <div class="reveal d2">
+      <div class="code-tabs">
+        <button class="code-tab active" data-tab="rest">REST</button>
+        <button class="code-tab" data-tab="cli">CLI</button>
+        <button class="code-tab" data-tab="mcp">MCP</button>
       </div>
-      <div class="code-block-wrap">
-        <!-- REST -->
-        <div class="code-panel active" id="tab-rest" role="tabpanel">
-<span class="c-comment"># Store a memory</span>
-<span class="c-accent">curl</span> -X POST https://api.slopshop.gg/v1/memory/store \
-  -H <span class="c-string">"Authorization: Bearer $SLOP_KEY"</span> \
-  -H <span class="c-string">"Content-Type: application/json"</span> \
-  -d <span class="c-string">'{"content":"User prefers concise responses. Expert in Rust."}'</span>
+      <div class="code-wrap">
+        <div class="code-panel active" id="tab-rest">
+<span class="cmt"># Store a memory</span>
+<span class="ca">curl</span> -X POST https://api.slopshop.gg/v1/memory/store \
+  -H <span class="str">"Authorization: Bearer $SLOP_KEY"</span> \
+  -d <span class="str">'{"content":"User prefers concise responses. Expert in Rust."}'</span>
 
-<span class="c-comment"># → { "id": "mem_9a3z1", "stored": true, "namespace": "default" }</span>
+<span class="cmt"># → { "id": "mem_9a3z1", "stored": true }</span>
 
-<span class="c-comment"># Kick off a Dream cycle</span>
-<span class="c-accent">curl</span> -X POST https://api.slopshop.gg/v1/memory/dream/start \
-  -H <span class="c-string">"Authorization: Bearer $SLOP_KEY"</span> \
-  -d <span class="c-string">'{"strategy":"synthesize,compress,insight_generate"}'</span>
+<span class="cmt"># Start a Dream cycle</span>
+<span class="ca">curl</span> -X POST https://api.slopshop.gg/v1/memory/dream/start \
+  -H <span class="str">"Authorization: Bearer $SLOP_KEY"</span> \
+  -d <span class="str">'{"strategy":"synthesize,compress,insight_generate"}'</span>
 
-<span class="c-comment"># → { "dream_id": "drm_7f2b", "status": "running", "stages": 9 }</span>
+<span class="cmt"># → { "dream_id": "drm_7f2b", "status": "running", "stages": 9 }</span>
         </div>
-        <!-- CLI -->
-        <div class="code-panel" id="tab-cli" role="tabpanel">
-<span class="c-comment"># Install</span>
-<span class="c-accent">npm</span> install -g @slopshop/cli
+        <div class="code-panel" id="tab-cli">
+<span class="cmt"># Install</span>
+<span class="ca">npm</span> install -g @slopshop/cli
 
-<span class="c-comment"># Login</span>
-<span class="c-accent">slop</span> auth login
+<span class="cmt"># Store from stdin</span>
+<span class="ca">echo</span> <span class="str">"User is a senior engineer, prefers dark mode"</span> | <span class="ca">slop</span> memory store
+<span class="cmt"># → ✓ Stored  mem_k9x2</span>
 
-<span class="c-comment"># Store a memory from stdin</span>
-<span class="c-accent">echo</span> <span class="c-string">"User is a senior engineer, prefers dark mode"</span> | <span class="c-accent">slop</span> memory store
-
-<span class="c-comment"># → ✓ Stored  mem_k9x2  (namespace: default)</span>
-
-<span class="c-comment"># Run a full Dream cycle</span>
-<span class="c-accent">slop</span> dream run --all-stages
-
-<span class="c-comment"># → Running 9 stages... ████████████████ 100%</span>
-<span class="c-comment"># → Intelligence Score: 87.4  |  Insights generated: 12</span>
+<span class="cmt"># Run a full Dream cycle</span>
+<span class="ca">slop</span> dream run --all-stages
+<span class="cmt"># → Intelligence Score: 87.4  |  Insights: 12</span>
         </div>
-        <!-- MCP -->
-        <div class="code-panel" id="tab-mcp" role="tabpanel">
-<span class="c-comment"># Add Slopshop to Claude Code or any MCP client</span>
-<span class="c-comment"># ~/.claude/mcp.json (or equivalent)</span>
+        <div class="code-panel" id="tab-mcp">
+<span class="cmt"># Add to Claude Code or any MCP client (~/.claude/mcp.json)</span>
 
-<span class="c-muted">{</span>
-  <span class="c-key">"mcpServers"</span><span class="c-muted">: {</span>
-    <span class="c-key">"slopshop"</span><span class="c-muted">: {</span>
-      <span class="c-key">"command"</span><span class="c-muted">:</span> <span class="c-string">"npx"</span><span class="c-muted">,</span>
-      <span class="c-key">"args"</span><span class="c-muted">:</span> <span class="c-muted">[</span><span class="c-string">"-y"</span><span class="c-muted">,</span> <span class="c-string">"@slopshop/mcp-server"</span><span class="c-muted">],</span>
-      <span class="c-key">"env"</span><span class="c-muted">: {</span>
-        <span class="c-key">"SLOP_KEY"</span><span class="c-muted">:</span> <span class="c-string">"your-api-key-here"</span>
-      <span class="c-muted">}</span>
-    <span class="c-muted">}</span>
-  <span class="c-muted">}</span>
-<span class="c-muted">}</span>
+<span class="cm">{</span>
+  <span class="ck">"mcpServers"</span><span class="cm">: {</span>
+    <span class="ck">"slopshop"</span><span class="cm">: {</span>
+      <span class="ck">"command"</span><span class="cm">:</span> <span class="str">"npx"</span><span class="cm">,</span>
+      <span class="ck">"args"</span><span class="cm">:</span> <span class="cm">[</span><span class="str">"-y"</span><span class="cm">,</span> <span class="str">"@slopshop/mcp-server"</span><span class="cm">],</span>
+      <span class="ck">"env"</span><span class="cm">: {</span> <span class="ck">"SLOP_KEY"</span><span class="cm">:</span> <span class="str">"your-key"</span> <span class="cm">}</span>
+    <span class="cm">}</span>
+  <span class="cm">}</span>
+<span class="cm">}</span>
 
-<span class="c-comment"># Claude now has 1,303 tools. Memories persist across sessions.</span>
+<span class="cmt"># Claude now has 1,303 tools. Memories persist across sessions.</span>
         </div>
       </div>
       <a href="https://slopshop.gg" class="dev-cta" target="_blank" rel="noopener">Full developer docs →</a>
@@ -1543,39 +951,33 @@
 </section>
 
 
-<!-- ═══════════════════════════════════════════
-     FINAL CTA
-═══════════════════════════════════════════ -->
-<section class="final-cta" aria-label="Call to action">
-  <div class="final-cta-bg"></div>
-  <div class="final-cta-content">
-    <h2 class="final-h2 reveal">
-      Start for free.<br>Dream tonight.
-    </h2>
-    <p class="final-sub reveal reveal-delay-1">Memory always free. No credit card. Any AI model.</p>
-    <div class="final-ctas reveal reveal-delay-2">
-      <button class="btn-primary google-btn" style="font-size: 1rem; padding: 16px 36px;" aria-label="Get started with Google">
-        Get started with Google →
-      </button>
-      <a href="https://slopshop.gg" class="final-link" target="_blank" rel="noopener">Already building? <span>→ slopshop.gg</span></a>
+<!-- CTA -->
+<section class="cta-section">
+  <div class="cta-glow"></div>
+  <div class="cta-body">
+    <h2 class="cta-h2 reveal">Start for free.<br>Dream tonight.</h2>
+    <p class="cta-sub reveal d1">Memory always free. No credit card. Any AI model.</p>
+    <div class="cta-actions reveal d2">
+      <button class="btn btn-dark google-btn" style="font-size:0.95rem;padding:14px 32px;">Get started with Google →</button>
+      <a href="https://slopshop.gg" class="cta-secondary" target="_blank" rel="noopener">Already building? <span>→ slopshop.gg</span></a>
     </div>
   </div>
 </section>
 
 
-<!-- COMMUNITY + BUILT WITH -->
-<section class="community-section" aria-label="Community">
+<!-- COMMUNITY -->
+<section class="comm-section">
   <div class="comm-inner">
-    <div class="comm-col">
-      <div class="comm-tag">COMMUNITY</div>
+    <div>
+      <div class="comm-tag">Community</div>
       <h3 class="comm-h3">Join the conversation</h3>
       <p class="comm-p">Share what you're building. Get help. See what others are creating with REM Labs.</p>
-      <a href="https://discord.gg/slopshop" class="comm-discord-btn" target="_blank" rel="noopener">Join Discord →</a>
+      <a href="https://discord.gg/slopshop" class="discord-btn" target="_blank" rel="noopener">Join Discord →</a>
     </div>
-    <div class="comm-col">
-      <div class="comm-tag">BUILT WITH REM LABS</div>
+    <div>
+      <div class="comm-tag">Built with REM Labs</div>
       <h3 class="comm-h3">What people are building</h3>
-      <div class="built-with-grid">
+      <div class="bw-grid">
         <div class="bw-card">Research agents that remember every paper</div>
         <div class="bw-card">Trading agents with compounding market memory</div>
         <div class="bw-card">Support bots that never forget a customer</div>
@@ -1586,13 +988,11 @@
 </section>
 
 
-<!-- ═══════════════════════════════════════════
-     FOOTER
-═══════════════════════════════════════════ -->
-<footer class="footer" role="contentinfo">
+<!-- FOOTER -->
+<footer class="footer">
   <div class="footer-inner">
-    <p class="footer-copy">© 2026 REM Labs &nbsp;·&nbsp; Powered by slopshop.gg</p>
-    <nav class="footer-links" aria-label="Footer navigation">
+    <p class="footer-copy">© 2026 REM Labs · Powered by slopshop.gg</p>
+    <nav class="footer-links">
       <a href="https://slopshop.gg" target="_blank" rel="noopener">Developers</a>
       <a href="/privacy">Privacy</a>
       <a href="/terms">Terms</a>
@@ -1602,174 +1002,128 @@
 
 
 <script>
-(function(){var nav=document.getElementById('site-nav');if(nav)window.addEventListener('scroll',function(){nav.classList[scrollY>20?'add':'remove']('sn-scrolled');},{passive:true});document.querySelectorAll('.site-nav-drop').forEach(function(d){d.querySelector('.sn-drop-btn').addEventListener('click',function(e){e.stopPropagation();d.classList.toggle('open');});});document.addEventListener('click',function(){document.querySelectorAll('.site-nav-drop.open').forEach(function(d){d.classList.remove('open');});});var hb=document.getElementById('sn-hamburger'),mob=document.getElementById('sn-mobile');if(hb&&mob){hb.addEventListener('click',function(){mob.classList.toggle('open');hb.classList.toggle('open');});}})();
-// Live metrics from /v1/metrics/public
-(async function loadLiveMetrics() {
-  try {
-    const r = await fetch('/v1/metrics/public');
-    if (!r.ok) return;
-    const d = await r.json();
-    const agentEl = document.getElementById('live-agents');
-    const count = d.total_agents || d.live_instances || d.total_dreams;
-    if (agentEl && count > 0) agentEl.textContent = count.toLocaleString();
-  } catch (_) {}
+/* nav scroll */
+(function(){
+  var nav = document.getElementById('nav');
+  var hb = document.getElementById('hamburger');
+  var mob = document.getElementById('mob-menu');
+  if(nav) window.addEventListener('scroll', function(){ nav.style.background = scrollY > 8 ? 'rgba(255,255,255,0.95)' : 'rgba(255,255,255,0.82)'; }, {passive:true});
+  if(hb && mob) hb.addEventListener('click', function(){ mob.classList.toggle('open'); hb.classList.toggle('open'); });
 })();
 
-(function () {
+/* live metrics */
+(async function(){
+  try {
+    var r = await fetch('/v1/metrics/public');
+    if(!r.ok) return;
+    var d = await r.json();
+    var el = document.getElementById('live-agents');
+    var n = d.total_agents || d.live_instances || d.total_dreams;
+    if(el && n > 0) el.textContent = n.toLocaleString();
+  } catch(_){}
+})();
+
+(function(){
   'use strict';
 
-  /* ── Auth check ── */
-  (async function checkAuth() {
+  /* auth */
+  (async function(){
     try {
-      const res = await fetch('/v1/auth/session', { credentials: 'include' });
-      if (res.ok) {
-        const data = await res.json().catch(() => ({}));
-        if (data && (data.user || data.authenticated || data.ok)) {
-          const signin = document.getElementById('nav-signin');
-          if (signin) signin.style.display = 'none';
-          const dash = document.getElementById('nav-dashboard');
-          if (dash) dash.classList.add('visible');
-        }
+      var res = await fetch('/v1/auth/session', {credentials:'include'});
+      if(!res.ok) return;
+      var d = await res.json().catch(()=>({}));
+      if(d && (d.user || d.authenticated || d.ok)){
+        var s = document.getElementById('nav-signin');
+        if(s) s.style.display = 'none';
+        var dash = document.getElementById('nav-dash');
+        if(dash) dash.classList.add('visible');
       }
-    } catch (_) { /* not logged in — silent */ }
+    } catch(_){}
   })();
 
-  /* ── Google auth ── */
-  document.querySelectorAll('.google-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      window.location.href = '/auth/google';
+  /* google auth */
+  document.querySelectorAll('.google-btn').forEach(function(b){
+    b.addEventListener('click', function(){ window.location.href = '/auth/google'; });
+  });
+
+  /* smooth scroll */
+  document.querySelectorAll('a[href^="#"]').forEach(function(a){
+    a.addEventListener('click', function(e){
+      var id = a.getAttribute('href').slice(1);
+      var el = document.getElementById(id);
+      if(el){ e.preventDefault(); el.scrollIntoView({behavior:'smooth', block:'start'}); }
     });
   });
 
-  /* ── Scroll anchor for "See how it works" ── */
-  document.querySelector('a[href="#features"]')?.addEventListener('click', e => {
-    e.preventDefault();
-    document.getElementById('features')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  });
+  /* reveal */
+  var obs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); } });
+  }, {threshold: 0.1});
+  document.querySelectorAll('.reveal').forEach(function(el){ obs.observe(el); });
+  setTimeout(function(){ document.querySelectorAll('.hero .reveal').forEach(function(el){ el.classList.add('visible'); }); }, 60);
 
-  /* ── IntersectionObserver for reveal animations ── */
-  const revealObs = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        revealObs.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.12 });
-
-  document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
-
-  /* Trigger hero reveals immediately */
-  setTimeout(() => {
-    document.querySelectorAll('.hero .reveal').forEach(el => el.classList.add('visible'));
-  }, 80);
-
-  /* ── Dream Engine stage animation ── */
-  (function animateDreamStages() {
-    const stages = document.querySelectorAll('.dream-stage');
-    const iqEl = document.getElementById('iq-score');
-    if (!stages.length) return;
-    let current = 0;
-    let score = 0;
-
-    function tick() {
-      stages.forEach((s, i) => s.classList.toggle('active', i === current));
-      score = Math.min(100, score + Math.floor(Math.random() * 8) + 3);
-      if (iqEl) iqEl.textContent = score.toFixed(1);
-      current = (current + 1) % stages.length;
-      if (current === 0) score = 0;
+  /* dream animation */
+  (function(){
+    var stages = document.querySelectorAll('#stages .stage');
+    var scoreEl = document.getElementById('score');
+    if(!stages.length) return;
+    var cur = 0, score = 0;
+    function tick(){
+      stages.forEach(function(s,i){ s.classList.toggle('on', i === cur); });
+      score = Math.min(100, score + Math.floor(Math.random()*8)+3);
+      if(scoreEl) scoreEl.textContent = score.toFixed(1);
+      cur = (cur+1) % stages.length;
+      if(cur === 0) score = 0;
     }
-
-    tick();
-    setInterval(tick, 1400);
+    tick(); setInterval(tick, 1400);
   })();
 
-  /* ── Live demo extractor ── */
-  (function initDemo() {
-    const input = document.getElementById('demo-input');
-    const runBtn = document.getElementById('demo-run');
-    const output = document.getElementById('demo-output');
-    if (!input || !runBtn || !output) return;
-
-    async function runExtraction() {
-      const content = input.value.trim();
-      if (!content) {
-        input.focus();
-        return;
-      }
-
-      runBtn.disabled = true;
-      runBtn.textContent = 'Extracting…';
-      output.innerHTML = '<div class="loading-text">POST /v1/demo/extract ...</div>';
-
+  /* demo extractor */
+  (function(){
+    var input = document.getElementById('demo-input');
+    var btn = document.getElementById('demo-run');
+    var out = document.getElementById('demo-out');
+    if(!input||!btn||!out) return;
+    async function run(){
+      var content = input.value.trim();
+      if(!content){ input.focus(); return; }
+      btn.disabled = true; btn.textContent = 'Extracting…';
+      out.innerHTML = '<div style="padding:0 20px 12px;font-family:var(--mono);font-size:0.76px;" class="shimmer">extracting...</div>';
       try {
-        const res = await fetch('/v1/demo/extract', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          credentials: 'include',
-          body: JSON.stringify({ content })
-        });
-
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        const data = await res.json();
-
-        const items = (data.extracted || data.memories || []).slice(0, 5);
-        if (!items.length) {
-          output.innerHTML = '<div style="color:var(--text3);font-size:0.78rem;margin-top:6px;"># No structured keys found — try more specific text.</div>';
-        } else {
-          let html = '<div style="margin-top:8px;">';
-          html += '<div class="t-comment"># Extracted:</div>';
-          items.forEach(item => {
-            const k = esc(item.key || item.name || '?');
-            const v = esc(item.value || item.content || '?');
-            const conf = item.confidence ? (item.confidence * 100).toFixed(0) + '%' : '';
-            html += `<div><span class="t-key">"${k}"</span>: <span class="t-val">"${v}"</span>` + (conf ? ` <span class="t-comment">// ${conf}</span>` : '') + `</div>`;
+        var res = await fetch('/v1/demo/extract', {method:'POST', headers:{'Content-Type':'application/json'}, credentials:'include', body:JSON.stringify({content})});
+        if(!res.ok) throw new Error('HTTP '+res.status);
+        var data = await res.json();
+        var items = (data.extracted||data.memories||[]).slice(0,5);
+        var html = '<div style="padding:0 20px 16px;font-family:var(--mono);font-size:0.76rem;line-height:1.7;color:var(--text2);">';
+        if(!items.length){ html += '# no structured keys found'; }
+        else {
+          items.forEach(function(item){
+            var k = esc(item.key||item.name||'?'), v = esc(item.value||item.content||'?');
+            var c = item.confidence ? ' <span style="color:var(--text3)">// '+(item.confidence*100).toFixed(0)+'%</span>' : '';
+            html += '<div><span style="color:#7c3aed">"'+k+'"</span>: <span style="color:#059669">"'+v+'"</span>'+c+'</div>';
           });
-          if (data.memory_id || data.id) {
-            html += `<div class="t-comment"># stored → ${esc(data.memory_id || data.id)}</div>`;
-          }
-          html += '</div>';
-          output.innerHTML = html;
+          if(data.memory_id||data.id) html += '<div style="color:var(--text3)"># stored → '+esc(data.memory_id||data.id)+'</div>';
         }
-      } catch (err) {
-        output.innerHTML = `<div style="color:var(--text3);font-size:0.78rem;margin-top:6px;"># ${esc(err.message || 'Request failed')} — check that the server is running.</div>`;
-      } finally {
-        runBtn.disabled = false;
-        runBtn.textContent = 'Extract →';
-      }
+        html += '</div>';
+        out.innerHTML = html;
+      } catch(e){ out.innerHTML = '<div style="padding:0 20px 12px;font-size:0.76rem;color:var(--text3);font-family:var(--mono);"># '+esc(e.message||'failed')+'</div>'; }
+      finally { btn.disabled=false; btn.textContent='Extract →'; }
     }
-
-    runBtn.addEventListener('click', runExtraction);
-    input.addEventListener('keydown', e => {
-      if (e.key === 'Enter') runExtraction();
-    });
+    btn.addEventListener('click', run);
+    input.addEventListener('keydown', function(e){ if(e.key==='Enter') run(); });
   })();
 
-  /* ── Code tab switcher ── */
-  document.querySelectorAll('.code-tab').forEach(tab => {
-    tab.addEventListener('click', () => {
-      const target = tab.dataset.tab;
-      document.querySelectorAll('.code-tab').forEach(t => {
-        t.classList.toggle('active', t.dataset.tab === target);
-        t.setAttribute('aria-selected', t.dataset.tab === target ? 'true' : 'false');
-      });
-      document.querySelectorAll('.code-panel').forEach(p => {
-        p.classList.toggle('active', p.id === 'tab-' + target);
-      });
+  /* code tabs */
+  document.querySelectorAll('.code-tab').forEach(function(tab){
+    tab.addEventListener('click', function(){
+      var t = tab.dataset.tab;
+      document.querySelectorAll('.code-tab').forEach(function(x){ x.classList.toggle('active', x.dataset.tab===t); });
+      document.querySelectorAll('.code-panel').forEach(function(p){ p.classList.toggle('active', p.id==='tab-'+t); });
     });
   });
 
-  /* ── Helpers ── */
-  function esc(s) {
-    return String(s)
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')
-      .replace(/"/g, '&quot;');
-  }
-
+  function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 })();
 </script>
-
 </body>
 </html>
