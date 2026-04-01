@@ -10,6 +10,7 @@
   <meta name="theme-color" content="#ffffff">
   <title>REM Labs — Memory that compounds.</title>
   <link rel="canonical" href="https://remlabs.ai">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -611,6 +612,21 @@
     }
     .shimmer { animation: sh 1.2s ease-in-out infinite; color: var(--text3); }
     @keyframes sh { 0%,100% { opacity:0.3; } 50% { opacity:0.7; } }
+    @keyframes hero-spin { to { transform: rotate(360deg); } }
+    .arch-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--border); border:1px solid var(--border); border-radius:16px; overflow:hidden; margin-bottom:56px; }
+    .arch-grid-cell { background:var(--bg); padding:32px 28px; }
+    .arch-eyebrow { font-size:0.7rem; font-weight:600; letter-spacing:0.07em; text-transform:uppercase; color:var(--text3); margin-bottom:8px; }
+    .arch-title { font-size:0.88rem; font-weight:600; color:var(--text); margin-bottom:6px; }
+    .arch-body { font-size:0.81rem; font-weight:300; color:var(--text2); line-height:1.65; }
+    .arch-pipeline { border:1px solid var(--border); border-radius:12px; overflow:hidden; }
+    .arch-stage { display:grid; grid-template-columns:28px 148px 1fr; align-items:start; padding:11px 20px; border-bottom:1px solid var(--border); }
+    .arch-stage:last-child { border-bottom:none; }
+    .arch-stage:nth-child(odd) { background:var(--bg); }
+    .arch-stage:nth-child(even) { background:var(--bg2); }
+    .arch-stage-n { font-size:0.66rem; color:var(--text3); font-family:var(--mono); padding-top:2px; }
+    .arch-stage-name { font-size:0.77rem; font-weight:500; color:var(--accent); font-family:var(--mono); }
+    .arch-stage-desc { font-size:0.77rem; font-weight:300; color:var(--text2); line-height:1.55; }
+    @media (max-width:768px) { .arch-grid { grid-template-columns:1fr; } }
   </style>
 </head>
 <body>
@@ -657,7 +673,16 @@
 <section class="hero">
   <div class="hero-glow"></div>
   <div class="hero-body">
-    <div class="hero-eyebrow reveal">
+    <div class="reveal" style="margin-bottom:40px;position:relative;display:flex;align-items:center;justify-content:center;">
+      <div style="position:absolute;width:160px;height:160px;border-radius:50%;background:radial-gradient(circle,rgba(99,102,241,0.13) 0%,transparent 70%);pointer-events:none;"></div>
+      <svg width="80" height="80" viewBox="0 0 28 28" fill="none" style="animation:hero-spin 30s linear infinite;filter:drop-shadow(0 0 10px rgba(99,102,241,0.35));">
+        <circle cx="14" cy="14" r="2.5" fill="#6366f1"/>
+        <ellipse cx="14" cy="14" rx="11" ry="5" stroke="#6366f1" stroke-width="1.5" opacity="0.85"/>
+        <ellipse cx="14" cy="14" rx="11" ry="5" stroke="#6366f1" stroke-width="1.5" opacity="0.55" transform="rotate(60 14 14)"/>
+        <ellipse cx="14" cy="14" rx="11" ry="5" stroke="#6366f1" stroke-width="1.5" opacity="0.35" transform="rotate(120 14 14)"/>
+      </svg>
+    </div>
+    <div class="hero-eyebrow reveal d1">
       <span class="hero-eyebrow-dot"></span>
       Memory · Dreams · Intelligence
     </div>
@@ -812,6 +837,94 @@
         <div class="hive-suppl">
           <div class="hive-suppl-card"><div class="n">Unlimited</div><div class="l">Team members</div></div>
           <div class="hive-suppl-card"><div class="n">Live</div><div class="l">Memory sync</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ARCHITECTURE / RESEARCH -->
+<section class="section" id="architecture" style="background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
+  <div class="section-inner">
+    <div style="text-align:center;margin-bottom:64px;">
+      <p class="eyebrow reveal" style="display:block;">Neuroscience Research</p>
+      <h2 class="reveal d1" style="margin-bottom:14px;">How dreaming makes<br>agents smarter.</h2>
+      <p class="reveal d2" style="font-size:0.95rem;font-weight:300;color:var(--text2);line-height:1.7;max-width:580px;margin:0 auto;">The Dream Engine is grounded in sleep science. Every stage of the 9-stage pipeline maps to a biological process that occurs in the mammalian brain during memory consolidation. We didn't guess — we replicated.</p>
+    </div>
+
+    <div class="arch-grid reveal">
+      <div class="arch-grid-cell">
+        <div style="font-size:1.2rem;margin-bottom:14px;">🧠</div>
+        <div class="arch-eyebrow">Hippocampal Consolidation</div>
+        <div class="arch-title">Memories transfer overnight.</div>
+        <div class="arch-body">During NREM sleep, the hippocampus replays recent experiences through sharp-wave ripples, transferring memories to the neocortex for long-term storage. Dream Engine's <em>synthesize</em> stage mirrors this: raw inputs are replayed, structured, and written to persistent indexed storage.</div>
+      </div>
+      <div class="arch-grid-cell" style="border-left:1px solid var(--border);border-right:1px solid var(--border);">
+        <div style="font-size:1.2rem;margin-bottom:14px;">⚡</div>
+        <div class="arch-eyebrow">REM Free Association</div>
+        <div class="arch-title">Cross-domain insight emerges.</div>
+        <div class="arch-body">REM sleep is characterized by an acetylcholine surge that suppresses hippocampal gating, allowing distant memories to associate freely. The Dream Engine's <em>associate</em> and <em>insight_generate</em> stages replicate this — surfacing non-obvious connections across your agent's entire knowledge graph.</div>
+      </div>
+      <div class="arch-grid-cell">
+        <div style="font-size:1.2rem;margin-bottom:14px;">🎯</div>
+        <div class="arch-eyebrow">Targeted Memory Reactivation</div>
+        <div class="arch-title">Critical memories get priority.</div>
+        <div class="arch-body">TMR is a proven neuroscience technique where sensory cues during sleep enhance consolidation of specific memories. Our TMR system lets you tag high-priority memories so the Dream Engine processes them deeply — not uniformly. You control what compounds fastest.</div>
+      </div>
+    </div>
+
+    <div style="max-width:680px;margin:0 auto;">
+      <div style="text-align:center;margin-bottom:28px;" class="reveal">
+        <div class="eyebrow" style="display:block;">9-Stage Pipeline</div>
+        <div style="font-size:1.05rem;font-weight:600;letter-spacing:-0.02em;color:var(--text);margin-top:8px;">From raw memory to refined intelligence.</div>
+        <div style="font-size:0.82rem;font-weight:300;color:var(--text2);margin-top:8px;">Each stage maps to a specific phase of biological sleep. Together, they run every night.</div>
+      </div>
+      <div class="arch-pipeline reveal d1">
+        <div class="arch-stage">
+          <span class="arch-stage-n">01</span>
+          <span class="arch-stage-name">synthesize</span>
+          <span class="arch-stage-desc">Consolidates fragmented memories. Mirrors NREM Stage 2 sleep-spindle replay — raw experience becomes structured knowledge.</span>
+        </div>
+        <div class="arch-stage">
+          <span class="arch-stage-n">02</span>
+          <span class="arch-stage-name">pattern_extract</span>
+          <span class="arch-stage-desc">Identifies recurring structures. Analogous to thalamocortical oscillations during deep sleep — the brain finding signal in noise.</span>
+        </div>
+        <div class="arch-stage">
+          <span class="arch-stage-n">03</span>
+          <span class="arch-stage-name">insight_generate</span>
+          <span class="arch-stage-desc">Surfaces non-obvious connections. Replicates REM-phase acetylcholine-driven free association — where creative leaps emerge.</span>
+        </div>
+        <div class="arch-stage">
+          <span class="arch-stage-n">04</span>
+          <span class="arch-stage-name">compress</span>
+          <span class="arch-stage-desc">Removes redundancy. Mirrors slow-wave sleep's synaptic downscaling — preserving signal, pruning noise, reducing storage by up to 40%.</span>
+        </div>
+        <div class="arch-stage">
+          <span class="arch-stage-n">05</span>
+          <span class="arch-stage-name">associate</span>
+          <span class="arch-stage-desc">Cross-links disparate memories. Based on hippocampal indexing theory — building semantic graph edges between memories that appear unrelated.</span>
+        </div>
+        <div class="arch-stage">
+          <span class="arch-stage-n">06</span>
+          <span class="arch-stage-name">validate</span>
+          <span class="arch-stage-desc">Scores confidence and resolves contradictions. Analogous to prefrontal cortex error-correction during late-cycle sleep.</span>
+        </div>
+        <div class="arch-stage">
+          <span class="arch-stage-n">07</span>
+          <span class="arch-stage-name">evolve</span>
+          <span class="arch-stage-desc">Adapts memory structure to recent patterns. Mirrors experience-dependent plasticity — synapses that fire together, wire together.</span>
+        </div>
+        <div class="arch-stage">
+          <span class="arch-stage-n">08</span>
+          <span class="arch-stage-name">forecast</span>
+          <span class="arch-stage-desc">Generates temporal predictions from extracted patterns. Based on research into sleep's role in prospective memory and anticipatory planning.</span>
+        </div>
+        <div class="arch-stage">
+          <span class="arch-stage-n">09</span>
+          <span class="arch-stage-name">reflect</span>
+          <span class="arch-stage-desc">Meta-cognitive review of the entire cycle. Inspired by post-sleep consolidation — the brain's morning assessment of what it actually learned.</span>
         </div>
       </div>
     </div>
