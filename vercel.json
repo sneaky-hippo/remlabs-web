@@ -23,6 +23,12 @@
     { "source": "/login", "destination": "/", "permanent": false }
   ],
   "rewrites": [
+    { "source": "/memory", "destination": "/memory-hub" },
+    { "source": "/dream", "destination": "/dream-studio" },
+    { "source": "/morning-brief", "destination": "/dream-reports" },
+    { "source": "/hive", "destination": "/team-hives" },
+    { "source": "/explorer", "destination": "/memory-explorer" },
+    { "source": "/skills", "destination": "/skills-forge" },
     { "source": "/v1/:path*", "destination": "https://slopshop-production.up.railway.app/v1/:path*" },
     { "source": "/auth/:path*", "destination": "https://slopshop-production.up.railway.app/auth/:path*" },
     { "source": "/zapier/:path*", "destination": "https://slopshop-production.up.railway.app/zapier/:path*" },

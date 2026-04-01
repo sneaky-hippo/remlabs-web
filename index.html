@@ -206,10 +206,13 @@
        STATS STRIP
     ══════════════════════════════ */
     .stats {
-      display: grid; grid-template-columns: repeat(4,1fr);
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
       background: var(--bg2);
+    }
+    .stats-inner {
+      display: grid; grid-template-columns: repeat(4,1fr);
+      max-width: var(--max-w); margin: 0 auto;
     }
     .stat {
       padding: 36px 28px; text-align: center;
@@ -588,7 +591,7 @@
       .hero { padding: calc(var(--nav-h) + 60px) 20px 80px; }
       .hero-actions { flex-direction: column; align-items: stretch; max-width: 300px; margin-left: auto; margin-right: auto; }
       .btn { justify-content: center; }
-      .stats { grid-template-columns: repeat(2,1fr); }
+      .stats-inner { grid-template-columns: repeat(2,1fr); }
       .stat:nth-child(2) { border-right: none; }
       .stat:nth-child(3) { border-top: 1px solid var(--border); border-right: 1px solid var(--border); }
       .stat:nth-child(4) { border-top: 1px solid var(--border); border-right: none; }
@@ -674,6 +677,7 @@
 
 <!-- STATS -->
 <div class="stats" role="region" aria-label="Stats">
+  <div class="stats-inner">
   <div class="stat reveal">
     <div class="stat-n">∞</div>
     <div class="stat-l">Memory stored free</div>
@@ -690,6 +694,7 @@
     <div class="stat-n" id="live-agents">—</div>
     <div class="stat-l">agents dreaming tonight</div>
   </div>
+  </div><!-- /stats-inner -->
 </div>
 
 
