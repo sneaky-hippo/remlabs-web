@@ -79,8 +79,8 @@
     }
     .nav-logo {
       display: flex; align-items: center; gap: 8px;
-      font-size: 0.95rem; font-weight: 600; color: var(--text);
-      letter-spacing: -0.01em; flex-shrink: 0; margin-right: 16px;
+      font-size: 0.9rem; font-weight: 400; color: var(--text);
+      letter-spacing: 0.02em; flex-shrink: 0; margin-right: 16px;
     }
     .nav-logo-mark {
       width: 22px; height: 22px;
@@ -620,11 +620,12 @@
   <div class="nav-inner">
     <a href="/" class="nav-logo">
       <span class="nav-logo-mark">
-        <svg width="18" height="14" viewBox="0 0 18 14" fill="none">
-          <path d="M1 7C4 2.5 14 2.5 17 7" stroke="#6366f1" stroke-width="2" stroke-linecap="round"/>
-          <path d="M3.5 10.5C6 7.5 12 7.5 14.5 10.5" stroke="#6366f1" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
-          <path d="M6.5 13C8 11.2 10 11.2 11.5 13" stroke="#6366f1" stroke-width="2" stroke-linecap="round" opacity="0.3"/>
-        </svg>
+        <svg width="20" height="20" viewBox="0 0 28 28" fill="none">
+    <circle cx="14" cy="14" r="2.5" fill="#6366f1"/>
+    <ellipse cx="14" cy="14" rx="11" ry="5" stroke="#6366f1" stroke-width="1.5" opacity="0.8"/>
+    <ellipse cx="14" cy="14" rx="11" ry="5" stroke="#6366f1" stroke-width="1.5" opacity="0.5" transform="rotate(60 14 14)"/>
+    <ellipse cx="14" cy="14" rx="11" ry="5" stroke="#6366f1" stroke-width="1.5" opacity="0.35" transform="rotate(120 14 14)"/>
+  </svg>
       </span>
       REM Labs
     </a>
@@ -717,24 +718,22 @@
         <div class="demo-card">
           <div class="demo-bar">
             <div class="dot r"></div><div class="dot y"></div><div class="dot g"></div>
-            <span class="demo-label">POST /v1/demo/extract</span>
+            <span class="demo-label">Memory · Live</span>
           </div>
-          <div class="demo-body">
-            <div><span class="cmt"># Paste text, extract structured memory</span></div>
-            <div>&nbsp;</div>
-            <div><span class="ca">curl</span> -X POST /v1/demo/extract \</div>
-            <div>&nbsp;&nbsp;-d <span class="str">'{"content":"Prefers dark mode. Uses GPT-4o."}'</span></div>
-            <div>&nbsp;</div>
-            <div><span class="cmt"># →</span></div>
-            <div>{ <span class="ck">"extracted"</span>: [</div>
-            <div>&nbsp;&nbsp;{ <span class="ck">"key"</span>: <span class="cv">"ui_preference"</span>, <span class="ck">"value"</span>: <span class="cv">"dark_mode"</span>, <span class="ck">"confidence"</span>: <span class="cm">0.97</span> },</div>
-            <div>&nbsp;&nbsp;{ <span class="ck">"key"</span>: <span class="cv">"primary_model"</span>, <span class="ck">"value"</span>: <span class="cv">"gpt-4o"</span>, <span class="ck">"confidence"</span>: <span class="cm">0.94</span> }</div>
-            <div>], <span class="ck">"stored"</span>: <span class="cv">true</span> }</div>
+          <div class="demo-body" style="padding-bottom:8px;">
+            <div style="font-size:0.72rem;color:var(--text3);margin-bottom:10px;">Example — what your AI just learned:</div>
+            <div style="background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:12px 14px;margin-bottom:14px;font-size:0.8rem;color:var(--text2);line-height:1.6;font-style:italic;">"I prefer concise answers. I work in product at a startup. I mainly use Claude."</div>
+            <div style="display:flex;flex-direction:column;gap:7px;" id="demo-example">
+              <div style="display:flex;align-items:center;gap:10px;font-size:0.79rem;"><span style="color:var(--accent);font-weight:500;min-width:150px;font-size:0.75rem;">communication style</span><span style="color:var(--text3);">→</span><span style="color:var(--text);">concise</span></div>
+              <div style="display:flex;align-items:center;gap:10px;font-size:0.79rem;"><span style="color:var(--accent);font-weight:500;min-width:150px;font-size:0.75rem;">role</span><span style="color:var(--text3);">→</span><span style="color:var(--text);">product manager</span></div>
+              <div style="display:flex;align-items:center;gap:10px;font-size:0.79rem;"><span style="color:var(--accent);font-weight:500;min-width:150px;font-size:0.75rem;">preferred AI</span><span style="color:var(--text3);">→</span><span style="color:var(--text);">Claude</span></div>
+              <div style="font-size:0.72rem;color:var(--green);margin-top:4px;">✓ 3 memories stored automatically</div>
+            </div>
           </div>
           <div id="demo-out"></div>
           <div class="demo-input-row">
-            <input class="demo-input" id="demo-input" placeholder="Paste any text to extract memories..." maxlength="500">
-            <button class="demo-run" id="demo-run">Extract →</button>
+            <input class="demo-input" id="demo-input" placeholder="Tell it something about yourself..." maxlength="500">
+            <button class="demo-run" id="demo-run">Try it →</button>
           </div>
         </div>
       </div>
@@ -830,37 +829,37 @@
       <div class="suite-icon">◑</div>
       <div class="suite-title">Dream Studio</div>
       <div class="suite-desc">Configure 9-stage overnight synthesis cycles. Set strategies, schedule runs, review results.</div>
-      <a href="/dream-studio" class="suite-link">Open →</a>
+      <a href="/dream" class="suite-link">Open →</a>
     </div>
     <div class="suite-card reveal d1">
       <div class="suite-icon">⬡</div>
       <div class="suite-title">Memory Hub</div>
       <div class="suite-desc">Store, search, and organize everything your AI learns. Your central knowledge store.</div>
-      <a href="/memory-hub" class="suite-link">Open →</a>
+      <a href="/memory" class="suite-link">Open →</a>
     </div>
     <div class="suite-card reveal d2">
       <div class="suite-icon">◈</div>
       <div class="suite-title">Morning Brief</div>
       <div class="suite-desc">Daily intelligence report delivered every morning. Key insights, patterns, forecasts.</div>
-      <a href="/dream-reports" class="suite-link">Open →</a>
+      <a href="/morning-brief" class="suite-link">Open →</a>
     </div>
     <div class="suite-card reveal d1">
       <div class="suite-icon">⧖</div>
       <div class="suite-title">Team Hive</div>
       <div class="suite-desc">Multiplayer shared memory. Collective Dream cycles for teams. One brain, everyone benefits.</div>
-      <a href="/team-hives" class="suite-link">Open →</a>
+      <a href="/hive" class="suite-link">Open →</a>
     </div>
     <div class="suite-card reveal d2">
       <div class="suite-icon">◊</div>
       <div class="suite-title">Memory Explorer</div>
       <div class="suite-desc">Interactive knowledge graph. Visualize connections between memories. Navigate your mind.</div>
-      <a href="/memory-explorer" class="suite-link">Open →</a>
+      <a href="/explorer" class="suite-link">Open →</a>
     </div>
     <div class="suite-card reveal d3">
       <div class="suite-icon">⚙</div>
       <div class="suite-title">Skills Forge</div>
       <div class="suite-desc">Procedural skills library extracted from your Dream cycles. Build and reuse capabilities.</div>
-      <a href="/skills-forge" class="suite-link">Open →</a>
+      <a href="/skills" class="suite-link">Open →</a>
     </div>
   </div>
 </section>
@@ -1092,27 +1091,31 @@
     async function run(){
       var content = input.value.trim();
       if(!content){ input.focus(); return; }
-      btn.disabled = true; btn.textContent = 'Extracting…';
-      out.innerHTML = '<div style="padding:0 20px 12px;font-family:var(--mono);font-size:0.76px;" class="shimmer">extracting...</div>';
+      btn.disabled = true; btn.textContent = 'Saving…';
+      var ex = document.getElementById('demo-example');
+      if(ex) ex.style.display = 'none';
+      out.innerHTML = '<div style="padding:4px 20px 12px;font-size:0.76rem;color:var(--text3);" class="shimmer">Reading your text…</div>';
       try {
         var res = await fetch('/v1/demo/extract', {method:'POST', headers:{'Content-Type':'application/json'}, credentials:'include', body:JSON.stringify({content})});
         if(!res.ok) throw new Error('HTTP '+res.status);
         var data = await res.json();
         var items = (data.extracted||data.memories||[]).slice(0,5);
-        var html = '<div style="padding:0 20px 16px;font-family:var(--mono);font-size:0.76rem;line-height:1.7;color:var(--text2);">';
-        if(!items.length){ html += '# no structured keys found'; }
-        else {
+        var html = '<div style="padding:4px 20px 16px;">';
+        if(!items.length){
+          html += '<div style="font-size:0.78rem;color:var(--text3);">Nothing clear to save — try something more specific.</div>';
+        } else {
+          html += '<div style="display:flex;flex-direction:column;gap:7px;">';
           items.forEach(function(item){
-            var k = esc(item.key||item.name||'?'), v = esc(item.value||item.content||'?');
-            var c = item.confidence ? ' <span style="color:var(--text3)">// '+(item.confidence*100).toFixed(0)+'%</span>' : '';
-            html += '<div><span style="color:#7c3aed">"'+k+'"</span>: <span style="color:#059669">"'+v+'"</span>'+c+'</div>';
+            var k = esc((item.key||item.name||'?').replace(/_/g,' ')), v = esc(item.value||item.content||'?');
+            html += '<div style="display:flex;align-items:center;gap:10px;font-size:0.79rem;"><span style="color:var(--accent);font-weight:500;min-width:150px;font-size:0.75rem;">'+k+'</span><span style="color:var(--text3);">→</span><span style="color:var(--text);">'+v+'</span></div>';
           });
-          if(data.memory_id||data.id) html += '<div style="color:var(--text3)"># stored → '+esc(data.memory_id||data.id)+'</div>';
+          html += '<div style="font-size:0.72rem;color:var(--green);margin-top:4px;">✓ '+items.length+' memor'+(items.length===1?'y':'ies')+' saved — <a href="/memory" style="color:var(--accent);">view in Memory Hub →</a></div>';
+          html += '</div>';
         }
         html += '</div>';
         out.innerHTML = html;
-      } catch(e){ out.innerHTML = '<div style="padding:0 20px 12px;font-size:0.76rem;color:var(--text3);font-family:var(--mono);"># '+esc(e.message||'failed')+'</div>'; }
-      finally { btn.disabled=false; btn.textContent='Extract →'; }
+      } catch(e){ out.innerHTML = '<div style="padding:4px 20px 12px;font-size:0.78rem;color:var(--text3);">Couldn\'t connect — try again in a moment.</div>'; }
+      finally { btn.disabled=false; btn.textContent='Try it →'; }
     }
     btn.addEventListener('click', run);
     input.addEventListener('keydown', function(e){ if(e.key==='Enter') run(); });
