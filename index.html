@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Persistent memory for AI agents. Overnight synthesis. Morning Intelligence Brief. Free forever.">
+  <meta name="description" content="Persistent memory for every AI. Dream Engine synthesizes overnight. Morning Brief every day.">
   <meta property="og:title" content="REM Labs — Memory that compounds.">
-  <meta property="og:description" content="Persistent memory for AI agents. Overnight synthesis. Morning Intelligence Brief. Free forever.">
+  <meta property="og:description" content="Persistent memory for every AI. Dream Engine synthesizes overnight. Morning Brief every day.">
   <meta property="og:type" content="website">
   <meta name="theme-color" content="#0a0a0a">
   <title>REM Labs — Memory that compounds.</title>
@@ -125,7 +125,7 @@
     }
     .nav-cta-signin:hover {
       background: rgba(129,140,248,0.14);
-      border-color: rgba(129,140,248,0.30);
+      border-color: rgba(129,140,248,0.3);
     }
     .nav-cta-dashboard {
       background: var(--accent);
@@ -144,7 +144,7 @@
 .site-nav-inner{max-width:var(--max-w,1200px);width:100%;margin:0 auto;padding:0 32px;height:56px;display:flex;align-items:center;gap:2px}
 .site-nav-logo{display:flex;align-items:center;font-weight:700;font-size:1.05rem;color:var(--text,#f0f0f0);letter-spacing:-0.03em;text-decoration:none;flex-shrink:0;margin-right:12px;transition:color 0.2s}
 .site-nav-logo:hover{color:#818cf8}
-.sn-mark{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:5px;background:linear-gradient(135deg,#818cf8,#6366f1);flex-shrink:0;margin-right:6px;vertical-align:middle}
+.sn-mark{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;flex-shrink:0;margin-right:6px;vertical-align:middle}
 .site-nav-drop{position:relative;flex-shrink:0;margin-right:4px}
 .sn-drop-btn{display:flex;align-items:center;gap:5px;padding:6px 11px;background:transparent;border:none;color:rgba(240,240,240,0.6);font-size:0.84rem;font-weight:500;cursor:pointer;border-radius:7px;transition:color 0.15s,background 0.15s;font-family:inherit}
 .sn-drop-btn:hover,.site-nav-drop.open .sn-drop-btn{color:#f0f0f0;background:rgba(255,255,255,0.06)}
@@ -163,8 +163,8 @@
 .site-nav-actions{display:flex;align-items:center;gap:8px;flex-shrink:0;margin-left:8px}
 .site-nav-app{font-size:0.82rem;font-weight:500;color:rgba(240,240,240,0.8);text-decoration:none;padding:7px 14px;border-radius:7px;border:1px solid rgba(255,255,255,0.12);transition:all 0.15s}
 .site-nav-app:hover{color:#f0f0f0;border-color:rgba(255,255,255,0.22);background:rgba(255,255,255,0.05)}
-.site-nav-signup{font-size:0.82rem;font-weight:600;color:#000;background:#818cf8;padding:7px 16px;border-radius:7px;text-decoration:none;transition:background 0.15s,box-shadow 0.15s;white-space:nowrap}
-.site-nav-signup:hover{background:#a5b4fc;box-shadow:0 4px 16px rgba(129,140,248,0.30)}
+.site-nav-signup{font-size:0.82rem;font-weight:600;color:#fff;background:#818cf8;padding:7px 16px;border-radius:7px;text-decoration:none;transition:background 0.15s,box-shadow 0.15s;white-space:nowrap}
+.site-nav-signup:hover{background:#a5b4fc;box-shadow:0 4px 16px rgba(129,140,248,0.3)}
 .sn-hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;background:transparent;border:none;cursor:pointer;padding:8px;margin-left:auto;border-radius:7px;transition:background 0.15s;width:38px;height:38px}
 .sn-hamburger:hover{background:rgba(255,255,255,0.06)}
 .sn-hamburger span{display:block;width:20px;height:2px;background:rgba(240,240,240,0.75);border-radius:2px;transition:all 0.22s}
@@ -177,7 +177,7 @@
 .sn-mobile a:hover{color:#f0f0f0;background:rgba(255,255,255,0.06)}
 .sn-divider{height:1px;background:rgba(255,255,255,0.055);margin:6px 0}
 .snm-app{border:1px solid rgba(255,255,255,0.12)!important;color:rgba(240,240,240,0.85)!important;text-align:center;margin-top:4px}
-.snm-signup{background:#818cf8!important;color:#000!important;font-weight:600!important;text-align:center;margin-top:4px}
+.snm-signup{background:#818cf8!important;color:#fff!important;font-weight:600!important;text-align:center;margin-top:4px}
 @media(max-width:768px){.site-nav-drop,.site-nav-links{display:none!important}.site-nav-app{display:none!important}.sn-hamburger{display:flex!important}}
 @media(max-width:480px){.site-nav-inner{padding:0 16px}}
 #nav-dashboard{display:none}#nav-dashboard.visible{display:flex}
@@ -260,7 +260,7 @@
       gap: 8px;
       padding: 14px 28px;
       background: var(--accent);
-      color: #000;
+      color: #fff;
       font-size: 0.95rem;
       font-weight: 600;
       border-radius: 10px;
@@ -630,6 +630,35 @@
       justify-content: center;
     }
 
+    /* ── Product Suite ── */
+    .product-suite-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      border-top: 1px solid var(--border);
+    }
+    .ps-card {
+      padding: 40px 36px;
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      transition: background 0.15s;
+    }
+    .ps-card:hover { background: rgba(255,255,255,0.02); }
+    .ps-card:nth-child(3n) { border-right: none; }
+    .ps-card:nth-child(4), .ps-card:nth-child(5), .ps-card:nth-child(6) { border-bottom: none; }
+    .ps-card-icon { font-size: 1.3rem; margin-bottom: 14px; }
+    .ps-card-title { font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: 8px; letter-spacing: -0.02em; }
+    .ps-card-desc { font-size: 0.84rem; color: var(--text2); line-height: 1.55; margin-bottom: 16px; }
+    .ps-card-link { font-size: 0.8rem; color: var(--accent); font-weight: 500; text-decoration: none; display: inline-flex; align-items: center; gap: 4px; transition: gap 0.2s; }
+    .ps-card-link:hover { gap: 8px; }
+    @media (max-width: 768px) {
+      .product-suite-grid { grid-template-columns: 1fr; }
+      .ps-card { border-right: none; }
+      .ps-card:nth-child(3n) { border-right: none; }
+      .ps-card:nth-child(4), .ps-card:nth-child(5) { border-bottom: 1px solid var(--border); }
+      .ps-card:nth-child(6) { border-bottom: none; }
+    }
+
     /* ── How It Works ── */
     .how-section {
       background: var(--surface);
@@ -667,56 +696,6 @@
       line-height: 1.65;
       color: var(--text2);
     }
-
-    /* ── Comparison ── */
-    .compare-section { background: var(--bg); }
-    .compare-table-wrap {
-      overflow-x: auto;
-      border-radius: 14px;
-      border: 1px solid var(--border);
-    }
-    .compare-table {
-      width: 100%;
-      border-collapse: collapse;
-      min-width: 700px;
-    }
-    .compare-table th {
-      padding: 20px 24px;
-      font-size: 0.82rem;
-      font-weight: 600;
-      color: var(--text2);
-      text-align: center;
-      border-bottom: 1px solid var(--border);
-      background: var(--surface);
-    }
-    .compare-table th:first-child { text-align: left; }
-    .compare-table th.col-us {
-      color: var(--accent);
-      background: rgba(129,140,248,0.04);
-    }
-    .compare-table td {
-      padding: 16px 24px;
-      font-size: 0.875rem;
-      text-align: center;
-      border-bottom: 1px solid var(--border);
-      color: var(--text2);
-    }
-    .compare-table td:first-child {
-      text-align: left;
-      color: var(--text);
-      font-weight: 500;
-    }
-    .compare-table td.col-us {
-      background: rgba(129,140,248,0.03);
-      color: var(--green);
-      font-weight: 600;
-    }
-    .compare-table tr:last-child td { border-bottom: none; }
-    .compare-table tr:hover td { background: rgba(255,255,255,0.02); }
-    .compare-table tr:hover td.col-us { background: rgba(129,140,248,0.05); }
-    .check { color: var(--green); }
-    .cross { color: var(--red); opacity: 0.6; }
-    .partial { color: var(--yellow); }
 
     /* ── Developer Section ── */
     .dev-section {
@@ -906,8 +885,6 @@
 
       .dream-stats { grid-template-columns: repeat(2, 1fr); }
 
-      .compare-table-wrap { border-radius: 10px; }
-
       .dev-inner { padding: 70px 20px; }
       .code-tabs { overflow-x: auto; }
 
@@ -1026,11 +1003,11 @@
     <div class="site-nav-drop">
       <button class="sn-drop-btn">Product <svg class="sn-chev" width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
       <div class="sn-drop-panel">
-        <a href="/dream-studio" class="sn-drop-item"><span class="sdi-icon">&#9675;</span><span><b>Dream Engine</b><em>9-stage overnight synthesis</em></span></a>
-        <a href="/memory-hub" class="sn-drop-item"><span class="sdi-icon">&#11042;</span><span><b>Memory Hub</b><em>Persistent knowledge store</em></span></a>
-        <a href="/dream-reports" class="sn-drop-item"><span class="sdi-icon">&#10792;</span><span><b>Morning Brief</b><em>Daily intelligence report</em></span></a>
-        <a href="/team-hives" class="sn-drop-item"><span class="sdi-icon">&#10710;</span><span><b>Team Hive</b><em>Multiplayer memory</em></span></a>
-        <a href="/memory-explorer" class="sn-drop-item"><span class="sdi-icon">&#9674;</span><span><b>Memory Explorer</b><em>Knowledge graph</em></span></a>
+        <a href="/dream-studio" class="sn-drop-item"><span class="sdi-icon">◑</span><span><b>Dream Engine</b><em>9-stage overnight synthesis</em></span></a>
+        <a href="/memory-hub" class="sn-drop-item"><span class="sdi-icon">⬡</span><span><b>Memory Hub</b><em>Persistent knowledge store</em></span></a>
+        <a href="/dream-reports" class="sn-drop-item"><span class="sdi-icon">◈</span><span><b>Morning Brief</b><em>Daily intelligence report</em></span></a>
+        <a href="/team-hives" class="sn-drop-item"><span class="sdi-icon">⧖</span><span><b>Team Hive</b><em>Multiplayer shared memory</em></span></a>
+        <a href="/memory-explorer" class="sn-drop-item"><span class="sdi-icon">◊</span><span><b>Memory Explorer</b><em>Visual knowledge graph</em></span></a>
       </div>
     </div>
     <div class="site-nav-links">
@@ -1038,8 +1015,8 @@
       <a href="/pricing" class="site-nav-link">Pricing</a>
     </div>
     <div class="site-nav-actions">
-      <a href="/brain" class="site-nav-app" id="nav-dashboard">Open App &#8599;</a>
-      <a href="/auth/google" class="site-nav-signup google-btn" id="nav-signin">Sign up free</a>
+      <a href="/brain" class="site-nav-app" id="nav-dashboard">Open App ↗</a>
+      <a href="/auth/google" class="site-nav-signup" id="nav-signin">Get started free</a>
     </div>
     <button class="sn-hamburger" id="sn-hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
   </div>
@@ -1053,8 +1030,8 @@
     <a href="#features">How it works</a>
     <a href="/pricing">Pricing</a>
     <div class="sn-divider"></div>
-    <a href="/brain" class="snm-app">Open App &#8599;</a>
-    <a href="/auth/google" class="snm-signup">Sign up free</a>
+    <a href="/brain" class="snm-app">Open App ↗</a>
+    <a href="/auth/google" class="snm-signup">Get started free</a>
   </div>
 </nav>
 
@@ -1072,15 +1049,15 @@
       <span class="line2">Every night.</span>
     </h1>
     <p class="hero-sub reveal reveal-delay-2">
-      Your AI saves everything it learns. Overnight, it synthesizes. Each morning, you wake to a brief.
+      Your AI saves everything it learns. Overnight, the Dream Engine synthesizes. Every morning, you wake to a brief.
     </p>
     <div class="hero-ctas reveal reveal-delay-3">
-      <button class="btn-primary google-btn" aria-label="Start for free">
-        Start for free &rarr;
+      <button class="btn-primary google-btn" aria-label="Get started for free with Google">
+        Get started free →
       </button>
-      <a href="#features" class="btn-ghost">See how it works &darr;</a>
+      <a href="#features" class="btn-ghost">See how it works ↓</a>
     </div>
-    <p class="hero-fine reveal reveal-delay-4">No credit card &nbsp;&middot;&nbsp; Memory always free &nbsp;&middot;&nbsp; Works with any AI model</p>
+    <p class="hero-fine reveal reveal-delay-4">No credit card &nbsp;·&nbsp; Memory always free &nbsp;·&nbsp; Works with any AI model</p>
   </div>
 </section>
 
@@ -1090,11 +1067,11 @@
 ═══════════════════════════════════════════ -->
 <div class="stats-bar" role="region" aria-label="Platform statistics">
   <div class="stat-cell reveal">
-    <div class="stat-num">&#8734;</div>
-    <div class="stat-label">Memory stored, free</div>
+    <div class="stat-num">∞</div>
+    <div class="stat-label">Memory stored free</div>
   </div>
   <div class="stat-cell reveal reveal-delay-1">
-    <div class="stat-num"><span>9</span>&#8209;stage</div>
+    <div class="stat-num"><span>9</span>‑stage</div>
     <div class="stat-label">Dream Engine</div>
   </div>
   <div class="stat-cell reveal reveal-delay-2">
@@ -1102,7 +1079,7 @@
     <div class="stat-label">Morning Brief</div>
   </div>
   <div class="stat-cell reveal reveal-delay-3">
-    <div class="stat-num" id="live-agents" style="font-size: 1.6rem;">&#8212;</div>
+    <div class="stat-num" id="live-agents">—</div>
     <div class="stat-label">agents dreaming tonight</div>
   </div>
 </div>
@@ -1120,7 +1097,7 @@
         <p class="eyebrow reveal">Memory</p>
         <h2 class="section-h2 reveal reveal-delay-1">Your AI<br>remembers.</h2>
         <p class="section-para reveal reveal-delay-2">
-          Everything it encounters — stored, searchable, persistent. Not a context window. Memory that grows with every session and gets structured every night.
+          Everything it encounters — stored, searchable, persistent. Not a context window. Memory that grows with every session and compounds every night.
         </p>
         <div class="feature-bullets reveal reveal-delay-3">
           <div class="feature-bullet">
@@ -1130,8 +1107,8 @@
               </svg>
             </div>
             <div class="bullet-text">
-              <strong>Always available</strong>
-              <span>Retrieve any memory by meaning, not just keywords. Semantic search out of the box.</span>
+              <strong>Semantic search</strong>
+              <span>Find any memory by meaning, not just keywords. Vector similarity out of the box.</span>
             </div>
           </div>
           <div class="feature-bullet">
@@ -1142,8 +1119,19 @@
               </svg>
             </div>
             <div class="bullet-text">
-              <strong>Automatic extraction</strong>
-              <span>Paste any text — conversation, doc, URL. Structured keys surface automatically.</span>
+              <strong>Auto-extraction from any text</strong>
+              <span>Paste a conversation, document, or raw output — structured keys surface automatically.</span>
+            </div>
+          </div>
+          <div class="feature-bullet">
+            <div class="bullet-icon">
+              <svg viewBox="0 0 14 14" fill="none" stroke="#818cf8" stroke-width="1.5" stroke-linecap="round">
+                <path d="M7 12V7M7 7l-3-3M7 7l3-3"/><path d="M2 12h10"/>
+              </svg>
+            </div>
+            <div class="bullet-text">
+              <strong>Memory decay &amp; freshness scoring</strong>
+              <span>Older memories gracefully decay. Critical facts persist. Your context stays relevant.</span>
             </div>
           </div>
           <div class="feature-bullet">
@@ -1154,8 +1142,8 @@
               </svg>
             </div>
             <div class="bullet-text">
-              <strong>Free, forever</strong>
-              <span>Core memory has no paywall. Store, retrieve, search — no plan required.</span>
+              <strong>Core memory always free, forever</strong>
+              <span>No paywall on the fundamentals. Store, retrieve, and search without a plan.</span>
             </div>
           </div>
         </div>
@@ -1168,20 +1156,22 @@
             <div class="terminal-dot red"></div>
             <div class="terminal-dot yellow"></div>
             <div class="terminal-dot green"></div>
-            <span class="terminal-title">POST /v1/memory/store</span>
+            <span class="terminal-title">POST /v1/demo/extract</span>
           </div>
           <div class="terminal-body">
-            <div><span class="t-comment"># Store a memory for remlabs.ai</span></div>
+            <div><span class="t-comment"># Try the live extractor below ↓</span></div>
             <div>&nbsp;</div>
-            <div><span class="t-prompt">$ </span><span class="t-cmd">curl</span> -X POST https://api.slopshop.gg/v1/memory/store \</div>
-            <div>&nbsp;&nbsp;&nbsp;<span class="t-cmd">-H</span> <span class="t-bracket">'</span><span class="t-val">Authorization: Bearer $SLOP_KEY</span><span class="t-bracket">'</span> \</div>
-            <div>&nbsp;&nbsp;&nbsp;<span class="t-cmd">-d</span> <span class="t-bracket">'</span><span class="t-val">{"content":"User reads every morning brief. Retains 94% of insights."}</span><span class="t-bracket">'</span></div>
+            <div><span class="t-prompt">$ </span><span class="t-cmd">curl</span> https://slopshop.gg/v1/demo/extract \</div>
+            <div>&nbsp;&nbsp;&nbsp;<span class="t-cmd">-d</span> <span class="t-bracket">'</span><span class="t-val">{"content":"Prefers dark mode. Uses GPT-4o for coding."}</span><span class="t-bracket">'</span></div>
             <div>&nbsp;</div>
             <div><span class="t-comment"># Response:</span></div>
             <div><span class="t-bracket">{</span></div>
-            <div>&nbsp;&nbsp;<span class="t-key">"id"</span><span class="t-bracket">: </span><span class="t-val">"mem_9a3z1"</span><span class="t-bracket">,</span></div>
-            <div>&nbsp;&nbsp;<span class="t-key">"stored"</span><span class="t-bracket">: </span><span class="t-val">true</span><span class="t-bracket">,</span></div>
-            <div>&nbsp;&nbsp;<span class="t-key">"namespace"</span><span class="t-bracket">: </span><span class="t-val">"default"</span></div>
+            <div>&nbsp;&nbsp;<span class="t-key">"extracted"</span><span class="t-bracket">: [</span></div>
+            <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-bracket">{</span> <span class="t-key">"key"</span>: <span class="t-val">"ui_preference"</span>, <span class="t-key">"value"</span>: <span class="t-val">"dark_mode"</span>, <span class="t-key">"confidence"</span>: <span class="t-num">0.97</span> <span class="t-bracket">}</span>,</div>
+            <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-bracket">{</span> <span class="t-key">"key"</span>: <span class="t-val">"primary_model"</span>, <span class="t-key">"value"</span>: <span class="t-val">"gpt-4o"</span>, <span class="t-key">"confidence"</span>: <span class="t-num">0.94</span> <span class="t-bracket">}</span>,</div>
+            <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-bracket">{</span> <span class="t-key">"key"</span>: <span class="t-val">"use_case"</span>, <span class="t-key">"value"</span>: <span class="t-val">"coding"</span>, <span class="t-key">"confidence"</span>: <span class="t-num">0.91</span> <span class="t-bracket">}</span></div>
+            <div>&nbsp;&nbsp;<span class="t-bracket">]</span>,</div>
+            <div>&nbsp;&nbsp;<span class="t-key">"stored"</span><span class="t-bracket">: </span><span class="t-val">true</span>, <span class="t-key">"memory_id"</span><span class="t-bracket">: </span><span class="t-val">"mem_7x4k2"</span></div>
             <div><span class="t-bracket">}</span></div>
             <div id="demo-output"></div>
             <div class="terminal-input-row">
@@ -1192,7 +1182,7 @@
                 placeholder="Paste any text to extract memories..."
                 maxlength="500"
               >
-              <button class="terminal-run" id="demo-run" aria-label="Run extraction">Extract &rarr;</button>
+              <button class="terminal-run" id="demo-run" aria-label="Run extraction">Extract →</button>
             </div>
           </div>
         </div>
@@ -1213,9 +1203,9 @@
       <!-- Right: copy (visually on right due to reversed grid) -->
       <div>
         <p class="eyebrow reveal">Dream Engine</p>
-        <h2 class="section-h2 reveal reveal-delay-1">Synthesis while<br>you sleep.</h2>
+        <h2 class="section-h2 reveal reveal-delay-1">Synthesis<br>while you sleep.</h2>
         <p class="section-para reveal reveal-delay-2">
-          Nine stages, every night. While you're away, your memories compress, connect, and evolve. You wake up to an Intelligence Score and a Morning Brief.
+          Nine stages, every night. Memories compress, connect, and evolve. You wake to an Intelligence Score and a Morning Brief.
         </p>
         <div class="dream-stats reveal reveal-delay-3">
           <div class="dream-stat-card">
@@ -1224,15 +1214,15 @@
           </div>
           <div class="dream-stat-card">
             <div class="num">84</div>
-            <div class="lbl">Avg Brain Glow Score</div>
+            <div class="lbl">Avg Brain Glow score</div>
           </div>
           <div class="dream-stat-card">
-            <div class="num" style="font-size:1.2rem; padding-top:4px;">IQ Score</div>
-            <div class="lbl">Intelligence Score metric</div>
+            <div class="num" style="font-size:1.2rem; padding-top:4px;">Morning<br>Brief</div>
+            <div class="lbl">Daily intelligence report</div>
           </div>
           <div class="dream-stat-card">
-            <div class="num" style="font-size:1.2rem; padding-top:4px;">Morning</div>
-            <div class="lbl">Brief each dawn</div>
+            <div class="num" style="font-size:1.2rem; padding-top:4px;">Any model</div>
+            <div class="lbl">Claude, GPT, Gemini…</div>
           </div>
         </div>
       </div>
@@ -1291,8 +1281,8 @@
             </div>
           </div>
           <div style="margin-top: 20px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.05); display: flex; justify-content: space-between; align-items: center;">
-            <span style="font-family: var(--mono); font-size: 0.72rem; color: var(--text3);">intelligence_score</span>
-            <span style="font-family: var(--mono); font-size: 0.88rem; color: var(--accent); font-weight: 600;" id="iq-score">&#8212;</span>
+            <span style="font-family: var(--mono); font-size: 0.72rem; color: var(--text3);">brain_glow_score</span>
+            <span style="font-family: var(--mono); font-size: 0.88rem; color: var(--accent); font-weight: 600;" id="iq-score">—</span>
           </div>
         </div>
       </div>
@@ -1305,16 +1295,16 @@
 <!-- ═══════════════════════════════════════════
      HIVE SECTION
 ═══════════════════════════════════════════ -->
-<section class="section" aria-label="Hive product">
+<section class="section" aria-label="Team Hive product">
   <div class="section-inner">
     <div class="section-split">
 
       <!-- Left: copy -->
       <div>
-        <p class="eyebrow reveal">Hive</p>
+        <p class="eyebrow reveal">Team Hive</p>
         <h2 class="section-h2 reveal reveal-delay-1">One brain,<br>shared.</h2>
         <p class="section-para reveal reveal-delay-2">
-          Every teammate's knowledge flows into a shared memory space. Run Dream cycles across your whole team. Everyone wakes up to the same brief.
+          Every teammate's knowledge flows into a shared namespace. Run Dream cycles across your whole team. Everyone wakes to the same brief.
         </p>
         <div class="feature-bullets reveal reveal-delay-3">
           <div class="feature-bullet">
@@ -1327,8 +1317,8 @@
               </svg>
             </div>
             <div class="bullet-text">
-              <strong>Share any namespace</strong>
-              <span>Invite teammates with reader, contributor, or admin roles.</span>
+              <strong>Invite collaborators to any namespace</strong>
+              <span>Granular roles: reader, contributor, admin. Share memory without sharing credentials.</span>
             </div>
           </div>
           <div class="feature-bullet">
@@ -1338,8 +1328,8 @@
               </svg>
             </div>
             <div class="bullet-text">
-              <strong>Collective dreams</strong>
-              <span>One Dream cycle processes the entire hive's memory pool. Shared insights, surfaced overnight.</span>
+              <strong>Collective Dream cycles</strong>
+              <span>Dream Engine runs across the entire hive's memory pool. Shared insights, surfaced overnight.</span>
             </div>
           </div>
           <div class="feature-bullet">
@@ -1352,8 +1342,8 @@
               </svg>
             </div>
             <div class="bullet-text">
-              <strong>Live sync</strong>
-              <span>Any memory written by any agent is immediately visible across the hive.</span>
+              <strong>Real-time knowledge sync</strong>
+              <span>Every memory written by any agent or teammate is immediately visible across the hive.</span>
             </div>
           </div>
         </div>
@@ -1364,9 +1354,9 @@
         <div class="hive-visual">
           <div class="hive-wrapper">
             <div class="hive-orbit">
-              <div class="hive-user" style="top:-26px; left:50%; transform:translateX(-50%);">&#128105;&#8205;&#128187;</div>
-              <div class="hive-user" style="bottom:20px; left:-20px;">&#129489;&#8205;&#128300;</div>
-              <div class="hive-user" style="bottom:20px; right:-20px;">&#128104;&#8205;&#128188;</div>
+              <div class="hive-user" style="top:-26px; left:50%; transform:translateX(-50%);">👩‍💻</div>
+              <div class="hive-user" style="bottom:20px; left:-20px;">🧑‍🔬</div>
+              <div class="hive-user" style="bottom:20px; right:-20px;">👨‍💼</div>
             </div>
             <div class="hive-center">
               <div class="hive-center-label">Hive</div>
@@ -1393,29 +1383,80 @@
 
 
 <!-- ═══════════════════════════════════════════
+     PRODUCT SUITE
+═══════════════════════════════════════════ -->
+<section class="how-section" aria-label="Product suite">
+  <div class="section-inner" style="padding: 0;">
+    <div style="padding: 80px 32px 48px; text-align: center;">
+      <p class="eyebrow reveal" style="display: block;">Product Suite</p>
+      <h2 class="section-h2 reveal reveal-delay-1" style="margin-bottom: 0;">Everything in one place.</h2>
+    </div>
+    <div class="product-suite-grid">
+      <div class="ps-card reveal">
+        <div class="ps-card-icon">◑</div>
+        <div class="ps-card-title">Dream Studio</div>
+        <div class="ps-card-desc">Configure 9-stage overnight synthesis cycles. Set strategies, schedule runs, review results.</div>
+        <a href="/dream-studio" class="ps-card-link">Open →</a>
+      </div>
+      <div class="ps-card reveal reveal-delay-1">
+        <div class="ps-card-icon">⬡</div>
+        <div class="ps-card-title">Memory Hub</div>
+        <div class="ps-card-desc">Store, search, and organize everything your AI learns. Your central knowledge store.</div>
+        <a href="/memory-hub" class="ps-card-link">Open →</a>
+      </div>
+      <div class="ps-card reveal reveal-delay-2">
+        <div class="ps-card-icon">◈</div>
+        <div class="ps-card-title">Morning Brief</div>
+        <div class="ps-card-desc">Daily intelligence report delivered every morning. Key insights, patterns, forecasts.</div>
+        <a href="/dream-reports" class="ps-card-link">Open →</a>
+      </div>
+      <div class="ps-card reveal reveal-delay-1">
+        <div class="ps-card-icon">⧖</div>
+        <div class="ps-card-title">Team Hive</div>
+        <div class="ps-card-desc">Multiplayer shared memory. Collective Dream cycles for teams. One brain, everyone benefits.</div>
+        <a href="/team-hives" class="ps-card-link">Open →</a>
+      </div>
+      <div class="ps-card reveal reveal-delay-2">
+        <div class="ps-card-icon">◊</div>
+        <div class="ps-card-title">Memory Explorer</div>
+        <div class="ps-card-desc">Interactive knowledge graph. Visualize connections between memories. Navigate your mind.</div>
+        <a href="/memory-explorer" class="ps-card-link">Open →</a>
+      </div>
+      <div class="ps-card reveal reveal-delay-3">
+        <div class="ps-card-icon">⚙</div>
+        <div class="ps-card-title">Skills Forge</div>
+        <div class="ps-card-desc">Procedural skills library extracted from your Dream cycles. Build and reuse capabilities.</div>
+        <a href="/skills-forge" class="ps-card-link">Open →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
      HOW IT WORKS
 ═══════════════════════════════════════════ -->
-<section class="how-section" aria-label="How it works">
+<section class="how-section" style="border-top: none;" aria-label="How it works">
   <div class="section-inner" style="padding: 0;">
     <div style="padding: 80px 32px 48px; text-align: center;">
       <p class="eyebrow reveal" style="display: block;">How it works</p>
-      <h2 class="section-h2 reveal reveal-delay-1" style="margin-bottom: 0;">Store. Dream.<br>Wake.</h2>
+      <h2 class="section-h2 reveal reveal-delay-1" style="margin-bottom: 0;">Store. Dream. Wake.</h2>
     </div>
     <div class="steps">
       <div class="step reveal">
         <div class="step-num">01</div>
         <div class="step-title">Store</div>
-        <div class="step-body">Your AI logs what it encounters. Facts, preferences, decisions. Stored automatically or on demand.</div>
+        <div class="step-body">Feed it what your AI learns. Paste text, send API calls, or let background extractors pull structure automatically from any content.</div>
       </div>
       <div class="step reveal reveal-delay-2">
         <div class="step-num">02</div>
         <div class="step-title">Dream</div>
-        <div class="step-body">Each night, nine synthesis passes run. Patterns emerge. Redundancy compresses. Connections form.</div>
+        <div class="step-body">Overnight, Dream Engine runs 9 synthesis cycles. New patterns, compressed knowledge, novel insights — waiting when you wake up.</div>
       </div>
       <div class="step reveal reveal-delay-4">
         <div class="step-num">03</div>
         <div class="step-title">Wake</div>
-        <div class="step-body">Your Morning Brief is ready &mdash; Intelligence Score, top insights, TMR cues. Your AI knows more than yesterday.</div>
+        <div class="step-body">Wake to your Morning Brief. An intelligence report: key insights, connections, forecasts. Your AI gets smarter while you sleep.</div>
       </div>
     </div>
   </div>
@@ -1425,55 +1466,78 @@
 <!-- ═══════════════════════════════════════════
      DEVELOPER SECTION
 ═══════════════════════════════════════════ -->
-<section class="dev-section" aria-label="For developers">
+<section class="dev-section" aria-label="Developer API">
   <div class="dev-inner">
     <div class="dev-header">
-      <p class="eyebrow reveal">Developers</p>
+      <p class="eyebrow reveal">Developer API</p>
       <h2 class="dev-h2 reveal reveal-delay-1">Built on a real API.</h2>
-      <p class="dev-sub reveal reveal-delay-2">REM Labs is the consumer layer. Underneath is slopshop.gg &mdash; a full REST API, CLI, MCP server, and 1,303 tool endpoints. Everything you see here is accessible via code.</p>
+      <p class="dev-sub reveal reveal-delay-2">REM Labs is the consumer layer. Underneath is slopshop.gg — full REST API, CLI, MCP server, 1,303 endpoints.</p>
     </div>
 
-    <div class="reveal reveal-delay-3">
-      <div class="code-tabs">
-        <button class="code-tab active" data-tab="rest">REST</button>
-        <button class="code-tab" data-tab="cli">CLI</button>
-        <button class="code-tab" data-tab="mcp">MCP</button>
+    <div class="reveal reveal-delay-2">
+      <div class="code-tabs" role="tablist" aria-label="Code examples">
+        <button class="code-tab active" role="tab" aria-selected="true" data-tab="rest">REST</button>
+        <button class="code-tab" role="tab" aria-selected="false" data-tab="cli">CLI</button>
+        <button class="code-tab" role="tab" aria-selected="false" data-tab="mcp">MCP</button>
       </div>
       <div class="code-block-wrap">
-        <div class="code-panel active" id="tab-rest">
+        <!-- REST -->
+        <div class="code-panel active" id="tab-rest" role="tabpanel">
 <span class="c-comment"># Store a memory</span>
 <span class="c-accent">curl</span> -X POST https://api.slopshop.gg/v1/memory/store \
   -H <span class="c-string">"Authorization: Bearer $SLOP_KEY"</span> \
-  -d <span class="c-string">'{"content":"User prefers concise responses."}'</span>
+  -H <span class="c-string">"Content-Type: application/json"</span> \
+  -d <span class="c-string">'{"content":"User prefers concise responses. Expert in Rust."}'</span>
 
-<span class="c-comment"># &rarr; { "id": "mem_9a3z1", "stored": true }</span>
+<span class="c-comment"># → { "id": "mem_9a3z1", "stored": true, "namespace": "default" }</span>
 
-<span class="c-comment"># Start a dream cycle</span>
+<span class="c-comment"># Kick off a Dream cycle</span>
 <span class="c-accent">curl</span> -X POST https://api.slopshop.gg/v1/memory/dream/start \
-  -H <span class="c-string">"Authorization: Bearer $SLOP_KEY"</span>
+  -H <span class="c-string">"Authorization: Bearer $SLOP_KEY"</span> \
+  -d <span class="c-string">'{"strategy":"synthesize,compress,insight_generate"}'</span>
+
+<span class="c-comment"># → { "dream_id": "drm_7f2b", "status": "running", "stages": 9 }</span>
         </div>
-        <div class="code-panel" id="tab-cli">
+        <!-- CLI -->
+        <div class="code-panel" id="tab-cli" role="tabpanel">
 <span class="c-comment"># Install</span>
 <span class="c-accent">npm</span> install -g @slopshop/cli
 
-<span class="c-comment"># Store from stdin</span>
-<span class="c-accent">echo</span> <span class="c-string">"prefers dark mode"</span> | <span class="c-accent">slop</span> memory store
+<span class="c-comment"># Login</span>
+<span class="c-accent">slop</span> auth login
 
-<span class="c-comment"># Run a dream cycle</span>
+<span class="c-comment"># Store a memory from stdin</span>
+<span class="c-accent">echo</span> <span class="c-string">"User is a senior engineer, prefers dark mode"</span> | <span class="c-accent">slop</span> memory store
+
+<span class="c-comment"># → ✓ Stored  mem_k9x2  (namespace: default)</span>
+
+<span class="c-comment"># Run a full Dream cycle</span>
 <span class="c-accent">slop</span> dream run --all-stages
+
+<span class="c-comment"># → Running 9 stages... ████████████████ 100%</span>
+<span class="c-comment"># → Intelligence Score: 87.4  |  Insights generated: 12</span>
         </div>
-        <div class="code-panel" id="tab-mcp">
+        <!-- MCP -->
+        <div class="code-panel" id="tab-mcp" role="tabpanel">
+<span class="c-comment"># Add Slopshop to Claude Code or any MCP client</span>
+<span class="c-comment"># ~/.claude/mcp.json (or equivalent)</span>
+
 <span class="c-muted">{</span>
   <span class="c-key">"mcpServers"</span><span class="c-muted">: {</span>
     <span class="c-key">"slopshop"</span><span class="c-muted">: {</span>
       <span class="c-key">"command"</span><span class="c-muted">:</span> <span class="c-string">"npx"</span><span class="c-muted">,</span>
-      <span class="c-key">"args"</span><span class="c-muted">: [</span><span class="c-string">"-y"</span><span class="c-muted">,</span> <span class="c-string">"@slopshop/mcp-server"</span><span class="c-muted">]</span>
+      <span class="c-key">"args"</span><span class="c-muted">:</span> <span class="c-muted">[</span><span class="c-string">"-y"</span><span class="c-muted">,</span> <span class="c-string">"@slopshop/mcp-server"</span><span class="c-muted">],</span>
+      <span class="c-key">"env"</span><span class="c-muted">: {</span>
+        <span class="c-key">"SLOP_KEY"</span><span class="c-muted">:</span> <span class="c-string">"your-api-key-here"</span>
+      <span class="c-muted">}</span>
     <span class="c-muted">}</span>
   <span class="c-muted">}</span>
 <span class="c-muted">}</span>
+
+<span class="c-comment"># Claude now has 1,303 tools. Memories persist across sessions.</span>
         </div>
       </div>
-      <a href="/developers" class="dev-cta">Full developer docs &rarr;</a>
+      <a href="https://slopshop.gg" class="dev-cta" target="_blank" rel="noopener">Full developer docs →</a>
     </div>
   </div>
 </section>
@@ -1491,9 +1555,9 @@
     <p class="final-sub reveal reveal-delay-1">Memory always free. No credit card. Any AI model.</p>
     <div class="final-ctas reveal reveal-delay-2">
       <button class="btn-primary google-btn" style="font-size: 1rem; padding: 16px 36px;" aria-label="Get started with Google">
-        Get started with Google &rarr;
+        Get started with Google →
       </button>
-      <a href="/developers" class="final-link">Already building? <span>&rarr; /developers</span></a>
+      <a href="https://slopshop.gg" class="final-link" target="_blank" rel="noopener">Already building? <span>→ slopshop.gg</span></a>
     </div>
   </div>
 </section>
@@ -1505,17 +1569,17 @@
     <div class="comm-col">
       <div class="comm-tag">COMMUNITY</div>
       <h3 class="comm-h3">Join the conversation</h3>
-      <p class="comm-p">Share what you're building. Get help. See what others are creating with Dream Engine.</p>
-      <a href="https://discord.gg/slopshop" class="comm-discord-btn" target="_blank" rel="noopener">Join Discord &rarr;</a>
+      <p class="comm-p">Share what you're building. Get help. See what others are creating with REM Labs.</p>
+      <a href="https://discord.gg/slopshop" class="comm-discord-btn" target="_blank" rel="noopener">Join Discord →</a>
     </div>
     <div class="comm-col">
       <div class="comm-tag">BUILT WITH REM LABS</div>
       <h3 class="comm-h3">What people are building</h3>
       <div class="built-with-grid">
         <div class="bw-card">Research agents that remember every paper</div>
-        <div class="bw-card">Support bots that never forget a customer</div>
         <div class="bw-card">Trading agents with compounding market memory</div>
-        <div class="bw-card"><a href="/cookbook" style="color:var(--accent);text-decoration:none;">+ See all examples &rarr;</a></div>
+        <div class="bw-card">Support bots that never forget a customer</div>
+        <div class="bw-card">Writing assistants that recall your voice</div>
       </div>
     </div>
   </div>
@@ -1523,24 +1587,15 @@
 
 
 <!-- ═══════════════════════════════════════════
-     DISCLAIMER
-═══════════════════════════════════════════ -->
-<div style="padding:12px 32px;background:var(--surface);border-top:1px solid var(--border);text-align:center;font-size:0.72rem;color:var(--text3);">
-  REM Labs (remlabs.ai) is not affiliated with remlabs.co. Powered by slopshop.gg.
-</div>
-
-
-<!-- ═══════════════════════════════════════════
      FOOTER
 ═══════════════════════════════════════════ -->
 <footer class="footer" role="contentinfo">
   <div class="footer-inner">
-    <p class="footer-copy">&copy; 2026 REM Labs &nbsp;&middot;&nbsp; Powered by slopshop.gg</p>
+    <p class="footer-copy">© 2026 REM Labs &nbsp;·&nbsp; Powered by slopshop.gg</p>
     <nav class="footer-links" aria-label="Footer navigation">
-      <a href="/developers">Developers</a>
+      <a href="https://slopshop.gg" target="_blank" rel="noopener">Developers</a>
       <a href="/privacy">Privacy</a>
       <a href="/terms">Terms</a>
-      <a href="https://slopshop.gg" target="_blank" rel="noopener">slopshop.gg</a>
     </nav>
   </div>
 </footer>
@@ -1554,17 +1609,9 @@
     const r = await fetch('/v1/metrics/public');
     if (!r.ok) return;
     const d = await r.json();
-    const dreamEl = document.getElementById('live-dreams');
-    const memEl = document.getElementById('live-memories');
-    const isEl = document.getElementById('live-avg-is');
-    const instEl = document.getElementById('live-instances');
-    if (dreamEl && d.total_dreams > 0) dreamEl.textContent = d.total_dreams.toLocaleString();
-    if (memEl && d.total_memories > 0) memEl.textContent = d.total_memories.toLocaleString();
-    if (isEl && d.avg_intelligence_score > 0) isEl.textContent = d.avg_intelligence_score.toFixed(1);
-    if (instEl && d.live_instances > 0) instEl.textContent = d.live_instances.toLocaleString();
     const agentEl = document.getElementById('live-agents');
-    const agentCount = d.total_agents || d.live_instances || d.total_memories;
-    if (agentEl && agentCount > 0) agentEl.textContent = agentCount.toLocaleString();
+    const count = d.total_agents || d.live_instances || d.total_dreams;
+    if (agentEl && count > 0) agentEl.textContent = count.toLocaleString();
   } catch (_) {}
 })();
 
@@ -1652,7 +1699,7 @@
       }
 
       runBtn.disabled = true;
-      runBtn.textContent = 'Extracting\u2026';
+      runBtn.textContent = 'Extracting…';
       output.innerHTML = '<div class="loading-text">POST /v1/demo/extract ...</div>';
 
       try {
@@ -1668,7 +1715,7 @@
 
         const items = (data.extracted || data.memories || []).slice(0, 5);
         if (!items.length) {
-          output.innerHTML = '<div style="color:var(--text3);font-size:0.78rem;margin-top:6px;"># No structured keys found \u2014 try more specific text.</div>';
+          output.innerHTML = '<div style="color:var(--text3);font-size:0.78rem;margin-top:6px;"># No structured keys found — try more specific text.</div>';
         } else {
           let html = '<div style="margin-top:8px;">';
           html += '<div class="t-comment"># Extracted:</div>';
@@ -1679,16 +1726,16 @@
             html += `<div><span class="t-key">"${k}"</span>: <span class="t-val">"${v}"</span>` + (conf ? ` <span class="t-comment">// ${conf}</span>` : '') + `</div>`;
           });
           if (data.memory_id || data.id) {
-            html += `<div class="t-comment"># stored \u2192 ${esc(data.memory_id || data.id)}</div>`;
+            html += `<div class="t-comment"># stored → ${esc(data.memory_id || data.id)}</div>`;
           }
           html += '</div>';
           output.innerHTML = html;
         }
       } catch (err) {
-        output.innerHTML = `<div style="color:var(--text3);font-size:0.78rem;margin-top:6px;"># ${esc(err.message || 'Request failed')} \u2014 check that the server is running.</div>`;
+        output.innerHTML = `<div style="color:var(--text3);font-size:0.78rem;margin-top:6px;"># ${esc(err.message || 'Request failed')} — check that the server is running.</div>`;
       } finally {
         runBtn.disabled = false;
-        runBtn.textContent = 'Extract \u2192';
+        runBtn.textContent = 'Extract →';
       }
     }
 
