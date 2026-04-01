@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Research, tutorials, and deep dives on AI agent memory and the Dream Engine from the REM Labs team.">
+  <meta property="og:title" content="Blog — REM Labs">
+  <meta property="og:description" content="Research, tutorials, and deep dives on AI agent memory and the Dream Engine.">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#ffffff">
+  <title>Blog — REM Labs</title>
+  <link rel="canonical" href="https://remlabs.ai/blog">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:       #ffffff;
+      --bg2:      #f5f5f7;
+      --bg3:      #f0f0f5;
+      --border:   rgba(0,0,0,0.07);
+      --border2:  rgba(0,0,0,0.12);
+      --text:     #1d1d1f;
+      --text2:    #6e6e73;
+      --text3:    #aeaeb2;
+      --accent:   #6366f1;
+      --accent2:  #818cf8;
+      --accent-bg: rgba(99,102,241,0.06);
+      --accent-border: rgba(99,102,241,0.2);
+      --green:    #34c759;
+      --font:     'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --mono:     'JetBrains Mono', monospace;
+      --nav-h:    52px;
+      --max-w:    1160px;
+      --r:        12px;
+    }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: var(--font); font-size: 16px; line-height: 1.5; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
+    button { font-family: inherit; cursor: pointer; border: none; background: none; }
+
+    /* NAV */
+    .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: var(--nav-h); background: rgba(255,255,255,0.82); backdrop-filter: saturate(180%) blur(20px); -webkit-backdrop-filter: saturate(180%) blur(20px); border-bottom: 1px solid var(--border); }
+    .nav-inner { max-width: var(--max-w); margin: 0 auto; padding: 0 28px; height: 100%; display: flex; align-items: center; gap: 4px; }
+    .nav-logo { display: flex; align-items: center; gap: 8px; font-size: 0.9rem; font-weight: 400; color: var(--text); letter-spacing: 0.02em; flex-shrink: 0; margin-right: 16px; }
+    .nav-logo-mark { width: 22px; height: 22px; display: flex; align-items: center; justify-content: center; }
+    .nav-links { display: flex; align-items: center; gap: 0; flex: 1; }
+    .nav-link { padding: 6px 12px; border-radius: 8px; font-size: 0.84rem; font-weight: 400; color: var(--text2); transition: color 0.15s, background 0.15s; }
+    .nav-link:hover { color: var(--text); background: rgba(0,0,0,0.04); }
+    .nav-actions { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+    .nav-signin { padding: 7px 14px; border-radius: 8px; font-size: 0.84rem; font-weight: 500; color: var(--text2); border: 1px solid var(--border2); transition: all 0.15s; }
+    .nav-signin:hover { color: var(--text); border-color: rgba(0,0,0,0.2); }
+    .nav-cta { padding: 7px 16px; border-radius: 8px; font-size: 0.84rem; font-weight: 500; background: var(--text); color: #fff; transition: opacity 0.15s; }
+    .nav-cta:hover { opacity: 0.82; }
+    .nav-dash { display: none; }
+    .nav-dash.visible { display: flex; }
+    .hamburger { display: none; flex-direction: column; gap: 4px; padding: 8px; margin-left: auto; border-radius: 8px; cursor: pointer; transition: background 0.15s; }
+    .hamburger:hover { background: rgba(0,0,0,0.04); }
+    .hamburger span { display: block; width: 18px; height: 1.5px; background: var(--text2); border-radius: 2px; transition: all 0.2s; }
+    .hamburger.open span:nth-child(1) { transform: translateY(5.5px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-5.5px) rotate(-45deg); }
+    .mob-menu { display: none; flex-direction: column; background: rgba(255,255,255,0.96); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); padding: 8px 16px 20px; gap: 2px; }
+    .mob-menu.open { display: flex; }
+    .mob-menu a { padding: 10px 12px; border-radius: 8px; font-size: 0.9rem; color: var(--text2); transition: background 0.12s, color 0.12s; }
+    .mob-menu a:hover { background: rgba(0,0,0,0.04); color: var(--text); }
+    .mob-divider { height: 1px; background: var(--border); margin: 6px 0; }
+    .mob-cta { background: var(--text)!important; color: #fff!important; font-weight: 500!important; text-align: center; margin-top: 4px; }
+    @media (max-width: 720px) { .nav-links, .nav-signin { display: none!important; } .hamburger { display: flex!important; } }
+
+    /* PAGE */
+    .page { padding: calc(var(--nav-h) + 80px) 28px 120px; }
+    .page-inner { max-width: 860px; margin: 0 auto; }
+
+    /* HERO */
+    .eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); margin-bottom: 20px; }
+    .eyebrow-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--accent); opacity: 0.6; }
+    .page-hero { margin-bottom: 64px; }
+    h1 { font-size: clamp(2.2rem, 5vw, 3.4rem); font-weight: 600; letter-spacing: -0.04em; line-height: 1.08; color: var(--text); margin-bottom: 16px; }
+    .hero-sub { font-size: 1.05rem; font-weight: 300; color: var(--text2); line-height: 1.65; max-width: 560px; }
+
+    /* FEATURED POST */
+    .featured-post { border: 1px solid var(--border); border-radius: 16px; overflow: hidden; margin-bottom: 48px; transition: box-shadow 0.2s; }
+    .featured-post:hover { box-shadow: 0 8px 40px rgba(0,0,0,0.08); }
+    .featured-header { background: var(--accent-bg); border-bottom: 1px solid var(--accent-border); padding: 32px 36px 28px; }
+    .post-meta { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+    .post-tag { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); background: var(--accent-bg); border: 1px solid var(--accent-border); padding: 2px 8px; border-radius: 10px; }
+    .post-tag.featured-badge { background: var(--accent); color: #fff; border-color: transparent; }
+    .post-date { font-size: 0.78rem; color: var(--text3); }
+    .featured-post h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); font-weight: 600; letter-spacing: -0.03em; line-height: 1.2; color: var(--text); margin-bottom: 14px; }
+    .post-excerpt { font-size: 0.93rem; font-weight: 300; color: var(--text2); line-height: 1.7; }
+    .featured-footer { padding: 20px 36px; display: flex; align-items: center; justify-content: space-between; }
+    .read-link { font-size: 0.86rem; font-weight: 500; color: var(--accent); }
+    .read-link:hover { opacity: 0.75; }
+    .read-time { font-size: 0.78rem; color: var(--text3); }
+
+    /* POST LIST */
+    .post-list { display: flex; flex-direction: column; gap: 12px; }
+    .post-card { border: 1px solid var(--border); border-radius: 14px; padding: 24px 28px; display: flex; align-items: flex-start; justify-content: space-between; gap: 20px; transition: box-shadow 0.2s; }
+    .post-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
+    .post-card-left h3 { font-size: 1rem; font-weight: 600; color: var(--text); margin-bottom: 6px; letter-spacing: -0.01em; line-height: 1.35; }
+    .post-card-left .post-meta { margin-bottom: 0; }
+    .coming-soon { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text3); background: var(--bg2); border: 1px solid var(--border); padding: 2px 8px; border-radius: 10px; white-space: nowrap; flex-shrink: 0; margin-top: 4px; }
+
+    /* FOOTER */
+    .footer { padding: 28px; border-top: 1px solid var(--border); margin-top: 80px; }
+    .footer-inner { max-width: var(--max-w); margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+    .footer-copy { font-size: 0.78rem; font-weight: 300; color: var(--text3); }
+    .footer-links { display: flex; gap: 20px; flex-wrap: wrap; }
+    .footer-links a { font-size: 0.78rem; font-weight: 300; color: var(--text3); transition: color 0.15s; }
+    .footer-links a:hover { color: var(--text2); }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">
+      <span class="nav-logo-mark">
+        <svg width="20" height="20" viewBox="0 0 28 28" fill="none">
+          <circle cx="14" cy="14" r="2.5" fill="#6366f1"/>
+          <ellipse cx="14" cy="14" rx="11" ry="5" stroke="#6366f1" stroke-width="1.5" opacity="0.8"/>
+          <ellipse cx="14" cy="14" rx="11" ry="5" stroke="#6366f1" stroke-width="1.5" opacity="0.5" transform="rotate(60 14 14)"/>
+          <ellipse cx="14" cy="14" rx="11" ry="5" stroke="#6366f1" stroke-width="1.5" opacity="0.35" transform="rotate(120 14 14)"/>
+        </svg>
+      </span>
+      REM Labs
+    </a>
+    <div class="nav-links">
+      <a href="/#features" class="nav-link">How it works</a>
+      <a href="/#suite" class="nav-link">Products</a>
+      <a href="/pricing" class="nav-link">Pricing</a>
+    </div>
+    <div class="nav-actions">
+      <a href="/brain" class="nav-signin nav-dash" id="nav-dash">Open App</a>
+      <a href="/auth/google" class="nav-cta" id="nav-signin">Get started</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mob-menu" id="mob-menu">
+    <a href="/#features">How it works</a>
+    <a href="/#suite">Products</a>
+    <a href="/pricing">Pricing</a>
+    <div class="mob-divider"></div>
+    <a href="/auth/google" class="mob-cta">Get started free</a>
+  </div>
+</nav>
+
+<div class="page">
+  <div class="page-inner">
+
+    <!-- HERO -->
+    <div class="page-hero">
+      <div class="eyebrow"><span class="eyebrow-dot"></span>Blog</div>
+      <h1>The Agent Memory Lab</h1>
+      <p class="hero-sub">Research, tutorials, and deep dives on AI agent memory and the Dream Engine.</p>
+    </div>
+
+    <!-- FEATURED POST -->
+    <a href="#" class="featured-post">
+      <div class="featured-header">
+        <div class="post-meta">
+          <span class="post-tag featured-badge">Featured</span>
+          <span class="post-tag">Research</span>
+          <span class="post-date">April 2, 2026</span>
+        </div>
+        <h2>Why AI Agents Forget (And How to Fix It)</h2>
+        <p class="post-excerpt">Context windows are not memory. Here's why agents built on append-to-context are fundamentally broken — and what a real memory system looks like. We explore the neuroscience analogy, the architecture of persistence, and why most agent frameworks get this wrong.</p>
+      </div>
+      <div class="featured-footer">
+        <span class="read-link">Read →</span>
+        <span class="read-time">8 min read</span>
+      </div>
+    </a>
+
+    <!-- POST LIST -->
+    <div class="post-list">
+
+      <div class="post-card">
+        <div class="post-card-left">
+          <h3>Inside Dream Engine: How 9 Stages of Consolidation Work</h3>
+          <div class="post-meta">
+            <span class="post-tag">Deep Dive</span>
+          </div>
+        </div>
+        <span class="coming-soon">Coming soon</span>
+      </div>
+
+      <div class="post-card">
+        <div class="post-card-left">
+          <h3>Benchmarking Agent Memory: Slopshop vs. The Field</h3>
+          <div class="post-meta">
+            <span class="post-tag">Benchmarks</span>
+          </div>
+        </div>
+        <span class="coming-soon">Coming soon</span>
+      </div>
+
+      <div class="post-card">
+        <div class="post-card-left">
+          <h3>The Neuroscience Behind AI Agent Dreaming</h3>
+          <div class="post-meta">
+            <span class="post-tag">Research</span>
+          </div>
+        </div>
+        <span class="coming-soon">Coming soon</span>
+      </div>
+
+    </div>
+
+  </div><!-- /page-inner -->
+</div><!-- /page -->
+
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <p class="footer-copy">© 2026 REM Labs · Powered by slopshop.gg</p>
+    <nav class="footer-links">
+      <a href="https://slopshop.gg" target="_blank" rel="noopener">Developers</a>
+      <a href="/privacy">Privacy</a>
+      <a href="/terms">Terms</a>
+    </nav>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var nav = document.getElementById('nav');
+  var hb = document.getElementById('hamburger');
+  var mob = document.getElementById('mob-menu');
+  if(nav) window.addEventListener('scroll', function(){ nav.style.background = scrollY > 8 ? 'rgba(255,255,255,0.95)' : 'rgba(255,255,255,0.82)'; }, {passive:true});
+  if(hb && mob) hb.addEventListener('click', function(){ mob.classList.toggle('open'); hb.classList.toggle('open'); });
+  (async function(){
+    try {
+      var res = await fetch('/v1/auth/session', {credentials:'include'});
+      if(!res.ok) return;
+      var d = await res.json().catch(()=>({}));
+      if(d && (d.user || d.authenticated || d.ok)){
+        var s = document.getElementById('nav-signin'); if(s) s.style.display = 'none';
+        var dash = document.getElementById('nav-dash'); if(dash) dash.classList.add('visible');
+      }
+    } catch(_){}
+  })();
+})();
+</script>
+</body>
+</html>

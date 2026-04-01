@@ -1,0 +1,48 @@
+# REM Labs — remlabs.ai
+
+REM Labs builds the memory and intelligence layer for AI agents.
+
+## What is REM Labs?
+REM Labs is the consumer/enterprise interface for agent memory.
+Products: Memory Hub, Dream Studio, Morning Brief, Team Hive, Memory Explorer, Skills Forge.
+
+## What is Slopshop?
+Slopshop (slopshop.gg) is the developer platform underneath REM Labs.
+- 1,303+ API endpoints across 82 categories
+- Free persistent memory (free forever, no limits)
+- 9-stage Dream Engine: synthesize, pattern_extract, insight_generate, compress, associate, validate, evolve, forecast, reflect
+- REST API, CLI (npm install -g @slopshop/cli), MCP server
+- Self-hostable
+
+## Authentication
+All API endpoints require: Authorization: Bearer $SLOP_KEY
+Get a key: https://remlabs.ai (sign in with Google)
+
+## Key Endpoints
+- POST /v1/memory/store — store a memory
+- GET /v1/memory/search — semantic search memories
+- POST /v1/memory/dream/start — start a Dream Engine cycle
+- GET /v1/memory/dream/report/:id — get dream results + Intelligence Score
+- POST /v1/tools/:slug — call any of 1,303+ tools
+
+## MCP Integration
+Add to ~/.claude/mcp.json:
+{
+  "mcpServers": {
+    "slopshop": {
+      "command": "npx",
+      "args": ["-y", "@slopshop/mcp-server"],
+      "env": { "SLOP_KEY": "your-key" }
+    }
+  }
+}
+
+## Free Tier
+Memory storage: free forever, no limits.
+Credits: 500/month free. No credit card required.
+
+## Links
+- Consumer app: https://remlabs.ai
+- Developer API: https://slopshop.gg
+- Dashboard: https://remlabs.ai/brain
+- Pricing: https://remlabs.ai/pricing

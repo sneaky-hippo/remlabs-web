@@ -165,7 +165,7 @@
     }
 
     /* PLANS */
-    .plans { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-bottom: 72px; align-items: start; }
+    .plans { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 16px; margin-bottom: 72px; align-items: start; }
     .plan {
       border: 1px solid var(--border2);
       border-radius: 16px; padding: 28px 24px;
@@ -284,6 +284,9 @@
     .footer-links a { font-size: 0.78rem; font-weight: 300; color: var(--text3); transition: color 0.15s; }
     .footer-links a:hover { color: var(--text2); }
 
+    @media (max-width: 1024px) {
+      .plans { grid-template-columns: 1fr 1fr; }
+    }
     @media (max-width: 768px) {
       .plans { grid-template-columns: 1fr; }
       .plan.featured { order: -1; }
@@ -360,13 +363,21 @@
         <div class="plan-tag">Free</div>
         <div class="plan-price">$0</div>
         <div class="plan-price-note">Forever free</div>
-        <p class="plan-desc">Unlimited memory storage. Semantic search. Auto-extraction. The foundation.</p>
+        <p class="plan-desc">500 credits/month. Free persistent memory. 1 dream/day. The foundation.</p>
         <a href="/auth/google" class="plan-cta">Get started free</a>
         <div class="plan-divider"></div>
         <div class="plan-features">
           <div class="plan-feat">
             <span class="feat-check"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            Unlimited memory storage
+            500 credits/month
+          </div>
+          <div class="plan-feat">
+            <span class="feat-check"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            Free persistent memory
+          </div>
+          <div class="plan-feat">
+            <span class="feat-check"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            1 dream/day
           </div>
           <div class="plan-feat">
             <span class="feat-check"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
@@ -374,19 +385,11 @@
           </div>
           <div class="plan-feat">
             <span class="feat-check"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            Auto-extraction
-          </div>
-          <div class="plan-feat">
-            <span class="feat-check"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            1 Dream cycle per week
-          </div>
-          <div class="plan-feat">
-            <span class="feat-check"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            Read-only Memory Explorer
-          </div>
-          <div class="plan-feat">
-            <span class="feat-check"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
             API access (1,303 endpoints)
+          </div>
+          <div class="plan-feat">
+            <span class="feat-check"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            Community support
           </div>
         </div>
       </div>
@@ -394,9 +397,9 @@
       <!-- PRO -->
       <div class="plan featured">
         <div class="plan-tag highlight">Pro — Most popular</div>
-        <div class="plan-price" id="pro-price">$12<sub>/mo</sub></div>
-        <div class="plan-price-note" id="pro-note">Billed monthly</div>
-        <p class="plan-desc">Unlimited Dreams. Daily Morning Brief. Full Memory Explorer. Everything you need to compound intelligence.</p>
+        <div class="plan-price" id="pro-price">$29<sub>/mo</sub></div>
+        <div class="plan-price-note" id="pro-note">Billed monthly · Annual: $24/mo</div>
+        <p class="plan-desc">5,000 credits/month. Unlimited dreams. Advanced analytics. Priority support.</p>
         <a href="/auth/google" class="plan-cta">Start Pro free for 7 days</a>
         <div class="plan-divider"></div>
         <div class="plan-features">
@@ -406,7 +409,15 @@
           </div>
           <div class="plan-feat">
             <span class="feat-check"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            5,000 credits/month
+          </div>
+          <div class="plan-feat">
+            <span class="feat-check"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
             Unlimited Dream cycles
+          </div>
+          <div class="plan-feat">
+            <span class="feat-check"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            Advanced analytics
           </div>
           <div class="plan-feat">
             <span class="feat-check"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
@@ -418,15 +429,7 @@
           </div>
           <div class="plan-feat">
             <span class="feat-check"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            Brain Glow Score
-          </div>
-          <div class="plan-feat">
-            <span class="feat-check"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            Full Memory Explorer
-          </div>
-          <div class="plan-feat">
-            <span class="feat-check"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            Skills Forge
+            Brain Glow Score + Skills Forge
           </div>
           <div class="plan-feat">
             <span class="feat-check"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
@@ -438,9 +441,9 @@
       <!-- TEAM -->
       <div class="plan">
         <div class="plan-tag">Team</div>
-        <div class="plan-price" id="team-price">$38<sub>/mo</sub></div>
-        <div class="plan-price-note" id="team-note">Per workspace · billed monthly</div>
-        <p class="plan-desc">Everything in Pro, plus a shared memory hive. Your whole team wakes to the same brief.</p>
+        <div class="plan-price" id="team-price">$99<sub>/mo</sub></div>
+        <div class="plan-price-note" id="team-note">Per workspace · Annual: $82/mo</div>
+        <p class="plan-desc">25,000 credits/month. Team Hive. Shared memory. Dream coordination. SSO.</p>
         <a href="/auth/google" class="plan-cta">Start Team free for 7 days</a>
         <div class="plan-divider"></div>
         <div class="plan-features">
@@ -450,11 +453,15 @@
           </div>
           <div class="plan-feat">
             <span class="feat-check"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            25,000 credits/month
+          </div>
+          <div class="plan-feat">
+            <span class="feat-check"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
             Team Hive (unlimited members)
           </div>
           <div class="plan-feat">
             <span class="feat-check"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            Collective Dream cycles
+            Shared memory &amp; Dream coordination
           </div>
           <div class="plan-feat">
             <span class="feat-check"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
@@ -462,11 +469,43 @@
           </div>
           <div class="plan-feat">
             <span class="feat-check"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            Shared knowledge graph
+            SSO &amp; Admin dashboard
+          </div>
+        </div>
+      </div>
+
+      <!-- ENTERPRISE -->
+      <div class="plan">
+        <div class="plan-tag">Enterprise</div>
+        <div class="plan-price">Custom</div>
+        <div class="plan-price-note">Contact us for pricing</div>
+        <p class="plan-desc">Unlimited credits. VPC deployment. SLA. Compliance (SOC2 roadmap). Dedicated support.</p>
+        <a href="mailto:sales@remlabs.ai" class="plan-cta">Contact us →</a>
+        <div class="plan-divider"></div>
+        <div class="plan-features">
+          <div class="plan-feat">
+            <span class="feat-check"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            Everything in Team
           </div>
           <div class="plan-feat">
             <span class="feat-check"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            Admin dashboard &amp; SSO
+            Unlimited credits
+          </div>
+          <div class="plan-feat">
+            <span class="feat-check"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            VPC deployment
+          </div>
+          <div class="plan-feat">
+            <span class="feat-check"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            Uptime SLA
+          </div>
+          <div class="plan-feat">
+            <span class="feat-check"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            SOC2 roadmap compliance
+          </div>
+          <div class="plan-feat">
+            <span class="feat-check"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            Dedicated support
           </div>
         </div>
       </div>
@@ -481,64 +520,77 @@
       <table class="compare-table">
         <thead>
           <tr>
-            <th style="width:46%">Feature</th>
+            <th style="width:40%">Feature</th>
             <th>Free</th>
             <th>Pro</th>
             <th>Team</th>
+            <th>Enterprise</th>
           </tr>
         </thead>
         <tbody>
           <tr>
+            <td><span class="feat-name">Monthly credits</span></td>
+            <td style="color:var(--text2);font-size:0.8rem;">500</td><td style="color:var(--text2);font-size:0.8rem;">5,000</td><td style="color:var(--text2);font-size:0.8rem;">25,000</td><td style="color:var(--text2);font-size:0.8rem;">Unlimited</td>
+          </tr>
+          <tr>
             <td><span class="feat-name">Memory storage</span></td>
-            <td class="check">✓</td><td class="check">✓</td><td class="check">✓</td>
+            <td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td>
           </tr>
           <tr>
             <td><span class="feat-name">Semantic search</span></td>
-            <td class="check">✓</td><td class="check">✓</td><td class="check">✓</td>
-          </tr>
-          <tr>
-            <td><span class="feat-name">Auto-extraction</span></td>
-            <td class="check">✓</td><td class="check">✓</td><td class="check">✓</td>
+            <td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td>
           </tr>
           <tr>
             <td><span class="feat-name">Dream Engine</span><span class="feat-sub">9-stage overnight synthesis</span></td>
-            <td style="color:var(--text2);font-size:0.8rem;">1/week</td><td class="check">✓</td><td class="check">✓</td>
+            <td style="color:var(--text2);font-size:0.8rem;">1/day</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td>
           </tr>
           <tr>
             <td><span class="feat-name">All 9 strategies</span></td>
-            <td class="dash">—</td><td class="check">✓</td><td class="check">✓</td>
+            <td class="dash">—</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td>
+          </tr>
+          <tr>
+            <td><span class="feat-name">Advanced analytics</span></td>
+            <td class="dash">—</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td>
           </tr>
           <tr>
             <td><span class="feat-name">Morning Brief</span></td>
-            <td class="dash">—</td><td class="check">✓</td><td class="check">✓</td>
+            <td class="dash">—</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td>
           </tr>
           <tr>
             <td><span class="feat-name">Brain Glow Score</span></td>
-            <td class="dash">—</td><td class="check">✓</td><td class="check">✓</td>
-          </tr>
-          <tr>
-            <td><span class="feat-name">Memory Explorer</span></td>
-            <td style="color:var(--text2);font-size:0.8rem;">Read-only</td><td class="check">✓</td><td class="check">✓</td>
+            <td class="dash">—</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td>
           </tr>
           <tr>
             <td><span class="feat-name">Skills Forge</span></td>
-            <td class="dash">—</td><td class="check">✓</td><td class="check">✓</td>
+            <td class="dash">—</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td>
           </tr>
           <tr>
             <td><span class="feat-name">Team Hive</span></td>
-            <td class="dash">—</td><td class="dash">—</td><td class="check">✓</td>
+            <td class="dash">—</td><td class="dash">—</td><td class="check">✓</td><td class="check">✓</td>
           </tr>
           <tr>
-            <td><span class="feat-name">Collective Dreams</span></td>
-            <td class="dash">—</td><td class="dash">—</td><td class="check">✓</td>
+            <td><span class="feat-name">Dream coordination</span></td>
+            <td class="dash">—</td><td class="dash">—</td><td class="check">✓</td><td class="check">✓</td>
           </tr>
           <tr>
             <td><span class="feat-name">Admin &amp; SSO</span></td>
-            <td class="dash">—</td><td class="dash">—</td><td class="check">✓</td>
+            <td class="dash">—</td><td class="dash">—</td><td class="check">✓</td><td class="check">✓</td>
+          </tr>
+          <tr>
+            <td><span class="feat-name">VPC deployment</span></td>
+            <td class="dash">—</td><td class="dash">—</td><td class="dash">—</td><td class="check">✓</td>
+          </tr>
+          <tr>
+            <td><span class="feat-name">Uptime SLA</span></td>
+            <td class="dash">—</td><td class="dash">—</td><td class="dash">—</td><td class="check">✓</td>
+          </tr>
+          <tr>
+            <td><span class="feat-name">SOC2 compliance</span><span class="feat-sub">Q4 2026 roadmap</span></td>
+            <td class="dash">—</td><td class="dash">—</td><td class="dash">—</td><td class="check">✓</td>
           </tr>
           <tr>
             <td><span class="feat-name">API access</span><span class="feat-sub">1,303 endpoints</span></td>
-            <td class="check">✓</td><td class="check">✓</td><td class="check">✓</td>
+            <td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td>
           </tr>
         </tbody>
       </table>
@@ -656,15 +708,15 @@
     lblAnnual.classList.toggle('active', annual);
     saveBadge.style.opacity = annual ? '1' : '0';
     if(annual){
-      proPrice.innerHTML = '$10<sub>/mo</sub>';
-      proNote.textContent = 'Billed $120/year';
-      teamPrice.innerHTML = '$32<sub>/mo</sub>';
-      teamNote.textContent = 'Per workspace · billed $384/year';
+      proPrice.innerHTML = '$24<sub>/mo</sub>';
+      proNote.textContent = 'Billed $288/year · Save 17%';
+      teamPrice.innerHTML = '$82<sub>/mo</sub>';
+      teamNote.textContent = 'Per workspace · billed $984/year · Save 17%';
     } else {
-      proPrice.innerHTML = '$12<sub>/mo</sub>';
-      proNote.textContent = 'Billed monthly';
-      teamPrice.innerHTML = '$38<sub>/mo</sub>';
-      teamNote.textContent = 'Per workspace · billed monthly';
+      proPrice.innerHTML = '$29<sub>/mo</sub>';
+      proNote.textContent = 'Billed monthly · Annual: $24/mo';
+      teamPrice.innerHTML = '$99<sub>/mo</sub>';
+      teamNote.textContent = 'Per workspace · Annual: $82/mo';
     }
   });
 

@@ -26,7 +26,8 @@
     { "source": "/dev-console", "destination": "https://slopshop.gg/dev-console", "permanent": false },
     { "source": "/api", "destination": "https://slopshop.gg", "permanent": false },
     { "source": "/developers", "destination": "https://slopshop.gg", "permanent": false },
-    { "source": "/docs", "destination": "https://slopshop.gg", "permanent": false }
+    { "source": "/docs", "destination": "https://slopshop.gg", "permanent": false },
+    { "source": "/for/agents", "destination": "/for/research-agents", "permanent": false }
   ],
   "rewrites": [
     { "source": "/memory", "destination": "/memory-hub" },
@@ -35,6 +36,14 @@
     { "source": "/hive", "destination": "/team-hives" },
     { "source": "/explorer", "destination": "/memory-explorer" },
     { "source": "/skills", "destination": "/skills-forge" },
+    { "source": "/for/research-agents", "destination": "/for-research-agents" },
+    { "source": "/for/crypto-agents", "destination": "/for-crypto-agents" },
+    { "source": "/for/coding-agents", "destination": "/for-coding-agents" },
+    { "source": "/for/customer-support", "destination": "/for-customer-support" },
+    { "source": "/press", "destination": "/press" },
+    { "source": "/security", "destination": "/security" },
+    { "source": "/community", "destination": "/community" },
+    { "source": "/blog", "destination": "/blog" },
     { "source": "/v1/:path*", "destination": "https://slopshop-production.up.railway.app/v1/:path*" },
     { "source": "/auth/:path*", "destination": "https://slopshop-production.up.railway.app/auth/:path*" },
     { "source": "/zapier/:path*", "destination": "https://slopshop-production.up.railway.app/zapier/:path*" },
