@@ -571,15 +571,27 @@ function renderNoAuthBanner() {
   mainEl.insertBefore(banner, mainEl.firstChild);
 }
 
-function init() {
+async function init() {
   const stored = localStorage.getItem('slopshop_api_key') || localStorage.getItem('slop_api_key');
   if (stored) {
     apiKey = stored;
     document.getElementById('auth-overlay').classList.add('hidden');
-    loadSkills();
-  } else {
-    renderNoAuthBanner();
+    loadSkills(); return;
   }
+  // Try session cookie (Google OAuth)
+  try {
+    const r = await fetch('/v1/auth/session', {credentials:'include'});
+    if (r.ok) {
+      const s = await r.json();
+      if (s && s.api_key) {
+        apiKey = s.api_key;
+        localStorage.setItem('slopshop_api_key', s.api_key);
+        document.getElementById('auth-overlay').classList.add('hidden');
+        loadSkills(); return;
+      }
+    }
+  } catch(_) {}
+  renderNoAuthBanner();
 }
 
 function submitAuth() {

@@ -496,14 +496,28 @@ function doAuth() {
   loadNamespace();
 }
 
-function checkAuth() {
+async function checkAuth() {
   const k = localStorage.getItem('slopshop_api_key');
   if (k) {
     API_KEY = k;
     document.getElementById('auth-overlay').style.display = 'none';
     document.getElementById('app').style.display = 'flex';
-    loadNamespace();
+    loadNamespace(); return;
   }
+  // Try session cookie (Google OAuth)
+  try {
+    const r = await fetch('/v1/auth/session', {credentials:'include'});
+    if (r.ok) {
+      const s = await r.json();
+      if (s && s.api_key) {
+        API_KEY = s.api_key;
+        localStorage.setItem('slopshop_api_key', s.api_key);
+        document.getElementById('auth-overlay').style.display = 'none';
+        document.getElementById('app').style.display = 'flex';
+        loadNamespace();
+      }
+    }
+  } catch(_) {}
 }
 
 document.getElementById('auth-key-input').addEventListener('keydown', e => {

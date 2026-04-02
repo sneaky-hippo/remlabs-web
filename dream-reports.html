@@ -688,20 +688,31 @@ function renderNoAuthBanner(){
   mainEl.insertBefore(banner, mainEl.firstChild);
 }
 
-function initAuth(){
+async function initAuth(){
+  // First try localStorage (returning users / API key users)
   const k = getKey();
-  if(k){
-    apiKey = k;
-    hideAuthOverlay();
-    initPage();
-  } else {
-    renderNoAuthBanner();
-    document.getElementById('auth-overlay').style.display = 'flex';
-    document.getElementById('auth-key-input').addEventListener('keydown', e=>{
-      if(e.key==='Enter') connectAuth();
-    });
-    document.getElementById('auth-connect-btn').addEventListener('click', connectAuth);
-  }
+  if(k){ apiKey = k; hideAuthOverlay(); initPage(); return; }
+  // Fall back to session cookie (Google OAuth users)
+  try {
+    const r = await fetch('/v1/auth/session', {credentials:'include'});
+    if(r.ok){
+      const s = await r.json();
+      if(s && s.api_key){
+        setKey(s.api_key);
+        apiKey = s.api_key;
+        hideAuthOverlay();
+        initPage();
+        return;
+      }
+    }
+  } catch(_){}
+  // No auth found — show overlay
+  renderNoAuthBanner();
+  document.getElementById('auth-overlay').style.display = 'flex';
+  document.getElementById('auth-key-input').addEventListener('keydown', e=>{
+    if(e.key==='Enter') connectAuth();
+  });
+  document.getElementById('auth-connect-btn').addEventListener('click', connectAuth);
 }
 
 async function connectAuth(){
