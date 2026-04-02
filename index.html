@@ -664,7 +664,8 @@
     <a href="#suite">Products</a>
     <a href="/pricing">Pricing</a>
     <div class="mob-divider"></div>
-    <a href="/auth/google" class="mob-cta google-btn">Get started free</a>
+    <a href="/auth/google" class="mob-cta google-btn" id="mob-signin">Get started free</a>
+    <a href="/memory" class="mob-cta" id="mob-openapp" style="display:none;background:var(--accent)!important;">Open App →</a>
   </div>
 </nav>
 
@@ -1161,6 +1162,13 @@
         if(s) s.style.display = 'none';
         var dash = document.getElementById('nav-dash');
         if(dash) dash.classList.add('visible');
+        var mobSignin = document.getElementById('mob-signin');
+        if(mobSignin) mobSignin.style.display = 'none';
+        var mobOpen = document.getElementById('mob-openapp');
+        if(mobOpen) mobOpen.style.display = 'block';
+        // hide announcement bar for authed users
+        var tb = document.getElementById('topbar');
+        if(tb) tb.style.display = 'none';
       }
     } catch(_){}
   })();
