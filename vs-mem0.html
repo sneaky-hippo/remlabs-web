@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="How REM Labs compares to Mem0. Dream Engine synthesis, Morning Brief, consumer UI vs. developer-only API.">
+  <meta property="og:title" content="REM Labs vs. Mem0 — AI Memory Comparison">
+  <meta property="og:description" content="How REM Labs compares to Mem0. Dream Engine synthesis, Morning Brief, consumer UI vs. developer-only API.">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#ffffff">
+  <title>REM Labs vs. Mem0 — AI Memory Comparison</title>
+  <link rel="canonical" href="https://remlabs.ai/vs/mem0">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:       #ffffff;
+      --bg2:      #f5f5f7;
+      --bg3:      #f0f0f5;
+      --border:   rgba(0,0,0,0.07);
+      --border2:  rgba(0,0,0,0.12);
+      --text:     #1d1d1f;
+      --text2:    #6e6e73;
+      --text3:    #aeaeb2;
+      --accent:   #6366f1;
+      --accent2:  #818cf8;
+      --accent-bg: rgba(99,102,241,0.06);
+      --accent-border: rgba(99,102,241,0.2);
+      --font:     'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --nav-h:    52px;
+      --max-w:    860px;
+      --r:        12px;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      font-size: 16px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    button { font-family: inherit; cursor: pointer; border: none; background: none; }
+
+    /* ── Reveal ── */
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.55s ease, transform 0.55s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+    .d1 { transition-delay: 0.06s; }
+    .d2 { transition-delay: 0.12s; }
+    .d3 { transition-delay: 0.18s; }
+
+    /* ── Nav ── */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      height: var(--nav-h);
+      background: rgba(255,255,255,0.88);
+      backdrop-filter: saturate(180%) blur(20px);
+      -webkit-backdrop-filter: saturate(180%) blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 28px;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 0.9rem; font-weight: 500; color: var(--text);
+      letter-spacing: 0.01em; flex-shrink: 0; margin-right: 16px;
+    }
+    .nav-logo-mark { width: 22px; height: 22px; display: flex; align-items: center; justify-content: center; }
+    .nav-tagline {
+      font-size: 0.72rem; font-weight: 400; color: var(--text3);
+      letter-spacing: 0.01em;
+    }
+    .nav-links { display: flex; align-items: center; gap: 0; flex: 1; }
+    .nav-link {
+      padding: 6px 12px; border-radius: 8px;
+      font-size: 0.84rem; font-weight: 400; color: var(--text2);
+      transition: color 0.15s, background 0.15s;
+    }
+    .nav-link:hover { color: var(--text); background: rgba(0,0,0,0.04); }
+    .nav-actions { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+    .nav-cta {
+      padding: 7px 16px; border-radius: 8px;
+      font-size: 0.84rem; font-weight: 500;
+      background: var(--accent); color: #fff;
+      transition: opacity 0.15s, transform 0.15s;
+    }
+    .nav-cta:hover { opacity: 0.88; transform: translateY(-1px); }
+    .hamburger {
+      display: none; flex-direction: column; gap: 4px;
+      padding: 8px; margin-left: auto; border-radius: 8px;
+      cursor: pointer; transition: background 0.15s;
+    }
+    .hamburger:hover { background: rgba(0,0,0,0.04); }
+    .hamburger span { display: block; width: 18px; height: 1.5px; background: var(--text2); border-radius: 2px; transition: all 0.2s; }
+    .hamburger.open span:nth-child(1) { transform: translateY(5.5px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-5.5px) rotate(-45deg); }
+    .mob-menu {
+      display: none; flex-direction: column;
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 8px 16px 20px;
+      gap: 2px;
+    }
+    .mob-menu.open { display: flex; }
+    .mob-menu a {
+      padding: 10px 12px; border-radius: 8px;
+      font-size: 0.9rem; color: var(--text2);
+      transition: background 0.12s, color 0.12s;
+    }
+    .mob-menu a:hover { background: rgba(0,0,0,0.04); color: var(--text); }
+    .mob-divider { height: 1px; background: var(--border); margin: 6px 0; }
+    .mob-cta { background: var(--accent) !important; color: #fff !important; font-weight: 500 !important; text-align: center; margin-top: 4px; }
+    @media (max-width: 720px) {
+      .nav-links, .nav-tagline { display: none !important; }
+      .hamburger { display: flex !important; }
+      .nav-actions .nav-cta { display: none; }
+    }
+
+    /* ── Page wrapper ── */
+    .page { max-width: var(--max-w); margin: 0 auto; padding: 0 24px; }
+
+    /* ── Hero ── */
+    .hero {
+      padding-top: calc(52px + 72px);
+      padding-bottom: 72px;
+      text-align: center;
+    }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 7px;
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--accent);
+      margin-bottom: 22px;
+    }
+    .hero-eyebrow-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--accent); opacity: 0.55; }
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700;
+      letter-spacing: -0.035em;
+      line-height: 1.1;
+      color: var(--text);
+      margin-bottom: 18px;
+    }
+    .hero h1 .grad {
+      background: linear-gradient(135deg, var(--accent) 0%, #a78bfa 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-sub {
+      font-size: 1.05rem; font-weight: 300;
+      color: var(--text2); line-height: 1.7;
+      max-width: 540px; margin: 0 auto;
+    }
+    .competitor-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--bg2); border: 1px solid var(--border2);
+      border-radius: 20px; padding: 5px 14px;
+      font-size: 0.76rem; font-weight: 500; color: var(--text2);
+      margin-bottom: 28px;
+    }
+    .competitor-badge-vs {
+      font-size: 0.68rem; background: var(--border2);
+      border-radius: 10px; padding: 2px 7px; color: var(--text3); font-weight: 600; letter-spacing: 0.04em;
+    }
+
+    /* ── Section ── */
+    .section { padding: 72px 0; }
+    .section-label {
+      font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--text3);
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-size: 1.6rem; font-weight: 700;
+      letter-spacing: -0.03em; color: var(--text);
+      line-height: 1.25; margin-bottom: 10px;
+    }
+    .section-sub {
+      font-size: 0.92rem; color: var(--text2);
+      line-height: 1.65; max-width: 520px;
+    }
+
+    /* ── Comparison Table ── */
+    .table-wrap {
+      border-radius: 16px;
+      border: 1px solid var(--border2);
+      overflow: hidden;
+      margin-top: 32px;
+    }
+    .comp-table { width: 100%; border-collapse: collapse; font-size: 0.84rem; }
+    .comp-table th, .comp-table td { padding: 13px 18px; text-align: left; border-bottom: 1px solid var(--border); }
+    .comp-table thead tr { background: var(--bg2); }
+    .comp-table th {
+      font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      color: var(--text3);
+    }
+    .comp-table th.col-ours { color: var(--accent); }
+    .comp-table th.col-feat { width: 42%; }
+    .comp-table tbody tr:last-child td { border-bottom: none; }
+    .chk { color: var(--accent); font-weight: 700; }
+    .xmark { color: var(--text3); }
+    .partial { color: #f59e0b; font-weight: 600; }
+    .row-hl td { background: rgba(99,102,241,0.04); }
+    .feat-label { font-weight: 500; color: var(--text); }
+    .feat-note { font-size: 0.76rem; color: var(--text3); font-weight: 400; margin-top: 2px; }
+
+    /* ── Callout box ── */
+    .callout {
+      background: var(--accent-bg);
+      border: 1px solid var(--accent-border);
+      border-radius: 14px;
+      padding: 28px 32px;
+      margin: 48px 0;
+      text-align: center;
+    }
+    .callout-icon { font-size: 1.6rem; margin-bottom: 12px; }
+    .callout p {
+      font-size: 1.05rem; font-weight: 500;
+      color: var(--text); line-height: 1.55;
+    }
+    .callout p em { color: var(--accent); font-style: normal; }
+
+    /* ── Win cards ── */
+    .wins-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 16px; margin-top: 32px;
+    }
+    @media (max-width: 640px) { .wins-grid { grid-template-columns: 1fr; } }
+    .win-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      padding: 24px 20px;
+    }
+    .win-icon {
+      width: 38px; height: 38px;
+      background: var(--accent-bg);
+      border: 1px solid var(--accent-border);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 14px;
+      font-size: 1.05rem;
+    }
+    .win-title { font-size: 0.9rem; font-weight: 600; color: var(--text); margin-bottom: 7px; }
+    .win-body { font-size: 0.82rem; color: var(--text2); line-height: 1.6; }
+
+    /* ── CTA section ── */
+    .cta-section {
+      background: linear-gradient(135deg, var(--accent-bg) 0%, rgba(167,139,250,0.06) 100%);
+      border: 1px solid var(--accent-border);
+      border-radius: 20px;
+      padding: 64px 40px;
+      text-align: center;
+      margin: 72px 0;
+    }
+    @media (max-width: 520px) { .cta-section { padding: 44px 24px; } }
+    .cta-section h2 {
+      font-size: clamp(1.6rem, 4vw, 2.2rem);
+      font-weight: 700; letter-spacing: -0.03em;
+      color: var(--text); margin-bottom: 10px;
+    }
+    .cta-section p {
+      font-size: 0.95rem; color: var(--text2);
+      margin-bottom: 32px; line-height: 1.65;
+    }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 14px 28px; border-radius: 10px;
+      font-size: 0.92rem; font-weight: 600;
+      background: var(--accent); color: #fff;
+      transition: opacity 0.15s, transform 0.15s;
+    }
+    .btn-primary:hover { opacity: 0.88; transform: translateY(-2px); }
+    .cta-fine { font-size: 0.76rem; color: var(--text3); margin-top: 14px; }
+
+    /* ── Divider ── */
+    .divider { height: 1px; background: var(--border); margin: 0; }
+
+    /* ── Footer ── */
+    .footer {
+      padding: 32px 24px;
+      text-align: center;
+      font-size: 0.78rem;
+      color: var(--text3);
+    }
+    .footer a { color: var(--text3); border-bottom: 1px solid var(--border); padding-bottom: 1px; transition: color 0.12s; }
+    .footer a:hover { color: var(--text2); }
+    .footer-links { display: flex; align-items: center; justify-content: center; gap: 20px; margin-top: 8px; flex-wrap: wrap; }
+  </style>
+</head>
+<body>
+
+<!-- ── Nav ── -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">
+      <span class="nav-logo-mark">
+        <svg width="22" height="22" viewBox="0 0 28 28" fill="none">
+          <circle cx="14" cy="14" r="2.5" fill="#6366f1"/>
+          <ellipse cx="14" cy="14" rx="11" ry="5" stroke="#6366f1" stroke-width="1.5" opacity="0.85"/>
+          <ellipse cx="14" cy="14" rx="11" ry="5" stroke="#6366f1" stroke-width="1.5" opacity="0.55" transform="rotate(60 14 14)"/>
+          <ellipse cx="14" cy="14" rx="11" ry="5" stroke="#6366f1" stroke-width="1.5" opacity="0.35" transform="rotate(120 14 14)"/>
+        </svg>
+      </span>
+      REM Labs
+    </a>
+    <span class="nav-tagline">Memory · Dreams · Intelligence</span>
+    <div class="nav-links">
+      <a href="/memory" class="nav-link">Memory</a>
+      <a href="/pricing" class="nav-link">Pricing</a>
+    </div>
+    <div class="nav-actions">
+      <a href="/auth/google" class="nav-cta">Get started</a>
+    </div>
+    <div class="hamburger" id="ham" onclick="toggleMob()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+<div class="mob-menu" id="mob">
+  <a href="/memory">Memory</a>
+  <a href="/pricing">Pricing</a>
+  <div class="mob-divider"></div>
+  <a href="/auth/google" class="mob-cta">Get started free</a>
+</div>
+
+<!-- ── Hero ── -->
+<div class="page">
+  <section class="hero">
+    <div class="reveal">
+      <div class="competitor-badge">
+        <span class="competitor-badge-vs">VS</span>
+        Mem0
+      </div>
+    </div>
+    <div class="reveal d1">
+      <div class="hero-eyebrow">
+        <span class="hero-eyebrow-dot"></span>
+        REM Labs vs. Mem0
+      </div>
+    </div>
+    <div class="reveal d2">
+      <h1>Memory that<br><span class="grad">thinks while you sleep.</span></h1>
+    </div>
+    <div class="reveal d3">
+      <p class="hero-sub">Mem0 stores facts for developers. REM Labs synthesizes your life story overnight and delivers it to you every morning — no API key required.</p>
+    </div>
+  </section>
+
+  <!-- ── Comparison Table ── -->
+  <section class="section" style="padding-top: 0;">
+    <div class="reveal">
+      <div class="section-label">Side by side</div>
+      <div class="section-title">How they compare</div>
+      <p class="section-sub">Mem0 is a developer-only memory API. It's great for storing and retrieving facts inside your app. That's where the similarity ends.</p>
+    </div>
+    <div class="table-wrap reveal d1">
+      <table class="comp-table">
+        <thead>
+          <tr>
+            <th class="col-feat">Feature</th>
+            <th class="col-ours">REM Labs</th>
+            <th>Mem0</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <div class="feat-label">Persistent memory</div>
+              <div class="feat-note">Remembers context across sessions</div>
+            </td>
+            <td><span class="chk">✓</span></td>
+            <td><span class="chk">✓</span></td>
+          </tr>
+          <tr class="row-hl">
+            <td>
+              <div class="feat-label">Overnight synthesis (Dream Engine)</div>
+              <div class="feat-note">AI processes your day while you sleep</div>
+            </td>
+            <td><span class="chk">✓</span></td>
+            <td><span class="xmark">✗ none</span></td>
+          </tr>
+          <tr class="row-hl">
+            <td>
+              <div class="feat-label">Morning Brief</div>
+              <div class="feat-note">Daily summary of synthesized insights</div>
+            </td>
+            <td><span class="chk">✓</span></td>
+            <td><span class="xmark">✗ none</span></td>
+          </tr>
+          <tr class="row-hl">
+            <td>
+              <div class="feat-label">Intelligence Score</div>
+              <div class="feat-note">Tracks how well your AI knows you</div>
+            </td>
+            <td><span class="chk">✓</span></td>
+            <td><span class="xmark">✗ none</span></td>
+          </tr>
+          <tr class="row-hl">
+            <td>
+              <div class="feat-label">Consumer UI</div>
+              <div class="feat-note">Designed for everyday people, not just devs</div>
+            </td>
+            <td><span class="chk">✓</span></td>
+            <td><span class="xmark">✗ API only</span></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="feat-label">Team shared memory</div>
+              <div class="feat-note">Org-level context across your team</div>
+            </td>
+            <td><span class="chk">✓</span></td>
+            <td><span class="xmark">✗</span></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="feat-label">Free memory tier</div>
+            </td>
+            <td><span class="chk">✓ forever</span></td>
+            <td><span class="partial">Limited (OSS only)</span></td>
+          </tr>
+          <tr class="row-hl">
+            <td>
+              <div class="feat-label">MCP server</div>
+              <div class="feat-note">Claude, Cursor, any MCP-compatible tool</div>
+            </td>
+            <td><span class="chk">✓</span></td>
+            <td><span class="xmark">✗ none</span></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="feat-label">Works with any model</div>
+              <div class="feat-note">OpenAI, Claude, Gemini, Llama, etc.</div>
+            </td>
+            <td><span class="chk">✓</span></td>
+            <td><span class="chk">✓</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ── Callout ── -->
+  <div class="callout reveal">
+    <div class="callout-icon">🌙</div>
+    <p>Everyone stores memories. <em>Only REM Labs synthesizes them while you sleep.</em></p>
+  </div>
+
+  <!-- ── Win cards ── -->
+  <section class="section" style="padding-top: 0;">
+    <div class="reveal">
+      <div class="section-label">REM Labs wins because</div>
+      <div class="section-title">Three things Mem0 can't touch</div>
+    </div>
+    <div class="wins-grid">
+      <div class="win-card reveal d1">
+        <div class="win-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+        </div>
+        <div class="win-title">Dream Engine runs overnight</div>
+        <div class="win-body">While you sleep, REM Labs synthesizes patterns, insights, and connections across everything you've shared. Mem0 stores facts. We understand them.</div>
+      </div>
+      <div class="win-card reveal d2">
+        <div class="win-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+        </div>
+        <div class="win-title">Morning Brief, every day</div>
+        <div class="win-body">Wake up to a personalized summary of what your AI learned about you. Trends, recalled context, what matters today. Mem0 has no equivalent concept.</div>
+      </div>
+      <div class="win-card reveal d3">
+        <div class="win-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+          </svg>
+        </div>
+        <div class="win-title">Built for people, not just devs</div>
+        <div class="win-body">Mem0 requires you to integrate an API. REM Labs is a product you sign into. No code, no setup — works with Claude, Cursor, and every major AI out of the box.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA ── -->
+  <div class="cta-section reveal">
+    <h2>Start for free.<br>Dream tonight.</h2>
+    <p>Join REM Labs and let your AI finally remember you — and grow smarter every night.</p>
+    <a href="/auth/google" class="btn-primary">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/>
+      </svg>
+      Get started free
+    </a>
+    <div class="cta-fine">No credit card. Free tier, forever.</div>
+  </div>
+</div>
+
+<!-- ── Footer ── -->
+<div class="divider"></div>
+<footer class="footer">
+  <div>© 2026 REM Labs · Powered by slopshop.gg</div>
+  <div class="footer-links">
+    <a href="/pricing">Pricing</a>
+    <a href="/privacy">Privacy</a>
+    <a href="/terms">Terms</a>
+  </div>
+</footer>
+
+<script>
+  // Hamburger
+  function toggleMob() {
+    const ham = document.getElementById('ham');
+    const mob = document.getElementById('mob');
+    ham.classList.toggle('open');
+    mob.classList.toggle('open');
+  }
+
+  // Reveal on scroll
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+  }, { threshold: 0.08 });
+  revealEls.forEach(el => io.observe(el));
+</script>
+</body>
+</html>
