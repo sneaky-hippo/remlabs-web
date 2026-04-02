@@ -341,9 +341,20 @@
         </div>
         <div id="empty-state">
           <div class="empty-icon">🧠</div>
-          <h3>No memories yet</h3>
-          <p>Start building your memory bank — store facts, notes, code snippets, events, and more.</p>
-          <button class="btn btn-primary btn-sm" id="empty-cta" style="margin-top:4px">Store first memory</button>
+          <h3>No memories in this namespace</h3>
+          <p>Store what your AI learns — facts, preferences, notes, events. It compounds every night.</p>
+          <div style="display:flex;flex-direction:column;gap:8px;width:100%;max-width:340px;margin-top:8px;">
+            <button class="btn btn-primary btn-sm" id="empty-cta">+ Store first memory</button>
+            <button class="btn btn-secondary btn-sm" id="sample-cta" style="font-size:0.78rem;">Try with sample memories</button>
+          </div>
+          <div style="margin-top:24px;padding:16px 20px;background:var(--surface);border:1px solid var(--border2);border-radius:10px;text-align:left;max-width:340px;width:100%;">
+            <div style="font-size:0.7rem;font-weight:600;letter-spacing:0.07em;text-transform:uppercase;color:var(--text3);margin-bottom:10px;">Quick tips</div>
+            <div style="display:flex;flex-direction:column;gap:7px;font-size:0.78rem;color:var(--text2);line-height:1.5;">
+              <div><span style="color:var(--accent);font-family:var(--mono);font-size:0.72rem;">N</span> — open new memory drawer</div>
+              <div><span style="color:var(--accent);font-family:var(--mono);font-size:0.72rem;">Esc</span> — close panel / drawer</div>
+              <div><span style="color:var(--accent);font-family:var(--mono);font-size:0.72rem;">/</span> — focus search</div>
+            </div>
+          </div>
         </div>
         <div id="cards-grid"></div>
       </div>
@@ -773,7 +784,29 @@ document.addEventListener('keydown', function(e){
   if ((e.metaKey||e.ctrlKey) && e.key==='k') { e.preventDefault(); searchInput.focus(); searchInput.select(); }
   if (e.key==='Escape' && panelMode) closePanel();
   if (e.key==='Escape' && drawerOpen) closeDrawer();
+  // Global shortcuts (not in input/textarea)
+  var tag = (e.target.tagName||'').toLowerCase();
+  if (tag==='input'||tag==='textarea'||tag==='select') return;
+  if (e.key==='n' || e.key==='N') { e.preventDefault(); if(!drawerOpen) openDrawer(); }
+  if (e.key==='/') { e.preventDefault(); searchInput.focus(); }
+  if (e.key==='r' || e.key==='R') { e.preventDefault(); fetchMemories(); }
 });
+
+document.getElementById('sample-cta').onclick = async function() {
+  var btn = this; btn.disabled = true; btn.textContent = 'Adding samples...';
+  var samples = [
+    { key:'communication_style', value:'Prefers concise, direct answers. No unnecessary preamble.', type:'preference' },
+    { key:'expertise_level', value:'Senior software engineer. 8+ years. Strongest in distributed systems and Rust.', type:'general' },
+    { key:'current_project', value:'Building an AI-powered memory system. Focus on overnight synthesis pipeline.', type:'general' }
+  ];
+  try {
+    for (var i=0; i<samples.length; i++) {
+      await api('/v1/memory-set', Object.assign({namespace:currentNs}, samples[i]));
+    }
+    toast('3 sample memories added ✓','success');
+    await fetchMemories();
+  } catch(err) { toast('Failed: '+err.message,'error'); btn.disabled=false; btn.textContent='Try with sample memories'; }
+};
 
 init();
 </script>
