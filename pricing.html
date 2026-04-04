@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Simple monthly pricing for REM Labs. Memory always free. Pro and Team plans unlock Dream Engine, Morning Brief, and more.">
+  <meta name="description" content="Simple monthly pricing for REM Labs. Memory always free. Pro unlocks Dream Engine, Daily Brief, automations, and more.">
   <meta property="og:title" content="Pricing — REM Labs">
-  <meta property="og:description" content="Memory always free. Pro and Team plans unlock Dream Engine, Morning Brief, Brain Glow Score, and more.">
+  <meta property="og:description" content="Memory always free. Pro unlocks Dream Engine, Daily Brief, Brain Glow Score, and unlimited automations.">
   <meta property="og:type" content="website">
   <meta name="theme-color" content="#ffffff">
   <title>Pricing — REM Labs</title>
@@ -60,15 +60,17 @@
     .nav-inner {
       max-width: var(--max-w); margin: 0 auto;
       padding: 0 28px; height: 100%;
-      display: flex; align-items: center; gap: 4px;
+      display: flex; align-items: center; justify-content: space-between; position: relative;
     }
     .nav-logo {
       display: flex; align-items: center; gap: 8px;
       font-size: 0.9rem; font-weight: 400; color: var(--text);
-      letter-spacing: 0.02em; flex-shrink: 0; margin-right: 16px;
+      letter-spacing: 0.02em; position: absolute; left: 50%; transform: translateX(-50%);
     }
     .nav-logo-mark { width: 22px; height: 22px; display: flex; align-items: center; justify-content: center; }
-    .nav-links { display: flex; align-items: center; gap: 0; flex: 1; }
+    .nav-logo-mark svg { animation: orbit-spin 10s linear infinite; }
+    @keyframes orbit-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    .nav-links { display: flex; align-items: center; gap: 0; }
     .nav-link {
       padding: 6px 12px; border-radius: 8px;
       font-size: 0.84rem; font-weight: 400; color: var(--text2);
@@ -116,6 +118,7 @@
     @media (max-width: 720px) {
       .nav-links, .nav-signin { display: none!important; }
       .hamburger { display: flex!important; }
+      .nav-logo { position: static; transform: none; }
     }
 
     /* PAGE */
@@ -165,7 +168,8 @@
     }
 
     /* PLANS */
-    .plans { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 16px; margin-bottom: 72px; align-items: start; }
+    .plans { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-bottom: 72px; align-items: start; }
+    @media (max-width: 800px) { .plans { grid-template-columns: 1fr; } }
     .plan {
       border: 1px solid var(--border2);
       border-radius: 16px; padding: 28px 24px;
@@ -284,7 +288,7 @@
     .footer-links a { font-size: 0.78rem; font-weight: 300; color: var(--text3); transition: color 0.15s; }
     .footer-links a:hover { color: var(--text2); }
 
-    @media (max-width: 1024px) {
+    @media (max-width: 900px) {
       .plans { grid-template-columns: 1fr 1fr; }
     }
     @media (max-width: 768px) {
@@ -301,29 +305,29 @@
 <!-- NAV -->
 <nav class="nav" id="nav">
   <div class="nav-inner">
-    <a href="/" class="nav-logo">
-      <span class="nav-logo-mark">
-        <svg width="20" height="20" viewBox="0 0 28 28" fill="none">
-    <circle cx="14" cy="14" r="2.5" fill="#6366f1"/>
-    <ellipse cx="14" cy="14" rx="11" ry="5" stroke="#6366f1" stroke-width="1.5" opacity="0.8"/>
-    <ellipse cx="14" cy="14" rx="11" ry="5" stroke="#6366f1" stroke-width="1.5" opacity="0.5" transform="rotate(60 14 14)"/>
-    <ellipse cx="14" cy="14" rx="11" ry="5" stroke="#6366f1" stroke-width="1.5" opacity="0.35" transform="rotate(120 14 14)"/>
-  </svg>
-      </span>
-      REM Labs
-    </a>
     <div class="nav-links">
-      <a href="/#features" class="nav-link">How it works</a>
+      <a href="/#how-it-works" class="nav-link">How it works</a>
       <a href="/#suite" class="nav-link">Products</a>
       <a href="/pricing" class="nav-link active">Pricing</a>
     </div>
+    <a href="/" class="nav-logo">
+      <span class="nav-logo-mark">
+        <svg width="20" height="20" viewBox="0 0 28 28" fill="none">
+          <circle cx="14" cy="14" r="2.5" fill="#6366f1"/>
+          <ellipse cx="14" cy="14" rx="11" ry="5" stroke="#6366f1" stroke-width="1.5" opacity="0.7"/>
+          <ellipse cx="14" cy="14" rx="11" ry="5" stroke="#6366f1" stroke-width="1.5" opacity="0.45" transform="rotate(60 14 14)"/>
+          <ellipse cx="14" cy="14" rx="11" ry="5" stroke="#6366f1" stroke-width="1.5" opacity="0.28" transform="rotate(120 14 14)"/>
+        </svg>
+      </span>
+      REM Labs
+    </a>
     <div class="nav-actions">
-      <a href="/brain" class="nav-signin nav-dash" id="nav-dash">Open App</a>
+      <a href="/morning" class="nav-signin nav-dash" id="nav-dash" style="display:none">Open App</a>
       <a href="/auth/google" class="nav-cta" id="nav-signin">Get started</a>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
-    <button class="hamburger" id="hamburger" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
   </div>
   <div class="mob-menu" id="mob-menu">
     <a href="/#features">How it works</a>
@@ -346,13 +350,19 @@
 
       <!-- BILLING TOGGLE -->
       <div class="toggle-wrap">
-        <span class="toggle-label active" id="lbl-monthly">Monthly</span>
-        <div class="toggle" id="billing-toggle">
+        <span class="toggle-label" id="lbl-monthly">Monthly</span>
+        <div class="toggle on" id="billing-toggle">
           <div class="toggle-knob"></div>
         </div>
-        <span class="toggle-label" id="lbl-annual">Annual</span>
-        <span class="save-badge" id="save-badge" style="opacity:0;">Save 17%</span>
+        <span class="toggle-label active" id="lbl-annual">Annual</span>
+        <span class="save-badge" id="save-badge">Save 17%</span>
       </div>
+    </div>
+
+    <div style="text-align:center;margin-bottom:32px;">
+      <span style="display:inline-flex;align-items:center;gap:7px;background:rgba(34,197,94,0.08);border:1px solid rgba(34,197,94,0.2);border-radius:100px;padding:6px 16px;font-size:0.8rem;color:#22c55e;font-weight:500;">
+        ✓ Read-only · REM never writes to your apps · Cancel anytime
+      </span>
     </div>
 
     <!-- PLANS -->
@@ -363,44 +373,49 @@
         <div class="plan-tag">Free</div>
         <div class="plan-price">$0</div>
         <div class="plan-price-note">Forever free</div>
-        <p class="plan-desc">500 credits/month. Free persistent memory. 1 dream/day. The foundation.</p>
+        <p class="plan-desc">500 credits/month. Free persistent memory. 1 dream/week. The foundation.</p>
         <a href="/auth/google" class="plan-cta">Get started free</a>
         <div class="plan-divider"></div>
         <div class="plan-features">
           <div class="plan-feat">
             <span class="feat-check"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            500 credits/month
+            500 free credits included
+          </div>
+          <div style="font-size:0.75rem;color:var(--text3);background:var(--bg2);border-radius:8px;padding:8px 12px;margin-top:8px;line-height:1.55;">
+            <strong style="color:var(--text);">What's a credit?</strong><br>
+            ~1 credit = one morning brief · ~5 credits = one deep question to Ask REM · 500 credits ≈ 30 days of light daily use.
           </div>
           <div class="plan-feat">
             <span class="feat-check"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            Free persistent memory
+            Save unlimited notes
           </div>
           <div class="plan-feat">
             <span class="feat-check"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            1 dream/day
+            Connect up to 3 apps
           </div>
           <div class="plan-feat">
             <span class="feat-check"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            Semantic search
+            Ask REM up to 20 questions/month
           </div>
           <div class="plan-feat">
             <span class="feat-check"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            API access (1,303 endpoints)
+            Daily Morning Brief
           </div>
-          <div class="plan-feat">
-            <span class="feat-check"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            Community support
-          </div>
+        </div>
+        <div style="margin-top:16px;padding-top:14px;border-top:1px solid var(--border);font-size:0.78rem;color:var(--text3);line-height:1.6;">
+          <span style="font-weight:500;color:var(--text2);">Upgrade for:</span> Unlimited Morning Briefs · Unlimited dreams · Brain Glow Score · All 9 strategies
+          <a href="#" onclick="document.querySelector('.plan.featured').scrollIntoView({behavior:'smooth'});return false;" style="display:inline-flex;align-items:center;gap:4px;color:var(--accent);font-weight:500;margin-left:4px;text-decoration:none;">See Pro →</a>
         </div>
       </div>
 
       <!-- PRO -->
       <div class="plan featured">
         <div class="plan-tag highlight">Pro — Most popular</div>
-        <div class="plan-price" id="pro-price">$29<sub>/mo</sub></div>
-        <div class="plan-price-note" id="pro-note">Billed monthly · Annual: $24/mo</div>
+        <div class="plan-price" id="pro-price">$19<sub>/mo</sub></div>
+        <div class="plan-price-note" id="pro-note">Billed $190/year · Save 17%</div>
         <p class="plan-desc">5,000 credits/month. Unlimited dreams. Advanced analytics. Priority support.</p>
         <a href="/auth/google" class="plan-cta">Start Pro free for 7 days</a>
+        <div style="font-size:0.72rem;color:var(--text3);margin-top:5px;">After 7 days, stays on Free plan unless you choose to upgrade · No charge without confirmation</div>
         <div class="plan-divider"></div>
         <div class="plan-features">
           <div class="plan-feat">
@@ -409,19 +424,23 @@
           </div>
           <div class="plan-feat">
             <span class="feat-check"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            5,000 credits/month
+            5,000 credits/month<span style="font-size:0.75rem;color:var(--text3);"> — enough for unlimited daily briefs + questions</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--text3);background:var(--bg2);border-radius:8px;padding:8px 12px;margin-top:4px;line-height:1.55;">
+            <strong style="color:var(--text);">What's a credit?</strong><br>
+            ~1 credit = one morning brief · ~5 credits = one deep Ask REM · 5,000 credits = unlimited daily use for most people.
           </div>
           <div class="plan-feat">
             <span class="feat-check"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            Unlimited Dream cycles
+            Unlimited questions to Ask REM
           </div>
           <div class="plan-feat">
             <span class="feat-check"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            Advanced analytics
+            Goal progress tracking — see what you actually worked on
           </div>
           <div class="plan-feat">
             <span class="feat-check"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            All 9 synthesis strategies
+            9 analysis depths — from quick scan to deep dive
           </div>
           <div class="plan-feat">
             <span class="feat-check"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
@@ -429,7 +448,11 @@
           </div>
           <div class="plan-feat">
             <span class="feat-check"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            Brain Glow Score + Skills Forge
+            Brain Glow score — track how well REM knows you
+          </div>
+          <div class="plan-feat">
+            <span class="feat-check"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            Faster results (front of the queue)
           </div>
           <div class="plan-feat">
             <span class="feat-check"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
@@ -438,13 +461,13 @@
         </div>
       </div>
 
-      <!-- TEAM -->
+      <!-- FAMILY -->
       <div class="plan">
-        <div class="plan-tag">Team</div>
-        <div class="plan-price" id="team-price">$99<sub>/mo</sub></div>
-        <div class="plan-price-note" id="team-note">Per workspace · Annual: $82/mo</div>
-        <p class="plan-desc">25,000 credits/month. Team Hive. Shared memory. Dream coordination. SSO.</p>
-        <a href="/auth/google" class="plan-cta">Get Team →</a>
+        <div class="plan-tag">Family</div>
+        <div class="plan-price" id="family-price">$29<sub>/mo</sub></div>
+        <div class="plan-price-note" id="family-note">Up to 5 people · billed $290/year · Save 17%</div>
+        <p class="plan-desc">Everything in Pro, shared across your household. Each person gets their own brief, memory, and automations.</p>
+        <a href="/auth/google" class="plan-cta">Get Family →</a>
         <div class="plan-divider"></div>
         <div class="plan-features">
           <div class="plan-feat">
@@ -453,59 +476,19 @@
           </div>
           <div class="plan-feat">
             <span class="feat-check"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            25,000 credits/month
+            Up to 5 accounts
           </div>
           <div class="plan-feat">
             <span class="feat-check"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            Team Hive (unlimited members)
+            Each person gets their own private memory
           </div>
           <div class="plan-feat">
             <span class="feat-check"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            Shared memory &amp; Dream coordination
+            Optional shared memory for household things
           </div>
           <div class="plan-feat">
             <span class="feat-check"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            Team Morning Brief
-          </div>
-          <div class="plan-feat">
-            <span class="feat-check"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            SSO &amp; Admin dashboard
-          </div>
-        </div>
-      </div>
-
-      <!-- ENTERPRISE -->
-      <div class="plan">
-        <div class="plan-tag">Enterprise</div>
-        <div class="plan-price">Custom</div>
-        <div class="plan-price-note">Contact us for pricing</div>
-        <p class="plan-desc">Unlimited credits. VPC deployment. SLA. Compliance (SOC2 roadmap). Dedicated support.</p>
-        <a href="mailto:sales@remlabs.ai" class="plan-cta">Contact us →</a>
-        <div class="plan-divider"></div>
-        <div class="plan-features">
-          <div class="plan-feat">
-            <span class="feat-check"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            Everything in Team
-          </div>
-          <div class="plan-feat">
-            <span class="feat-check"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            Unlimited credits
-          </div>
-          <div class="plan-feat">
-            <span class="feat-check"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            VPC deployment
-          </div>
-          <div class="plan-feat">
-            <span class="feat-check"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            Uptime SLA
-          </div>
-          <div class="plan-feat">
-            <span class="feat-check"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            SOC2 roadmap compliance
-          </div>
-          <div class="plan-feat">
-            <span class="feat-check"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            Dedicated support
+            One billing account
           </div>
         </div>
       </div>
@@ -523,77 +506,125 @@
             <th style="width:40%">Feature</th>
             <th>Free</th>
             <th>Pro</th>
-            <th>Team</th>
-            <th>Enterprise</th>
+            <th>Family</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td><span class="feat-name">Monthly credits</span></td>
-            <td style="color:var(--text2);font-size:0.8rem;">500</td><td style="color:var(--text2);font-size:0.8rem;">5,000</td><td style="color:var(--text2);font-size:0.8rem;">25,000</td><td style="color:var(--text2);font-size:0.8rem;">Unlimited</td>
+            <td style="color:var(--text2);font-size:0.8rem;">500</td><td style="color:var(--text2);font-size:0.8rem;">5,000</td><td style="color:var(--text2);font-size:0.8rem;">5,000 × 5</td>
           </tr>
           <tr>
             <td><span class="feat-name">Memory storage</span></td>
-            <td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td>
+            <td class="check">✓</td><td class="check">✓</td><td class="check">✓</td>
           </tr>
           <tr>
             <td><span class="feat-name">Semantic search</span></td>
-            <td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td>
+            <td class="check">✓</td><td class="check">✓</td><td class="check">✓</td>
           </tr>
           <tr>
-            <td><span class="feat-name">Dream Engine</span><span class="feat-sub">9-stage overnight synthesis</span></td>
-            <td style="color:var(--text2);font-size:0.8rem;">1/day</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td>
+            <td><span class="feat-name">Dream Engine</span></td>
+            <td style="color:var(--text2);font-size:0.8rem;">1/week</td><td class="check">✓</td><td class="check">✓</td>
           </tr>
           <tr>
             <td><span class="feat-name">All 9 strategies</span></td>
-            <td class="dash">—</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td>
+            <td class="dash">—</td><td class="check">✓</td><td class="check">✓</td>
           </tr>
           <tr>
             <td><span class="feat-name">Advanced analytics</span></td>
-            <td class="dash">—</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td>
+            <td class="dash">—</td><td class="check">✓</td><td class="check">✓</td>
           </tr>
           <tr>
-            <td><span class="feat-name">Morning Brief</span></td>
-            <td class="dash">—</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td>
+            <td><span class="feat-name">Daily Brief</span></td>
+            <td class="check"><span style="color:var(--green);">✓</span></td><td class="check">✓</td><td class="check">✓</td>
           </tr>
           <tr>
             <td><span class="feat-name">Brain Glow Score</span></td>
-            <td class="dash">—</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td>
+            <td class="dash">—</td><td class="check">✓</td><td class="check">✓</td>
           </tr>
           <tr>
-            <td><span class="feat-name">Skills Forge</span></td>
-            <td class="dash">—</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td>
+            <td><span class="feat-name">Automations</span></td>
+            <td style="color:var(--text2);font-size:0.8rem;">3 max</td><td class="check">✓ unlimited</td><td class="check">✓ unlimited</td>
           </tr>
           <tr>
-            <td><span class="feat-name">Team Hive</span></td>
-            <td class="dash">—</td><td class="dash">—</td><td class="check">✓</td><td class="check">✓</td>
+            <td><span class="feat-name">Up to 5 accounts</span></td>
+            <td class="dash">—</td><td class="dash">—</td><td class="check">✓</td>
           </tr>
           <tr>
-            <td><span class="feat-name">Dream coordination</span></td>
-            <td class="dash">—</td><td class="dash">—</td><td class="check">✓</td><td class="check">✓</td>
-          </tr>
-          <tr>
-            <td><span class="feat-name">Admin &amp; SSO</span></td>
-            <td class="dash">—</td><td class="dash">—</td><td class="check">✓</td><td class="check">✓</td>
-          </tr>
-          <tr>
-            <td><span class="feat-name">VPC deployment</span></td>
-            <td class="dash">—</td><td class="dash">—</td><td class="dash">—</td><td class="check">✓</td>
-          </tr>
-          <tr>
-            <td><span class="feat-name">Uptime SLA</span></td>
-            <td class="dash">—</td><td class="dash">—</td><td class="dash">—</td><td class="check">✓</td>
-          </tr>
-          <tr>
-            <td><span class="feat-name">SOC2 compliance</span><span class="feat-sub">Q4 2026 roadmap</span></td>
-            <td class="dash">—</td><td class="dash">—</td><td class="dash">—</td><td class="check">✓</td>
-          </tr>
-          <tr>
-            <td><span class="feat-name">API access</span><span class="feat-sub">1,303 endpoints</span></td>
-            <td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td>
+            <td><span class="feat-name">Shared household memory</span></td>
+            <td class="dash">—</td><td class="dash">—</td><td class="check">✓ optional</td>
           </tr>
         </tbody>
       </table>
+    </div>
+
+    <!-- ROI CALCULATOR -->
+    <div style="background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:32px;margin-bottom:48px;">
+      <div style="text-align:center;margin-bottom:24px;">
+        <div style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--accent);margin-bottom:6px;">ROI Calculator</div>
+        <h2 style="font-size:1.375rem;font-weight:700;color:var(--text);letter-spacing:-0.02em;margin-bottom:8px;">How much time could REM save you?</h2>
+        <p style="font-size:0.875rem;color:var(--text2);max-width:440px;margin:0 auto;">Drag the sliders to estimate the annual value of your Morning Brief alone.</p>
+      </div>
+      <div style="max-width:520px;margin:0 auto;">
+        <div style="margin-bottom:20px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+            <label style="font-size:0.875rem;font-weight:500;color:var(--text);">Hours saved per week</label>
+            <span id="roi-hrs-val" style="font-size:0.9rem;font-weight:700;color:var(--accent);">3 hrs</span>
+          </div>
+          <input type="range" id="roi-hrs" min="1" max="10" value="3" step="1" style="width:100%;accent-color:var(--accent);" oninput="updateROI()">
+          <div style="display:flex;justify-content:space-between;font-size:0.72rem;color:var(--text3);margin-top:4px;"><span>1 hr</span><span>10 hrs</span></div>
+        </div>
+        <div style="margin-bottom:24px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+            <label style="font-size:0.875rem;font-weight:500;color:var(--text);">Your effective hourly rate</label>
+            <span id="roi-rate-val" style="font-size:0.9rem;font-weight:700;color:var(--accent);">$75/hr</span>
+          </div>
+          <input type="range" id="roi-rate" min="25" max="300" value="75" step="25" style="width:100%;accent-color:var(--accent);" oninput="updateROI()">
+          <div style="display:flex;justify-content:space-between;font-size:0.72rem;color:var(--text3);margin-top:4px;"><span>$25/hr</span><span>$300/hr</span></div>
+        </div>
+        <div style="background:var(--bg);border:1.5px solid var(--accent-border);border-radius:14px;padding:20px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;">
+          <div>
+            <div style="font-size:0.78rem;color:var(--text2);margin-bottom:4px;">Estimated annual value</div>
+            <div id="roi-result" style="font-size:2.2rem;font-weight:800;color:var(--accent);letter-spacing:-0.03em;">$11,700</div>
+          </div>
+          <div style="text-align:right;">
+            <div style="font-size:0.78rem;color:var(--text3);margin-bottom:4px;">Pro plan costs</div>
+            <div style="font-size:1.1rem;font-weight:700;color:var(--text);">$19/mo · <span style="color:var(--green);">$190/yr</span></div>
+            <div style="font-size:0.72rem;color:var(--text3);margin-top:2px;" id="roi-multiple">34× return</div>
+          </div>
+        </div>
+        <div style="text-align:center;margin-top:16px;">
+          <a href="/auth/google" style="display:inline-flex;align-items:center;gap:8px;padding:11px 28px;background:var(--accent);color:#fff;border-radius:100px;font-size:0.875rem;font-weight:600;text-decoration:none;transition:opacity 0.15s;" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">Start free — see your first brief tonight →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECURITY / TRUST BAND -->
+    <div style="background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:24px 28px;margin-bottom:48px;display:flex;align-items:flex-start;gap:28px;flex-wrap:wrap;">
+      <div style="display:flex;align-items:flex-start;gap:12px;flex:1;min-width:180px;">
+        <span style="font-size:1.25rem;flex-shrink:0;">🔒</span>
+        <div>
+          <div style="font-size:0.875rem;font-weight:600;color:var(--text);margin-bottom:3px;">Encrypted end-to-end</div>
+          <div style="font-size:0.78rem;color:var(--text2);line-height:1.55;">AES-256 at rest · TLS 1.3 in transit · EU data residency available</div>
+        </div>
+      </div>
+      <div style="display:flex;align-items:flex-start;gap:12px;flex:1;min-width:180px;">
+        <span style="font-size:1.25rem;flex-shrink:0;">📋</span>
+        <div>
+          <div style="font-size:0.875rem;font-weight:600;color:var(--text);margin-bottom:3px;">SOC 2 in progress</div>
+          <div style="font-size:0.78rem;color:var(--text2);line-height:1.55;">Type II audit targeted Q4 2026 · GDPR compliant · Data deletion on request</div>
+        </div>
+      </div>
+      <div style="display:flex;align-items:flex-start;gap:12px;flex:1;min-width:180px;">
+        <span style="font-size:1.25rem;flex-shrink:0;">🔐</span>
+        <div>
+          <div style="font-size:0.875rem;font-weight:600;color:var(--text);margin-bottom:3px;">Read-only · Your data is yours</div>
+          <div style="font-size:0.78rem;color:var(--text2);line-height:1.55;">Never writes to your apps · We never train on your data · Revoke any integration instantly</div>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:12px;text-align:right;padding-top:10px;border-top:1px solid var(--border);">
+      <a href="mailto:security@remlabs.ai" style="font-size:0.75rem;color:var(--accent);text-decoration:none;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">Security questions? security@remlabs.ai →</a>
     </div>
 
     <!-- FAQ -->
@@ -602,6 +633,13 @@
         <h2>Questions</h2>
       </div>
       <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-q">
+            What is a credit? How many does each action use?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">Credits are REM's unit of AI compute. Here's roughly what common actions cost: saving a memory ≈ 1–3 credits · semantic search ≈ 5 credits · Ask REM (quick answer) ≈ 25–50 credits · Dream cycle (1-pass) ≈ 100 credits · Dream cycle (full 10-pass) ≈ 500 credits. The Free plan includes 500 credits/month — enough for roughly 30 days of light daily use. That's approximately one morning brief per day, or a mix of briefs and occasional Ask REM questions. Pro monthly ($29/mo) and Pro annual ($24/mo) both include 5,000 credits per month — roughly unlimited for daily use.</div>
+        </div>
         <div class="faq-item">
           <button class="faq-q">
             Is memory really free forever?
@@ -654,9 +692,9 @@
 <!-- FOOTER -->
 <footer class="footer">
   <div class="footer-inner">
-    <p class="footer-copy">© 2026 REM Labs · Powered by slopshop.gg</p>
+    <p class="footer-copy">© 2026 REM Labs</p>
     <nav class="footer-links">
-      <a href="https://slopshop.gg" target="_blank" rel="noopener">Developers</a>
+      <a href="/developers">Developers</a>
       <a href="/legal">Privacy</a>
       <a href="/legal">Terms</a>
     </nav>
@@ -697,9 +735,21 @@
   var saveBadge = document.getElementById('save-badge');
   var proPrice = document.getElementById('pro-price');
   var proNote = document.getElementById('pro-note');
-  var teamPrice = document.getElementById('team-price');
-  var teamNote = document.getElementById('team-note');
-  var annual = false;
+  var familyPrice = document.getElementById('family-price');
+  var familyNote = document.getElementById('family-note');
+  var annual = true;
+
+  // Initialize with annual selected by default
+  if(toggle) {
+    toggle.classList.add('on');
+    if(lblMonthly) lblMonthly.classList.remove('active');
+    if(lblAnnual) lblAnnual.classList.add('active');
+    if(saveBadge) saveBadge.style.opacity = '1';
+    if(proPrice) proPrice.innerHTML = '$19<sub>/mo</sub>';
+    if(proNote) proNote.textContent = 'Billed $190/year · Save 17%';
+    if(familyPrice) familyPrice.innerHTML = '$29<sub>/mo</sub>';
+    if(familyNote) familyNote.textContent = 'Up to 5 people · billed $290/year · Save 17%';
+  }
 
   if(toggle) toggle.addEventListener('click', function(){
     annual = !annual;
@@ -708,17 +758,30 @@
     lblAnnual.classList.toggle('active', annual);
     saveBadge.style.opacity = annual ? '1' : '0';
     if(annual){
-      proPrice.innerHTML = '$24<sub>/mo</sub>';
-      proNote.textContent = 'Billed $288/year · Save 17%';
-      teamPrice.innerHTML = '$82<sub>/mo</sub>';
-      teamNote.textContent = 'Per workspace · billed $984/year · Save 17%';
+      proPrice.innerHTML = '$19<sub>/mo</sub>';
+      proNote.textContent = 'Billed $190/year · Save 17%';
+      familyPrice.innerHTML = '$29<sub>/mo</sub>';
+      familyNote.textContent = 'Up to 5 people · billed $290/year · Save 17%';
     } else {
-      proPrice.innerHTML = '$29<sub>/mo</sub>';
-      proNote.textContent = 'Billed monthly · Annual: $24/mo';
-      teamPrice.innerHTML = '$99<sub>/mo</sub>';
-      teamNote.textContent = 'Per workspace · Annual: $82/mo';
+      proPrice.innerHTML = '$23<sub>/mo</sub>';
+      proNote.textContent = 'Billed monthly · Annual saves 17%';
+      familyPrice.innerHTML = '$35<sub>/mo</sub>';
+      familyNote.textContent = 'Up to 5 people · Annual saves 17%';
     }
   });
+
+  /* ROI Calculator */
+  window.updateROI = function() {
+    var hrs = parseInt(document.getElementById('roi-hrs').value);
+    var rate = parseInt(document.getElementById('roi-rate').value);
+    document.getElementById('roi-hrs-val').textContent = hrs + ' hr' + (hrs !== 1 ? 's' : '');
+    document.getElementById('roi-rate-val').textContent = '$' + rate + '/hr';
+    var annualVal = hrs * rate * 52;
+    document.getElementById('roi-result').textContent = '$' + annualVal.toLocaleString();
+    var multiple = Math.round(annualVal / 190);
+    var el = document.getElementById('roi-multiple');
+    if (el) el.textContent = multiple + '× return on Pro';
+  };
 
   /* FAQ */
   document.querySelectorAll('.faq-q').forEach(function(btn){

@@ -1,0 +1,1154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="REM notices what you do every day and turns your habits into automations — so it happens without you thinking about it.">
+<meta property="og:title" content="Automations — REM Labs">
+<meta property="og:description" content="Your AI notices patterns in your life and turns them into automations. Accept what's useful, ignore the rest.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#ffffff">
+<title>Automations — REM Labs</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { -webkit-font-smoothing: antialiased; }
+
+:root {
+  --bg: #ffffff;
+  --surface: #f5f5f7;
+  --surface2: #ebebf0;
+  --border: rgba(0,0,0,0.07);
+  --border2: rgba(0,0,0,0.12);
+  --text: #1d1d1f;
+  --text2: #6e6e73;
+  --text3: #aeaeb2;
+  --accent: #6366f1;
+  --accent2: #818cf8;
+  --accent-dim: rgba(99,102,241,0.06);
+  --accent-border: rgba(99,102,241,0.2);
+  --green: #22c55e;
+  --yellow: #f59e0b;
+  --red: #ef4444;
+  --font: 'Inter', -apple-system, sans-serif;
+  --nav-h: 52px;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 14px;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* ── NAV ── */
+.app-nav {
+  position: fixed; top: 0; left: 0; right: 0; height: var(--nav-h);
+  background: rgba(255,255,255,0.92); backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 20px; z-index: 100; gap: 16px;
+}
+.nav-logo { display: flex; align-items: center; gap: 7px; font-size: 0.875rem; font-weight: 600; color: var(--text); text-decoration: none; letter-spacing: 0.01em; white-space: nowrap; flex-shrink: 0; }
+.nav-center { display: flex; align-items: center; gap: 2px; }
+.nav-link { color: var(--text2); text-decoration: none; font-size: 0.8125rem; font-weight: 500; padding: 5px 11px; border-radius: 7px; transition: color 0.15s, background 0.15s; white-space: nowrap; }
+.nav-link:hover { color: var(--text); background: rgba(0,0,0,0.05); }
+.nav-link.active { color: var(--text); background: rgba(0,0,0,0.06); font-weight: 600; }
+.nav-right { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+.nav-user { font-size: 0.8125rem; color: var(--text2); text-decoration: none; font-weight: 500; padding: 5px 11px; border-radius: 7px; transition: color 0.15s, background 0.15s; }
+.nav-user:hover { color: var(--text); background: rgba(0,0,0,0.05); }
+@media (max-width: 768px) { .nav-center { display: none; } }
+/* ── AVATAR ── */
+.acct-avatar {
+  width: 30px; height: 30px; border-radius: 50%;
+  background: var(--accent); border: none; cursor: pointer;
+  font-size: 0.68rem; font-weight: 700; color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font); flex-shrink: 0; transition: opacity 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.acct-avatar:hover { opacity: 0.85; }
+.acct-menu-wrap { position: relative; }
+.acct-dropdown {
+  display: none; position: absolute; right: 0; top: calc(100% + 8px);
+  background: var(--bg, #fff); border: 1px solid var(--border2, rgba(0,0,0,0.12));
+  border-radius: 12px; padding: 6px; min-width: 180px; z-index: 400;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.12);
+}
+.acct-dropdown.open { display: block; }
+.acct-drop-item {
+  display: block; padding: 8px 12px; font-size: 0.8125rem;
+  color: var(--text2, #6e6e73); text-decoration: none; border-radius: 8px;
+  background: none; border: none; width: 100%; text-align: left;
+  cursor: pointer; font-family: var(--font); transition: background 0.12s;
+}
+.acct-drop-item:hover { background: var(--surface, #f5f5f7); color: var(--text, #1d1d1f); }
+.acct-drop-item.active-item { color: var(--accent, #6366f1); font-weight: 600; }
+.acct-drop-divider { height: 1px; background: var(--border, rgba(0,0,0,0.07)); margin: 4px 0; }
+
+/* ── PAGE ── */
+.page {
+  padding-top: calc(var(--nav-h) + 48px);
+  padding-bottom: 100px;
+  max-width: 800px;
+  margin: 0 auto;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+/* ── PAGE HEADER ── */
+.page-header { margin-bottom: 32px; }
+.page-eyebrow { font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 8px; }
+.page-title { font-size: 2rem; font-weight: 700; color: var(--text); margin-bottom: 10px; letter-spacing: -0.03em; line-height: 1.2; }
+.page-sub { font-size: 0.9375rem; color: var(--text2); line-height: 1.65; max-width: 560px; }
+
+/* ── HOW IT WORKS STRIP ── */
+.how-strip {
+  display: flex; align-items: stretch; gap: 0;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 14px; padding: 0; margin-bottom: 36px; overflow: hidden;
+}
+.how-step {
+  flex: 1; display: flex; flex-direction: column; gap: 5px;
+  padding: 16px 20px;
+}
+.how-step + .how-step { border-left: 1px solid var(--border); }
+.how-step-num { font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); }
+.how-step-title { font-size: 0.875rem; font-weight: 600; color: var(--text); }
+.how-step-desc { font-size: 0.78rem; color: var(--text2); line-height: 1.45; }
+@media (max-width: 600px) { .how-strip { flex-direction: column; } .how-step + .how-step { border-left: none; border-top: 1px solid var(--border); } }
+
+/* ── SECTION ── */
+.section { margin-bottom: 44px; }
+.section-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; flex-wrap: wrap; gap: 10px; }
+.section-title { font-size: 1rem; font-weight: 700; color: var(--text); }
+.section-meta { font-size: 0.78rem; color: var(--text3); font-weight: 500; }
+.section-eyebrow { font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text3); margin-bottom: 5px; }
+
+/* ── SKELETON ── */
+@keyframes skel-shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+.skel-line { border-radius: 6px; background: linear-gradient(90deg, #f0f0f0 25%, #e8e8e8 50%, #f0f0f0 75%); background-size: 200% 100%; animation: skel-shimmer 1.5s ease-in-out infinite; }
+.skel-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 20px; margin-bottom: 12px; display: flex; flex-direction: column; gap: 12px; }
+.skel-card:nth-child(2) .skel-line { animation-delay: 0.15s; }
+.skel-card:nth-child(3) .skel-line { animation-delay: 0.3s; }
+
+/* ── PATTERN CARD ── */
+@keyframes card-in { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+.pattern-card {
+  background: var(--bg);
+  border: 1.5px solid var(--border2);
+  border-radius: 16px;
+  padding: 20px 22px;
+  margin-bottom: 12px;
+  transition: border-color 0.18s, box-shadow 0.18s;
+  animation: card-in 0.4s cubic-bezier(0.22,1,0.36,1) both;
+}
+.pattern-card:nth-child(2) { animation-delay: 0.07s; }
+.pattern-card:nth-child(3) { animation-delay: 0.14s; }
+.pattern-card:nth-child(4) { animation-delay: 0.21s; }
+.pattern-card:hover { border-color: var(--accent-border); box-shadow: 0 2px 16px rgba(99,102,241,0.07); }
+.pattern-card.dismissed { display: none; }
+
+.pattern-top { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 14px; gap: 10px; }
+.pattern-conf { display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
+.conf-badge {
+  font-size: 0.72rem; font-weight: 600; padding: 3px 9px; border-radius: 20px;
+  background: rgba(34,197,94,0.1); color: var(--green); white-space: nowrap;
+}
+.conf-badge.medium { background: rgba(245,158,11,0.1); color: var(--yellow); }
+.new-badge {
+  font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em;
+  padding: 2px 7px; border-radius: 4px;
+  background: rgba(99,102,241,0.1); color: var(--accent);
+}
+
+.pattern-flow { display: flex; align-items: center; gap: 0; margin-bottom: 14px; }
+.pattern-trigger-block, .pattern-action-block {
+  flex: 1; background: var(--surface); border: 1px solid var(--border);
+  border-radius: 10px; padding: 12px 14px;
+}
+.pattern-arrow-wrap {
+  padding: 0 10px; color: var(--text3); font-size: 1rem; flex-shrink: 0;
+}
+.pattern-block-label { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text3); margin-bottom: 3px; }
+.pattern-block-icon { font-size: 1.2rem; margin-bottom: 4px; display: block; }
+.pattern-block-text { font-size: 0.875rem; font-weight: 500; color: var(--text); line-height: 1.35; }
+
+.pattern-meta { font-size: 0.78rem; color: var(--text3); margin-bottom: 16px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.pattern-meta-dot { width: 3px; height: 3px; border-radius: 50%; background: var(--text3); flex-shrink: 0; }
+
+.pattern-btns { display: flex; gap: 8px; align-items: center; }
+.btn-enable {
+  flex: 1; max-width: 220px; padding: 10px 18px;
+  background: var(--accent); color: #fff; border: none; border-radius: 9px;
+  font-size: 0.875rem; font-weight: 600; font-family: var(--font);
+  cursor: pointer; transition: all 0.15s; display: flex; align-items: center; justify-content: center; gap: 6px;
+}
+.btn-enable:hover { opacity: 0.88; transform: translateY(-1px); box-shadow: 0 4px 14px rgba(99,102,241,0.25); }
+.btn-enable:disabled { opacity: 0.45; cursor: not-allowed; transform: none; box-shadow: none; }
+.btn-dismiss {
+  padding: 10px 14px; background: transparent; color: var(--text3);
+  border: 1px solid var(--border2); border-radius: 9px;
+  font-size: 0.875rem; font-weight: 500; font-family: var(--font);
+  cursor: pointer; transition: all 0.15s;
+}
+.btn-dismiss:hover { color: var(--text2); background: rgba(0,0,0,0.03); }
+
+/* ── AUTOMATION CARD ── */
+.automation-card {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 20px 22px;
+  margin-bottom: 10px;
+  display: flex; align-items: flex-start; gap: 16px;
+  transition: border-color 0.15s;
+  animation: card-in 0.4s cubic-bezier(0.22,1,0.36,1) both;
+}
+.automation-card:hover { border-color: var(--border2); }
+.automation-card.disabled { opacity: 0.55; }
+
+.auto-toggle { flex-shrink: 0; padding-top: 2px; }
+.toggle-switch { position: relative; display: inline-block; width: 36px; height: 20px; }
+.toggle-switch input { opacity: 0; width: 0; height: 0; }
+.toggle-track {
+  position: absolute; cursor: pointer; inset: 0;
+  background: var(--surface2); border-radius: 20px; transition: background 0.2s;
+}
+.toggle-track::before {
+  content: ''; position: absolute;
+  width: 14px; height: 14px; left: 3px; bottom: 3px;
+  border-radius: 50%; background: #fff;
+  transition: transform 0.2s; box-shadow: 0 1px 4px rgba(0,0,0,0.18);
+}
+.toggle-switch input:checked + .toggle-track { background: var(--accent); }
+.toggle-switch input:checked + .toggle-track::before { transform: translateX(16px); }
+.toggle-switch input:focus-visible + .toggle-track { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.auto-body { flex: 1; min-width: 0; }
+.auto-flow { display: flex; align-items: flex-start; gap: 8px; margin-bottom: 8px; }
+.auto-trigger-line { font-size: 0.8125rem; font-weight: 500; color: var(--text2); display: flex; align-items: center; gap: 6px; }
+.auto-trigger-icon, .auto-action-icon { flex-shrink: 0; }
+.auto-divider { color: var(--text3); font-size: 0.75rem; padding: 0 2px; }
+.auto-action-line { font-size: 0.875rem; font-weight: 600; color: var(--text); display: flex; align-items: center; gap: 6px; margin-top: 4px; }
+.auto-stats { display: flex; align-items: center; gap: 10px; font-size: 0.75rem; color: var(--text3); margin-top: 6px; flex-wrap: wrap; }
+.auto-stat-dot { width: 3px; height: 3px; border-radius: 50%; background: var(--text3); flex-shrink: 0; }
+.auto-run-badge {
+  font-size: 0.68rem; font-weight: 600; padding: 2px 7px; border-radius: 4px;
+  background: rgba(34,197,94,0.1); color: var(--green);
+}
+
+.auto-actions { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; flex-shrink: 0; }
+.btn-auto-log, .btn-auto-del {
+  padding: 4px 10px; background: none; border: 1px solid var(--border2);
+  border-radius: 6px; font-size: 0.72rem; color: var(--text2); cursor: pointer;
+  font-family: var(--font); transition: all 0.12s; white-space: nowrap;
+}
+.btn-auto-log:hover { background: var(--surface2); color: var(--text); }
+.btn-auto-del:hover { color: var(--red); border-color: rgba(239,68,68,0.3); background: rgba(239,68,68,0.04); }
+
+/* ── LOG DRAWER ── */
+.log-drawer { display: none; margin-top: 12px; border-top: 1px solid var(--border); padding-top: 12px; }
+.log-drawer.open { display: block; }
+.log-entry { display: flex; align-items: flex-start; gap: 10px; padding: 8px 0; font-size: 0.78rem; border-bottom: 1px solid var(--border); }
+.log-entry:last-child { border-bottom: none; }
+.log-status-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; margin-top: 3px; }
+.log-status-dot.success { background: var(--green); }
+.log-status-dot.failed { background: var(--red); }
+.log-time { color: var(--text3); flex-shrink: 0; min-width: 80px; }
+.log-detail { color: var(--text2); flex: 1; }
+
+/* ── EMPTY STATE ── */
+.empty-state { text-align: center; padding: 56px 24px; }
+.empty-icon { font-size: 2.5rem; margin-bottom: 14px; line-height: 1; }
+.empty-title { font-size: 1rem; font-weight: 600; color: var(--text); margin-bottom: 6px; }
+.empty-sub { font-size: 0.875rem; color: var(--text2); line-height: 1.65; max-width: 380px; margin: 0 auto; }
+
+/* ── CONFIRM MODAL ── */
+.modal-backdrop { position: fixed; inset: 0; background: rgba(0,0,0,0.3); z-index: 500; display: none; align-items: center; justify-content: center; backdrop-filter: blur(4px); padding: 24px; }
+.modal-backdrop.open { display: flex; }
+.modal-box { background: var(--bg); border: 1px solid var(--border2); border-radius: 18px; padding: 28px; width: min(480px, 100%); box-shadow: 0 8px 40px rgba(0,0,0,0.12); animation: card-in 0.25s ease both; }
+.modal-title { font-size: 1.05rem; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+.modal-sub { font-size: 0.875rem; color: var(--text2); line-height: 1.6; margin-bottom: 22px; }
+.modal-flow { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; margin-bottom: 22px; }
+.modal-flow-trigger { font-size: 0.8125rem; color: var(--text2); margin-bottom: 6px; display: flex; align-items: center; gap: 6px; }
+.modal-flow-action { font-size: 0.9375rem; font-weight: 600; color: var(--text); display: flex; align-items: center; gap: 6px; }
+.modal-arrow { font-size: 0.75rem; color: var(--text3); margin: 4px 0 4px 20px; }
+.modal-btns { display: flex; gap: 10px; justify-content: flex-end; }
+.btn-modal-cancel { padding: 10px 18px; background: transparent; color: var(--text2); border: 1px solid var(--border2); border-radius: 9px; font-size: 0.875rem; font-weight: 500; font-family: var(--font); cursor: pointer; transition: all 0.15s; }
+.btn-modal-cancel:hover { background: var(--surface); }
+.btn-modal-confirm { padding: 10px 22px; background: var(--accent); color: #fff; border: none; border-radius: 9px; font-size: 0.875rem; font-weight: 600; font-family: var(--font); cursor: pointer; transition: all 0.15s; }
+.btn-modal-confirm:hover { opacity: 0.88; }
+
+/* ── TOAST ── */
+#toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(16px); background: var(--text); color: #fff; padding: 10px 18px; border-radius: 10px; font-size: 0.8125rem; font-weight: 500; opacity: 0; transition: all 0.25s; z-index: 9999; pointer-events: none; white-space: nowrap; box-shadow: 0 4px 20px rgba(0,0,0,0.2); }
+#toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+/* ── CUSTOM BUILDER ── */
+.builder-section {
+  background: var(--bg);
+  border: 1.5px solid var(--border2);
+  border-radius: 16px;
+  padding: 24px 26px;
+  margin-bottom: 44px;
+}
+.builder-title { font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+.builder-sub { font-size: 0.875rem; color: var(--text2); line-height: 1.6; margin-bottom: 18px; }
+.builder-input-row { display: flex; gap: 10px; margin-bottom: 12px; }
+.builder-input {
+  flex: 1; padding: 11px 14px;
+  border: 1.5px solid var(--border2); border-radius: 10px;
+  font-size: 0.9375rem; font-family: var(--font); color: var(--text);
+  background: var(--surface); outline: none; transition: border-color 0.15s;
+  resize: none; min-height: 48px;
+}
+.builder-input:focus { border-color: var(--accent); background: var(--bg); }
+.builder-input::placeholder { color: var(--text3); }
+.builder-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+.builder-chip {
+  font-size: 0.78rem; color: var(--text2); background: var(--surface);
+  border: 1px solid var(--border2); border-radius: 20px; padding: 5px 12px;
+  cursor: pointer; transition: all 0.12s;
+}
+.builder-chip:hover { background: rgba(99,102,241,0.07); border-color: var(--accent-border); color: var(--accent); }
+.builder-preview {
+  display: none; background: var(--surface);
+  border: 1px solid var(--accent-border); border-radius: 12px;
+  padding: 16px 18px; margin-bottom: 14px;
+  animation: card-in 0.25s ease both;
+}
+.builder-preview.show { display: block; }
+.builder-preview-label { font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 10px; }
+.builder-preview-trigger { font-size: 0.8125rem; color: var(--text2); margin-bottom: 5px; display: flex; align-items: center; gap: 6px; }
+.builder-preview-action { font-size: 0.9375rem; font-weight: 600; color: var(--text); display: flex; align-items: center; gap: 6px; }
+.builder-preview-arrow { font-size: 0.75rem; color: var(--text3); margin: 3px 0 3px 16px; }
+.builder-btns { display: flex; gap: 8px; flex-wrap: wrap; }
+@media (max-width: 600px) {
+  .builder-input-row { flex-direction: column; }
+  .builder-btns .btn-enable { max-width: 100%; }
+}
+
+/* ── EMPTY PATTERNS HINT (first time) ── */
+.patterns-hint {
+  background: linear-gradient(135deg, rgba(99,102,241,0.05) 0%, rgba(129,140,248,0.03) 100%);
+  border: 1.5px dashed rgba(99,102,241,0.2);
+  border-radius: 16px; padding: 28px 24px; text-align: center;
+}
+.patterns-hint-icon { font-size: 2.2rem; margin-bottom: 12px; }
+.patterns-hint-title { font-size: 0.9375rem; font-weight: 600; color: var(--text); margin-bottom: 6px; }
+.patterns-hint-sub { font-size: 0.875rem; color: var(--text2); line-height: 1.65; max-width: 400px; margin: 0 auto 18px; }
+.hint-steps { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-top: 4px; }
+.hint-step-chip { font-size: 0.78rem; color: var(--text2); background: var(--surface); border: 1px solid var(--border2); border-radius: 20px; padding: 5px 12px; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+}
+
+/* ── MOBILE TAB BAR ── */
+.mobile-tab-bar {
+  display: none;
+  position: fixed; bottom: 0; left: 0; right: 0;
+  height: 56px; background: rgba(255,255,255,0.96);
+  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  border-top: 1px solid var(--border);
+  z-index: 300; padding-bottom: env(safe-area-inset-bottom, 0px);
+  align-items: center; justify-content: space-around;
+}
+.mobile-tab {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 3px; flex: 1; height: 100%; text-decoration: none;
+  color: var(--text3); font-size: 0.62rem; font-weight: 500;
+  transition: color 0.15s; padding: 0;
+}
+.mobile-tab.active { color: var(--accent); }
+.mobile-tab:hover { color: var(--text2); }
+.mobile-tab-label { line-height: 1; }
+@media (max-width: 768px) {
+  .mobile-tab-bar { display: flex; }
+  .page { padding-bottom: calc(56px + env(safe-area-inset-bottom, 0px) + 20px); }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="app-nav">
+  <a href="/" class="nav-logo">
+    <svg width="17" height="17" viewBox="0 0 28 28" fill="none" style="flex-shrink:0;"><circle cx="14" cy="14" r="2.5" fill="#6366f1"/><ellipse cx="14" cy="14" rx="11" ry="5" stroke="#6366f1" stroke-width="1.5" opacity="0.8"/><ellipse cx="14" cy="14" rx="11" ry="5" stroke="#6366f1" stroke-width="1.5" opacity="0.5" transform="rotate(60 14 14)"/><ellipse cx="14" cy="14" rx="11" ry="5" stroke="#6366f1" stroke-width="1.5" opacity="0.35" transform="rotate(120 14 14)"/></svg>
+    REM Labs
+  </a>
+  <div class="nav-center">
+    <a href="/context" class="nav-link">Context</a>
+    <a href="/morning" class="nav-link">Now</a>
+    <a href="/dream" class="nav-link">Ask</a>
+    <a href="/automations" class="nav-link active">Automations</a>
+    <a href="/console" class="nav-link">Apps</a>
+    <a href="/memory" class="nav-link">Saved</a>
+  </div>
+  <div class="nav-right" style="display:flex;align-items:center;gap:8px;flex-shrink:0;">
+    <div class="acct-menu-wrap" id="acct-menu-wrap">
+      <button class="acct-avatar" id="acctBtn" onclick="toggleAcctMenu()" title="Account" aria-label="Account menu">
+        <span id="acctInitials">?</span>
+      </button>
+      <div class="acct-dropdown" id="acctDropdown">
+        <a href="/context" class="acct-drop-item">Context</a>
+        <a href="/memory" class="acct-drop-item">Saved notes</a>
+        <div class="acct-drop-divider"></div>
+        <a href="/pricing" class="acct-drop-item">Pricing</a>
+        <button class="acct-drop-item" onclick="signOut ? signOut() : (localStorage.clear(), window.location.href='/')">Sign out</button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="page-header">
+    <div class="page-eyebrow">Automate</div>
+    <h1 class="page-title">Make it happen automatically</h1>
+    <p class="page-sub">REM notices what you do across your apps and offers to automate it. Or describe exactly what you want — in plain English.</p>
+  </div>
+
+  <!-- LOADING STATE -->
+  <div id="loadingWrap">
+    <div class="section-eyebrow" style="margin-bottom:14px;">PATTERNS DETECTED</div>
+    <div class="skel-card">
+      <div class="skel-line" style="height:14px;width:55%;"></div>
+      <div style="display:flex;gap:10px;"><div class="skel-line" style="height:60px;flex:1;border-radius:10px;"></div><div class="skel-line" style="width:24px;height:24px;border-radius:50%;margin-top:18px;"></div><div class="skel-line" style="height:60px;flex:1;border-radius:10px;"></div></div>
+      <div class="skel-line" style="height:12px;width:38%;"></div>
+      <div style="display:flex;gap:8px;"><div class="skel-line" style="height:38px;width:160px;border-radius:9px;"></div><div class="skel-line" style="height:38px;width:80px;border-radius:9px;"></div></div>
+    </div>
+    <div class="skel-card">
+      <div class="skel-line" style="height:14px;width:45%;"></div>
+      <div style="display:flex;gap:10px;"><div class="skel-line" style="height:60px;flex:1;border-radius:10px;"></div><div class="skel-line" style="width:24px;height:24px;border-radius:50%;margin-top:18px;"></div><div class="skel-line" style="height:60px;flex:1;border-radius:10px;"></div></div>
+      <div class="skel-line" style="height:12px;width:42%;"></div>
+    </div>
+    <div class="section-eyebrow" style="margin:28px 0 14px;">ACTIVE AUTOMATIONS</div>
+    <div class="skel-card" style="flex-direction:row;align-items:center;gap:14px;">
+      <div class="skel-line" style="width:36px;height:20px;border-radius:20px;flex-shrink:0;"></div>
+      <div style="flex:1;display:flex;flex-direction:column;gap:8px;"><div class="skel-line" style="height:13px;width:70%;"></div><div class="skel-line" style="height:13px;width:50%;"></div></div>
+    </div>
+  </div>
+
+  <!-- MAIN CONTENT (shown after load) -->
+  <div id="mainContent" style="display:none;">
+
+    <!-- PATTERNS SECTION -->
+    <div class="section" id="patternsSection">
+      <div class="section-header">
+        <div>
+          <div class="section-eyebrow">Patterns Detected</div>
+          <div class="section-title" id="patternsSectionTitle">Things REM noticed you do</div>
+        </div>
+        <span class="section-meta" id="patternsMeta"></span>
+      </div>
+      <div id="patternsList"></div>
+    </div>
+
+    <!-- CUSTOM BUILDER SECTION -->
+    <div class="builder-section" id="builderSection">
+      <div class="builder-title">Build your own automation</div>
+      <div class="builder-sub">Describe what you want to happen in plain English. REM will figure out the trigger and action.</div>
+      <div class="builder-chips" id="builderChips">
+        <span class="builder-chip" onclick="useChip(this)">When I get an email from my boss, save it to memory</span>
+        <span class="builder-chip" onclick="useChip(this)">Every Sunday, send me a weekly summary</span>
+        <span class="builder-chip" onclick="useChip(this)">When I finish a meeting, remind me to write notes</span>
+        <span class="builder-chip" onclick="useChip(this)">When a new article is in my brief, share it to Slack</span>
+        <span class="builder-chip" onclick="useChip(this)">Remind me to exercise every weekday at 6pm</span>
+      </div>
+      <div class="builder-input-row">
+        <textarea id="builderInput" class="builder-input" rows="2" placeholder="Describe what you want to automate… e.g. 'When I save a memory tagged work, email me a summary at end of day'"></textarea>
+      </div>
+      <div class="builder-preview" id="builderPreview">
+        <div class="builder-preview-label">Preview</div>
+        <div class="builder-preview-trigger" id="builderPreviewTrigger"></div>
+        <div class="builder-preview-arrow">↓ REM will do:</div>
+        <div class="builder-preview-action" id="builderPreviewAction"></div>
+      </div>
+      <div class="builder-btns">
+        <button class="btn-enable" id="builderSubmitBtn" onclick="submitCustomAutomation()" style="max-width:200px;">
+          <span id="builderBtnText">Preview →</span>
+        </button>
+        <button class="btn-dismiss" id="builderEnableBtn" style="display:none;" onclick="confirmCustomAutomation()">Enable this →</button>
+        <button class="btn-dismiss" id="builderCancelBtn" style="display:none;" onclick="resetBuilder()">Start over</button>
+      </div>
+      <div id="builderStatus" style="font-size:0.78rem;color:var(--text3);min-height:16px;margin-top:8px;"></div>
+    </div>
+
+    <!-- AUTOMATIONS SECTION -->
+    <div class="section" id="automationsSection">
+      <div class="section-header">
+        <div>
+          <div class="section-eyebrow">Active Automations</div>
+          <div class="section-title">Running on your behalf</div>
+        </div>
+        <span class="section-meta" id="automationsMeta"></span>
+      </div>
+      <div id="automationsList"></div>
+    </div>
+
+  </div><!-- /mainContent -->
+
+</div><!-- /page -->
+
+<!-- ENABLE CONFIRMATION MODAL -->
+<div class="modal-backdrop" id="enableModal" onclick="if(event.target===this)closeEnableModal()">
+  <div class="modal-box">
+    <div class="modal-title" id="enableModalTitle">Enable this automation?</div>
+    <div class="modal-sub">Once enabled, REM will run this automatically every time the trigger happens. You can pause or remove it any time.</div>
+    <div class="modal-flow" id="enableModalFlow"></div>
+    <div class="modal-btns">
+      <button class="btn-modal-cancel" onclick="closeEnableModal()">Cancel</button>
+      <button class="btn-modal-confirm" id="enableModalConfirm">Enable →</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+
+<script>
+'use strict';
+
+var currentKey = null;
+var patterns = [];
+var automations = [];
+var pendingPatternId = null;
+var toastTimer = null;
+
+/* ── AUTH ── */
+async function init() {
+  var m = window.location.hash.match(/[#&]key=([^&]+)/);
+  if (m) {
+    var k = decodeURIComponent(m[1]);
+    if (k.length > 8) localStorage.setItem('slopshop_api_key', k);
+    history.replaceState(null, '', location.pathname);
+  }
+  var storedKey = localStorage.getItem('slopshop_api_key') || localStorage.getItem('slop_api_key');
+  var headers = storedKey ? { 'Authorization': 'Bearer ' + storedKey } : {};
+
+  var r = await fetch('/v1/auth/session', { credentials: 'include', headers: headers }).catch(function() { return { status: 500 }; });
+  if (r.status === 401 || r.status === 403) { window.location.replace('/auth/google?return_to=/automations'); return; }
+  var d = await r.json().catch(function() { return {}; });
+  currentKey = d.api_key || storedKey;
+  var initEl = document.getElementById('acctInitials');
+  if (initEl && d.user && d.user.email) initEl.textContent = computeInitials(d.user.email);
+
+  await loadAll();
+}
+
+function authHeaders() {
+  var h = { 'Content-Type': 'application/json' };
+  if (currentKey) h['Authorization'] = 'Bearer ' + currentKey;
+  return h;
+}
+
+/* ── LOAD DATA ── */
+async function loadAll() {
+  var [pRes, aRes] = await Promise.all([
+    fetch('/v1/patterns', { credentials: 'include', headers: authHeaders() }).catch(function() { return null; }),
+    fetch('/v1/automations', { credentials: 'include', headers: authHeaders() }).catch(function() { return null; })
+  ]);
+
+  var pData = pRes && pRes.ok ? await pRes.json().catch(function() { return {}; }) : {};
+  var aData = aRes && aRes.ok ? await aRes.json().catch(function() { return {}; }) : {};
+
+  patterns = pData.patterns || [];
+  automations = aData.automations || [];
+
+  // If no patterns from backend yet, show example patterns so the concept is clear
+  if (!patterns.length) {
+    patterns = getExamplePatterns();
+    patterns._isExample = true;
+  }
+
+  document.getElementById('loadingWrap').style.display = 'none';
+  document.getElementById('mainContent').style.display = '';
+
+  renderPatterns();
+  renderAutomations();
+}
+
+/* ── EXAMPLE PATTERNS (shown when backend hasn't detected any yet) ── */
+function getExamplePatterns() {
+  var arr = [
+    {
+      id: 'example_1', _example: true,
+      trigger: 'After a calendar event ends',
+      action: 'You open Notion and create a note',
+      trigger_icon: '📅', action_icon: '📝',
+      trigger_type: 'calendar_event_end', action_type: 'notion_note',
+      confidence: 0.87, frequency: 12, avg_delay_minutes: 23,
+      last_seen_days: 0
+    },
+    {
+      id: 'example_2', _example: true,
+      trigger: 'After you receive an email and open it',
+      action: 'You save the key takeaway to your memory library',
+      trigger_icon: '📧', action_icon: '💾',
+      trigger_type: 'email_opened', action_type: 'save_memory',
+      confidence: 0.76, frequency: 8, avg_delay_minutes: 45,
+      last_seen_days: 1
+    },
+    {
+      id: 'example_3', _example: true,
+      trigger: 'Every Monday morning',
+      action: 'You review your week plan in Notion',
+      trigger_icon: '🗓️', action_icon: '📋',
+      trigger_type: 'monday_morning', action_type: 'review_weekly',
+      confidence: 0.92, frequency: 7, avg_delay_minutes: 0,
+      last_seen_days: 3
+    }
+  ];
+  arr._isExample = true;
+  return arr;
+}
+
+/* ── RENDER PATTERNS ── */
+function renderPatterns() {
+  var list = document.getElementById('patternsList');
+  var meta = document.getElementById('patternsMeta');
+  list.innerHTML = '';
+
+  // Filter out patterns that have already been automated
+  var autoPatternIds = automations.map(function(a) { return a.pattern_id || ''; });
+  var pending = patterns.filter(function(p) { return !autoPatternIds.includes(p.id); });
+
+  if (!pending.length) {
+    var title = document.getElementById('patternsSectionTitle');
+    title.textContent = 'No new patterns yet';
+    list.innerHTML = '<div class="patterns-hint">' +
+      '<div class="patterns-hint-icon">👀</div>' +
+      '<div class="patterns-hint-title">REM is still watching</div>' +
+      '<p class="patterns-hint-sub">Connect your apps and use them normally for a few days. REM will start noticing patterns and surface suggestions here.</p>' +
+      '<div class="hint-steps">' +
+        '<span class="hint-step-chip">Connect Gmail</span>' +
+        '<span class="hint-step-chip">Connect Notion</span>' +
+        '<span class="hint-step-chip">Connect Calendar</span>' +
+      '</div>' +
+    '</div>';
+    meta.textContent = '';
+    return;
+  }
+
+  var isExample = !!patterns._isExample;
+  meta.textContent = isExample ? 'Examples — yours will appear once REM has enough data' : pending.length + ' suggestion' + (pending.length !== 1 ? 's' : '');
+
+  if (isExample) {
+    var banner = document.createElement('div');
+    banner.style.cssText = 'background:rgba(99,102,241,0.05);border:1px solid rgba(99,102,241,0.15);border-radius:10px;padding:10px 14px;margin-bottom:16px;font-size:0.78rem;color:var(--text2);display:flex;align-items:center;gap:8px;';
+    banner.innerHTML = '<span style="font-size:1rem;">✨</span> <span>These are <strong>example patterns</strong> showing what REM will detect from your connected apps. Your real patterns will appear here after a few days of use.</span>';
+    list.appendChild(banner);
+  }
+
+  pending.forEach(function(p) {
+    var conf = p.confidence || 0.75;
+    var confPct = Math.round(conf * 100);
+    var confClass = conf >= 0.8 ? '' : 'medium';
+    var isNew = (p.last_seen_days || 0) < 2;
+
+    var card = document.createElement('div');
+    card.className = 'pattern-card';
+    card.id = 'pat-' + p.id;
+
+    card.innerHTML =
+      '<div class="pattern-top">' +
+        '<div>' +
+          (isNew ? '<span class="new-badge" style="margin-right:6px;">New</span>' : '') +
+        '</div>' +
+        '<div class="pattern-conf">' +
+          '<span class="conf-badge ' + confClass + '">' + confPct + ' ★</span>' +
+        '</div>' +
+      '</div>' +
+      '<div class="pattern-flow">' +
+        '<div class="pattern-trigger-block">' +
+          '<div class="pattern-block-label">When this happens</div>' +
+          '<span class="pattern-block-icon">' + esc(p.trigger_icon || '⚡') + '</span>' +
+          '<div class="pattern-block-text">' + esc(p.trigger) + '</div>' +
+        '</div>' +
+        '<div class="pattern-arrow-wrap">→</div>' +
+        '<div class="pattern-action-block">' +
+          '<div class="pattern-block-label">You typically do this</div>' +
+          '<span class="pattern-block-icon">' + esc(p.action_icon || '✨') + '</span>' +
+          '<div class="pattern-block-text">' + esc(p.action) + '</div>' +
+        '</div>' +
+      '</div>' +
+      '<div class="pattern-meta">' +
+        '<span>Seen <strong>' + p.frequency + ' times</strong></span>' +
+        (p.avg_delay_minutes > 0 ?
+          '<span class="pattern-meta-dot"></span><span>Usually within ' + formatDelay(p.avg_delay_minutes) + '</span>' : '') +
+        (p.last_seen_days === 0 ? '<span class="pattern-meta-dot"></span><span>Last seen today</span>' :
+         p.last_seen_days === 1 ? '<span class="pattern-meta-dot"></span><span>Last seen yesterday</span>' :
+         p.last_seen_days ? '<span class="pattern-meta-dot"></span><span>Last seen ' + p.last_seen_days + ' days ago</span>' : '') +
+      '</div>' +
+      '<div class="pattern-btns">' +
+        '<button class="btn-enable" onclick="openEnableModal(\'' + escAttr(p.id) + '\')">Automate this →</button>' +
+        '<button class="btn-dismiss" onclick="dismissPattern(\'' + escAttr(p.id) + '\')">Not useful</button>' +
+      '</div>';
+
+    list.appendChild(card);
+  });
+}
+
+/* ── RENDER AUTOMATIONS ── */
+function renderAutomations() {
+  var list = document.getElementById('automationsList');
+  var meta = document.getElementById('automationsMeta');
+  list.innerHTML = '';
+
+  if (!automations.length) {
+    meta.textContent = '';
+    list.innerHTML =
+      '<div class="empty-state">' +
+        '<div class="empty-icon">⚙️</div>' +
+        '<div class="empty-title">No automations yet</div>' +
+        '<p class="empty-sub">Enable a pattern suggestion above and it will appear here. REM will run it silently every time the trigger fires.</p>' +
+      '</div>';
+    return;
+  }
+
+  meta.textContent = automations.length + ' running';
+
+  automations.forEach(function(a, idx) {
+    var card = document.createElement('div');
+    card.className = 'automation-card' + (a.enabled === false ? ' disabled' : '');
+    card.id = 'auto-' + a.id;
+    card.style.animationDelay = (idx * 0.06) + 's';
+
+    var lastRan = a.last_ran ? formatTimeAgo(a.last_ran) : 'never';
+    var runCount = a.run_count || 0;
+
+    card.innerHTML =
+      '<div class="auto-toggle">' +
+        '<label class="toggle-switch" title="' + (a.enabled !== false ? 'Pause' : 'Enable') + '">' +
+          '<input type="checkbox" ' + (a.enabled !== false ? 'checked' : '') + ' onchange="toggleAutomation(\'' + escAttr(a.id) + '\', this.checked)">' +
+          '<span class="toggle-track"></span>' +
+        '</label>' +
+      '</div>' +
+      '<div class="auto-body">' +
+        '<div class="auto-trigger-line"><span class="auto-trigger-icon">' + esc(a.trigger_icon || '⚡') + '</span>' + esc(a.trigger) + '</div>' +
+        '<div style="font-size:0.72rem;color:var(--text3);padding:3px 0 3px 2px;">↓ then</div>' +
+        '<div class="auto-action-line"><span class="auto-action-icon">' + esc(a.action_icon || '✨') + '</span>' + esc(a.action) + '</div>' +
+        '<div class="auto-stats">' +
+          (runCount > 0 ? '<span class="auto-run-badge">Ran ' + runCount + 'x</span>' : '') +
+          (runCount > 0 ? '<span class="auto-stat-dot"></span>' : '') +
+          'Last: ' + lastRan +
+        '</div>' +
+      '</div>' +
+      '<div class="auto-actions">' +
+        '<button class="btn-auto-log" onclick="toggleLog(\'' + escAttr(a.id) + '\')">Log ▾</button>' +
+        '<button class="btn-auto-del" onclick="deleteAutomation(\'' + escAttr(a.id) + '\')">Remove</button>' +
+      '</div>';
+
+    // Append log drawer placeholder
+    var logDrawer = document.createElement('div');
+    logDrawer.className = 'log-drawer';
+    logDrawer.id = 'log-' + a.id;
+    logDrawer.innerHTML = '<div style="font-size:0.78rem;color:var(--text3);padding:8px 0;">Loading log…</div>';
+    card.appendChild(logDrawer);
+
+    list.appendChild(card);
+  });
+}
+
+/* ── DISMISS PATTERN ── */
+function dismissPattern(id) {
+  var card = document.getElementById('pat-' + id);
+  if (card) {
+    card.style.transition = 'opacity 0.2s, transform 0.2s';
+    card.style.opacity = '0';
+    card.style.transform = 'translateX(8px)';
+    setTimeout(function() {
+      card.remove();
+      // Check if list is now empty
+      var list = document.getElementById('patternsList');
+      if (!list.querySelector('.pattern-card')) renderPatterns();
+    }, 220);
+  }
+  patterns = patterns.filter(function(p) { return p.id !== id; });
+  showToast('Dismissed — won\'t show again');
+}
+
+/* ── ENABLE MODAL ── */
+function openEnableModal(patternId) {
+  var p = patterns.find(function(x) { return x.id === patternId; });
+  if (!p) return;
+  pendingPatternId = patternId;
+
+  document.getElementById('enableModalTitle').textContent = 'Enable this automation?';
+  document.getElementById('enableModalFlow').innerHTML =
+    '<div class="modal-flow-trigger"><span>' + esc(p.trigger_icon || '⚡') + '</span> ' + esc(p.trigger) + '</div>' +
+    '<div class="modal-arrow">↓ REM automatically does:</div>' +
+    '<div class="modal-flow-action"><span>' + esc(p.action_icon || '✨') + '</span> ' + esc(p.action) + '</div>';
+
+  document.getElementById('enableModalConfirm').onclick = function() {
+    closeEnableModal();
+    enableAutomation(patternId);
+  };
+
+  document.getElementById('enableModal').classList.add('open');
+}
+
+function closeEnableModal() {
+  document.getElementById('enableModal').classList.remove('open');
+  pendingPatternId = null;
+}
+
+/* ── CREATE AUTOMATION ── */
+async function enableAutomation(patternId) {
+  var p = patterns.find(function(x) { return x.id === patternId; });
+  if (!p) return;
+
+  var btn = document.querySelector('#pat-' + CSS.escape(patternId) + ' .btn-enable');
+  if (btn) { btn.disabled = true; btn.textContent = 'Enabling…'; }
+
+  var body = {
+    pattern_id: p._example ? null : patternId,
+    trigger: p.trigger,
+    action: p.action,
+    trigger_type: p.trigger_type || '',
+    action_type: p.action_type || '',
+    trigger_icon: p.trigger_icon || '⚡',
+    action_icon: p.action_icon || '✨'
+  };
+
+  var res = await fetch('/v1/automations', {
+    method: 'POST', credentials: 'include', headers: authHeaders(), body: JSON.stringify(body)
+  }).catch(function() { return null; });
+
+  var newAuto;
+  if (res && res.ok) {
+    var data = await res.json().catch(function() { return {}; });
+    newAuto = data.automation || data;
+  } else {
+    // Optimistic local add if API not ready
+    newAuto = {
+      id: 'local_' + Date.now(),
+      trigger: p.trigger, action: p.action,
+      trigger_icon: p.trigger_icon || '⚡', action_icon: p.action_icon || '✨',
+      trigger_type: p.trigger_type, action_type: p.action_type,
+      enabled: true, run_count: 0, last_ran: null, pattern_id: patternId
+    };
+  }
+
+  // Remove from patterns list
+  var card = document.getElementById('pat-' + patternId);
+  if (card) {
+    card.style.transition = 'opacity 0.25s, transform 0.25s';
+    card.style.opacity = '0';
+    card.style.transform = 'scale(0.97)';
+    setTimeout(function() { card.remove(); }, 250);
+  }
+  patterns = patterns.filter(function(p) { return p.id !== patternId; });
+
+  // Add to automations
+  automations.unshift(newAuto);
+  renderAutomations();
+  showToast('Automation enabled ✓');
+}
+
+/* ── TOGGLE AUTOMATION ── */
+async function toggleAutomation(id, enabled) {
+  var card = document.getElementById('auto-' + id);
+  if (card) card.classList.toggle('disabled', !enabled);
+
+  await fetch('/v1/automations/' + encodeURIComponent(id), {
+    method: 'PATCH', credentials: 'include', headers: authHeaders(),
+    body: JSON.stringify({ enabled: enabled })
+  }).catch(function() {});
+
+  var auto = automations.find(function(a) { return a.id === id; });
+  if (auto) auto.enabled = enabled;
+  showToast(enabled ? 'Automation resumed' : 'Automation paused');
+}
+
+/* ── DELETE AUTOMATION ── */
+async function deleteAutomation(id) {
+  var card = document.getElementById('auto-' + id);
+  if (card) {
+    card.style.transition = 'opacity 0.2s, transform 0.2s';
+    card.style.opacity = '0';
+    card.style.transform = 'translateX(6px)';
+    setTimeout(function() { card.remove(); }, 220);
+  }
+  automations = automations.filter(function(a) { return a.id !== id; });
+
+  await fetch('/v1/automations/' + encodeURIComponent(id), {
+    method: 'DELETE', credentials: 'include', headers: authHeaders()
+  }).catch(function() {});
+
+  showToast('Automation removed');
+  if (!automations.length) setTimeout(renderAutomations, 250);
+}
+
+/* ── EXECUTION LOG ── */
+async function toggleLog(id) {
+  var drawer = document.getElementById('log-' + id);
+  if (!drawer) return;
+  var isOpen = drawer.classList.contains('open');
+  if (isOpen) { drawer.classList.remove('open'); return; }
+  drawer.classList.add('open');
+
+  // Fetch log
+  var res = await fetch('/v1/automations/' + encodeURIComponent(id) + '/log?limit=5', {
+    credentials: 'include', headers: authHeaders()
+  }).catch(function() { return null; });
+
+  var events = [];
+  if (res && res.ok) {
+    var data = await res.json().catch(function() { return {}; });
+    events = data.events || data.log || [];
+  }
+
+  if (!events.length) {
+    drawer.innerHTML = '<div style="font-size:0.78rem;color:var(--text3);padding:8px 4px;">No executions yet — this will show up once the trigger fires.</div>';
+    return;
+  }
+
+  drawer.innerHTML = events.map(function(e) {
+    var ok = e.status === 'success' || e.status === 'ok';
+    return '<div class="log-entry">' +
+      '<div class="log-status-dot ' + (ok ? 'success' : 'failed') + '"></div>' +
+      '<div class="log-time">' + esc(formatTimeAgo(e.ts || e.timestamp || e.created_at)) + '</div>' +
+      '<div class="log-detail">' + esc(e.detail || e.message || (ok ? 'Ran successfully' : 'Failed')) + '</div>' +
+    '</div>';
+  }).join('');
+}
+
+/* ── TOAST ── */
+function showToast(msg) {
+  var el = document.getElementById('toast');
+  el.textContent = msg;
+  el.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(function() { el.classList.remove('show'); }, 2600);
+}
+
+/* ── HELPERS ── */
+function formatDelay(minutes) {
+  if (minutes < 60) return minutes + ' min';
+  return Math.round(minutes / 60) + ' hr';
+}
+
+function formatTimeAgo(iso) {
+  try {
+    var d = new Date(iso);
+    var diff = Date.now() - d;
+    if (diff < 60000) return 'just now';
+    if (diff < 3600000) return Math.floor(diff / 60000) + 'm ago';
+    if (diff < 86400000) return Math.floor(diff / 3600000) + 'h ago';
+    return Math.floor(diff / 86400000) + 'd ago';
+  } catch (_) { return '—'; }
+}
+
+function esc(s) {
+  return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function escAttr(s) {
+  return String(s || '').replace(/"/g,'&quot;').replace(/'/g,'&#39;').replace(/\//g,'\/');
+}
+
+/* ── CUSTOM BUILDER ── */
+var pendingCustom = null;
+
+function useChip(el) {
+  var input = document.getElementById('builderInput');
+  if (input) { input.value = el.textContent.trim(); input.focus(); }
+  resetBuilder(true);
+}
+
+async function submitCustomAutomation() {
+  var input = document.getElementById('builderInput');
+  var statusEl = document.getElementById('builderStatus');
+  var q = (input ? input.value : '').trim();
+  if (!q) { if (statusEl) statusEl.textContent = 'Describe what you want to automate first.'; return; }
+
+  var btn = document.getElementById('builderSubmitBtn');
+  var btnText = document.getElementById('builderBtnText');
+  if (btn) btn.disabled = true;
+  if (btnText) btnText.textContent = 'Thinking…';
+  if (statusEl) statusEl.textContent = '';
+
+  // Call backend to parse the NL description into a structured automation preview
+  var res = await fetch('/v1/automations/preview', {
+    method: 'POST', credentials: 'include', headers: authHeaders(),
+    body: JSON.stringify({ description: q })
+  }).catch(function() { return null; });
+
+  var data = res && res.ok ? await res.json().catch(function() { return null; }) : null;
+
+  if (data && data.trigger && data.action) {
+    // Show structured preview
+    pendingCustom = data;
+    var prevTrigger = document.getElementById('builderPreviewTrigger');
+    var prevAction = document.getElementById('builderPreviewAction');
+    var preview = document.getElementById('builderPreview');
+    if (prevTrigger) prevTrigger.innerHTML = '<span>' + esc(data.trigger_icon || '⚡') + '</span> ' + esc(data.trigger);
+    if (prevAction) prevAction.innerHTML = '<span>' + esc(data.action_icon || '✨') + '</span> ' + esc(data.action);
+    if (preview) preview.classList.add('show');
+    if (btnText) btnText.textContent = 'Preview →';
+    if (btn) btn.disabled = false;
+    document.getElementById('builderEnableBtn').style.display = '';
+    document.getElementById('builderCancelBtn').style.display = '';
+    document.getElementById('builderChips').style.display = 'none';
+    return;
+  }
+
+  // Backend not ready / no structured response — create directly from description
+  pendingCustom = {
+    trigger: 'When: ' + q.substring(0, 80),
+    action: q,
+    trigger_icon: '✏️',
+    action_icon: '⚡',
+    description: q
+  };
+  var prevTrigger = document.getElementById('builderPreviewTrigger');
+  var prevAction = document.getElementById('builderPreviewAction');
+  var preview = document.getElementById('builderPreview');
+  if (prevTrigger) prevTrigger.innerHTML = '<span>✏️</span> Custom automation';
+  if (prevAction) prevAction.innerHTML = '<span>⚡</span> ' + esc(q.substring(0, 120));
+  if (preview) preview.classList.add('show');
+  if (btnText) btnText.textContent = 'Preview →';
+  if (btn) btn.disabled = false;
+  document.getElementById('builderEnableBtn').style.display = '';
+  document.getElementById('builderCancelBtn').style.display = '';
+  document.getElementById('builderChips').style.display = 'none';
+}
+
+async function confirmCustomAutomation() {
+  if (!pendingCustom) return;
+  var btn = document.getElementById('builderEnableBtn');
+  if (btn) { btn.disabled = true; btn.textContent = 'Enabling…'; }
+
+  var body = {
+    trigger: pendingCustom.trigger,
+    action: pendingCustom.action,
+    trigger_icon: pendingCustom.trigger_icon || '✏️',
+    action_icon: pendingCustom.action_icon || '⚡',
+    trigger_type: pendingCustom.trigger_type || 'custom',
+    action_type: pendingCustom.action_type || 'custom',
+    description: pendingCustom.description || pendingCustom.action
+  };
+
+  var res = await fetch('/v1/automations', {
+    method: 'POST', credentials: 'include', headers: authHeaders(), body: JSON.stringify(body)
+  }).catch(function() { return null; });
+
+  var newAuto;
+  if (res && res.ok) {
+    var data = await res.json().catch(function() { return {}; });
+    newAuto = data.automation || data;
+  } else {
+    newAuto = {
+      id: 'local_' + Date.now(), enabled: true, run_count: 0, last_ran: null,
+      trigger: pendingCustom.trigger, action: pendingCustom.action,
+      trigger_icon: pendingCustom.trigger_icon || '✏️',
+      action_icon: pendingCustom.action_icon || '⚡'
+    };
+  }
+
+  automations.unshift(newAuto);
+  renderAutomations();
+  resetBuilder(false);
+  showToast('Automation created ✓');
+  // Scroll to active automations
+  var sec = document.getElementById('automationsSection');
+  if (sec) sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function resetBuilder(keepInput) {
+  pendingCustom = null;
+  var preview = document.getElementById('builderPreview');
+  if (preview) preview.classList.remove('show');
+  var btn = document.getElementById('builderSubmitBtn');
+  var btnText = document.getElementById('builderBtnText');
+  if (btn) btn.disabled = false;
+  if (btnText) btnText.textContent = 'Preview →';
+  document.getElementById('builderEnableBtn').style.display = 'none';
+  document.getElementById('builderCancelBtn').style.display = 'none';
+  document.getElementById('builderChips').style.display = '';
+  document.getElementById('builderStatus').textContent = '';
+  if (!keepInput) { var inp = document.getElementById('builderInput'); if (inp) inp.value = ''; }
+}
+
+/* ── HANDLE ?q= PARAM (from Ask REM redirect) ── */
+function checkBuilderParam() {
+  var params = new URLSearchParams(window.location.search);
+  var q = params.get('q');
+  if (q) {
+    var input = document.getElementById('builderInput');
+    if (input) {
+      input.value = decodeURIComponent(q);
+      // Scroll to builder and focus
+      var builderSection = document.getElementById('builderSection');
+      if (builderSection) {
+        setTimeout(function() {
+          builderSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          input.focus();
+        }, 600);
+      }
+    }
+    // Clean up URL
+    history.replaceState(null, '', location.pathname);
+  }
+}
+
+/* ── KEYBOARD ── */
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeEnableModal();
+});
+
+init().then(function() { checkBuilderParam(); });
+
+function computeInitials(email) {
+  if (!email) return '?';
+  var local = email.split('@')[0];
+  var parts = local.split(/[._\-]/);
+  if (parts.length >= 2 && parts[0] && parts[1]) return (parts[0][0] + parts[1][0]).toUpperCase();
+  return local.substring(0, 2).toUpperCase();
+}
+
+function toggleAcctMenu() {
+  var d = document.getElementById('acctDropdown');
+  if (!d) return;
+  d.classList.toggle('open');
+}
+
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('#acct-menu-wrap')) {
+    var d = document.getElementById('acctDropdown');
+    if (d) d.classList.remove('open');
+  }
+});
+</script>
+<nav class="mobile-tab-bar" aria-label="Main navigation">
+  <a href="/context" class="mobile-tab">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    <span class="mobile-tab-label">Context</span>
+  </a>
+  <a href="/morning" class="mobile-tab">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+    <span class="mobile-tab-label">Now</span>
+  </a>
+  <a href="/dream" class="mobile-tab">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+    <span class="mobile-tab-label">Ask</span>
+  </a>
+  <a href="/automations" class="mobile-tab active">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+    <span class="mobile-tab-label">Auto</span>
+  </a>
+  <a href="/console" class="mobile-tab">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+    <span class="mobile-tab-label">Apps</span>
+  </a>
+</nav>
+</body>
+</html>

@@ -1,0 +1,27 @@
+{
+  "name": "REM Labs",
+  "short_name": "REM",
+  "description": "The AI that thinks while you sleep.",
+  "start_url": "/morning",
+  "display": "standalone",
+  "background_color": "#0f0e17",
+  "theme_color": "#0f0e17",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "https://remlabs.ai/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "https://remlabs.ai/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [],
+  "categories": ["productivity", "lifestyle"],
+  "lang": "en-US"
+}

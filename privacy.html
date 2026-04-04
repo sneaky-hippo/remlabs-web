@@ -33,6 +33,47 @@
     .divider { height: 1px; background: var(--border); margin: 40px 0; }
     footer { text-align: center; padding: 32px 28px; border-top: 1px solid var(--border); font-size: 0.78rem; color: var(--text3); }
     footer a { color: var(--text2); }
+    .trust-banner {
+      background: linear-gradient(135deg, rgba(99,102,241,0.04), rgba(129,140,248,0.06));
+      border: 1px solid rgba(99,102,241,0.18);
+      border-radius: 18px; padding: 32px 36px; margin-bottom: 48px;
+    }
+    .trust-banner-title {
+      font-size: 1.3rem; font-weight: 700; color: var(--text);
+      letter-spacing: -0.025em; margin-bottom: 20px;
+    }
+    .trust-promises { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px; }
+    .trust-promises li {
+      display: flex; align-items: flex-start; gap: 12px;
+      font-size: 0.9rem; color: var(--text2); line-height: 1.6; margin: 0;
+    }
+    .trust-icon {
+      width: 22px; height: 22px; border-radius: 50%;
+      background: rgba(99,102,241,0.1); color: var(--accent);
+      font-size: 0.72rem; display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; margin-top: 1px;
+    }
+    .trust-promises strong { color: var(--text); font-weight: 600; }
+    .contact-section {
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: 14px; padding: 28px 32px; margin-top: 40px;
+    }
+    .contact-section h2 { margin-top: 0; margin-bottom: 10px; }
+    .contact-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-top: 16px; }
+    .contact-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--accent); color: #fff; text-decoration: none;
+      padding: 9px 18px; border-radius: 9px; font-size: 0.875rem; font-weight: 600;
+      transition: opacity 0.15s;
+    }
+    .contact-link:hover { opacity: 0.85; text-decoration: none; }
+    .contact-link-secondary {
+      display: inline-flex; align-items: center; gap: 6px;
+      color: var(--text2); text-decoration: none;
+      padding: 9px 18px; border-radius: 9px; font-size: 0.875rem; font-weight: 500;
+      border: 1px solid var(--border2); transition: all 0.15s;
+    }
+    .contact-link-secondary:hover { color: var(--text); background: rgba(0,0,0,0.04); text-decoration: none; }
   </style>
 </head>
 <body>
@@ -52,6 +93,32 @@
 <div class="wrap">
   <h1>Privacy Policy</h1>
   <p class="updated">Last updated: April 2, 2026</p>
+
+  <div class="trust-banner">
+    <div class="trust-banner-title">Our five privacy promises</div>
+    <ul class="trust-promises">
+      <li>
+        <span class="trust-icon">✓</span>
+        <span><strong>We never sell your data.</strong> Your memories, goals, and notes are yours. Full stop.</span>
+      </li>
+      <li>
+        <span class="trust-icon">✓</span>
+        <span><strong>Your memories are never used to train AI.</strong> We only use fully anonymized, unidentifiable pattern data — never your actual content.</span>
+      </li>
+      <li>
+        <span class="trust-icon">✓</span>
+        <span><strong>No tracking cookies, no ads.</strong> We use only HTTP-only session cookies for login. Nothing else follows you around.</span>
+      </li>
+      <li>
+        <span class="trust-icon">✓</span>
+        <span><strong>Delete everything, any time.</strong> You can delete individual memories or your entire account at any moment — no questions asked.</span>
+      </li>
+      <li>
+        <span class="trust-icon">✓</span>
+        <span><strong>We respond within 48 hours.</strong> Any privacy concern you raise will get a real response, fast.</span>
+      </li>
+    </ul>
+  </div>
 
   <p>REM Labs ("we", "us", "our") operates remlabs.ai and the REM Labs platform. This Privacy Policy explains how we collect, use, and protect information about you.</p>
 
@@ -74,7 +141,8 @@
   </ul>
 
   <h2>Memory Data</h2>
-  <p>Your memory content is processed by our Dream Engine to generate insights, patterns, and your Morning Brief. This processing happens on our infrastructure. We do not sell your memory data to third parties or use it to train AI models without your explicit consent.</p>
+  <p>Your memory content is processed by our Dream Engine to generate insights, patterns, and your Morning Brief. This processing happens on our infrastructure.</p>
+  <p>When we use data to improve our AI models, we do so only after a strict anonymization process: we strip all personal identifiers and materially alter the facts in your data until nothing in it can be traced back to you. What remains after this process is anonymous pattern data — it is no longer your personal data, and it no longer represents your specific memories or experiences. Only this fully anonymized output may be used for model improvement. Your original, un-anonymized memory data is never used for AI training. We do not sell your data.</p>
 
   <h2>Data Storage and Security</h2>
   <p>Your data is stored on secure servers. We use industry-standard encryption in transit (TLS) and at rest. We implement security best practices including rate limiting, access controls, and regular security reviews.</p>
@@ -97,10 +165,15 @@
   <h2>Changes to This Policy</h2>
   <p>We may update this Privacy Policy from time to time. We will notify you of significant changes by posting a notice on our platform or emailing you.</p>
 
-  <div class="divider"></div>
-
-  <h2>Contact</h2>
-  <p>Questions about this Privacy Policy? Email us at <a href="mailto:privacy@remlabs.ai">privacy@remlabs.ai</a>.</p>
+  <div class="contact-section">
+    <h2>Contact us</h2>
+    <p>Have a privacy question, want to export your data, or need to delete your account? We're a small team and we respond personally.</p>
+    <div class="contact-row">
+      <a href="mailto:dev@remlabs.ai" class="contact-link">dev@remlabs.ai</a>
+      <a href="mailto:privacy@remlabs.ai" class="contact-link-secondary">privacy@remlabs.ai</a>
+    </div>
+    <p style="margin-top:14px;font-size:0.82rem;">We respond within 48 hours. For account deletion requests, include the email address on your account.</p>
+  </div>
 </div>
 
 <footer>

@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Persistent memory for every AI. Dream Engine synthesizes overnight. Morning Brief every day.">
-  <meta property="og:title" content="REM Labs — Memory that compounds.">
-  <meta property="og:description" content="Persistent memory for every AI. Dream Engine synthesizes overnight. Morning Brief every day.">
+  <meta name="description" content="Connect your apps once. REM reads everything, automates your habits, and surfaces insights from your own data. Zero effort. Gets smarter every day.">
+  <meta property="og:title" content="REM Labs — Your life, automated.">
+  <meta property="og:description" content="Connect your apps once. REM reads everything, automates your habits, and surfaces insights from your own data. Zero effort. Gets smarter every day.">
   <meta property="og:type" content="website">
   <meta name="theme-color" content="#ffffff">
-  <title>REM Labs — Memory that compounds.</title>
+  <title>REM Labs — Your life, automated.</title>
   <link rel="canonical" href="https://remlabs.ai">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,1456 +16,758 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg:       #ffffff;
-      --bg2:      #f5f5f7;
-      --bg3:      #f0f0f5;
-      --border:   rgba(0,0,0,0.07);
-      --border2:  rgba(0,0,0,0.12);
-      --text:     #1d1d1f;
-      --text2:    #6e6e73;
-      --text3:    #aeaeb2;
-      --accent:   #6366f1;
-      --accent2:  #818cf8;
+      --bg:        #ffffff;
+      --bg2:       #f5f5f7;
+      --bg3:       #f0f0f5;
+      --border:    rgba(0,0,0,0.07);
+      --border2:   rgba(0,0,0,0.12);
+      --text:      #1d1d1f;
+      --text2:     #6e6e73;
+      --text3:     #aeaeb2;
+      --accent:    #6366f1;
+      --accent2:   #818cf8;
       --accent-bg: rgba(99,102,241,0.06);
       --accent-border: rgba(99,102,241,0.2);
-      --green:    #34c759;
-      --font:     'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      --mono:     'JetBrains Mono', monospace;
-      --nav-h:    52px;
-      --max-w:    1160px;
-      --r:        12px;
+      --green:     #34c759;
+      --font:      'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --mono:      'JetBrains Mono', monospace;
+      --nav-h:     52px;
+      --max-w:     1160px;
+      --r:         12px;
     }
 
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
+
     body {
       background: var(--bg);
       color: var(--text);
       font-family: var(--font);
       font-size: 16px;
-      line-height: 1.5;
+      line-height: 1.6;
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
     }
+
     a { color: inherit; text-decoration: none; }
-    button { font-family: inherit; cursor: pointer; border: none; background: none; }
 
-    /* ── Reveal ── */
-    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
-    .reveal.visible { opacity: 1; transform: none; }
-    .d1 { transition-delay: 0.08s; }
-    .d2 { transition-delay: 0.16s; }
-    .d3 { transition-delay: 0.24s; }
-    .d4 { transition-delay: 0.32s; }
-
-    /* ══════════════════════════════
-       NAV
-    ══════════════════════════════ */
-    .nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      height: var(--nav-h);
-      background: rgba(255,255,255,0.82);
-      backdrop-filter: saturate(180%) blur(20px);
-      -webkit-backdrop-filter: saturate(180%) blur(20px);
-      border-bottom: 1px solid var(--border);
-    }
-    .nav-inner {
-      max-width: var(--max-w);
-      margin: 0 auto;
-      padding: 0 28px;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      gap: 4px;
-    }
-    .nav-logo {
-      display: flex; align-items: center; gap: 8px;
-      font-size: 0.9rem; font-weight: 400; color: var(--text);
-      letter-spacing: 0.02em; flex-shrink: 0; margin-right: 16px;
-    }
-    .nav-logo-mark {
-      width: 22px; height: 22px;
-      display: flex; align-items: center; justify-content: center;
-    }
-    .nav-links { display: flex; align-items: center; gap: 0; flex: 1; }
-    .nav-link {
-      padding: 6px 12px; border-radius: 8px;
-      font-size: 0.84rem; font-weight: 400; color: var(--text2);
-      transition: color 0.15s, background 0.15s;
-    }
+    /* ─── NAV ─────────────────────────────────────────────────────── */
+    .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: var(--nav-h); background: rgba(255,255,255,0.82); backdrop-filter: saturate(180%) blur(20px); -webkit-backdrop-filter: saturate(180%) blur(20px); border-bottom: 1px solid var(--border); }
+    .nav-inner { max-width: var(--max-w); margin: 0 auto; padding: 0 28px; height: 100%; display: flex; align-items: center; justify-content: space-between; position: relative; }
+    .nav-logo { display: flex; align-items: center; gap: 8px; font-size: 0.9rem; font-weight: 500; color: var(--text); letter-spacing: 0.01em; text-decoration: none; flex-shrink: 0; line-height: 1; }
+    .nav-logo svg { animation: orbit-spin 10s linear infinite; display: block; flex-shrink: 0; }
+    @keyframes orbit-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    .nav-right { display: flex; align-items: center; gap: 0; flex-shrink: 0; }
+    .nav-link { padding: 6px 12px; border-radius: 8px; font-size: 0.84rem; font-weight: 400; color: var(--text2); transition: color 0.15s, background 0.15s; text-decoration: none; white-space: nowrap; }
     .nav-link:hover { color: var(--text); background: rgba(0,0,0,0.04); }
-    .nav-actions { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
-    .nav-signin {
-      padding: 7px 14px; border-radius: 8px;
-      font-size: 0.84rem; font-weight: 500; color: var(--text2);
-      border: 1px solid var(--border2);
-      transition: all 0.15s;
-    }
+    .nav-actions { display: flex; align-items: center; gap: 8px; margin-left: 6px; }
+    .nav-signin { padding: 7px 14px; border-radius: 8px; font-size: 0.84rem; font-weight: 500; color: var(--text2); border: 1px solid var(--border2); transition: all 0.15s; text-decoration: none; white-space: nowrap; }
     .nav-signin:hover { color: var(--text); border-color: rgba(0,0,0,0.2); }
-    .nav-cta {
-      padding: 7px 16px; border-radius: 8px;
-      font-size: 0.84rem; font-weight: 500;
-      background: var(--text); color: #fff;
-      transition: opacity 0.15s;
-    }
-    .nav-cta:hover { opacity: 0.82; }
+    .nav-cta { padding: 7px 16px; border-radius: 8px; font-size: 0.84rem; font-weight: 500; background: var(--text); color: #fff; transition: opacity 0.15s; text-decoration: none; white-space: nowrap; }
+    .nav-cta:hover { opacity: 0.82; transform: translateY(-1px); }
     .nav-dash { display: none; }
     .nav-dash.visible { display: flex; }
-    .hamburger {
-      display: none; flex-direction: column; gap: 4px;
-      padding: 8px; margin-left: auto; border-radius: 8px;
-      cursor: pointer; transition: background 0.15s;
-    }
+    .hamburger { display: none; flex-direction: column; gap: 4px; padding: 8px; border-radius: 8px; cursor: pointer; transition: background 0.15s; background: none; border: none; }
     .hamburger:hover { background: rgba(0,0,0,0.04); }
     .hamburger span { display: block; width: 18px; height: 1.5px; background: var(--text2); border-radius: 2px; transition: all 0.2s; }
     .hamburger.open span:nth-child(1) { transform: translateY(5.5px) rotate(45deg); }
     .hamburger.open span:nth-child(2) { opacity: 0; }
     .hamburger.open span:nth-child(3) { transform: translateY(-5.5px) rotate(-45deg); }
-    .mob-menu {
-      display: none; flex-direction: column;
-      background: rgba(255,255,255,0.96);
-      backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--border);
-      padding: 8px 16px 20px;
-      gap: 2px;
-    }
+    .mob-menu { display: none; flex-direction: column; background: rgba(255,255,255,0.97); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); padding: 8px 16px 20px; gap: 2px; position: fixed; top: var(--nav-h); left: 0; right: 0; z-index: 99; }
     .mob-menu.open { display: flex; }
-    .mob-menu a {
-      padding: 10px 12px; border-radius: 8px;
-      font-size: 0.9rem; color: var(--text2);
-      transition: background 0.12s, color 0.12s;
-    }
+    .mob-menu a { padding: 10px 12px; border-radius: 8px; font-size: 0.9rem; color: var(--text2); transition: background 0.12s, color 0.12s; }
     .mob-menu a:hover { background: rgba(0,0,0,0.04); color: var(--text); }
     .mob-divider { height: 1px; background: var(--border); margin: 6px 0; }
     .mob-cta { background: var(--text)!important; color: #fff!important; font-weight: 500!important; text-align: center; margin-top: 4px; }
-    @media (max-width: 720px) {
-      .nav-links, .nav-signin { display: none!important; }
-      .hamburger { display: flex!important; }
-    }
+    @media (max-width: 720px) { .nav-right .nav-link, .nav-signin { display: none!important; } .hamburger { display: flex!important; } }
 
-    /* ══════════════════════════════
-       HERO
-    ══════════════════════════════ */
+    /* ─── REVEAL ─────────────────────────────────────────────────── */
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+    .d1 { transition-delay: 0.08s; } .d2 { transition-delay: 0.16s; } .d3 { transition-delay: 0.24s; } .d4 { transition-delay: 0.32s; }
+
+    /* ─── HERO ─────────────────────────────────────────────────────── */
     .hero {
-      min-height: 100vh;
-      padding: calc(var(--nav-h) + 80px) 28px 100px;
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       text-align: center;
-      position: relative; overflow: hidden;
-    }
-    .hero-glow {
-      position: absolute; inset: 0; pointer-events: none;
-      background:
-        radial-gradient(ellipse 70% 50% at 50% 30%, rgba(99,102,241,0.07) 0%, transparent 65%),
-        radial-gradient(ellipse 50% 40% at 30% 60%, rgba(139,92,246,0.04) 0%, transparent 60%);
-    }
-    .hero-body { position: relative; z-index: 1; max-width: 780px; }
-    .hero-eyebrow {
-      display: inline-flex; align-items: center; gap: 8px;
-      font-size: 0.75rem; font-weight: 500; letter-spacing: 0.06em;
-      text-transform: uppercase; color: var(--accent);
-      margin-bottom: 32px;
-    }
-    .hero-eyebrow-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--accent); opacity: 0.6; }
-    h1 {
-      font-size: clamp(2.8rem, 6.5vw, 5.5rem);
-      font-weight: 600;
-      letter-spacing: -0.04em;
-      line-height: 1.06;
-      color: var(--text);
-      margin-bottom: 24px;
-    }
-    h1 .grad {
-      background: linear-gradient(135deg, var(--accent) 0%, #a78bfa 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    .hero-sub {
-      font-size: 1.1rem; font-weight: 300;
-      color: var(--text2); line-height: 1.7;
-      max-width: 520px; margin: 0 auto 40px;
-    }
-    .hero-actions {
-      display: flex; align-items: center; justify-content: center;
-      gap: 12px; flex-wrap: wrap; margin-bottom: 20px;
-    }
-    .btn {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 12px 24px; border-radius: 10px;
-      font-size: 0.9rem; font-weight: 500;
-      transition: all 0.18s; min-height: 44px;
-    }
-    .btn-dark { background: var(--text); color: #fff; }
-    .btn-dark:hover { opacity: 0.8; transform: translateY(-1px); }
-    .btn-outline { border: 1px solid var(--border2); color: var(--text2); }
-    .btn-outline:hover { border-color: rgba(0,0,0,0.2); color: var(--text); background: rgba(0,0,0,0.02); }
-    .hero-fine { font-size: 0.78rem; color: var(--text3); font-weight: 400; }
-
-    /* ══════════════════════════════
-       STATS STRIP
-    ══════════════════════════════ */
-    .stats {
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      background: var(--bg2);
-    }
-    .stats-inner {
-      display: grid; grid-template-columns: repeat(4,1fr);
-      max-width: var(--max-w); margin: 0 auto;
-    }
-    .stat {
-      padding: 36px 28px; text-align: center;
-      border-right: 1px solid var(--border);
-    }
-    .stat:last-child { border-right: none; }
-    .stat-n {
-      font-size: 2.2rem; font-weight: 600;
-      letter-spacing: -0.04em; color: var(--text);
-      line-height: 1; margin-bottom: 6px;
-    }
-    .stat-n em { color: var(--accent); font-style: normal; }
-    .stat-l { font-size: 0.78rem; color: var(--text2); font-weight: 400; }
-
-    /* ══════════════════════════════
-       SECTION SHARED
-    ══════════════════════════════ */
-    .section { padding: 100px 28px; }
-    .section-inner { max-width: var(--max-w); margin: 0 auto; }
-    .split {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 80px; align-items: center;
-    }
-    .split.flip { direction: rtl; }
-    .split.flip > * { direction: ltr; }
-    .eyebrow {
-      font-size: 0.72rem; font-weight: 500;
-      letter-spacing: 0.08em; text-transform: uppercase;
-      color: var(--accent); margin-bottom: 14px;
-    }
-    h2 {
-      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
-      font-weight: 600; letter-spacing: -0.03em;
-      line-height: 1.12; color: var(--text);
-      margin-bottom: 18px;
-    }
-    .body-text {
-      font-size: 1rem; font-weight: 300;
-      line-height: 1.75; color: var(--text2);
-      margin-bottom: 28px; max-width: 460px;
-    }
-    .bullets { display: flex; flex-direction: column; gap: 12px; }
-    .bullet { display: flex; align-items: flex-start; gap: 12px; }
-    .bullet-dot {
-      width: 5px; height: 5px; border-radius: 50%;
-      background: var(--accent); flex-shrink: 0; margin-top: 9px;
-    }
-    .bullet strong { display: block; font-size: 0.88rem; font-weight: 500; color: var(--text); margin-bottom: 1px; }
-    .bullet span { font-size: 0.83rem; font-weight: 300; color: var(--text2); line-height: 1.5; }
-
-    /* ══════════════════════════════
-       DEMO CARD
-    ══════════════════════════════ */
-    .demo-card {
-      background: var(--bg2);
-      border: 1px solid var(--border);
-      border-radius: 16px;
+      padding: calc(var(--nav-h) + 60px) 28px 80px;
+      position: relative;
       overflow: hidden;
     }
-    .demo-bar {
-      display: flex; align-items: center; gap: 6px;
-      padding: 12px 16px;
-      border-bottom: 1px solid var(--border);
-      background: var(--bg);
+    .hero-glow {
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 900px; height: 700px;
+      background: radial-gradient(ellipse at center, rgba(99,102,241,0.08) 0%, transparent 65%);
+      pointer-events: none; z-index: 0;
     }
-    .dot { width: 10px; height: 10px; border-radius: 50%; }
-    .dot.r { background: #ff5f57; }
-    .dot.y { background: #febc2e; }
-    .dot.g { background: #28c840; }
-    .demo-label { font-size: 0.72rem; color: var(--text3); font-family: var(--mono); margin-left: 6px; }
-    .demo-body {
-      padding: 20px;
-      font-family: var(--mono); font-size: 0.77rem;
-      line-height: 1.75; color: var(--text);
+    .hero-inner {
+      position: relative; z-index: 1; max-width: 680px;
+      display: flex; flex-direction: column; align-items: center; gap: 18px;
     }
-    .c-dim { color: var(--text3); }
-    .c-key { color: #7c3aed; }
-    .c-val { color: #059669; }
-    .c-num { color: #d97706; }
-    .c-acc { color: var(--accent); }
-    .demo-input-row {
-      display: flex; gap: 8px;
-      padding: 16px 20px; border-top: 1px solid var(--border);
-      background: var(--bg);
+    .hero h1 {
+      font-size: clamp(2.8rem, 6.5vw, 5rem);
+      font-weight: 500; letter-spacing: -0.03em;
+      line-height: 1.07; color: var(--text);
     }
-    .demo-input {
-      flex: 1; background: var(--bg2); border: 1px solid var(--border2);
-      border-radius: 8px; padding: 8px 12px;
-      font-family: var(--mono); font-size: 0.76rem;
-      color: var(--text); outline: none;
-      transition: border-color 0.15s;
+    .hero-sub {
+      font-size: clamp(1rem, 2vw, 1.15rem);
+      font-weight: 400; color: var(--text2);
+      max-width: 520px; line-height: 1.7;
     }
-    .demo-input:focus { border-color: var(--accent); }
-    .demo-input::placeholder { color: var(--text3); }
-    .demo-run {
-      padding: 8px 14px; border-radius: 8px;
-      background: var(--text); color: #fff;
-      font-size: 0.77rem; font-weight: 500;
-      transition: opacity 0.15s;
-    }
-    .demo-run:hover { opacity: 0.78; }
-    #demo-out { padding: 0 20px 16px; font-family: var(--mono); font-size: 0.77rem; line-height: 1.7; }
-
-    /* ══════════════════════════════
-       DREAM PIPELINE CARD
-    ══════════════════════════════ */
-    .pipeline-card {
-      background: var(--bg2);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 24px;
-    }
-    .pipe-header {
-      display: flex; align-items: center; gap: 7px;
-      font-size: 0.7rem; font-weight: 500;
-      text-transform: uppercase; letter-spacing: 0.08em;
-      color: var(--text3); margin-bottom: 20px;
-      font-family: var(--mono);
-    }
-    .live-dot {
-      width: 6px; height: 6px; border-radius: 50%;
-      background: var(--green);
-      animation: blink 1.5s ease-in-out infinite;
-    }
-    @keyframes blink { 0%,100% { opacity:1; } 50% { opacity:0.3; } }
-    .stages { display: flex; flex-direction: column; gap: 3px; }
-    .stage {
+    .hero-actions {
       display: flex; align-items: center; gap: 12px;
-      padding: 8px 12px; border-radius: 8px;
-      border: 1px solid transparent;
-      transition: all 0.35s;
+      flex-wrap: wrap; justify-content: center; margin-top: 4px;
     }
-    .stage.on { background: var(--accent-bg); border-color: var(--accent-border); }
-    .stage-pip {
-      width: 6px; height: 6px; border-radius: 50%;
-      background: var(--border2); flex-shrink: 0;
-      transition: background 0.35s;
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 16px 40px; border-radius: 100px;
+      font-size: 1rem; font-weight: 500;
+      background: var(--text); color: #fff;
+      box-shadow: 0 20px 40px -10px rgba(99,102,241,0.15);
+      transition: opacity 0.15s, transform 0.15s, box-shadow 0.15s;
     }
-    .stage.on .stage-pip { background: var(--accent); }
-    .stage-name {
-      font-family: var(--mono); font-size: 0.75rem;
-      color: var(--text3); flex: 1; transition: color 0.35s;
-    }
-    .stage.on .stage-name { color: var(--accent); }
-    .stage-tag { font-size: 0.68rem; color: var(--text3); }
-    .pipe-footer {
-      margin-top: 16px; padding-top: 14px;
-      border-top: 1px solid var(--border);
-      display: flex; justify-content: space-between; align-items: center;
-    }
-    .pipe-footer-l { font-family: var(--mono); font-size: 0.68rem; color: var(--text3); }
-    .pipe-score { font-family: var(--mono); font-size: 0.84rem; font-weight: 500; color: var(--accent); }
+    .btn-primary:hover { opacity: 0.88; transform: translateY(-2px); box-shadow: 0 24px 48px -8px rgba(99,102,241,0.22); }
+    .hero-fine { font-size: 0.8rem; font-weight: 400; color: var(--text3); }
 
-    /* stat mini cards */
-    .mini-stats { display: grid; grid-template-columns: repeat(2,1fr); gap: 10px; margin-bottom: 24px; }
-    .mini-stat {
-      background: var(--bg2); border: 1px solid var(--border);
-      border-radius: 10px; padding: 16px; text-align: center;
+    /* ─── SECTION SHARED ────────────────────────────────────────────── */
+    .section { padding: 72px 28px; }
+    .section-bg2 { background: var(--bg2); }
+    .section-inner { max-width: var(--max-w); margin: 0 auto; }
+    .section-head { text-align: center; max-width: 560px; margin: 0 auto 48px; }
+    .section-eyebrow {
+      display: inline-block; font-size: 0.72rem; font-family: var(--font);
+      font-weight: 600; color: var(--accent); letter-spacing: 0.1em;
+      text-transform: uppercase; margin-bottom: 12px;
     }
-    .mini-stat .n {
-      font-size: 1.5rem; font-weight: 600; letter-spacing: -0.03em;
-      color: var(--text); margin-bottom: 3px;
+    .section-h2 {
+      font-size: clamp(1.9rem, 3.5vw, 2.8rem); font-weight: 500;
+      letter-spacing: -0.03em; line-height: 1.15; color: var(--text); margin-bottom: 16px;
     }
-    .mini-stat .n em { color: var(--accent); font-style: normal; }
-    .mini-stat .l { font-size: 0.72rem; color: var(--text2); font-weight: 300; }
+    .section-sub { font-size: 1rem; font-weight: 400; color: var(--text2); line-height: 1.7; }
 
-    /* ══════════════════════════════
-       HIVE
-    ══════════════════════════════ */
-    .hive-wrap {
-      position: relative; width: 280px; height: 280px;
-      margin: 0 auto;
-      display: flex; align-items: center; justify-content: center;
-    }
-    .hive-ring {
-      position: absolute; width: 100%; height: 100%;
-      border-radius: 50%;
-      border: 1px dashed rgba(99,102,241,0.15);
-      animation: spin 22s linear infinite;
-    }
-    @keyframes spin { to { transform: rotate(360deg); } }
-    .hive-node {
-      position: absolute;
-      width: 48px; height: 48px; border-radius: 50%;
-      background: var(--bg); border: 1px solid var(--border2);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.1rem;
-    }
-    .hive-node:nth-child(2) { top: -24px; left: 50%; transform: translateX(-50%); }
-    .hive-node:nth-child(3) { bottom: 18px; left: -18px; }
-    .hive-node:nth-child(4) { bottom: 18px; right: -18px; }
-    .hive-core {
-      width: 96px; height: 96px; border-radius: 50%;
-      background: var(--accent-bg);
-      border: 1.5px solid var(--accent-border);
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      z-index: 1;
-    }
-    .hive-core-label { font-size: 0.62rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); }
-    .hive-core-sub { font-size: 0.56rem; color: var(--text3); margin-top: 2px; }
-    .hive-suppl {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 10px; margin-top: 28px; max-width: 280px; margin-left: auto; margin-right: auto;
-    }
-    .hive-suppl-card {
-      background: var(--bg2); border: 1px solid var(--border);
-      border-radius: 10px; padding: 14px; text-align: center;
-    }
-    .hive-suppl-card .n { font-size: 1.1rem; font-weight: 600; color: var(--text); }
-    .hive-suppl-card .l { font-size: 0.7rem; color: var(--text2); font-weight: 300; margin-top: 2px; }
-
-    /* ══════════════════════════════
-       PRODUCT SUITE
-    ══════════════════════════════ */
-    .suite-section {
-      background: var(--bg2);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-    }
-    .suite-header { padding: 72px 28px 48px; text-align: center; max-width: var(--max-w); margin: 0 auto; }
-    .suite-grid {
-      display: grid; grid-template-columns: repeat(3,1fr);
-      max-width: var(--max-w); margin: 0 auto;
-      border-top: 1px solid var(--border);
-    }
-    .suite-card {
-      padding: 36px 32px;
-      border-right: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      transition: background 0.15s;
-    }
-    .suite-card:hover { background: rgba(0,0,0,0.015); }
-    .suite-card:nth-child(3n) { border-right: none; }
-    .suite-card:nth-child(4), .suite-card:nth-child(5), .suite-card:nth-child(6) { border-bottom: none; }
-    .suite-icon { font-size: 1.2rem; margin-bottom: 12px; opacity: 0.7; }
-    .suite-title { font-size: 0.95rem; font-weight: 600; color: var(--text); margin-bottom: 8px; letter-spacing: -0.01em; }
-    .suite-desc { font-size: 0.82rem; font-weight: 300; color: var(--text2); line-height: 1.6; margin-bottom: 14px; }
-    .suite-link { font-size: 0.78rem; color: var(--accent); font-weight: 500; display: inline-flex; align-items: center; gap: 3px; transition: gap 0.15s; }
-    .suite-link:hover { gap: 7px; }
-    @media (max-width: 768px) {
-      .suite-grid { grid-template-columns: 1fr; }
-      .suite-card { border-right: none; }
-      .suite-card:nth-child(4), .suite-card:nth-child(5) { border-bottom: 1px solid var(--border); }
-      .suite-card:nth-child(6) { border-bottom: none; }
-    }
-
-    /* ══════════════════════════════
-       HOW IT WORKS
-    ══════════════════════════════ */
-    .how-section { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-    .how-header { padding: 72px 28px 48px; text-align: center; max-width: var(--max-w); margin: 0 auto; }
-    .steps { display: grid; grid-template-columns: repeat(3,1fr); max-width: var(--max-w); margin: 0 auto; }
-    .step { padding: 48px 40px; border-right: 1px solid var(--border); }
-    .step:last-child { border-right: none; }
-    .step-n { font-size: 2.8rem; font-weight: 300; letter-spacing: -0.05em; color: var(--border2); line-height: 1; margin-bottom: 16px; }
-    .step-t { font-size: 1rem; font-weight: 600; color: var(--text); margin-bottom: 10px; letter-spacing: -0.01em; }
-    .step-b { font-size: 0.86rem; font-weight: 300; line-height: 1.7; color: var(--text2); }
-    @media (max-width: 768px) {
-      .steps { grid-template-columns: 1fr; }
-      .step { border-right: none; border-bottom: 1px solid var(--border); padding: 36px 28px; }
-      .step:last-child { border-bottom: none; }
-    }
-
-    /* ══════════════════════════════
-       DEVELOPER
-    ══════════════════════════════ */
-    .dev-section {
-      background: var(--bg2);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-    }
-    .dev-inner { max-width: var(--max-w); margin: 0 auto; padding: 100px 28px; }
-    .dev-head { margin-bottom: 48px; }
-    .dev-h2 { font-size: clamp(1.8rem,3.5vw,2.4rem); font-weight: 600; letter-spacing: -0.03em; margin-bottom: 12px; }
-    .dev-sub { font-size: 0.95rem; font-weight: 300; color: var(--text2); line-height: 1.65; max-width: 500px; }
-    .code-tabs { display: flex; gap: 3px; margin-bottom: -1px; position: relative; z-index: 1; }
-    .code-tab {
-      padding: 8px 18px; font-size: 0.78rem; font-weight: 500;
-      color: var(--text2); background: rgba(0,0,0,0.03);
-      border: 1px solid var(--border); border-bottom: none;
-      border-radius: 8px 8px 0 0; cursor: pointer; transition: all 0.15s;
-    }
-    .code-tab.active { color: var(--text); background: var(--bg); border-color: var(--border2); }
-    .code-wrap {
-      background: var(--bg); border: 1px solid var(--border2);
-      border-radius: 0 10px 10px 10px; overflow: hidden;
-    }
-    .code-panel { display: none; padding: 24px 28px; font-family: var(--mono); font-size: 0.77rem; line-height: 1.85; overflow-x: auto; color: var(--text); }
-    .code-panel.active { display: block; }
-    .kw { color: #7c3aed; }
-    .str { color: #059669; }
-    .cmt { color: var(--text3); font-style: italic; }
-    .ck { color: #2563eb; }
-    .cv { color: #059669; }
-    .ca { color: var(--accent); }
-    .cm { color: var(--text3); }
-    .dev-cta {
-      margin-top: 22px; display: inline-flex; align-items: center;
-      gap: 5px; font-size: 0.84rem; font-weight: 500;
-      color: var(--accent); transition: gap 0.15s;
-    }
-    .dev-cta:hover { gap: 9px; }
-
-    /* ══════════════════════════════
-       FINAL CTA
-    ══════════════════════════════ */
-    .cta-section {
-      padding: 120px 28px;
-      text-align: center;
-      position: relative; overflow: hidden;
-    }
-    .cta-glow {
-      position: absolute; inset: 0; pointer-events: none;
-      background: radial-gradient(ellipse 60% 70% at 50% 50%, rgba(99,102,241,0.05) 0%, transparent 70%);
-    }
-    .cta-body { position: relative; z-index: 1; }
-    .cta-h2 { font-size: clamp(2rem,5vw,3.2rem); font-weight: 600; letter-spacing: -0.04em; line-height: 1.08; margin-bottom: 14px; }
-    .cta-sub { font-size: 1rem; font-weight: 300; color: var(--text2); margin-bottom: 36px; }
-    .cta-actions { display: flex; flex-direction: column; align-items: center; gap: 14px; }
-    .cta-secondary { font-size: 0.82rem; font-weight: 400; color: var(--text3); transition: color 0.15s; }
-    .cta-secondary:hover { color: var(--accent); }
-    .cta-secondary span { color: var(--accent); }
-
-    /* ══════════════════════════════
-       COMMUNITY
-    ══════════════════════════════ */
-    .comm-section {
-      padding: 80px 28px;
-      border-top: 1px solid var(--border);
-      background: var(--bg2);
-    }
-    .comm-inner { max-width: 960px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
-    .comm-tag { font-size: 0.68rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text3); font-family: var(--mono); margin-bottom: 10px; }
-    .comm-h3 { font-size: 1.2rem; font-weight: 600; color: var(--text); margin-bottom: 8px; letter-spacing: -0.01em; }
-    .comm-p { font-size: 0.86rem; font-weight: 300; color: var(--text2); line-height: 1.65; margin-bottom: 18px; }
-    .discord-btn {
-      display: inline-flex; align-items: center; gap: 7px;
-      background: #5865F2; color: #fff; font-size: 0.82rem; font-weight: 500;
-      padding: 9px 18px; border-radius: 8px; transition: opacity 0.15s;
-    }
-    .discord-btn:hover { opacity: 0.85; }
-    .bw-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-    .bw-card {
+    /* ─── HOW IT WORKS ───────────────────────────────────────────────── */
+    .hiw-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+    @media (max-width: 900px) { .hiw-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 560px) { .hiw-grid { grid-template-columns: 1fr; } }
+    .hiw-card {
       background: var(--bg); border: 1px solid var(--border);
-      border-radius: 8px; padding: 11px 13px;
-      font-size: 0.78rem; font-weight: 300; color: var(--text2); line-height: 1.5;
+      border-radius: 14px; padding: 32px 28px; transition: box-shadow 0.2s;
     }
-    @media (max-width: 768px) {
-      .comm-inner { grid-template-columns: 1fr; gap: 40px; }
-      .bw-grid { grid-template-columns: 1fr; }
+    .hiw-card:hover { box-shadow: 0 4px 24px rgba(0,0,0,0.07); }
+    .hiw-num {
+      font-family: var(--mono); font-size: 0.72rem; font-weight: 500;
+      color: var(--accent); letter-spacing: 0.06em; margin-bottom: 16px;
     }
+    .hiw-title { font-size: 1.15rem; font-weight: 600; letter-spacing: -0.02em; color: var(--text); margin-bottom: 10px; }
+    .hiw-desc { font-size: 0.9rem; font-weight: 400; color: var(--text2); line-height: 1.65; }
 
-    /* ══════════════════════════════
-       FOOTER
-    ══════════════════════════════ */
-    .footer {
-      padding: 28px;
-      border-top: 1px solid var(--border);
+    /* ─── BRIEF PREVIEW ─────────────────────────────────────────── */
+    .brief-preview-wrap { max-width: 680px; margin: 0 auto; }
+    .brief-mock { background: var(--bg); border: 1px solid var(--border); border-radius: 20px; overflow: hidden; box-shadow: 0 24px 60px -12px rgba(99,102,241,0.13), 0 8px 24px rgba(0,0,0,0.06); }
+    .brief-mock-bar { background: rgba(99,102,241,0.06); border-bottom: 1px solid var(--border); padding: 12px 24px; display: flex; align-items: center; justify-content: space-between; }
+    .brief-mock-bar-title { font-size: 0.78rem; font-weight: 500; color: var(--text3); letter-spacing: 0.06em; text-transform: uppercase; }
+    .brief-mock-badge { font-size: 0.72rem; font-weight: 500; color: var(--accent); background: rgba(99,102,241,0.1); border-radius: 100px; padding: 3px 10px; }
+    .brief-mock-body { padding: 32px 36px; }
+    .brief-mock-date { font-size: 0.8rem; font-weight: 400; color: var(--text3); margin-bottom: 8px; }
+    .brief-mock-greeting { font-size: 1.5rem; font-weight: 600; color: var(--text); margin-bottom: 12px; }
+    .brief-mock-intro { font-size: 0.92rem; font-weight: 400; color: var(--text2); line-height: 1.65; margin-bottom: 28px; padding-bottom: 28px; border-bottom: 1px solid var(--border); }
+    .brief-mock-insights { display: flex; flex-direction: column; gap: 16px; margin-bottom: 32px; }
+    .brief-mock-insight { display: flex; gap: 16px; align-items: flex-start; padding: 16px; background: rgba(99,102,241,0.04); border: 1px solid rgba(99,102,241,0.1); border-radius: 12px; }
+    .brief-mock-insight-icon { font-size: 1.3rem; flex-shrink: 0; margin-top: 1px; }
+    .brief-mock-insight-title { font-size: 0.88rem; font-weight: 500; color: var(--text); line-height: 1.45; margin-bottom: 4px; }
+    .brief-mock-insight-sub { font-size: 0.78rem; font-weight: 300; color: var(--text3); }
+    .brief-mock-footer { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+    .brief-mock-note { font-size: 0.78rem; font-weight: 400; color: var(--text3); font-style: italic; }
+    @media (max-width: 560px) { .brief-mock-body { padding: 24px 20px 28px; } .brief-mock-greeting { font-size: 1.25rem; } }
+
+    /* ─── INTEGRATIONS STRIP ─────────────────────────────────────────── */
+    .integrations-section { background: var(--bg); padding: 80px 28px; }
+    .integrations-head { text-align: center; margin-bottom: 40px; }
+    .integrations-head .section-eyebrow { margin-bottom: 10px; }
+    .integrations-head-h2 {
+      font-size: clamp(1.5rem, 3vw, 2.2rem); font-weight: 600;
+      letter-spacing: -0.03em; color: var(--text); margin-bottom: 10px;
     }
-    .footer-inner {
+    .integrations-head-sub { font-size: 0.9rem; font-weight: 400; color: var(--text2); }
+    .integrations-row {
       max-width: var(--max-w); margin: 0 auto;
-      display: flex; align-items: center; justify-content: space-between;
-      flex-wrap: wrap; gap: 12px;
+      display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 10px;
     }
-    .footer-copy { font-size: 0.78rem; font-weight: 300; color: var(--text3); }
+    .int-chip {
+      display: inline-flex; text-decoration: none; align-items: center; gap: 8px;
+      padding: 10px 18px; border-radius: 100px; border: 1px solid var(--border2);
+      background: var(--bg); font-size: 0.84rem; font-weight: 400; color: var(--text2);
+      transition: border-color 0.15s, color 0.15s, box-shadow 0.15s;
+    }
+    .int-chip:hover { border-color: var(--accent-border); color: var(--text); box-shadow: 0 2px 12px rgba(99,102,241,0.08); }
+    .int-chip-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); opacity: 0.5; flex-shrink: 0; }
+
+    /* ─── LOGO TILES ─────────────────────────────────────────────── */
+    .int-logo-grid {
+      max-width: var(--max-w); margin: 0 auto;
+      display: flex; align-items: flex-start; justify-content: center; flex-wrap: wrap; gap: 10px;
+    }
+    .int-logo-tile {
+      display: flex; flex-direction: column; align-items: center; gap: 8px;
+      padding: 14px 14px 12px; border-radius: 14px; border: 1px solid var(--border);
+      background: var(--bg); min-width: 78px; max-width: 90px; text-decoration: none;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .int-logo-tile:hover { border-color: rgba(99,102,241,0.3); box-shadow: 0 2px 14px rgba(99,102,241,0.09); }
+    .int-logo-tile svg { width: 32px; height: 32px; display: block; }
+    .int-logo-tile-name { font-size: 0.7rem; font-weight: 500; color: var(--text2); text-align: center; white-space: nowrap; line-height: 1; }
+
+    /* ─── PRIVACY TRUST ──────────────────────────────────────────────── */
+    .privacy-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    @media (max-width: 720px) { .privacy-grid { grid-template-columns: 1fr; } }
+    .privacy-card { background: var(--bg); border: 1px solid var(--border); border-radius: 14px; padding: 28px 24px; display: flex; flex-direction: column; gap: 10px; }
+    .privacy-icon { font-size: 1.5rem; }
+    .privacy-title { font-size: 0.95rem; font-weight: 600; color: var(--text); }
+    .privacy-desc { font-size: 0.84rem; font-weight: 400; color: var(--text2); line-height: 1.65; }
+
+    /* ─── FINAL CTA ───────────────────────────────────────────────────── */
+    .cta-band { background: var(--bg); padding: 80px 28px; border-top: 1px solid var(--border); text-align: center; }
+    .cta-band-inner { max-width: 540px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 20px; }
+    .cta-band h2 { font-size: clamp(1.9rem, 3.5vw, 2.8rem); font-weight: 600; letter-spacing: -0.03em; line-height: 1.15; color: var(--text); }
+    .cta-band-sub { font-size: 1rem; font-weight: 400; color: var(--text2); }
+    .cta-band-fine { font-size: 0.78rem; font-weight: 400; color: var(--text3); margin-top: -4px; }
+    .cta-band-fine a { color: var(--accent); }
+
+    /* ─── FOUNDER NOTE ──────────────────────────────────────────────── */
+    .founder-band { background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 48px 28px; }
+    .founder-band-inner { max-width: 700px; margin: 0 auto; display: flex; align-items: flex-start; gap: 20px; }
+    .founder-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--text); color: #fff; font-size: 0.88rem; font-weight: 600; display: flex; align-items: center; justify-content: center; flex-shrink: 0; letter-spacing: 0.02em; }
+    .founder-quote { font-size: 1rem; font-weight: 300; color: var(--text); line-height: 1.72; margin-bottom: 12px; }
+    .founder-attr { font-size: 0.8rem; color: var(--text3); font-weight: 400; }
+    .founder-attr a { color: var(--accent); text-decoration: none; }
+    @media (max-width: 560px) { .founder-band-inner { flex-direction: column; gap: 12px; } }
+
+    /* ─── FOOTER ─────────────────────────────────────────────────────── */
+    .footer { padding: 28px; border-top: 1px solid var(--border); }
+    .footer-inner { max-width: var(--max-w); margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+    .footer-copy { font-size: 0.78rem; font-weight: 400; color: var(--text3); }
     .footer-links { display: flex; gap: 20px; flex-wrap: wrap; }
-    .footer-links a { font-size: 0.78rem; font-weight: 300; color: var(--text3); transition: color 0.15s; }
+    .footer-links a { font-size: 0.78rem; font-weight: 400; color: var(--text3); transition: color 0.15s; }
     .footer-links a:hover { color: var(--text2); }
 
-    /* ══════════════════════════════
-       RESPONSIVE
-    ══════════════════════════════ */
-    @media (max-width: 1024px) { .split { gap: 56px; } }
-    @media (max-width: 768px) {
-      .hero { padding: calc(var(--nav-h) + 60px) 20px 80px; }
-      .hero-actions { flex-direction: column; align-items: stretch; max-width: 300px; margin-left: auto; margin-right: auto; }
-      .btn { justify-content: center; }
-      .stats-inner { grid-template-columns: repeat(2,1fr); }
-      .stat:nth-child(2) { border-right: none; }
-      .stat:nth-child(3) { border-top: 1px solid var(--border); border-right: 1px solid var(--border); }
-      .stat:nth-child(4) { border-top: 1px solid var(--border); border-right: none; }
-      .section { padding: 70px 20px; }
-      .split { grid-template-columns: 1fr; gap: 40px; }
-      .split.flip { direction: ltr; }
-      .mini-stats { grid-template-columns: repeat(2,1fr); }
-      .dev-inner { padding: 70px 20px; }
-      .cta-section { padding: 80px 20px; }
-      .footer { padding: 24px 20px; }
-      .footer-inner { flex-direction: column; gap: 10px; }
-      .footer-links { justify-content: center; }
+    @media (max-width: 600px) { .hide-mobile { display: none!important; } }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
     }
-    @media (max-width: 480px) {
-      h1 { font-size: clamp(2.2rem, 11vw, 3rem); }
-      .stat-n { font-size: 1.8rem; }
-    }
-    .shimmer { animation: sh 1.2s ease-in-out infinite; color: var(--text3); }
-    @keyframes sh { 0%,100% { opacity:0.3; } 50% { opacity:0.7; } }
-    @keyframes hero-spin { to { transform: rotate(360deg); } }
-    .arch-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--border); border:1px solid var(--border); border-radius:16px; overflow:hidden; margin-bottom:56px; }
-    .arch-grid-cell { background:var(--bg); padding:32px 28px; }
-    .arch-eyebrow { font-size:0.7rem; font-weight:600; letter-spacing:0.07em; text-transform:uppercase; color:var(--text3); margin-bottom:8px; }
-    .arch-title { font-size:0.88rem; font-weight:600; color:var(--text); margin-bottom:6px; }
-    .arch-body { font-size:0.81rem; font-weight:300; color:var(--text2); line-height:1.65; }
-    .arch-pipeline { border:1px solid var(--border); border-radius:12px; overflow:hidden; }
-    .arch-stage { display:grid; grid-template-columns:28px 148px 1fr; align-items:start; padding:11px 20px; border-bottom:1px solid var(--border); }
-    .arch-stage:last-child { border-bottom:none; }
-    .arch-stage:nth-child(odd) { background:var(--bg); }
-    .arch-stage:nth-child(even) { background:var(--bg2); }
-    .arch-stage-n { font-size:0.66rem; color:var(--text3); font-family:var(--mono); padding-top:2px; }
-    .arch-stage-name { font-size:0.77rem; font-weight:500; color:var(--accent); font-family:var(--mono); }
-    .arch-stage-desc { font-size:0.77rem; font-weight:300; color:var(--text2); line-height:1.55; }
-    @media (max-width:768px) { .arch-grid { grid-template-columns:1fr; } }
-
-    /* ── Comparison table ── */
-    .comp-table { width:100%; border-collapse:collapse; border:1px solid var(--border2); border-radius:16px; overflow:hidden; font-size:0.84rem; }
-    .comp-table th, .comp-table td { padding:13px 18px; text-align:left; border-bottom:1px solid var(--border); }
-    .comp-table thead tr { background:var(--bg2); }
-    .comp-table th { font-size:0.72rem; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; color:var(--text3); }
-    .comp-table th.col-ours { color:var(--accent); }
-    .comp-table tbody tr { background:var(--bg); transition:background 0.1s; }
-    .comp-table tbody tr:last-child td { border-bottom:none; }
-    .comp-table tbody tr:hover { background:var(--bg2); }
-    .comp-table td:first-child { color:var(--text2); font-size:0.82rem; }
-    .comp-table td.ours { font-weight:500; }
-    .comp-table .row-hl td { background:rgba(99,102,241,0.04); }
-    .comp-table .row-hl td:first-child { color:var(--text); }
-    .chk { color:var(--accent); font-weight:700; }
-    .xmark { color:var(--text3); }
-    .xmark.partial { color:var(--text3); font-style:italic; font-size:0.78rem; }
-    .badge-new { display:inline-block; font-size:0.62rem; font-weight:600; letter-spacing:0.05em; text-transform:uppercase; background:var(--accent-bg); color:var(--accent); border:1px solid var(--accent-border); border-radius:4px; padding:1px 5px; margin-left:6px; vertical-align:middle; }
-    @media (max-width:760px) { .comp-table th:nth-child(6), .comp-table td:nth-child(6) { display:none; } }
-    @media (max-width:620px) { .comp-table th:nth-child(5), .comp-table td:nth-child(5) { display:none; } }
-    @media (max-width:480px) { .comp-table th:nth-child(4), .comp-table td:nth-child(4) { display:none; } .comp-table th, .comp-table td { padding:10px 10px; font-size:0.76rem; } }
-
-    /* ── Morning Brief card ── */
-    .brief-card { background:var(--bg); border:1px solid var(--border2); border-radius:16px; overflow:hidden; font-size:0.8rem; max-width:380px; }
-    .brief-bar { display:flex; align-items:center; gap:8px; padding:12px 16px; background:var(--bg2); border-bottom:1px solid var(--border); }
-    .brief-bar-title { font-size:0.72rem; font-weight:600; letter-spacing:0.04em; text-transform:uppercase; color:var(--text3); flex:1; }
-    .brief-date { font-size:0.7rem; color:var(--text3); font-family:var(--mono); }
-    .brief-score { display:flex; align-items:center; gap:10px; padding:14px 16px; border-bottom:1px solid var(--border); }
-    .brief-score-n { font-size:1.8rem; font-weight:700; letter-spacing:-0.04em; color:var(--accent); line-height:1; }
-    .brief-score-r { display:flex; flex-direction:column; }
-    .brief-score-label { font-size:0.66rem; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; color:var(--text3); }
-    .brief-score-rank { font-size:0.82rem; font-weight:500; color:var(--text); }
-    .brief-section { padding:12px 16px; border-bottom:1px solid var(--border); }
-    .brief-section:last-child { border-bottom:none; }
-    .brief-section-title { font-size:0.65rem; font-weight:600; letter-spacing:0.07em; text-transform:uppercase; color:var(--text3); margin-bottom:8px; }
-    .brief-insight { display:flex; gap:8px; margin-bottom:6px; font-size:0.78rem; color:var(--text2); line-height:1.45; }
-    .brief-insight:last-child { margin-bottom:0; }
-    .brief-insight-dot { color:var(--accent); flex-shrink:0; margin-top:1px; }
-    .brief-pattern { font-size:0.76rem; color:var(--text); font-family:var(--mono); background:var(--bg2); border-radius:6px; padding:6px 10px; margin-bottom:6px; }
-    .brief-footer { padding:10px 16px; background:var(--bg2); border-top:1px solid var(--border); font-size:0.68rem; color:var(--text3); font-family:var(--mono); display:flex; justify-content:space-between; }
   </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav class="nav" id="nav">
-  <div class="nav-inner">
-    <a href="/" class="nav-logo">
-      <span class="nav-logo-mark">
-        <svg width="20" height="20" viewBox="0 0 28 28" fill="none">
-    <circle cx="14" cy="14" r="2.5" fill="#6366f1"/>
-    <ellipse cx="14" cy="14" rx="11" ry="5" stroke="#6366f1" stroke-width="1.5" opacity="0.8"/>
-    <ellipse cx="14" cy="14" rx="11" ry="5" stroke="#6366f1" stroke-width="1.5" opacity="0.5" transform="rotate(60 14 14)"/>
-    <ellipse cx="14" cy="14" rx="11" ry="5" stroke="#6366f1" stroke-width="1.5" opacity="0.35" transform="rotate(120 14 14)"/>
-  </svg>
-      </span>
-      REM Labs
-    </a>
-    <div class="nav-links">
-      <a href="#features" class="nav-link">How it works</a>
-      <a href="#suite" class="nav-link">Products</a>
-      <a href="/pricing" class="nav-link">Pricing</a>
-      <a href="https://slopshop.gg" class="nav-link" target="_blank" rel="noopener" style="color:var(--text3);">API ↗</a>
-    </div>
-    <div class="nav-actions">
-      <a href="/memory" class="nav-signin nav-dash" id="nav-dash">Open App</a>
-      <a href="/auth/google" class="nav-cta google-btn" id="nav-signin">Get started</a>
-    </div>
-    <button class="hamburger" id="hamburger" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
-  <div class="mob-menu" id="mob-menu">
-    <a href="#features">How it works</a>
-    <a href="#suite">Products</a>
-    <a href="/pricing">Pricing</a>
-    <div class="mob-divider"></div>
-    <a href="/auth/google" class="mob-cta google-btn" id="mob-signin">Get started free</a>
-    <a href="/memory" class="mob-cta" id="mob-openapp" style="display:none;background:var(--accent)!important;">Open App →</a>
-  </div>
-</nav>
-
-<!-- ANNOUNCEMENT BAR -->
-<div id="topbar" style="background:var(--accent);color:#fff;text-align:center;padding:10px 28px;font-size:0.82rem;font-weight:500;display:flex;align-items:center;justify-content:center;gap:12px;position:relative;z-index:99;margin-top:var(--nav-h);">
-  <span>500 free credits · No card required · Memory always free →</span>
-  <a href="/auth/google" style="background:rgba(255,255,255,0.2);color:#fff;padding:4px 12px;border-radius:6px;font-size:0.78rem;font-weight:600;transition:background 0.15s;" onmouseover="this.style.background='rgba(255,255,255,0.3)'" onmouseout="this.style.background='rgba(255,255,255,0.2)'">Get started</a>
-  <button onclick="document.getElementById('topbar').style.display='none'" style="position:absolute;right:16px;top:50%;transform:translateY(-50%);background:none;border:none;color:rgba(255,255,255,0.7);font-size:1.1rem;cursor:pointer;padding:4px 8px;" aria-label="Dismiss">×</button>
+  <div id="launch-banner" style="background:linear-gradient(90deg,rgba(99,102,241,0.15),rgba(168,85,247,0.12));border-bottom:1px solid rgba(99,102,241,0.2);padding:9px 20px;text-align:center;font-size:0.8rem;display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;">
+  <span style="display:inline-flex;align-items:center;gap:6px;"><span style="width:7px;height:7px;border-radius:50%;background:#22c55e;display:inline-block;animation:pulse-dot 1.8s ease-in-out infinite;"></span><strong style="color:var(--text);">Now in early access</strong></span>
+  <span style="color:var(--text2);">·</span>
+  <span style="color:var(--text2);">Join 2,400+ people automating their days with REM</span>
+  <span style="color:var(--text2);">·</span>
+  <a href="/auth/google?return_to=/morning" style="color:var(--accent);font-weight:600;text-decoration:none;font-size:0.8rem;border-bottom:1px solid rgba(99,102,241,0.3);">Start free →</a>
+  <button onclick="document.getElementById('launch-banner').style.display='none'" style="position:absolute;right:12px;background:none;border:none;color:var(--text3);cursor:pointer;font-size:1rem;padding:0;line-height:1;">×</button>
 </div>
+<style>
+@keyframes pulse-dot { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.3)} }
+</style>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-glow"></div>
-  <div class="hero-body">
-    <div class="reveal" style="margin-bottom:40px;position:relative;display:flex;align-items:center;justify-content:center;">
-      <div style="position:absolute;width:160px;height:160px;border-radius:50%;background:radial-gradient(circle,rgba(99,102,241,0.13) 0%,transparent 70%);pointer-events:none;"></div>
-      <svg width="80" height="80" viewBox="0 0 28 28" fill="none" style="animation:hero-spin 30s linear infinite;filter:drop-shadow(0 0 10px rgba(99,102,241,0.35));">
-        <circle cx="14" cy="14" r="2.5" fill="#6366f1"/>
-        <ellipse cx="14" cy="14" rx="11" ry="5" stroke="#6366f1" stroke-width="1.5" opacity="0.85"/>
-        <ellipse cx="14" cy="14" rx="11" ry="5" stroke="#6366f1" stroke-width="1.5" opacity="0.55" transform="rotate(60 14 14)"/>
-        <ellipse cx="14" cy="14" rx="11" ry="5" stroke="#6366f1" stroke-width="1.5" opacity="0.35" transform="rotate(120 14 14)"/>
-      </svg>
+  <!-- ─── NAV ────────────────────────────────────────────────── -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">
+        <svg width="22" height="22" viewBox="0 0 28 28" fill="none">
+          <circle cx="14" cy="14" r="2.5" fill="#6366f1"/>
+          <ellipse cx="14" cy="14" rx="11" ry="5" stroke="#6366f1" stroke-width="1.5" opacity="0.7"/>
+          <ellipse cx="14" cy="14" rx="11" ry="5" stroke="#6366f1" stroke-width="1.5" opacity="0.45" transform="rotate(60 14 14)"/>
+          <ellipse cx="14" cy="14" rx="11" ry="5" stroke="#6366f1" stroke-width="1.5" opacity="0.28" transform="rotate(120 14 14)"/>
+        </svg>
+        REM Labs
+      </a>
+      <div class="nav-right">
+        <a href="#how-it-works" class="nav-link">How it works</a>
+        <a href="/pricing" class="nav-link">Pricing</a>
+        <div class="nav-actions">
+          <a href="/morning" class="nav-signin nav-dash" id="nav-dash" style="display:none">Open App</a>
+          <a href="/auth/google?return_to=/morning" class="nav-cta" id="nav-signin">Get started free</a>
+          <button class="hamburger" id="hamburger" aria-label="Menu">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
     </div>
-    <div class="hero-eyebrow reveal d1">
-      <span class="hero-eyebrow-dot"></span>
-      Memory · Dreams · Intelligence
+    <div class="mob-menu" id="mob-menu">
+      <a href="#how-it-works">How it works</a>
+      <a href="/pricing">Pricing</a>
+      <div class="mob-divider"></div>
+      <a href="/auth/google?return_to=/morning" class="mob-cta">Get started free</a>
     </div>
-    <h1 class="reveal d1">
-      Memory that compounds.<br>
-      <span class="grad">Every night.</span>
-    </h1>
-    <p class="hero-sub reveal d2">
-      Your AI saves everything it learns. Overnight, the Dream Engine synthesizes. Every morning, you wake to a brief.
-    </p>
-    <div class="hero-actions reveal d3">
-      <button class="btn btn-dark google-btn">Get started free →</button>
-      <a href="#features" class="btn btn-outline">See how it works</a>
-    </div>
-    <p class="hero-fine reveal d4">No credit card · Memory always free · Works with any AI model</p>
-  </div>
-</section>
+  </nav>
 
+  <!-- ─── HERO ────────────────────────────────────────────────── -->
+  <section class="hero">
+    <div class="hero-glow"></div>
+    <div class="hero-inner">
+      <div class="reveal" style="line-height:0; margin-bottom: 8px;">
+        <svg width="120" height="120" viewBox="0 0 28 28" fill="none" style="animation: orbit-spin 10s linear infinite; display:inline-block;">
+          <circle cx="14" cy="14" r="2.5" fill="#6366f1"/>
+          <ellipse cx="14" cy="14" rx="11" ry="5" stroke="#6366f1" stroke-width="1.5" opacity="0.7"/>
+          <ellipse cx="14" cy="14" rx="11" ry="5" stroke="#6366f1" stroke-width="1.5" opacity="0.45" transform="rotate(60 14 14)"/>
+          <ellipse cx="14" cy="14" rx="11" ry="5" stroke="#6366f1" stroke-width="1.5" opacity="0.28" transform="rotate(120 14 14)"/>
+        </svg>
+      </div>
+      <h1 class="reveal d1">Your life, automated.</h1>
+      <p class="hero-sub reveal d2">Connect your apps once. REM reads everything, automates your habits, and surfaces insights from your own data. Zero effort. Gets smarter every day.</p>
+      <div class="hero-actions reveal d3">
+        <a href="/auth/google?return_to=/morning" class="btn-primary">Start for free →</a>
+      </div>
+      <p class="hero-fine reveal d4">Free to start · No credit card · No technical setup required · Cancel anytime</p>
+    </div>
+  </section>
 
-<!-- STATS -->
-<div class="stats" role="region" aria-label="Stats">
-  <div class="stats-inner">
-  <div class="stat reveal">
-    <div class="stat-n">∞</div>
-    <div class="stat-l">Memory stored free</div>
+  <!-- ─── HOW IT WORKS ─────────────────────────────────────────── -->
+  <section class="section section-bg2" id="how-it-works">
+    <div class="section-inner">
+      <div class="section-head reveal">
+        <span class="section-eyebrow">Getting started</span>
+        <h2 class="section-h2">Four things, once.<br>Then REM runs itself.</h2>
+        <p class="section-sub">Set up takes under 5 minutes. After that, the Dream Engine runs every night automatically — and gets more useful the longer it runs.</p>
+      </div>
+      <div class="hiw-grid">
+        <div class="hiw-card reveal d1">
+          <div class="hiw-num">01</div>
+          <div class="hiw-title">Sign in with Google</div>
+          <p class="hiw-desc">30 seconds. No forms, no credit card, no downloads. You're inside immediately.</p>
+        </div>
+        <div class="hiw-card reveal d2">
+          <div class="hiw-num">02</div>
+          <div class="hiw-title">Set your goals</div>
+          <p class="hiw-desc">Tell REM what you're working toward — a project, a habit, a milestone. Everything it finds gets filtered through what matters to YOU.</p>
+        </div>
+        <div class="hiw-card reveal d3">
+          <div class="hiw-num">03</div>
+          <div class="hiw-title">Connect your apps</div>
+          <p class="hiw-desc">REM reads every connected app overnight — emails, notes, calendar. No check-ins, no re-syncing. It runs automatically every night while you sleep.</p>
+        </div>
+        <div class="hiw-card reveal d4">
+          <div class="hiw-num">04</div>
+          <div class="hiw-title" id="step4-title">Your day, mapped.</div>
+          <p class="hiw-desc">Your brief is goal-aware. Not just what happened — what moved toward what you care about, and what REM automated on your behalf overnight.</p>
+        </div>
+      </div>
+      <div class="reveal" style="margin-top:40px;background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:28px 32px;max-width:780px;margin-left:auto;margin-right:auto;">
+  <div style="font-size:0.72rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--accent);margin-bottom:16px;">Your first 7 days with REM</div>
+  <div style="display:flex;flex-direction:column;gap:0;">
+    <div style="display:flex;gap:16px;padding-bottom:18px;border-left:2px solid rgba(99,102,241,0.2);margin-left:8px;padding-left:20px;position:relative;">
+      <div style="position:absolute;left:-6px;top:0;width:12px;height:12px;border-radius:50%;background:var(--accent);flex-shrink:0;"></div>
+      <div><div style="font-size:0.82rem;font-weight:500;color:var(--text);margin-bottom:2px;">Day 0 — Connect &amp; go</div><div style="font-size:0.78rem;color:var(--text2);">Connect an app. Set one goal. REM starts reading right away.</div></div>
+    </div>
+    <div style="display:flex;gap:16px;padding-bottom:18px;border-left:2px solid rgba(99,102,241,0.2);margin-left:8px;padding-left:20px;position:relative;">
+      <div style="position:absolute;left:-6px;top:0;width:12px;height:12px;border-radius:50%;background:var(--accent);flex-shrink:0;"></div>
+      <div><div style="font-size:0.82rem;font-weight:500;color:var(--text);margin-bottom:2px;">Day 1 — First brief</div><div style="font-size:0.78rem;color:var(--text2);">Your first brief is ready. 3 things that moved your goal — pulled from your actual emails and notes.</div></div>
+    </div>
+    <div style="display:flex;gap:16px;padding-bottom:18px;border-left:2px solid rgba(99,102,241,0.2);margin-left:8px;padding-left:20px;position:relative;">
+      <div style="position:absolute;left:-6px;top:0;width:12px;height:12px;border-radius:50%;background:var(--accent);flex-shrink:0;"></div>
+      <div><div style="font-size:0.82rem;font-weight:500;color:var(--text);margin-bottom:2px;">Day 3 — First automation</div><div style="font-size:0.78rem;color:var(--text2);">"I noticed you do X every Monday. Want me to handle it?" One tap to activate.</div></div>
+    </div>
+    <div style="display:flex;gap:16px;margin-left:8px;padding-left:20px;position:relative;">
+      <div style="position:absolute;left:-6px;top:0;width:12px;height:12px;border-radius:50%;background:var(--accent);flex-shrink:0;"></div>
+      <div><div style="font-size:0.82rem;font-weight:500;color:var(--text);margin-bottom:2px;">Day 7 — 10+ automations running</div><div style="font-size:0.78rem;color:var(--text2);">REM is handling the repetitive stuff silently. You don't think about it. It just works.</div></div>
+    </div>
   </div>
-  <div class="stat reveal d1">
-    <div class="stat-n"><em>9</em>-stage</div>
-    <div class="stat-l">Dream Engine</div>
-  </div>
-  <div class="stat reveal d2">
-    <div class="stat-n">Daily</div>
-    <div class="stat-l">Morning Brief</div>
-  </div>
-  <div class="stat reveal d3">
-    <div class="stat-n" id="live-agents">—</div>
-    <div class="stat-l">agents dreaming tonight</div>
-  </div>
-  </div><!-- /stats-inner -->
 </div>
+    </div>
+  </section>
 
-
-<!-- MEMORY -->
-<section class="section" id="features">
-  <div class="section-inner">
-    <div class="split">
-      <div>
-        <p class="eyebrow reveal">Memory</p>
-        <h2 class="reveal d1">Your AI<br>remembers.</h2>
-        <p class="body-text reveal d2">Everything it encounters — stored, searchable, persistent. Not a context window. Memory that grows with every session and compounds every night.</p>
-        <div class="bullets reveal d3">
-          <div class="bullet"><span class="bullet-dot"></span><div><strong>Semantic search</strong><span>Find any memory by meaning, not just keywords.</span></div></div>
-          <div class="bullet"><span class="bullet-dot"></span><div><strong>Auto-extraction from any text</strong><span>Paste a conversation or document — structured keys surface automatically.</span></div></div>
-          <div class="bullet"><span class="bullet-dot"></span><div><strong>Memory decay and freshness scoring</strong><span>Older memories gracefully decay. Critical facts persist.</span></div></div>
-          <div class="bullet"><span class="bullet-dot"></span><div><strong>Free forever</strong><span>Store, retrieve, and search with no plan required.</span></div></div>
+  <!-- ─── WHAT YOU GET ─── -->
+  <section class="section" style="padding-top:0;padding-bottom:40px;">
+    <div class="section-inner">
+      <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;max-width:860px;margin:0 auto;">
+        <div style="flex:1;min-width:220px;background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:20px 22px;">
+          <div style="font-size:1.4rem;margin-bottom:8px;">📬</div>
+          <div style="font-weight:600;font-size:0.9375rem;color:var(--text);margin-bottom:5px;">Morning Brief</div>
+          <div style="font-size:0.8125rem;color:var(--text2);line-height:1.6;">A synthesis of your emails, notes, and calendar — filtered through your goals. Arrives every morning.</div>
+        </div>
+        <div style="flex:1;min-width:220px;background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:20px 22px;">
+          <div style="font-size:1.4rem;margin-bottom:8px;">💾</div>
+          <div style="font-weight:600;font-size:0.9375rem;color:var(--text);margin-bottom:5px;">Saved Notes</div>
+          <div style="font-size:0.8125rem;color:var(--text2);line-height:1.6;">Save anything — a thought, a link, a quote. REM connects it to everything else you've ever saved.</div>
+        </div>
+        <div style="flex:1;min-width:220px;background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:20px 22px;">
+          <div style="font-size:1.4rem;margin-bottom:8px;">🔍</div>
+          <div style="font-weight:600;font-size:0.9375rem;color:var(--text);margin-bottom:5px;">Ask REM</div>
+          <div style="font-size:0.8125rem;color:var(--text2);line-height:1.6;">Ask anything about your own life — your notes, your emails, your goals. Get answers from your actual data.</div>
         </div>
       </div>
-      <div class="reveal d2">
-        <div class="demo-card">
-          <div class="demo-bar">
-            <div class="dot r"></div><div class="dot y"></div><div class="dot g"></div>
-            <span class="demo-label">Memory · Live</span>
+    </div>
+  </section>
+
+
+
+
+  <!-- ─── MORNING BRIEF PREVIEW ───────────────────────────────── -->
+  <section class="section" id="brief-preview">
+    <div class="section-inner">
+      <div class="section-head reveal">
+        <span class="section-eyebrow">What REM does while you sleep</span>
+        <h2 class="section-h2">Connect your life.<br>Wake up to it automated.</h2>
+        <p class="section-sub">REM reads everything you've connected — emails, notes, calendar, health data — filters it through your goals, automates what it can, and surfaces what needs you. Here's a preview of the output.</p>
+      </div>
+      <div class="brief-preview-wrap reveal d1">
+        <div class="brief-mock">
+          <div class="brief-mock-bar">
+            <span class="brief-mock-bar-title">Morning Brief</span>
+            <span class="brief-mock-badge">Preview</span>
           </div>
-          <div class="demo-body" style="padding-bottom:8px;">
-            <div style="font-size:0.72rem;color:var(--text3);margin-bottom:10px;">Example — what your AI just learned:</div>
-            <div style="background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:12px 14px;margin-bottom:14px;font-size:0.8rem;color:var(--text2);line-height:1.6;font-style:italic;">"I prefer concise answers. I work in product at a startup. I mainly use Claude."</div>
-            <div style="display:flex;flex-direction:column;gap:7px;" id="demo-example">
-              <div style="display:flex;align-items:center;gap:10px;font-size:0.79rem;"><span style="color:var(--accent);font-weight:500;min-width:150px;font-size:0.75rem;">communication style</span><span style="color:var(--text3);">→</span><span style="color:var(--text);">concise</span></div>
-              <div style="display:flex;align-items:center;gap:10px;font-size:0.79rem;"><span style="color:var(--accent);font-weight:500;min-width:150px;font-size:0.75rem;">role</span><span style="color:var(--text3);">→</span><span style="color:var(--text);">product manager</span></div>
-              <div style="display:flex;align-items:center;gap:10px;font-size:0.79rem;"><span style="color:var(--accent);font-weight:500;min-width:150px;font-size:0.75rem;">preferred AI</span><span style="color:var(--text3);">→</span><span style="color:var(--text);">Claude</span></div>
-              <div style="font-size:0.72rem;color:var(--green);margin-top:4px;">✓ 3 memories stored automatically</div>
-            </div>
-          </div>
-          <div id="demo-out"></div>
-          <div class="demo-input-row">
-            <input class="demo-input" id="demo-input" placeholder="Tell it something about yourself..." maxlength="500">
-            <button class="demo-run" id="demo-run">Try it →</button>
-          </div>
-        </div>
-      </div>
-    </div>
+          <div class="brief-mock-body" id="animBriefBody">
+  <div class="brief-mock-date" id="animDate" style="opacity:0;transition:opacity 0.4s ease;">This morning · 6:47 AM</div>
+  <div class="brief-mock-greeting" id="animGreeting" style="opacity:0;transition:opacity 0.5s ease;">Good morning. ☀️</div>
+  <div id="animIntro" style="font-size:0.8rem;color:var(--text3);margin-bottom:14px;min-height:18px;opacity:0;transition:opacity 0.4s ease;"></div>
+  <div id="animCards" style="display:flex;flex-direction:column;gap:8px;"></div>
+  <div id="animAuto" style="display:none;margin:14px 0;background:linear-gradient(135deg,rgba(99,102,241,0.06),rgba(99,102,241,0.02));border:1.5px dashed rgba(99,102,241,0.25);border-radius:12px;padding:14px 16px;">
+    <div style="font-size:0.62rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#6366f1;margin-bottom:3px;">Pattern found · Automation suggestion</div>
+    <div style="font-size:0.82rem;font-weight:600;color:var(--text);margin-bottom:3px;" id="animAutoTitle"></div>
+    <div style="font-size:0.75rem;color:var(--text3);line-height:1.5;" id="animAutoBody"></div>
   </div>
-</section>
-
-
-<!-- DREAM ENGINE -->
-<section class="section" style="background:var(--bg2); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
-  <div class="section-inner">
-    <div class="split flip">
-      <div>
-        <p class="eyebrow reveal">Dream Engine</p>
-        <h2 class="reveal d1">Synthesis<br>while you sleep.</h2>
-        <p class="body-text reveal d2">Nine stages, every night. Memories compress, connect, and evolve. You wake to an Intelligence Score and a Morning Brief.</p>
-        <div class="mini-stats reveal d3">
-          <div class="mini-stat"><div class="n"><em>9</em></div><div class="l">Synthesis stages</div></div>
-          <div class="mini-stat"><div class="n">84</div><div class="l">Avg Brain Glow score</div></div>
-          <div class="mini-stat"><div class="n" style="font-size:1rem;padding-top:4px;">Morning<br>Brief</div><div class="l">Daily intelligence report</div></div>
-          <div class="mini-stat"><div class="n" style="font-size:1rem;padding-top:4px;">Any<br>model</div><div class="l">Claude, GPT, Gemini…</div></div>
-        </div>
-      </div>
-      <div class="reveal d1">
-        <div class="pipeline-card">
-          <div class="pipe-header"><span class="live-dot"></span>Dream cycle running</div>
-          <div class="stages" id="stages">
-            <div class="stage on" data-i="0"><span class="stage-pip"></span><span class="stage-name">synthesize</span><span class="stage-tag">consolidate</span></div>
-            <div class="stage" data-i="1"><span class="stage-pip"></span><span class="stage-name">pattern_extract</span><span class="stage-tag">cluster</span></div>
-            <div class="stage" data-i="2"><span class="stage-pip"></span><span class="stage-name">insight_generate</span><span class="stage-tag">surface</span></div>
-            <div class="stage" data-i="3"><span class="stage-pip"></span><span class="stage-name">compress</span><span class="stage-tag">deduplicate</span></div>
-            <div class="stage" data-i="4"><span class="stage-pip"></span><span class="stage-name">associate</span><span class="stage-tag">cross-link</span></div>
-            <div class="stage" data-i="5"><span class="stage-pip"></span><span class="stage-name">validate</span><span class="stage-tag">score</span></div>
-            <div class="stage" data-i="6"><span class="stage-pip"></span><span class="stage-name">evolve</span><span class="stage-tag">adapt</span></div>
-            <div class="stage" data-i="7"><span class="stage-pip"></span><span class="stage-name">forecast</span><span class="stage-tag">predict</span></div>
-            <div class="stage" data-i="8"><span class="stage-pip"></span><span class="stage-name">reflect</span><span class="stage-tag">meta-learn</span></div>
-          </div>
-          <div class="pipe-footer">
-            <span class="pipe-footer-l">brain_glow_score</span>
-            <span class="pipe-score" id="score">—</span>
-          </div>
-        </div>
-      </div>
-    </div>
+  <div class="brief-mock-footer" id="animFooter" style="opacity:0;transition:opacity 0.4s ease;">
+    <span class="brief-mock-note">Yours will be built from your real apps and goals.</span>
+    <a href="/auth/google?return_to=/morning" class="btn-primary" style="font-size:0.88rem;padding:10px 20px;">Get mine →</a>
   </div>
-</section>
-
-
-<!-- COMPETITIVE COMPARISON -->
-<section class="section" id="compare" style="background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
-  <div class="section-inner">
-    <div style="text-align:center;margin-bottom:52px;">
-      <p class="eyebrow reveal" style="display:block;">Why REM Labs</p>
-      <h2 class="reveal d1">Memory that does<br>more than store.</h2>
-      <p class="reveal d2" style="font-size:0.95rem;font-weight:300;color:var(--text2);max-width:520px;margin:16px auto 0;line-height:1.7;">Every competitor stores and retrieves. Only REM Labs synthesizes overnight, surfaces insights, and delivers a Morning Brief you actually read.</p>
-    </div>
-    <div class="reveal" style="overflow-x:auto;margin-bottom:40px;">
-      <table class="comp-table">
-        <thead>
-          <tr>
-            <th style="width:28%;">Capability</th>
-            <th class="col-ours" style="width:15%;">REM Labs</th>
-            <th style="width:14%;">Mem0</th>
-            <th style="width:14%;">Zep</th>
-            <th style="width:14%;">Supermemory</th>
-            <th style="width:15%;">LangChain</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Persistent memory</td>
-            <td class="ours"><span class="chk">✓</span></td>
-            <td><span class="chk">✓</span></td>
-            <td><span class="chk">✓</span></td>
-            <td><span class="chk">✓</span></td>
-            <td><span class="xmark partial">no storage</span></td>
-          </tr>
-          <tr class="row-hl">
-            <td><strong>Overnight synthesis</strong> <span class="badge-new">Dream Engine</span></td>
-            <td class="ours"><span class="chk">✓</span></td>
-            <td><span class="xmark">✗</span></td>
-            <td><span class="xmark">✗</span></td>
-            <td><span class="xmark">✗</span></td>
-            <td><span class="xmark">✗</span></td>
-          </tr>
-          <tr class="row-hl">
-            <td><strong>Morning Brief</strong></td>
-            <td class="ours"><span class="chk">✓</span></td>
-            <td><span class="xmark">✗</span></td>
-            <td><span class="xmark">✗</span></td>
-            <td><span class="xmark">✗</span></td>
-            <td><span class="xmark">✗</span></td>
-          </tr>
-          <tr class="row-hl">
-            <td><strong>Intelligence Score</strong></td>
-            <td class="ours"><span class="chk">✓</span></td>
-            <td><span class="xmark">✗</span></td>
-            <td><span class="xmark">✗</span></td>
-            <td><span class="xmark">✗</span></td>
-            <td><span class="xmark">✗</span></td>
-          </tr>
-          <tr>
-            <td>Consumer UI</td>
-            <td class="ours"><span class="chk">✓</span></td>
-            <td><span class="xmark">✗ API only</span></td>
-            <td><span class="xmark">✗ API only</span></td>
-            <td><span class="xmark partial">early beta</span></td>
-            <td><span class="xmark">✗ library</span></td>
-          </tr>
-          <tr>
-            <td>Team / shared memory</td>
-            <td class="ours"><span class="chk">✓</span></td>
-            <td><span class="xmark">✗</span></td>
-            <td><span class="xmark partial">enterprise</span></td>
-            <td><span class="xmark">✗</span></td>
-            <td><span class="xmark">✗</span></td>
-          </tr>
-          <tr>
-            <td>Free memory tier</td>
-            <td class="ours"><span class="chk">✓ forever</span></td>
-            <td><span class="xmark partial">1K calls/mo</span></td>
-            <td><span class="xmark partial">1K eps/mo</span></td>
-            <td><span class="xmark partial">1M tokens</span></td>
-            <td><span class="xmark partial">self-managed</span></td>
-          </tr>
-          <tr>
-            <td>MCP server</td>
-            <td class="ours"><span class="chk">✓</span></td>
-            <td><span class="xmark">✗</span></td>
-            <td><span class="xmark">✗</span></td>
-            <td><span class="xmark">✗</span></td>
-            <td><span class="xmark">✗</span></td>
-          </tr>
-          <tr>
-            <td>Works with any AI model</td>
-            <td class="ours"><span class="chk">✓</span></td>
-            <td><span class="chk">✓</span></td>
-            <td><span class="chk">✓</span></td>
-            <td><span class="chk">✓</span></td>
-            <td><span class="chk">✓</span></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="reveal" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;padding:28px 32px;background:var(--accent-bg);border:1px solid var(--accent-border);border-radius:16px;max-width:700px;margin:0 auto;">
-      <div>
-        <p style="font-size:0.95rem;font-weight:600;color:var(--text);margin-bottom:4px;">Everyone stores memories.</p>
-        <p style="font-size:0.88rem;color:var(--text2);font-weight:300;">Only REM Labs synthesizes them while you sleep.</p>
-      </div>
-      <a href="/auth/google" class="btn btn-dark google-btn" style="white-space:nowrap;font-size:0.84rem;padding:10px 20px;">Try it free →</a>
-    </div>
-  </div>
-</section>
-
-
-<!-- TEAM HIVE -->
-<section class="section">
-  <div class="section-inner">
-    <div class="split">
-      <div>
-        <p class="eyebrow reveal">Team Hive</p>
-        <h2 class="reveal d1">One brain,<br>shared.</h2>
-        <p class="body-text reveal d2">Every teammate's knowledge flows into a shared namespace. Run Dream cycles across your whole team. Everyone wakes to the same brief.</p>
-        <div class="bullets reveal d3">
-          <div class="bullet"><span class="bullet-dot"></span><div><strong>Invite collaborators</strong><span>Reader, contributor, admin roles. Share memory without sharing credentials.</span></div></div>
-          <div class="bullet"><span class="bullet-dot"></span><div><strong>Collective Dream cycles</strong><span>Dream Engine runs across the entire hive's memory pool overnight.</span></div></div>
-          <div class="bullet"><span class="bullet-dot"></span><div><strong>Real-time sync</strong><span>Every memory written by any agent is immediately visible across the hive.</span></div></div>
-        </div>
-      </div>
-      <div class="reveal d2">
-        <div class="hive-wrap">
-          <div class="hive-ring">
-            <div class="hive-node" style="top:-24px;left:50%;transform:translateX(-50%);">👩‍💻</div>
-            <div class="hive-node" style="bottom:18px;left:-18px;">🧑‍🔬</div>
-            <div class="hive-node" style="bottom:18px;right:-18px;">👨‍💼</div>
-          </div>
-          <div class="hive-core">
-            <span class="hive-core-label">Hive</span>
-            <span class="hive-core-sub">shared memory</span>
-          </div>
-        </div>
-        <div class="hive-suppl">
-          <div class="hive-suppl-card"><div class="n">Unlimited</div><div class="l">Team members</div></div>
-          <div class="hive-suppl-card"><div class="n">Live</div><div class="l">Memory sync</div></div>
+</div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-
-<!-- ARCHITECTURE / RESEARCH -->
-<section class="section" id="architecture" style="background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
-  <div class="section-inner">
-    <div style="text-align:center;margin-bottom:64px;">
-      <p class="eyebrow reveal" style="display:block;">Neuroscience Research</p>
-      <h2 class="reveal d1" style="margin-bottom:14px;">How dreaming makes<br>agents smarter.</h2>
-      <p class="reveal d2" style="font-size:0.95rem;font-weight:300;color:var(--text2);line-height:1.7;max-width:580px;margin:0 auto;">The Dream Engine is grounded in sleep science. Every stage of the 9-stage pipeline maps to a biological process that occurs in the mammalian brain during memory consolidation. We didn't guess — we replicated.</p>
+  <!-- ─── INTEGRATIONS STRIP ───────────────────────────────────── -->
+  <section class="integrations-section reveal">
+    <div class="integrations-head">
+      <span class="section-eyebrow">Works with apps you already have</span>
+      <h2 class="integrations-head-h2">Connect what you live in</h2>
+      <p class="integrations-head-sub">Connect your apps once. REM reads them every night. No setup, no re-syncing — it just works.</p>
     </div>
+    <div class="int-logo-grid">
+      <!-- Google -->
+      <a href="/console" class="int-logo-tile" title="Gmail + Google Calendar">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+        <span class="int-logo-tile-name">Google</span>
+      </a>
+      <!-- Notion -->
+      <a href="/console" class="int-logo-tile" title="Notion">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="5" fill="#fff"/><path fill-rule="evenodd" clip-rule="evenodd" d="M4.5 4.5c.8-.06 1.6.24 2.17.8L17.1 14.5V6.3c0-.45-.36-.82-.81-.84L15 5.4V4.5h5.5v.9l-1.2.06c-.45.02-.81.39-.81.84v12.7h-.9L5.9 8.5v8.2c0 .45.36.82.81.84L8 17.6v.9H2v-.9l1.5-.06c.45-.02.81-.39.81-.84V6.3L2.7 5.4V4.5H4.5z" fill="#1d1d1f"/></svg>
+        <span class="int-logo-tile-name">Notion</span>
+      </a>
+      <!-- GitHub -->
+      <a href="/console" class="int-logo-tile" title="GitHub">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.604-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z" fill="#1d1d1f"/></svg>
+        <span class="int-logo-tile-name">GitHub</span>
+      </a>
+      <!-- Slack -->
+      <a href="/console" class="int-logo-tile" title="Slack">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M5.042 15.165a2.528 2.528 0 0 1-2.52 2.523A2.528 2.528 0 0 1 0 15.165a2.527 2.527 0 0 1 2.522-2.52h2.52v2.52zM6.313 15.165a2.527 2.527 0 0 1 2.521-2.52 2.527 2.527 0 0 1 2.521 2.52v6.313A2.528 2.528 0 0 1 8.834 24a2.528 2.528 0 0 1-2.521-2.522v-6.313zM8.834 5.042a2.528 2.528 0 0 1-2.521-2.52A2.528 2.528 0 0 1 8.834 0a2.528 2.528 0 0 1 2.521 2.522v2.52H8.834zM8.834 6.313a2.528 2.528 0 0 1 2.521 2.521 2.528 2.528 0 0 1-2.521 2.521H2.522A2.528 2.528 0 0 1 0 8.834a2.528 2.528 0 0 1 2.522-2.521h6.312zM18.956 8.834a2.528 2.528 0 0 1 2.522-2.521A2.528 2.528 0 0 1 24 8.834a2.528 2.528 0 0 1-2.522 2.521h-2.522V8.834zM17.687 8.834a2.528 2.528 0 0 1-2.521 2.521 2.527 2.527 0 0 1-2.521-2.521V2.522A2.527 2.527 0 0 1 15.166 0a2.528 2.528 0 0 1 2.521 2.522v6.312zM15.166 18.956a2.528 2.528 0 0 1 2.521 2.522A2.528 2.528 0 0 1 15.166 24a2.527 2.527 0 0 1-2.521-2.522v-2.522h2.521zM15.166 17.687a2.527 2.527 0 0 1-2.521-2.521 2.527 2.527 0 0 1 2.521-2.521h6.312A2.528 2.528 0 0 1 24 15.166a2.528 2.528 0 0 1-2.522 2.521h-6.312z" fill="#E01E5A"/></svg>
+        <span class="int-logo-tile-name">Slack</span>
+      </a>
+      <!-- Microsoft 365 -->
+      <a href="/console" class="int-logo-tile" title="Microsoft 365">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><rect x="1" y="1" width="10" height="10" fill="#F25022"/><rect x="13" y="1" width="10" height="10" fill="#7FBA00"/><rect x="1" y="13" width="10" height="10" fill="#00A4EF"/><rect x="13" y="13" width="10" height="10" fill="#FFB900"/></svg>
+        <span class="int-logo-tile-name">Microsoft</span>
+      </a>
+      <!-- Readwise -->
+      <a href="/console" class="int-logo-tile" title="Readwise">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" stroke="#F97316" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" stroke="#F97316" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span class="int-logo-tile-name">Readwise</span>
+      </a>
+      <!-- Spotify -->
+      <a href="/console" class="int-logo-tile" title="Spotify">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#1DB954"/><path d="M16.5 16.5c-2.5-1.5-5.5-1.8-9-1-.4.1-.8-.2-.9-.6-.1-.4.2-.8.6-.9 3.9-.9 7.2-.5 10 1.2.4.2.5.7.3 1.1-.2.4-.6.4-1 .2zm1.3-2.9c-2.9-1.8-7.3-2.4-10.7-1.3-.5.1-1-.1-1.2-.6-.1-.5.1-1 .6-1.2 3.9-1.2 8.7-.6 12 1.5.4.3.6.8.3 1.3-.3.4-.8.6-1 .3zm.1-3c-3.4-2-9-2.2-12.2-1.2-.5.2-1.1-.1-1.3-.7-.2-.5.1-1.1.7-1.3 3.7-1.1 10-.9 13.8 1.4.5.3.7.9.4 1.4-.3.5-.9.7-1.4.4z" fill="white"/></svg>
+        <span class="int-logo-tile-name">Spotify</span>
+      </a>
+      <!-- Oura -->
+      <a href="/console" class="int-logo-tile" title="Oura Ring">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#1a1a2e" stroke-width="2.5"/><circle cx="12" cy="12" r="4" fill="#1a1a2e"/></svg>
+        <span class="int-logo-tile-name">Oura</span>
+      </a>
+      <!-- Strava -->
+      <a href="/console" class="int-logo-tile" title="Strava">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M14.5 3L9 13.5h4L8.5 21l9.5-11h-4.5L14.5 3z" fill="#FC4C02"/></svg>
+        <span class="int-logo-tile-name">Strava</span>
+      </a>
+      <!-- Todoist -->
+      <a href="/console" class="int-logo-tile" title="Todoist">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M3 6h18M3 12h18M3 18h12" stroke="#DB4035" stroke-width="2" stroke-linecap="round"/></svg>
+        <span class="int-logo-tile-name">Todoist</span>
+      </a>
+      <!-- Reddit -->
+      <a href="/console" class="int-logo-tile" title="Reddit">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#FF4500"/><path d="M20 12c0-1.1-.9-2-2-2-.5 0-1 .2-1.4.5-1.3-.9-3.1-1.4-5-.5l.9-4 2.7.6c.1.7.7 1.2 1.4 1.2.8 0 1.4-.6 1.4-1.4s-.6-1.4-1.4-1.4c-.6 0-1.1.4-1.3.9l-3-.7c-.2 0-.3.1-.3.3l-1 4.4c-1.9-.1-3.7.5-5 1.4-.4-.3-.9-.5-1.4-.5-1.1 0-2 .9-2 2 0 .8.5 1.5 1.2 1.8-.1.3-.1.6-.1.9 0 2.8 3.6 5 8 5s8-2.2 8-5c0-.3 0-.6-.1-.9.7-.3 1.2-1 1.2-1.8zm-11.5 1.5c0-.6.5-1.1 1.1-1.1.6 0 1.1.5 1.1 1.1 0 .6-.5 1.1-1.1 1.1-.6 0-1.1-.5-1.1-1.1zm6.6 2.9c-.7.7-1.8 1-3.1 1s-2.4-.3-3.1-1c-.1-.1-.1-.4 0-.5.1-.1.4-.1.5 0 .6.6 1.5.9 2.6.9s2-.3 2.6-.9c.1-.1.4-.1.5 0 .1.1.1.4 0 .5zm-.2-1.8c-.6 0-1.1-.5-1.1-1.1 0-.6.5-1.1 1.1-1.1.6 0 1.1.5 1.1 1.1 0 .6-.5 1.1-1.1 1.1z" fill="white"/></svg>
+        <span class="int-logo-tile-name">Reddit</span>
+      </a>
+      <!-- Linear -->
+      <a href="/console" class="int-logo-tile" title="Linear">
+        <svg width="32" height="32" viewBox="0 0 100 100" fill="none"><path d="M1.22541 61.5228c-.2225-.9485.90748-1.5459 1.59082-.8617l37.5061 37.5061c.6842.6834.0868 1.8108-.8617 1.5883C17.6473 94.0752 5.92508 82.353 1.22541 61.5228zM.00189135 46.8891c-.01764-.5518.50375-1.0293 1.06538-1.0199l52.0571.8225c.5617.0094 1.0076.4553 1.0165 1.0165l.8225 52.0571c.0099.5617-.4681 1.0825-1.0199 1.0648C27.6351 99.3896.62666 72.4748.00189135 46.8891zM5.69977 32.5723c-.3143-.4478-.1836-.9258.1953-1.1433C21.3975 22.4415 39.4862 17.5 58.5 17.5c11.3295 0 22.1527 2.1856 32.0765 6.1436.4908.1972.6381.7734.2993 1.1436L5.69977 32.5723zM32.6241 5.69977c-.4478-.3143-.9258-.1836-1.1433.1953C22.4415 21.3975 17.5 39.4862 17.5 58.5c0 11.3295 2.1856 22.1527 6.1436 32.0765.1972.4908.7734.6381 1.1436.2993L32.6241 5.69977z" fill="#5E6AD2"/></svg>
+        <span class="int-logo-tile-name">Linear</span>
+      </a>
+      <!-- More -->
+      <a href="/console" class="int-logo-tile" style="border-style:dashed; background:rgba(99,102,241,0.03); min-width:78px;" title="View all integrations">
+        <span style="font-size:1.25rem; font-weight:700; color:var(--accent); line-height:1;">+35</span>
+        <span class="int-logo-tile-name" style="color:var(--accent);">more apps</span>
+      </a>
+    </div>
+    <p style="text-align:center;margin-top:18px;font-size:0.8rem;color:var(--text3);font-weight:300;">One click to connect · No technical setup · Works while you sleep</p>
+  </section>
 
-    <div class="arch-grid reveal">
-      <div class="arch-grid-cell">
-        <div style="font-size:1.2rem;margin-bottom:14px;">🧠</div>
-        <div class="arch-eyebrow">Hippocampal Consolidation</div>
-        <div class="arch-title">Memories transfer overnight.</div>
-        <div class="arch-body">During NREM sleep, the hippocampus replays recent experiences through sharp-wave ripples, transferring memories to the neocortex for long-term storage. Dream Engine's <em>synthesize</em> stage mirrors this: raw inputs are replayed, structured, and written to persistent indexed storage.</div>
+  <!-- ─── PRIVACY TRUST ───────────────────────────────────────── -->
+  <section class="section section-bg2" id="privacy">
+    <div class="section-inner" style="max-width: 860px;">
+      <div class="section-head reveal">
+        <span class="section-eyebrow">Your data, your rules</span>
+        <h2 class="section-h2">We need access to help you.<br>Here's exactly how we use it.</h2>
+        <p class="section-sub">REM connects to your Gmail, calendar, and files to work. That's a meaningful trust ask — and we take it seriously.</p>
       </div>
-      <div class="arch-grid-cell" style="border-left:1px solid var(--border);border-right:1px solid var(--border);">
-        <div style="font-size:1.2rem;margin-bottom:14px;">⚡</div>
-        <div class="arch-eyebrow">REM Free Association</div>
-        <div class="arch-title">Cross-domain insight emerges.</div>
-        <div class="arch-body">REM sleep is characterized by an acetylcholine surge that suppresses hippocampal gating, allowing distant memories to associate freely. The Dream Engine's <em>associate</em> and <em>insight_generate</em> stages replicate this — surfacing non-obvious connections across your agent's entire knowledge graph.</div>
-      </div>
-      <div class="arch-grid-cell">
-        <div style="font-size:1.2rem;margin-bottom:14px;">🎯</div>
-        <div class="arch-eyebrow">Targeted Memory Reactivation</div>
-        <div class="arch-title">Critical memories get priority.</div>
-        <div class="arch-body">TMR is a proven neuroscience technique where sensory cues during sleep enhance consolidation of specific memories. Our TMR system lets you tag high-priority memories so the Dream Engine processes them deeply — not uniformly. You control what compounds fastest.</div>
-      </div>
-    </div>
-
-    <div style="max-width:680px;margin:0 auto;">
-      <div style="text-align:center;margin-bottom:28px;" class="reveal">
-        <div class="eyebrow" style="display:block;">9-Stage Pipeline</div>
-        <div style="font-size:1.05rem;font-weight:600;letter-spacing:-0.02em;color:var(--text);margin-top:8px;">From raw memory to refined intelligence.</div>
-        <div style="font-size:0.82rem;font-weight:300;color:var(--text2);margin-top:8px;">Each stage maps to a specific phase of biological sleep. Together, they run every night.</div>
-      </div>
-      <div class="arch-pipeline reveal d1">
-        <div class="arch-stage">
-          <span class="arch-stage-n">01</span>
-          <span class="arch-stage-name">synthesize</span>
-          <span class="arch-stage-desc">Consolidates fragmented memories. Mirrors NREM Stage 2 sleep-spindle replay — raw experience becomes structured knowledge.</span>
+      <div class="privacy-grid">
+        <div class="privacy-card reveal d1">
+          <div class="privacy-icon">🔒</div>
+          <div class="privacy-title">Read-only. Never writes without you.</div>
+          <p class="privacy-desc">REM reads your apps to learn from them. It never sends emails, edits files, or makes changes anywhere without your explicit action. Your apps stay exactly as you left them.</p>
         </div>
-        <div class="arch-stage">
-          <span class="arch-stage-n">02</span>
-          <span class="arch-stage-name">pattern_extract</span>
-          <span class="arch-stage-desc">Identifies recurring structures. Analogous to thalamocortical oscillations during deep sleep — the brain finding signal in noise.</span>
+        <div class="privacy-card reveal d2">
+          <div class="privacy-icon">🛡️</div>
+          <div class="privacy-title">Your data is never sold. Never trained on.</div>
+          <p class="privacy-desc">What you share with REM is yours. It's not used to train public AI models, sold to advertisers, or shared with third parties. What you give us stays between you and your AI.</p>
         </div>
-        <div class="arch-stage">
-          <span class="arch-stage-n">03</span>
-          <span class="arch-stage-name">insight_generate</span>
-          <span class="arch-stage-desc">Surfaces non-obvious connections. Replicates REM-phase acetylcholine-driven free association — where creative leaps emerge.</span>
-        </div>
-        <div class="arch-stage">
-          <span class="arch-stage-n">04</span>
-          <span class="arch-stage-name">compress</span>
-          <span class="arch-stage-desc">Removes redundancy. Mirrors slow-wave sleep's synaptic downscaling — preserving signal, pruning noise, reducing storage by up to 40%.</span>
-        </div>
-        <div class="arch-stage">
-          <span class="arch-stage-n">05</span>
-          <span class="arch-stage-name">associate</span>
-          <span class="arch-stage-desc">Cross-links disparate memories. Based on hippocampal indexing theory — building semantic graph edges between memories that appear unrelated.</span>
-        </div>
-        <div class="arch-stage">
-          <span class="arch-stage-n">06</span>
-          <span class="arch-stage-name">validate</span>
-          <span class="arch-stage-desc">Scores confidence and resolves contradictions. Analogous to prefrontal cortex error-correction during late-cycle sleep.</span>
-        </div>
-        <div class="arch-stage">
-          <span class="arch-stage-n">07</span>
-          <span class="arch-stage-name">evolve</span>
-          <span class="arch-stage-desc">Adapts memory structure to recent patterns. Mirrors experience-dependent plasticity — synapses that fire together, wire together.</span>
-        </div>
-        <div class="arch-stage">
-          <span class="arch-stage-n">08</span>
-          <span class="arch-stage-name">forecast</span>
-          <span class="arch-stage-desc">Generates temporal predictions from extracted patterns. Based on research into sleep's role in prospective memory and anticipatory planning.</span>
-        </div>
-        <div class="arch-stage">
-          <span class="arch-stage-n">09</span>
-          <span class="arch-stage-name">reflect</span>
-          <span class="arch-stage-desc">Meta-cognitive review of the entire cycle. Inspired by post-sleep consolidation — the brain's morning assessment of what it actually learned.</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- PRODUCT SUITE -->
-<section class="suite-section" id="suite" aria-label="Product suite">
-  <div class="suite-header">
-    <p class="eyebrow reveal" style="display:block;">Product Suite</p>
-    <h2 class="reveal d1" style="margin-bottom:0;">Everything in one place.</h2>
-  </div>
-  <div class="suite-grid">
-    <div class="suite-card reveal">
-      <div class="suite-icon">◑</div>
-      <div class="suite-title">Dream Studio</div>
-      <div class="suite-desc">Configure 9-stage overnight synthesis cycles. Set strategies, schedule runs, review results.</div>
-      <a href="/dream" class="suite-link">Open →</a>
-    </div>
-    <div class="suite-card reveal d1">
-      <div class="suite-icon">⬡</div>
-      <div class="suite-title">Memory Hub</div>
-      <div class="suite-desc">Store, search, and organize everything your AI learns. Your central knowledge store.</div>
-      <a href="/memory" class="suite-link">Open →</a>
-    </div>
-    <div class="suite-card reveal d2">
-      <div class="suite-icon">◈</div>
-      <div class="suite-title">Morning Brief</div>
-      <div class="suite-desc">Daily intelligence report delivered every morning. Key insights, patterns, forecasts.</div>
-      <a href="/morning-brief" class="suite-link">Open →</a>
-    </div>
-    <div class="suite-card reveal d1">
-      <div class="suite-icon">⧖</div>
-      <div class="suite-title">Team Hive</div>
-      <div class="suite-desc">Multiplayer shared memory. Collective Dream cycles for teams. One brain, everyone benefits.</div>
-      <a href="/hive" class="suite-link">Open →</a>
-    </div>
-    <div class="suite-card reveal d2">
-      <div class="suite-icon">◊</div>
-      <div class="suite-title">Memory Explorer</div>
-      <div class="suite-desc">Interactive knowledge graph. Visualize connections between memories. Navigate your mind.</div>
-      <a href="/explorer" class="suite-link">Open →</a>
-    </div>
-    <div class="suite-card reveal d3">
-      <div class="suite-icon">⚙</div>
-      <div class="suite-title">Skills Forge</div>
-      <div class="suite-desc">Procedural skills library extracted from your Dream cycles. Build and reuse capabilities.</div>
-      <a href="/skills" class="suite-link">Open →</a>
-    </div>
-  </div>
-</section>
-
-
-<!-- HOW IT WORKS -->
-<section class="how-section" aria-label="How it works">
-  <div class="how-header">
-    <p class="eyebrow reveal" style="display:block;">How it works</p>
-    <h2 class="reveal d1" style="margin-bottom:0;">Store. Dream. Wake.</h2>
-  </div>
-  <div class="steps">
-    <div class="step reveal">
-      <div class="step-n">01</div>
-      <div class="step-t">Store</div>
-      <div class="step-b">Feed it what your AI learns. Paste text, send API calls, or let background extractors pull structure automatically from any content.</div>
-    </div>
-    <div class="step reveal d2">
-      <div class="step-n">02</div>
-      <div class="step-t">Dream</div>
-      <div class="step-b">Overnight, Dream Engine runs 9 synthesis cycles. New patterns, compressed knowledge, novel insights — waiting when you wake up.</div>
-    </div>
-    <div class="step reveal d4">
-      <div class="step-n">03</div>
-      <div class="step-t">Wake</div>
-      <div class="step-b">Your Morning Brief is ready. Insights, patterns, a forecast. Your AI is measurably smarter than yesterday.</div>
-    </div>
-  </div>
-</section>
-
-
-<!-- MORNING BRIEF PREVIEW -->
-<section class="section" style="background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
-  <div class="section-inner">
-    <div class="split flip">
-      <div>
-        <p class="eyebrow reveal">Morning Brief</p>
-        <h2 class="reveal d1">Wake up smarter.<br>Every day.</h2>
-        <p class="body-text reveal d2">After every Dream cycle, REM Labs generates a full intelligence report. Key insights surfaced overnight. Patterns the Dream Engine detected. A forecast of what to pay attention to next.</p>
-        <div class="bullets reveal d3">
-          <div class="bullet"><span class="bullet-dot"></span><div><strong>Automatic — no prompt needed</strong><span>Shows up every morning after a Dream cycle completes.</span></div></div>
-          <div class="bullet"><span class="bullet-dot"></span><div><strong>Brain Glow Score</strong><span>A single number measuring how much your agent improved overnight.</span></div></div>
-          <div class="bullet"><span class="bullet-dot"></span><div><strong>Team-wide or individual</strong><span>Every team member gets a brief, or share one across the whole Hive.</span></div></div>
-        </div>
-        <div class="reveal d4" style="margin-top:28px;">
-          <a href="/morning-brief" class="btn btn-outline" style="font-size:0.84rem;">See your brief →</a>
+        <div class="privacy-card reveal d3">
+          <div class="privacy-icon">🗑️</div>
+          <div class="privacy-title">Delete everything, any time, instantly.</div>
+          <p class="privacy-desc">Your account, your memory, your connections — gone in one click if you want them gone. No waiting period. You can also disconnect any app without deleting anything else.</p>
         </div>
       </div>
-      <div class="reveal d1" style="display:flex;justify-content:center;">
-        <div class="brief-card">
-          <div class="brief-bar">
-            <div class="dot g" style="width:7px;height:7px;border-radius:50%;background:var(--green);"></div>
-            <span class="brief-bar-title">Morning Brief</span>
-            <span class="brief-date">Apr 2, 2026 · 06:00</span>
-          </div>
-          <div class="brief-score">
-            <div class="brief-score-n" id="brief-demo-score">84</div>
-            <div class="brief-score-r">
-              <span class="brief-score-label">Brain Glow Score</span>
-              <span class="brief-score-rank">🔥 Flame — up 6pts overnight</span>
-            </div>
-          </div>
-          <div class="brief-section">
-            <div class="brief-section-title">Insights surfaced</div>
-            <div class="brief-insight"><span class="brief-insight-dot">▸</span><span>Productivity patterns peak Tuesday–Thursday. Monday and Friday show 22% lower output density.</span></div>
-            <div class="brief-insight"><span class="brief-insight-dot">▸</span><span>Async communication preference is consistent — 3× more memory events around written docs vs. meetings.</span></div>
-            <div class="brief-insight"><span class="brief-insight-dot">▸</span><span>TypeScript usage increased 40% over the last 30 days. Rust mentions declining.</span></div>
-          </div>
-          <div class="brief-section">
-            <div class="brief-section-title">Top pattern detected</div>
-            <div class="brief-pattern">context_switching → -90 min/day productivity loss</div>
-          </div>
-          <div class="brief-section">
-            <div class="brief-section-title">Forecast</div>
-            <div class="brief-insight"><span class="brief-insight-dot">▸</span><span>High probability of system design questions in next session based on recent memory trajectory.</span></div>
-          </div>
-          <div class="brief-footer">
-            <span>Dream: 8m 42s · 9 stages</span>
-            <span>247 memories processed</span>
-          </div>
+      <div class="reveal" style="text-align:center; margin-top:32px;">
+        <a href="/privacy" style="font-size:0.875rem; color:var(--text2); font-weight:400; text-decoration:none; border-bottom: 1px solid var(--border2);">Read our full privacy policy →</a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ─── NEUROSCIENCE ────────────────────────────────────────── -->
+  <section class="section section-bg2">
+    <div class="section-inner" style="max-width: 860px;">
+      <div class="section-head reveal">
+        <span class="section-eyebrow">Why REM?</span>
+        <h2 class="section-h2">The science behind the metaphor.</h2>
+        <p class="section-sub">During actual REM sleep, your brain doesn't rest — it consolidates memories, finds connections between things you experienced at different times, and discards noise. Neuroscientists call it offline processing. It's why a problem that had you stuck at midnight feels solvable by morning.</p>
+      </div>
+      <div class="privacy-grid">
+        <div class="privacy-card reveal d1">
+          <div class="privacy-icon">🧠</div>
+          <div class="privacy-title">Memory consolidation</div>
+          <p class="privacy-desc">Your brain replays the day's inputs and decides what to keep. REM Labs does the same — ingesting everything from your apps and finding what's worth surfacing. In practice: things you saved weeks ago show up when they're actually relevant — not when you go looking.</p>
+        </div>
+        <div class="privacy-card reveal d2">
+          <div class="privacy-icon">🔗</div>
+          <div class="privacy-title">Cross-source connection</div>
+          <p class="privacy-desc">REM sleep links memories from different times and contexts. The Dream Engine does this across your apps — connecting a Notion note from March to an email from yesterday. In practice: REM skips the noise and shows you the two things that actually moved your goals forward.</p>
+        </div>
+        <div class="privacy-card reveal d3">
+          <div class="privacy-icon">🌙</div>
+          <div class="privacy-title">Signal over noise</div>
+          <p class="privacy-desc">REM sleep prunes irrelevant memories. The Dream Engine filters everything through your goals — so what surfaces is signal, not volume. In practice: you read one brief instead of checking five apps.</p>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-
-<!-- DEVELOPER -->
-<section class="dev-section">
-  <div class="dev-inner">
-    <div class="dev-head">
-      <p class="eyebrow reveal">Developer API</p>
-      <h2 class="dev-h2 reveal d1">Built on a real API.</h2>
-      <p class="dev-sub reveal d2">REM Labs is the consumer layer. Underneath is slopshop.gg — full REST API, CLI, MCP server, 1,303 endpoints.</p>
-    </div>
-    <div class="reveal d2">
-      <div class="code-tabs">
-        <button class="code-tab active" data-tab="rest">REST</button>
-        <button class="code-tab" data-tab="cli">CLI</button>
-        <button class="code-tab" data-tab="mcp">MCP</button>
-      </div>
-      <div class="code-wrap">
-        <div class="code-panel active" id="tab-rest">
-<span class="cmt"># Store a memory</span>
-<span class="ca">curl</span> -X POST https://api.slopshop.gg/v1/memory/store \
-  -H <span class="str">"Authorization: Bearer $SLOP_KEY"</span> \
-  -d <span class="str">'{"content":"User prefers concise responses. Expert in Rust."}'</span>
-
-<span class="cmt"># → { "id": "mem_9a3z1", "stored": true }</span>
-
-<span class="cmt"># Start a Dream cycle</span>
-<span class="ca">curl</span> -X POST https://api.slopshop.gg/v1/memory/dream/start \
-  -H <span class="str">"Authorization: Bearer $SLOP_KEY"</span> \
-  -d <span class="str">'{"strategy":"synthesize,compress,insight_generate"}'</span>
-
-<span class="cmt"># → { "dream_id": "drm_7f2b", "status": "running", "stages": 9 }</span>
-        </div>
-        <div class="code-panel" id="tab-cli">
-<span class="cmt"># Install</span>
-<span class="ca">npm</span> install -g @slopshop/cli
-
-<span class="cmt"># Store from stdin</span>
-<span class="ca">echo</span> <span class="str">"User is a senior engineer, prefers dark mode"</span> | <span class="ca">slop</span> memory store
-<span class="cmt"># → ✓ Stored  mem_k9x2</span>
-
-<span class="cmt"># Run a full Dream cycle</span>
-<span class="ca">slop</span> dream run --all-stages
-<span class="cmt"># → Intelligence Score: 87.4  |  Insights: 12</span>
-        </div>
-        <div class="code-panel" id="tab-mcp">
-<span class="cmt"># Add to Claude Code or any MCP client (~/.claude/mcp.json)</span>
-
-<span class="cm">{</span>
-  <span class="ck">"mcpServers"</span><span class="cm">: {</span>
-    <span class="ck">"slopshop"</span><span class="cm">: {</span>
-      <span class="ck">"command"</span><span class="cm">:</span> <span class="str">"npx"</span><span class="cm">,</span>
-      <span class="ck">"args"</span><span class="cm">:</span> <span class="cm">[</span><span class="str">"-y"</span><span class="cm">,</span> <span class="str">"@slopshop/mcp-server"</span><span class="cm">],</span>
-      <span class="ck">"env"</span><span class="cm">: {</span> <span class="ck">"SLOP_KEY"</span><span class="cm">:</span> <span class="str">"your-key"</span> <span class="cm">}</span>
-    <span class="cm">}</span>
-  <span class="cm">}</span>
-<span class="cm">}</span>
-
-<span class="cmt"># Claude now has 1,303 tools. Memories persist across sessions.</span>
-        </div>
-      </div>
-      <a href="https://slopshop.gg" class="dev-cta" target="_blank" rel="noopener">Full developer docs →</a>
-    </div>
-  </div>
-</section>
-
-
-<!-- CTA -->
-<section class="cta-section">
-  <div class="cta-glow"></div>
-  <div class="cta-body">
-    <h2 class="cta-h2 reveal">Start for free.<br>Dream tonight.</h2>
-    <p class="cta-sub reveal d1">Memory always free. No credit card. Any AI model.</p>
-    <div class="cta-actions reveal d2">
-      <button class="btn btn-dark google-btn" style="font-size:0.95rem;padding:14px 32px;">Get started with Google →</button>
-      <a href="https://slopshop.gg" class="cta-secondary" target="_blank" rel="noopener">Already building? <span>→ slopshop.gg</span></a>
-    </div>
-  </div>
-</section>
-
-
-<!-- COMMUNITY -->
-<section class="comm-section">
-  <div class="comm-inner">
-    <div>
-      <div class="comm-tag">Community</div>
-      <h3 class="comm-h3">Join the conversation</h3>
-      <p class="comm-p">Share what you're building. Get help. See what others are creating with REM Labs.</p>
-      <a href="https://discord.gg/slopshop" class="discord-btn" target="_blank" rel="noopener">Join Discord →</a>
-    </div>
-    <div>
-      <div class="comm-tag">Built with REM Labs</div>
-      <h3 class="comm-h3">What people are building</h3>
-      <div class="bw-grid">
-        <div class="bw-card">Research agents that remember every paper</div>
-        <div class="bw-card">Trading agents with compounding market memory</div>
-        <div class="bw-card">Support bots that never forget a customer</div>
-        <div class="bw-card">Writing assistants that recall your voice</div>
+  <!-- ─── DREAM ENGINE DIFFERENTIATOR ─── -->
+  <section class="section section-bg2" style="padding-top:48px;padding-bottom:48px;">
+    <div class="section-inner" style="max-width:700px;text-align:center;">
+      <span class="section-eyebrow">The Dream Engine</span>
+      <h2 class="section-h2" style="margin-bottom:14px;">The only AI that reads your whole life<br>and filters it through what you care about.</h2>
+      <p class="section-sub" style="max-width:560px;margin:0 auto 28px;">Every other AI answers when you ask. REM acts without being asked — reading your apps overnight, finding what moved toward your goals, and delivering the output every morning. Set it once. It runs forever.</p>
+      <div style="display:flex;justify-content:center;gap:28px;flex-wrap:wrap;">
+        <div style="text-align:left;max-width:180px;"><div style="font-size:1.3rem;margin-bottom:6px;">🌙</div><div style="font-size:0.82rem;font-weight:600;color:var(--text);margin-bottom:3px;">Runs while you sleep</div><div style="font-size:0.78rem;color:var(--text2);line-height:1.55;">No prompts, no logins, no daily check-ins. Fully automatic.</div><div style="font-size:0.72rem;color:var(--text3);font-style:italic;margin-top:4px;">e.g. "You have 3 unanswered emails mentioning a deadline — all from the same person."</div></div>
+        <div style="text-align:left;max-width:180px;"><div style="font-size:1.3rem;margin-bottom:6px;">🎯</div><div style="font-size:0.82rem;font-weight:600;color:var(--text);margin-bottom:3px;">Filtered by your goals</div><div style="font-size:0.78rem;color:var(--text2);line-height:1.55;">Everything is ranked against what you said you care about.</div><div style="font-size:0.72rem;color:var(--text3);font-style:italic;margin-top:4px;">e.g. "Your goal is 'ship v1.' 4 notes from last week moved toward it — 2 didn't."</div></div>
+        <div style="text-align:left;max-width:180px;"><div style="font-size:1.3rem;margin-bottom:6px;">🔗</div><div style="font-size:0.82rem;font-weight:600;color:var(--text);margin-bottom:3px;">Connects the dots</div><div style="font-size:0.78rem;color:var(--text2);line-height:1.55;">Finds patterns across apps, dates, and topics you'd never search for.</div><div style="font-size:0.72rem;color:var(--text3);font-style:italic;margin-top:4px;">e.g. "An idea you saved in January connects to something your teammate said last week."</div></div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
+  <!-- ─── DATA FEATURES ───────────────────────────────────────── -->
+  <section class="section">
+    <div class="section-inner" style="max-width: 860px;">
+      <div class="section-head reveal">
+        <span class="section-eyebrow">An automated life</span>
+        <h2 class="section-h2">The brief is just the output.<br>The system is what matters.</h2>
+        <p class="section-sub">REM is a full automation layer — connecting your apps, learning your patterns, and acting on your behalf. The morning output is what it found and did overnight.</p>
+      </div>
+      <div class="privacy-grid">
+        <div class="privacy-card reveal d1">
+          <div class="privacy-icon">⚡</div>
+          <div class="privacy-title">Automations</div>
+          <p class="privacy-desc">REM learns your patterns and automates them. "You save articles every Thursday. Want a reading list queued each Friday?" Deadline nudges, focus windows, weekly recaps — all handled.</p>
+        </div>
+        <div class="privacy-card reveal d2">
+          <div class="privacy-icon">🎯</div>
+          <div class="privacy-title">North Stars</div>
+          <p class="privacy-desc">Set goals — launch a product, hit a milestone, improve a habit. Every run filters your data through those lenses and tells you what moved (and what didn't).</p>
+        </div>
+        <div class="privacy-card reveal d3">
+          <div class="privacy-icon">💤</div>
+          <div class="privacy-title">Dream Studio</div>
+          <p class="privacy-desc">On-demand synthesis across everything you've ever connected. Ask it anything, explore connections, find patterns from years of data. Your entire digital life — queryable.</p>
+        </div>
+      </div>
+      <div class="reveal" style="text-align:center; margin-top:32px;">
+        <a href="/morning" style="font-size:0.875rem; color:var(--accent); font-weight:500; text-decoration:none; border-bottom: 1px solid rgba(99,102,241,0.3);">Explore the full product suite →</a>
+      </div>
+    </div>
+  </section>
 
-<!-- FOOTER -->
-<footer class="footer">
-  <div class="footer-inner">
-    <p class="footer-copy">© 2026 REM Labs · Powered by slopshop.gg</p>
-    <nav class="footer-links">
-      <a href="/vs/mem0">vs Mem0</a>
-      <a href="/vs/zep">vs Zep</a>
-      <a href="/security">Security</a>
-      <a href="/privacy">Privacy</a>
-      <a href="/terms">Terms</a>
-      <a href="https://slopshop.gg" target="_blank" rel="noopener">Developers</a>
-    </nav>
-  </div>
-</footer>
+  <!-- ─── FINAL CTA ────────────────────────────────────────────── -->
+  <section class="cta-band">
+    <div class="cta-band-inner reveal">
+      <h2>Connect everything.<br>Set your goals. REM does the rest.</h2>
+      <p class="cta-band-sub">Sign in, set your goals, connect your apps. Tonight the Dream Engine runs — and every morning after, your system gets sharper.</p>
+      <a href="/auth/google?return_to=/morning" class="btn-primary">Start for free →</a>
+      <p class="cta-band-fine">No credit card · No technical setup · <a href="/morning">Already a member →</a></p>
+    </div>
+  </section>
 
+  <!-- ─── FOOTER ───────────────────────────────────────────────── -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <p class="footer-copy">© 2026 REM Labs</p>
+      <nav class="footer-links">
+        <a href="/pricing">Pricing</a>
+        <a href="/privacy">Privacy</a>
+        <a href="/terms">Terms</a>
+        <a href="mailto:hello@remlabs.ai">Contact</a>
+      </nav>
+    </div>
+  </footer>
 
-<script>
-/* nav scroll */
-(function(){
-  var nav = document.getElementById('nav');
-  var hb = document.getElementById('hamburger');
-  var mob = document.getElementById('mob-menu');
-  if(nav) window.addEventListener('scroll', function(){ nav.style.background = scrollY > 8 ? 'rgba(255,255,255,0.95)' : 'rgba(255,255,255,0.82)'; }, {passive:true});
-  if(hb && mob) hb.addEventListener('click', function(){ mob.classList.toggle('open'); hb.classList.toggle('open'); });
-})();
+  <script>
 
-/* live metrics */
-(async function(){
-  try {
-    var r = await fetch('/v1/metrics/public');
-    if(!r.ok) return;
-    var d = await r.json();
-    var el = document.getElementById('live-agents');
-    var n = d.total_agents || d.live_instances || d.total_dreams;
-    if(el && n > 0) el.textContent = n.toLocaleString();
-  } catch(_){}
-})();
-
-(function(){
-  'use strict';
-
-  /* auth */
-  (async function(){
-    try {
-      var res = await fetch('/v1/auth/session', {credentials:'include'});
-      if(!res.ok) return;
-      var d = await res.json().catch(()=>({}));
-      if(d && (d.user || d.authenticated || d.ok)){
-        var s = document.getElementById('nav-signin');
-        if(s) s.style.display = 'none';
-        var dash = document.getElementById('nav-dash');
-        if(dash) dash.classList.add('visible');
-        var mobSignin = document.getElementById('mob-signin');
-        if(mobSignin) mobSignin.style.display = 'none';
-        var mobOpen = document.getElementById('mob-openapp');
-        if(mobOpen) mobOpen.style.display = 'block';
-        // hide announcement bar for authed users
-        var tb = document.getElementById('topbar');
-        if(tb) tb.style.display = 'none';
-      }
-    } catch(_){}
-  })();
-
-  /* google auth */
-  document.querySelectorAll('.google-btn').forEach(function(b){
-    b.addEventListener('click', function(){ window.location.href = '/auth/google'; });
-  });
-
-  /* smooth scroll */
-  document.querySelectorAll('a[href^="#"]').forEach(function(a){
-    a.addEventListener('click', function(e){
-      var id = a.getAttribute('href').slice(1);
-      var el = document.getElementById(id);
-      if(el){ e.preventDefault(); el.scrollIntoView({behavior:'smooth', block:'start'}); }
-    });
-  });
-
-  /* reveal */
-  var obs = new IntersectionObserver(function(entries){
-    entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); } });
-  }, {threshold: 0.1});
-  document.querySelectorAll('.reveal').forEach(function(el){ obs.observe(el); });
-  setTimeout(function(){ document.querySelectorAll('.hero .reveal').forEach(function(el){ el.classList.add('visible'); }); }, 60);
-
-  /* dream animation */
-  (function(){
-    var stages = document.querySelectorAll('#stages .stage');
-    var scoreEl = document.getElementById('score');
-    if(!stages.length) return;
-    var cur = 0, score = 0;
-    function tick(){
-      stages.forEach(function(s,i){ s.classList.toggle('on', i === cur); });
-      score = Math.min(100, score + Math.floor(Math.random()*8)+3);
-      if(scoreEl) scoreEl.textContent = score.toFixed(1);
-      cur = (cur+1) % stages.length;
-      if(cur === 0) score = 0;
+    // Hamburger
+    var hbg = document.getElementById('hamburger');
+    var mob = document.getElementById('mob-menu');
+    if (hbg && mob) {
+      hbg.addEventListener('click', function() {
+        hbg.classList.toggle('open');
+        mob.classList.toggle('open');
+      });
     }
-    tick(); setInterval(tick, 1400);
-  })();
 
-  /* demo extractor */
-  (function(){
-    var input = document.getElementById('demo-input');
-    var btn = document.getElementById('demo-run');
-    var out = document.getElementById('demo-out');
-    if(!input||!btn||!out) return;
-    async function run(){
-      var content = input.value.trim();
-      if(!content){ input.focus(); return; }
-      btn.disabled = true; btn.textContent = 'Saving…';
-      var ex = document.getElementById('demo-example');
-      if(ex) ex.style.display = 'none';
-      out.innerHTML = '<div style="padding:4px 20px 12px;font-size:0.76rem;color:var(--text3);" class="shimmer">Reading your text…</div>';
+    // Check if logged in — show "Open App" button
+    (function() {
       try {
-        var res = await fetch('/v1/demo/extract', {method:'POST', headers:{'Content-Type':'application/json'}, credentials:'include', body:JSON.stringify({content})});
-        if(!res.ok) throw new Error('HTTP '+res.status);
-        var data = await res.json();
-        var items = (data.extracted||data.memories||[]).slice(0,5);
-        var html = '<div style="padding:4px 20px 16px;">';
-        if(!items.length){
-          html += '<div style="font-size:0.78rem;color:var(--text3);">Nothing clear to save — try something more specific.</div>';
-        } else {
-          html += '<div style="display:flex;flex-direction:column;gap:7px;">';
-          items.forEach(function(item){
-            var k = esc((item.key||item.name||'?').replace(/_/g,' ')), v = esc(item.value||item.content||'?');
-            html += '<div style="display:flex;align-items:center;gap:10px;font-size:0.79rem;"><span style="color:var(--accent);font-weight:500;min-width:150px;font-size:0.75rem;">'+k+'</span><span style="color:var(--text3);">→</span><span style="color:var(--text);">'+v+'</span></div>';
-          });
-          html += '<div style="font-size:0.72rem;color:var(--green);margin-top:4px;">✓ '+items.length+' memor'+(items.length===1?'y':'ies')+' saved — <a href="/memory" style="color:var(--accent);">view in Memory Hub →</a></div>';
-          html += '</div>';
+        var key = localStorage.getItem('slopshop_api_key') || localStorage.getItem('slop_api_key');
+        if (key) {
+          var dash = document.getElementById('nav-dash');
+          var signin = document.getElementById('nav-signin');
+          if (dash) { dash.classList.add('visible'); dash.style.display = 'flex'; }
+          if (signin) signin.style.display = 'none';
         }
-        html += '</div>';
-        out.innerHTML = html;
-      } catch(e){ out.innerHTML = '<div style="padding:4px 20px 12px;font-size:0.78rem;color:var(--text3);">Couldn\'t connect — try again in a moment.</div>'; }
-      finally { btn.disabled=false; btn.textContent='Try it →'; }
-    }
-    btn.addEventListener('click', run);
-    input.addEventListener('keydown', function(e){ if(e.key==='Enter') run(); });
-  })();
+      } catch(_) {}
+    })();
 
-  /* code tabs */
-  document.querySelectorAll('.code-tab').forEach(function(tab){
-    tab.addEventListener('click', function(){
-      var t = tab.dataset.tab;
-      document.querySelectorAll('.code-tab').forEach(function(x){ x.classList.toggle('active', x.dataset.tab===t); });
-      document.querySelectorAll('.code-panel').forEach(function(p){ p.classList.toggle('active', p.id==='tab-'+t); });
+    // Reveal on scroll
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(function(el) { observer.observe(el); });
+
+    // Nav scroll shadow
+    window.addEventListener('scroll', function() {
+      document.getElementById('nav').style.boxShadow = window.scrollY > 10 ? '0 1px 20px rgba(0,0,0,0.06)' : '';
+    }, { passive: true });
+
+    (function() {
+  var briefData = {
+    intro: 'I went through 47 items while you slept — emails, calendar, notes. Here are the 3 that moved your goals forward.',
+    cards: [
+      { icon: '💬', title: '3 messages waiting on a reply — all mention the same deadline', sub: 'Email + Slack · sent in last 48h · each takes under 3 min to close' },
+      { icon: '🔗', title: 'A note from 3 weeks ago connects to your meeting today', sub: 'Pattern across 4 saved items · you\'ve circled this idea before' },
+      { icon: '📅', title: 'You have 4.5 clear hours — your most open day this week', sub: 'No meetings until 2pm · best focus window: 9–11am' }
+    ],
+    auto: { title: 'Every Thursday you save 3+ articles', body: 'REM noticed this 8 weeks running. Want a reading list queued automatically each Friday?' }
+  };
+
+  var cardColors = ['rgba(99,102,241,0.08)', 'rgba(168,85,247,0.06)', 'rgba(34,197,94,0.06)'];
+
+  function typeText(el, text, speed, cb) {
+    el.textContent = '';
+    var i = 0;
+    var t = setInterval(function() {
+      el.textContent += text[i++];
+      if (i >= text.length) { clearInterval(t); if (cb) cb(); }
+    }, speed);
+  }
+
+  function runAnim() {
+    var date = document.getElementById('animDate');
+    var greet = document.getElementById('animGreeting');
+    var intro = document.getElementById('animIntro');
+    var cards = document.getElementById('animCards');
+    var autoEl = document.getElementById('animAuto');
+    var autoTitle = document.getElementById('animAutoTitle');
+    var autoBody = document.getElementById('animAutoBody');
+    var footer = document.getElementById('animFooter');
+    if (!date) return;
+
+    cards.innerHTML = '';
+    autoEl.style.display = 'none';
+    [date, greet, intro, footer].forEach(function(el) { el.style.opacity = '0'; });
+
+    setTimeout(function() { date.style.opacity = '1'; }, 300);
+    setTimeout(function() { greet.style.opacity = '1'; }, 700);
+    setTimeout(function() {
+      intro.style.opacity = '1';
+      typeText(intro, briefData.intro, 18);
+    }, 1200);
+
+    briefData.cards.forEach(function(card, i) {
+      setTimeout(function() {
+        var div = document.createElement('div');
+        div.style.cssText = 'background:' + cardColors[i] + ';border-radius:10px;padding:11px 14px;display:flex;gap:10px;align-items:flex-start;opacity:0;transition:opacity 0.4s ease,transform 0.4s ease;transform:translateY(8px);';
+        div.innerHTML = '<span style="font-size:1rem;flex-shrink:0;">' + card.icon + '</span><div><div style="font-size:0.82rem;font-weight:600;color:var(--text);margin-bottom:2px;">' + card.title + '</div><div style="font-size:0.72rem;color:var(--text3);">' + card.sub + '</div></div>';
+        cards.appendChild(div);
+        requestAnimationFrame(function() {
+          requestAnimationFrame(function() {
+            div.style.opacity = '1';
+            div.style.transform = 'translateY(0)';
+          });
+        });
+      }, 2000 + i * 700);
     });
-  });
 
-  function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+    setTimeout(function() {
+      autoEl.style.display = 'block';
+      autoEl.style.opacity = '0';
+      autoEl.style.transition = 'opacity 0.5s ease';
+      typeText(autoTitle, briefData.auto.title, 22);
+      setTimeout(function() {
+        autoBody.textContent = briefData.auto.body;
+        autoEl.style.opacity = '1';
+      }, 400);
+    }, 4500);
+
+    setTimeout(function() { footer.style.opacity = '1'; }, 5500);
+  }
+
+  // Start when visible
+  var started = false;
+  var obs = new IntersectionObserver(function(entries) {
+    if (entries[0].isIntersecting && !started) {
+      started = true;
+      runAnim();
+      setInterval(function() { started = false; runAnim(); }, 9000);
+    }
+  }, { threshold: 0.3 });
+  var wrap = document.querySelector('.brief-preview-wrap');
+  if (wrap) obs.observe(wrap);
 })();
-</script>
+  </script>
+
 </body>
 </html>
