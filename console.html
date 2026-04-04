@@ -8,7 +8,7 @@
   <title>Apps — REM Labs</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
@@ -17,32 +17,33 @@
       --text: #1d1d1f; --text2: #6e6e73; --text3: #aeaeb2;
       --accent: #6366f1; --accent-dim: rgba(99,102,241,0.06); --accent-border: rgba(99,102,241,0.2);
       --green: #22c55e; --yellow: #f59e0b; --red: #ef4444;
-      --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; --mono: 'JetBrains Mono', monospace;
+      --font: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif; --mono: 'JetBrains Mono', monospace;
       --nav-h: 52px;
     }
     html, body { height: 100%; overflow-x: hidden; max-width: 100%; }
-    body { font-family: var(--font); background: var(--bg); color: var(--text); font-size: 14px; line-height: 1.5; }
+    body { font-family: var(--font); background: var(--bg); color: var(--text); font-size: 14px; line-height: 1.6; }
     @media (max-width: 768px) { input, textarea, select { font-size: 16px !important; } }
 
     /* NAV */
     .app-nav {
       position: fixed; top: 0; left: 0; right: 0; height: var(--nav-h);
-      background: rgba(255,255,255,0.92); backdrop-filter: blur(20px);
+      background: rgba(255,255,255,0.82); backdrop-filter: saturate(180%) blur(20px);
+      -webkit-backdrop-filter: saturate(180%) blur(20px);
       border-bottom: 1px solid var(--border); display: flex; align-items: center;
-      justify-content: space-between; padding: 0 20px; z-index: 100; gap: 16px;
+      justify-content: space-between; padding: 0 20px; z-index: 200; gap: 16px;
     }
-    .nav-logo { font-size: 0.9rem; font-weight: 400; color: var(--text); text-decoration: none; letter-spacing: 0.02em; white-space: nowrap; display:flex;align-items:center;gap:7px; }
+    .nav-logo { font-size: 0.9rem; font-weight: 600; color: var(--text); text-decoration: none; letter-spacing: 0.02em; white-space: nowrap; display:flex;align-items:center;gap:7px; }
     .nav-center { display: flex; align-items: center; gap: 2px; }
     .nav-link { color: var(--text2); text-decoration: none; font-size: 0.8125rem; font-weight: 500; padding: 5px 11px; border-radius: 7px; transition: color 0.15s, background 0.15s; white-space: nowrap; }
     .nav-link:hover { color: var(--text); background: rgba(0,0,0,0.05); }
-    .nav-link.active { color: var(--text); background: rgba(0,0,0,0.06); }
+    .nav-link.active { color: var(--text); background: rgba(0,0,0,0.06); font-weight: 600; }
     .nav-right { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
     @media (max-width: 768px) { .nav-center { display: none; } }
     /* ── AVATAR ── */
     .acct-avatar {
-      width: 30px; height: 30px; border-radius: 50%;
+      width: 36px; height: 36px; border-radius: 50%;
       background: var(--accent); border: none; cursor: pointer;
-      font-size: 0.68rem; font-weight: 700; color: #fff;
+      font-size: 0.72rem; font-weight: 700; color: #fff;
       display: flex; align-items: center; justify-content: center;
       font-family: var(--font); flex-shrink: 0; transition: opacity 0.15s;
       -webkit-tap-highlight-color: transparent;
@@ -75,16 +76,16 @@
       align-items: stretch; justify-content: space-around;
       padding-bottom: env(safe-area-inset-bottom);
     }
-    @media (max-width: 768px) { .mobile-tab-bar { display: flex; } body { padding-bottom: 72px; } }
+    @media (max-width: 768px) { .mobile-tab-bar { display: flex; } body { padding-bottom: 72px; } #toast-container { bottom: calc(56px + env(safe-area-inset-bottom, 0px) + 12px); right: 12px; } }
     .mobile-tab { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; text-decoration: none; color: var(--text3); transition: color 0.15s; -webkit-tap-highlight-color: transparent; padding: 8px 4px; }
     .mobile-tab.active, .mobile-tab:hover { color: var(--accent); }
-    .mobile-tab-label { font-size: 0.6rem; font-weight: 600; letter-spacing: 0.02em; }
+    .mobile-tab-label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.02em; }
 
     /* PAGE */
-    .page { padding-top: calc(var(--nav-h) + 48px); padding-bottom: 100px; max-width: 720px; margin: 0 auto; padding-left: 24px; padding-right: 24px; }
+    .page { padding-top: calc(var(--nav-h) + 48px); padding-bottom: 100px; max-width: 800px; margin: 0 auto; padding-left: 24px; padding-right: 24px; }
 
     .page-eyebrow { font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 8px; }
-    .page-title { font-size: 1.875rem; font-weight: 700; color: var(--text); margin-bottom: 12px; letter-spacing: -0.01em; }
+    .page-title { font-size: 2rem; font-weight: 700; color: var(--text); margin-bottom: 12px; letter-spacing: -0.03em; }
     .page-sub { font-size: 0.9375rem; color: var(--text2); max-width: 540px; line-height: 1.7; margin-bottom: 48px; }
 
     .section-label { font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text3); margin-bottom: 12px; display: block; }
@@ -92,7 +93,7 @@
     /* CONNECT CARDS */
     .connect-card {
       background: var(--bg); border: 1px solid var(--border); border-radius: 14px;
-      padding: 24px 28px; margin-bottom: 14px; display: flex; align-items: flex-start;
+      padding: 20px 22px; margin-bottom: 14px; display: flex; align-items: flex-start;
       gap: 24px; transition: border-color 0.15s, box-shadow 0.15s;
     }
     .connect-card:hover { border-color: var(--accent-border); box-shadow: 0 2px 16px rgba(99,102,241,0.07); }
@@ -102,17 +103,17 @@
     .connect-app-name { font-size: 1rem; font-weight: 600; color: var(--text); margin-bottom: 4px; }
     .connect-app-desc { font-size: 0.8125rem; color: var(--text2); line-height: 1.6; margin-bottom: 10px; max-width: 440px; }
     .connect-learns { display: flex; flex-wrap: wrap; gap: 6px; }
-    .learn-tag { font-size: 0.72rem; font-weight: 500; color: var(--text3); background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 3px 9px; }
+    .learn-tag { font-size: 0.72rem; font-weight: 500; color: var(--text3); background: var(--surface); border: 1px solid var(--border); border-radius: 100px; padding: 3px 9px; }
     .connect-card-right { flex-shrink: 0; display: flex; flex-direction: column; align-items: flex-end; justify-content: center; min-width: 180px; gap: 8px; }
 
     /* OAUTH BUTTON */
-    .btn-connect-oauth { display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; border-radius: 9px; background: var(--text); color: #fff; font-size: 0.875rem; font-weight: 500; font-family: var(--font); cursor: pointer; border: none; text-decoration: none; transition: opacity 0.15s; white-space: nowrap; }
+    .btn-connect-oauth { display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; min-height: 44px; border-radius: 10px; background: var(--text); color: #fff; font-size: 0.875rem; font-weight: 500; font-family: var(--font); cursor: pointer; border: none; text-decoration: none; transition: opacity 0.15s; white-space: nowrap; }
     .btn-connect-oauth:hover { opacity: 0.85; }
     .btn-connect-oauth.google { background: #fff; color: var(--text); border: 1px solid var(--border2); }
     .btn-connect-oauth.google:hover { background: var(--surface); opacity: 1; }
 
     /* TOKEN BUTTON (secondary, for power users) */
-    .btn-connect-token { display: inline-flex; align-items: center; gap: 6px; padding: 9px 16px; border-radius: 9px; background: transparent; color: var(--text2); font-size: 0.8125rem; font-weight: 500; font-family: var(--font); cursor: pointer; border: 1px solid var(--border2); text-decoration: none; transition: all 0.15s; white-space: nowrap; }
+    .btn-connect-token { display: inline-flex; align-items: center; gap: 6px; padding: 9px 16px; border-radius: 10px; background: transparent; color: var(--text2); font-size: 0.8125rem; font-weight: 500; font-family: var(--font); cursor: pointer; border: 1px solid var(--border2); text-decoration: none; transition: all 0.15s; white-space: nowrap; }
     .btn-connect-token:hover { color: var(--text); border-color: rgba(0,0,0,0.2); background: rgba(0,0,0,0.02); }
 
     /* CONNECTED STATE */
@@ -122,7 +123,7 @@
       gap: 5px;
       font-size: 0.75rem;
       font-weight: 600;
-      color: #16a34a;
+      color: var(--green);
       background: rgba(34,197,94,0.1);
       border: 1px solid rgba(34,197,94,0.25);
       border-radius: 100px;
@@ -131,20 +132,8 @@
     .connected-badge::before { content: '✓  '; }
     .connected-email { font-size: 0.75rem; color: var(--text3); }
     .connected-sync-note { font-size: 0.72rem; color: var(--text3); margin-top: 3px; }
-    .btn-disconnect { font-size: 0.72rem; color: var(--text3); background: none; border: 1px solid var(--border2); border-radius: 6px; padding: 3px 10px; cursor: pointer; font-family: var(--font); transition: all 0.12s; margin-top: 6px; }
+    .btn-disconnect { font-size: 0.72rem; color: var(--text3); background: none; border: 1px solid var(--border2); border-radius: 8px; padding: 3px 10px; cursor: pointer; font-family: var(--font); transition: all 0.12s; margin-top: 6px; }
     .btn-disconnect:hover { color: var(--red); border-color: rgba(239,68,68,0.3); background: rgba(239,68,68,0.04); }
-
-    /* COMING SOON CARDS (smaller) */
-    .coming-soon-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; margin-bottom: 14px; }
-    .soon-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 16px 18px; opacity: 1; }
-    .soon-card-top { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
-    .soon-card-icon { font-size: 1.15rem; }
-    .soon-card-name { font-size: 0.875rem; font-weight: 600; color: var(--text); }
-    .soon-badge { font-size: 0.67rem; font-weight: 600; padding: 2px 7px; border-radius: 4px; background: rgba(245,158,11,0.12); color: #d97706; letter-spacing: 0.04em; margin-left: auto; }
-    .soon-card-desc { font-size: 0.78rem; color: var(--text3); line-height: 1.5; }
-    .soon-notify-btn { font-size: 0.72rem; background: rgba(99,102,241,0.07); border: 1px solid var(--accent-border); color: var(--accent); border-radius: 100px; padding: 3px 10px; cursor: pointer; transition: all 0.15s; font-family: var(--font); }
-    .soon-notify-btn:hover { background: rgba(99,102,241,0.14); }
-    .soon-notify-btn.notified { background: rgba(34,197,94,0.1); border-color: rgba(34,197,94,0.2); color: #6ee7b7; cursor: default; }
 
     /* URL IMPORT */
     .url-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px; margin-bottom: 48px; }
@@ -159,12 +148,12 @@
     .automation-banner h3 { font-size: 1rem; font-weight: 600; margin-bottom: 6px; color: var(--text); }
     .automation-banner p { font-size: 0.875rem; color: var(--text2); line-height: 1.65; max-width: 520px; margin-bottom: 16px; }
     .automation-chips { display: flex; flex-wrap: wrap; gap: 6px; }
-    .automation-chip { background: rgba(255,255,255,0.7); border: 1px solid rgba(99,102,241,0.15); border-radius: 20px; padding: 5px 12px; font-size: 0.78rem; color: var(--text2); font-weight: 500; }
+    .automation-chip { background: rgba(255,255,255,0.7); border: 1px solid rgba(99,102,241,0.15); border-radius: 100px; padding: 5px 12px; font-size: 0.8125rem; color: var(--text2); font-weight: 500; }
     .auto-toggle-row { display: flex; align-items: center; gap: 10px; cursor: pointer; padding: 7px 10px; border-radius: 8px; transition: background 0.12s; }
     .auto-toggle-row:hover { background: var(--bg2); }
     .auto-chk { width: 16px; height: 16px; accent-color: var(--accent); cursor: pointer; flex-shrink: 0; }
     .auto-label { font-size: 0.875rem; color: var(--text2); line-height: 1.4; }
-    .scout-topic-chip { display: inline-flex; align-items: center; gap: 5px; background: rgba(99,102,241,0.08); border: 1px solid rgba(99,102,241,0.18); border-radius: 20px; padding: 4px 10px; font-size: 0.78rem; color: var(--accent); font-weight: 500; }
+    .scout-topic-chip { display: inline-flex; align-items: center; gap: 5px; background: rgba(99,102,241,0.08); border: 1px solid rgba(99,102,241,0.18); border-radius: 100px; padding: 4px 10px; font-size: 0.8125rem; color: var(--accent); font-weight: 500; }
     .scout-topic-chip button { background: none; border: none; cursor: pointer; color: var(--text3); font-size: 0.75rem; padding: 0; line-height: 1; }
     .scout-topic-chip button:hover { color: var(--text); }
     .team-member-row { display: flex; align-items: center; gap: 10px; padding: 6px 10px; background: var(--bg2); border-radius: 8px; font-size: 0.8125rem; }
@@ -190,11 +179,11 @@
     .cli-line .prompt { color: rgba(255,255,255,0.3); }
     .cli-line .cmd { color: #a78bfa; }
     .cli-line .arg { color: #34d399; }
-    .cli-copy-all { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12); color: rgba(255,255,255,0.7); font-size: 0.72rem; padding: 4px 10px; border-radius: 5px; cursor: pointer; font-family: var(--font); transition: all 0.15s; }
+    .cli-copy-all { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12); color: rgba(255,255,255,0.7); font-size: 0.72rem; padding: 4px 10px; border-radius: 8px; cursor: pointer; font-family: var(--font); transition: all 0.15s; }
     .cli-copy-all:hover { background: rgba(255,255,255,0.14); }
 
     /* BUTTONS */
-    .btn { display: inline-flex; align-items: center; gap: 6px; padding: 9px 18px; border-radius: 8px; font-size: 0.875rem; font-weight: 500; border: none; cursor: pointer; text-decoration: none; transition: all 0.15s; white-space: nowrap; font-family: var(--font); }
+    .btn { display: inline-flex; align-items: center; gap: 6px; padding: 9px 18px; border-radius: 10px; font-size: 0.875rem; font-weight: 500; border: none; cursor: pointer; text-decoration: none; transition: all 0.15s; white-space: nowrap; font-family: var(--font); }
     .btn:disabled { opacity: 0.4; cursor: not-allowed; }
     .btn-primary { background: var(--accent); color: #fff; font-weight: 600; }
     .btn-primary:hover:not(:disabled) { opacity: 0.88; }
@@ -205,11 +194,11 @@
     /* MODAL */
     #modal-backdrop { position: fixed; inset: 0; background: rgba(0,0,0,0.35); z-index: 200; display: none; align-items: center; justify-content: center; backdrop-filter: blur(4px); }
     #modal-backdrop.open { display: flex; }
-    #int-modal { background: var(--bg); border: 1px solid var(--border2); border-radius: 16px; padding: 28px; width: min(460px,92vw); display: flex; flex-direction: column; gap: 0; box-shadow: 0 8px 40px rgba(0,0,0,0.15); }
+    #int-modal { background: var(--bg); border: 1px solid var(--border2); border-radius: 14px; padding: 28px; width: min(460px,92vw); display: flex; flex-direction: column; gap: 0; box-shadow: 0 8px 40px rgba(0,0,0,0.15); }
     .modal-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
     .modal-icon { font-size: 1.5rem; }
     .modal-title { font-size: 1.05rem; font-weight: 700; }
-    .modal-close-x { margin-left: auto; background: none; border: none; font-size: 1.2rem; color: var(--text3); cursor: pointer; padding: 2px 6px; border-radius: 4px; transition: color 0.15s; }
+    .modal-close-x { margin-left: auto; background: none; border: none; font-size: 1.2rem; color: var(--text3); cursor: pointer; padding: 2px 6px; border-radius: 8px; transition: color 0.15s; }
     .modal-close-x:hover { color: var(--text); }
     .modal-section { margin-bottom: 18px; }
     .modal-section-label { font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text3); margin-bottom: 6px; display: block; }
@@ -223,7 +212,7 @@
     .modal-success { display: none; flex-direction: column; align-items: center; gap: 10px; padding: 16px 0 4px; text-align: center; }
     .modal-success.show { display: flex; }
     .success-icon { font-size: 2.5rem; }
-    .success-title { font-size: 1rem; font-weight: 600; color: #16a34a; }
+    .success-title { font-size: 1rem; font-weight: 600; color: var(--green); }
     .success-sub { font-size: 0.8125rem; color: var(--text2); }
     .modal-divider { height: 1px; background: var(--border); margin: 18px 0; }
 
@@ -246,6 +235,7 @@
       .connect-card { flex-direction: column; gap: 16px; padding: 20px; }
       .connect-card-right { align-items: flex-start; min-width: unset; }
       .page-title { font-size: 1.5rem; }
+      .dual-path-grid { grid-template-columns: 1fr !important; }
     }
 
     /* ─── TONIGHT STRIP ───────────────────────────────────────── */
@@ -257,38 +247,39 @@
     }
     .tonight-step { display: flex; align-items: center; gap: 8px; padding: 4px 8px; }
     .tonight-icon { font-size: 1.1rem; flex-shrink: 0; }
-    .tonight-label { font-size: 0.84rem; font-weight: 500; color: var(--text); white-space: nowrap; }
+    .tonight-label { font-size: 0.875rem; font-weight: 500; color: var(--text); white-space: nowrap; }
     .tonight-sub { font-size: 0.72rem; font-weight: 400; color: var(--text2); white-space: nowrap; }
     .tonight-arrow { font-size: 0.75rem; color: var(--text3); padding: 0 4px; flex-shrink: 0; }
     @media (max-width: 600px) { .tonight-strip { flex-direction: column; align-items: flex-start; } .tonight-arrow { display: none; } }
 
     /* ─── ONBOARDING WIZARD ──────────────────────────────────── */
-    .onboard-bar { background: linear-gradient(135deg, rgba(99,102,241,0.08) 0%, rgba(139,92,246,0.06) 100%); border: 1px solid rgba(99,102,241,0.18); border-radius: 16px; padding: 24px 28px; margin-bottom: 28px; display: none; }
+    .onboard-bar { background: linear-gradient(135deg, rgba(99,102,241,0.08) 0%, rgba(139,92,246,0.06) 100%); border: 1px solid rgba(99,102,241,0.18); border-radius: 14px; padding: 24px 28px; margin-bottom: 28px; display: none; }
     .onboard-bar.visible { display: block; }
     .onboard-bar-title { font-size: 1.05rem; font-weight: 600; color: var(--text); margin-bottom: 6px; }
-    .onboard-bar-sub { font-size: 0.86rem; font-weight: 400; color: var(--text2); margin-bottom: 20px; line-height: 1.5; }
+    .onboard-bar-sub { font-size: 0.875rem; font-weight: 400; color: var(--text2); margin-bottom: 20px; line-height: 1.5; }
     .onboard-steps { display: flex; align-items: center; gap: 0; }
     .onboard-step { display: flex; align-items: center; gap: 8px; }
-    .onboard-step-num { width: 28px; height: 28px; border-radius: 50%; background: var(--border); color: var(--text3); font-size: 0.78rem; font-weight: 600; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.3s; }
+    .onboard-step-num { width: 28px; height: 28px; border-radius: 50%; background: var(--border); color: var(--text3); font-size: 0.8125rem; font-weight: 600; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.3s; }
     .onboard-step.active .onboard-step-num { background: var(--accent); color: #fff; }
-    .onboard-step.done .onboard-step-num { background: #10b981; color: #fff; }
+    .onboard-step.done .onboard-step-num { background: var(--green); color: #fff; }
     .onboard-step.done .onboard-step-num::before { content: '✓'; }
-    .onboard-step-label { font-size: 0.82rem; font-weight: 400; color: var(--text3); white-space: nowrap; }
+    .onboard-step-label { font-size: 0.8125rem; font-weight: 400; color: var(--text3); white-space: nowrap; }
     .onboard-step.active .onboard-step-label { color: var(--accent); font-weight: 500; }
-    .onboard-step.done .onboard-step-label { color: #10b981; }
+    .onboard-step.done .onboard-step-label { color: var(--green); }
     .onboard-step-line { flex: 1; height: 1px; background: var(--border); margin: 0 12px; min-width: 24px; }
     .onboard-recommended { display: inline-flex; align-items: center; gap: 5px; font-size: 0.72rem; font-weight: 600; color: var(--accent); background: rgba(99,102,241,0.1); border-radius: 100px; padding: 3px 10px; margin-left: 8px; animation: pulse-rec 2s ease-in-out infinite; }
     @keyframes pulse-rec { 0%, 100% { opacity: 1; } 50% { opacity: 0.6; } }
     .int-card-recommended { border-color: rgba(99,102,241,0.35) !important; box-shadow: 0 0 0 2px rgba(99,102,241,0.08); }
 
     /* START HERE */
-    .start-here { background: linear-gradient(135deg, rgba(99,102,241,0.06) 0%, rgba(99,102,241,0.02) 100%); border: 1px solid rgba(99,102,241,0.18); border-radius: 16px; padding: 24px; margin-bottom: 40px; }
+    .start-here { background: linear-gradient(135deg, rgba(99,102,241,0.06) 0%, rgba(99,102,241,0.02) 100%); border: 1px solid rgba(99,102,241,0.18); border-radius: 14px; padding: 24px; margin-bottom: 40px; }
     .start-here-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
     .start-here-title { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); }
     .start-here-skip { font-size: 0.75rem; color: var(--text3); cursor: pointer; }
     .start-here-skip:hover { color: var(--text2); }
-    .start-here-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
-    @media (max-width: 600px) { .start-here-cards { grid-template-columns: 1fr; } }
+    .start-here-cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+    @media (max-width: 640px) { .start-here-cards { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 380px) { .start-here-cards { grid-template-columns: 1fr; } }
     .start-card { background: var(--bg); border: 1.5px solid var(--border2); border-radius: 12px; padding: 14px 16px; display: flex; align-items: center; gap: 12px; cursor: pointer; transition: border-color 0.15s, box-shadow 0.15s; }
     .start-card:hover { border-color: var(--accent-border); box-shadow: 0 2px 12px rgba(99,102,241,0.1); }
     .start-card-icon { font-size: 1.3rem; flex-shrink: 0; }
@@ -299,46 +290,48 @@
 
     /* CONNECTED PROGRESS BAR */
     .conn-progress { display: flex; align-items: center; gap: 12px; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 12px 16px; margin-bottom: 36px; }
-    .conn-progress-text { font-size: 0.8rem; font-weight: 500; color: var(--text2); flex-shrink: 0; }
+    .conn-progress-text { font-size: 0.8125rem; font-weight: 500; color: var(--text2); flex-shrink: 0; }
     .conn-progress-bar { flex: 1; height: 5px; background: var(--border2); border-radius: 100px; overflow: hidden; }
     .conn-progress-fill { height: 100%; background: var(--accent); border-radius: 100px; transition: width 0.6s ease; min-width: 5px; }
-    .conn-progress-count { font-size: 0.8rem; font-weight: 600; color: var(--accent); flex-shrink: 0; }
+    .conn-progress-count { font-size: 0.8125rem; font-weight: 600; color: var(--accent); flex-shrink: 0; }
 
     /* ─── COMPACT LOGO GRID ─────────────────────────────────── */
     .int-section { margin-bottom: 40px; }
     .int-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(108px, 1fr)); gap: 10px; }
-    .int-tile { position: relative; background: var(--bg); border: 1.5px solid var(--border2); border-radius: 13px; overflow: hidden; transition: border-color 0.15s, box-shadow 0.15s; }
+    .int-tile { position: relative; background: var(--bg); border: 1.5px solid var(--border2); border-radius: 12px; overflow: hidden; transition: border-color 0.15s, box-shadow 0.15s; }
     .int-tile:hover { border-color: var(--accent-border); box-shadow: 0 2px 14px rgba(99,102,241,0.1); }
     .int-tile.connected,
     .int-tile.int-connected { border-color: rgba(34,197,94,0.4); background: rgba(34,197,94,0.02); }
     .int-tile-btn { width: 100%; background: none; border: none; cursor: pointer; padding: 16px 10px 12px; display: flex; flex-direction: column; align-items: center; gap: 7px; font-family: var(--font); }
     .int-tile-logo { width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; }
-    .int-tile-name { font-size: 0.78rem; font-weight: 600; color: var(--text); text-align: center; line-height: 1.25; }
-    .int-tile-action { font-size: 0.68rem; font-weight: 500; color: var(--accent); background: rgba(99,102,241,0.08); border-radius: 5px; padding: 3px 8px; margin-top: 1px; white-space: nowrap; }
+    .int-tile-name { font-size: 0.8125rem; font-weight: 600; color: var(--text); text-align: center; line-height: 1.25; }
+    .int-tile-action { font-size: 0.68rem; font-weight: 500; color: var(--accent); background: rgba(99,102,241,0.08); border-radius: 8px; padding: 3px 8px; margin-top: 1px; white-space: nowrap; }
     .int-tile-why { font-size: 0.66rem; color: var(--text3); line-height: 1.45; margin-top: 4px; padding: 0 2px; }
     .int-tile.connected .int-tile-action,
-    .int-tile.int-connected .int-tile-action { color: #16a34a; background: rgba(34,197,94,0.1); }
-    .int-tile-connected-overlay { display: none; position: absolute; top: 7px; right: 8px; font-size: 0.65rem; font-weight: 700; color: #16a34a; background: rgba(34,197,94,0.1); border-radius: 100px; padding: 2px 7px; }
+    .int-tile.int-connected .int-tile-action { color: var(--green); background: rgba(34,197,94,0.1); }
+    .int-tile-connected-overlay { display: none; position: absolute; top: 7px; right: 8px; font-size: 0.65rem; font-weight: 700; color: var(--green); background: rgba(34,197,94,0.1); border-radius: 100px; padding: 2px 7px; }
     .int-info-note { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 14px 18px; margin-top: 10px; display: flex; align-items: flex-start; gap: 10px; font-size: 0.8125rem; color: var(--text2); line-height: 1.55; }
     @media (max-width: 500px) { .int-grid { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 400px) { .int-grid { grid-template-columns: repeat(2, 1fr); } }
   </style>
 </head>
 <body>
 
 <nav class="app-nav">
-  <a href="/" class="nav-logo" style="display:flex;align-items:center;gap:7px;" title="REM = rapid eye movement — the deep sleep phase where your brain connects everything it learned that day. That's what we do while you sleep.">
+  <a href="/" class="nav-logo" style="display:flex;align-items:center;gap:7px;" title="REM = rapid eye movement — the deep sleep phase where your brain connects everything it learned. That's what we do: connect the dots across your data.">
     <svg width="17" height="17" viewBox="0 0 28 28" fill="none" style="flex-shrink:0;"><circle cx="14" cy="14" r="2.5" fill="#6366f1"/><ellipse cx="14" cy="14" rx="11" ry="5" stroke="#6366f1" stroke-width="1.5" opacity="0.8"/><ellipse cx="14" cy="14" rx="11" ry="5" stroke="#6366f1" stroke-width="1.5" opacity="0.5" transform="rotate(60 14 14)"/><ellipse cx="14" cy="14" rx="11" ry="5" stroke="#6366f1" stroke-width="1.5" opacity="0.35" transform="rotate(120 14 14)"/></svg>
     REM Labs
   </a>
   <div class="nav-center">
-    <a href="/context" class="nav-link">Context</a>
-    <a href="/morning" class="nav-link">Now</a>
-    <a href="/dream" class="nav-link">Ask</a>
-    <a href="/automations" class="nav-link">Automations</a>
-    <a href="/console" class="nav-link active">Apps</a>
-    <a href="/memory" class="nav-link">Saved</a>
+    <a href="/context" class="nav-link" title="Your goals — tell REM what matters to you">Context</a>
+    <a href="/morning" class="nav-link" title="Your morning brief — what REM found in your data">Now</a>
+    <a href="/dream" class="nav-link" title="Ask REM a question about your life and data">Ask</a>
+    <a href="/automations" class="nav-link" title="Automations — let REM act on patterns it notices">Automations</a>
+    <a href="/console" class="nav-link active" title="Connect Gmail, Notion, Calendar and more">Apps</a>
+    <a href="/memory" class="nav-link" title="Your saved notes, quotes, and ideas">Saved</a>
   </div>
   <div class="nav-right" style="display:flex;align-items:center;gap:8px;flex-shrink:0;">
+    <a href="/pricing" class="nav-user" style="font-size:0.8rem;color:var(--text2);">Pricing</a>
     <div class="acct-menu-wrap" id="acct-menu-wrap">
       <button class="acct-avatar" id="acctBtn" onclick="toggleAcctMenu()" title="Account" aria-label="Account menu">
         <span id="acctInitials">?</span>
@@ -357,96 +350,231 @@
 <div class="page">
 
   <!-- PAGE HEADER -->
-  <div class="page-eyebrow">Apps</div>
-  <h1 class="page-title">Connect your apps</h1>
-  <p class="page-sub">Connect one app and REM runs tonight while you sleep. Tomorrow morning, your first brief will be waiting. Start with Gmail or Notion — two minutes, then REM handles everything.</p>
+  <div class="page-eyebrow">Your morning brief starts here</div>
+  <h1 class="page-title">Connect Gmail in 2 minutes — get a personalized briefing every morning.</h1>
+
+  <!-- VALUE PREVIEW — right at the top so users see the payoff before deciding -->
+  <div style="background:rgba(99,102,241,0.04);border:1px solid rgba(99,102,241,0.2);border-radius:12px;padding:14px 18px;margin-bottom:20px;">
+    <div style="font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--text3);margin-bottom:10px;">From a real user's brief — your inbox + calendar replaces these examples:</div>
+    <div style="display:flex;flex-direction:column;gap:7px;">
+      <div style="background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:0.8125rem;color:var(--text2);line-height:1.6;">📧 <strong style="color:var(--text);">Alex replied to your proposal — 3 days ago.</strong> You haven't responded. His deadline is Friday.</div>
+      <div style="background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:0.8125rem;color:var(--text2);line-height:1.6;">📅 <strong style="color:var(--text);">Your longest uninterrupted block this week: Tuesday 9–11am.</strong> Based on your goals, this is your deep-work window.</div>
+      <div style="background:rgba(99,102,241,0.05);border:1px solid rgba(99,102,241,0.15);border-radius:8px;padding:8px 12px;font-size:0.8125rem;color:var(--text2);line-height:1.6;">✦ <strong style="color:var(--text);">REM's connection:</strong> Alex's reply and your Thursday task are the same thing — one email handles both. You only need to act once.</div>
+    </div>
+    <div style="margin-top:12px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+      <button onclick="document.getElementById('startHere').scrollIntoView({behavior:'smooth'})" style="padding:10px 20px;background:var(--accent);color:#fff;border:none;border-radius:10px;font-size:0.875rem;font-weight:600;cursor:pointer;font-family:var(--font);">Connect Gmail — get mine →</button>
+      <span style="font-size:0.75rem;color:var(--text3);">Free · 2 min setup · first insights in ~15 min</span>
+    </div>
+    <div style="font-size:0.72rem;color:var(--text3);margin-top:8px;">Example — your real brief uses your actual emails, names, and goals.</div>
+  </div>
+
+  <!-- SECONDARY PATH — smaller, below the primary CTA -->
+  <div style="font-size:0.8125rem;color:var(--text2);margin-bottom:20px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+    <span>Not ready to connect yet?</span>
+    <a href="/dream" style="color:var(--accent);font-weight:600;text-decoration:none;">Ask REM a sample question first →</a>
+    <span style="color:var(--text3);">No setup needed, see how it thinks</span>
+  </div>
+
+  <!-- STATS DASHBOARD — shows what REM knows so far -->
+  <div style="display:none;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin-bottom:24px;" id="dashboardStats">
+    <div style="padding:12px 14px;background:var(--surface);border:1px solid var(--border);border-radius:10px;text-align:center;">
+      <div style="font-size:1.4rem;font-weight:700;color:var(--accent);" id="dashApps">0</div>
+      <div style="font-size:0.72rem;color:var(--text3);margin-top:2px;">Apps connected</div>
+      <div style="font-size:0.68rem;color:var(--accent);margin-top:3px;font-weight:500;" id="dashAppsHint">connect one below ↓</div>
+    </div>
+    <a href="/memory" style="padding:12px 14px;background:var(--surface);border:1px solid var(--border);border-radius:10px;text-align:center;text-decoration:none;">
+      <div style="font-size:1.4rem;font-weight:700;color:var(--accent);" id="dashMemories">0</div>
+      <div style="font-size:0.72rem;color:var(--text3);margin-top:2px;">Notes saved</div>
+      <div style="font-size:0.68rem;color:var(--accent);margin-top:3px;font-weight:500;" id="dashMemoriesHint">save your first →</div>
+    </a>
+    <a href="/dream" style="padding:12px 14px;background:var(--surface);border:1px solid var(--border);border-radius:10px;text-align:center;text-decoration:none;">
+      <div style="font-size:1.4rem;font-weight:700;color:var(--accent);" id="dashInsights">0</div>
+      <div style="font-size:0.72rem;color:var(--text3);margin-top:2px;">Insights run</div>
+      <div style="font-size:0.68rem;color:var(--accent);margin-top:3px;font-weight:500;" id="dashInsightsHint">ask something →</div>
+    </a>
+    <a href="/morning" style="padding:12px 14px;background:var(--surface);border:1px solid var(--border);border-radius:10px;text-align:center;text-decoration:none;">
+      <div style="font-size:1.4rem;font-weight:700;color:var(--accent);" id="dashStreak">1</div>
+      <div style="font-size:0.72rem;color:var(--text3);margin-top:2px;">Day streak ☀️</div>
+    </a>
+  </div>
+  <script>
+  (function(){
+    // Populate dashboard stats from localStorage
+    var apps = 0;
+    var integrationKeys = ['gmail_imap','google_calendar_ical','microsoft365','notion','slack','github','linear','asana','spotify','fitbit','oura','apple-notes','plaid'];
+    integrationKeys.forEach(function(k){ if(localStorage.getItem('rem_'+k+'_connected')||localStorage.getItem(k+'_token')||localStorage.getItem('rem_'+k+'_token')) apps++; });
+    document.getElementById('dashApps').textContent = apps;
+    if (apps > 0) { var ah = document.getElementById('dashAppsHint'); if (ah) ah.style.display = 'none'; }
+    try { var mems = JSON.parse(localStorage.getItem('slopshop_memories')||'[]'); document.getElementById('dashMemories').textContent = mems.length; if (mems.length > 0) { var mh = document.getElementById('dashMemoriesHint'); if (mh) mh.style.display = 'none'; } } catch(e){}
+    try { var ses = JSON.parse(localStorage.getItem('rem_dream_sessions')||'[]'); document.getElementById('dashInsights').textContent = ses.length; if (ses.length > 0) { var ih = document.getElementById('dashInsightsHint'); if (ih) ih.style.display = 'none'; } } catch(e){}
+    var streak = parseInt(localStorage.getItem('rem_streak')||'1',10); document.getElementById('dashStreak').textContent = streak;
+    // Show stats only for users who have real data
+    try {
+      var mems2 = JSON.parse(localStorage.getItem('slopshop_memories')||'[]');
+      var ses2 = JSON.parse(localStorage.getItem('rem_dream_sessions')||'[]');
+      if (apps > 0 || mems2.length > 0 || ses2.length > 0) {
+        var ds = document.getElementById('dashboardStats');
+        if (ds) ds.style.display = 'grid';
+      }
+    } catch(e) {}
+  })();
+  </script>
+
+  <!-- SETUP JOURNEY -->
+  <div id="setupJourney" style="display:none;align-items:center;gap:10px;background:rgba(99,102,241,0.04);border:1px solid rgba(99,102,241,0.14);border-radius:12px;padding:12px 16px;margin-bottom:20px;flex-wrap:wrap;">
+    <span style="font-size:0.72rem;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:0.09em;white-space:nowrap;flex-shrink:0;">Setup</span>
+    <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;flex:1;">
+      <a href="/context" id="sj-step1" style="display:inline-flex;align-items:center;gap:5px;padding:5px 10px;border-radius:8px;border:1.5px solid var(--border2);font-size:0.8125rem;font-weight:500;text-decoration:none;color:var(--text2);background:var(--bg);white-space:nowrap;">
+        <span id="sj-icon1">○</span> Set your goals
+      </a>
+      <span style="color:var(--text3);font-size:0.72rem;">→</span>
+      <span id="sj-step2" style="display:inline-flex;align-items:center;gap:5px;padding:5px 10px;border-radius:8px;border:1.5px solid var(--accent);font-size:0.8125rem;font-weight:600;color:var(--accent);background:rgba(99,102,241,0.06);white-space:nowrap;">
+        ● Connect one app
+      </span>
+      <span style="color:var(--text3);font-size:0.72rem;">→</span>
+      <span style="display:inline-flex;align-items:center;gap:5px;font-size:0.8125rem;font-weight:400;color:var(--text3);white-space:nowrap;">
+        ○ First insights in ~15 min
+      </span>
+    </div>
+    <button onclick="document.getElementById('setupJourney').style.display='none';localStorage.setItem('rem_journey_dismissed','1');" style="background:none;border:none;color:var(--text3);font-size:0.9rem;cursor:pointer;padding:0;flex-shrink:0;line-height:1;" title="Dismiss">×</button>
+  </div>
+  <script>
+  (function() {
+    var el = document.getElementById('setupJourney');
+    if (!el) return;
+    if (localStorage.getItem('rem_journey_dismissed') || localStorage.getItem('rem_onboarded')) {
+      return; // stay hidden
+    }
+    // Only show to returning users (who've visited context page before), not brand-new visitors
+    // Brand-new visitors see the "What happens when you connect" section below instead
+    if (!localStorage.getItem('rem_ctx_first_save') && !localStorage.getItem('rem_console_connected')) {
+      return; // new user — stay hidden, don't double up with the timeline below
+    }
+    el.style.display = 'flex';
+    // Mark step 1 done if context was saved
+    if (localStorage.getItem('rem_ctx_first_save')) {
+      var s1 = document.getElementById('sj-step1'), i1 = document.getElementById('sj-icon1');
+      if (s1) { s1.style.borderColor = 'var(--green)'; s1.style.color = 'var(--green)'; }
+      if (i1) i1.textContent = '✓';
+    }
+  })();
+  </script>
 
   <!-- START HERE -->
   <div class="start-here" id="startHere">
     <div class="start-here-head">
-      <span class="start-here-title">Start here — pick one</span>
+      <span class="start-here-title">Connect one app to get started</span>
       <span class="start-here-skip" onclick="document.getElementById('startHere').style.display='none'">Skip →</span>
     </div>
-    <p style="font-size:0.875rem;color:var(--text2);margin-bottom:16px;line-height:1.6;">Connect one app and REM will analyze it tonight. Your first brief will be waiting tomorrow morning.</p>
+    <p style="font-size:0.9rem;font-weight:600;color:var(--text);margin-bottom:4px;line-height:1.5;">Spend 2 minutes setting up once. Get a personalized briefing every morning for life.</p>
+    <p style="font-size:0.875rem;color:var(--text2);margin-bottom:16px;line-height:1.6;">REM syncs your last 90 days of history immediately — first insights appear in your brief in about 15 minutes.</p>
     <div class="start-here-cards">
       <div class="start-card" id="sh-gmail" onclick="openIntModal('gmail_imap')">
         <div class="start-card-icon">📧</div>
         <div>
-          <div class="start-card-name">Gmail</div>
-          <div class="start-card-why">Most popular · 2 min setup</div>
+          <div class="start-card-name">Gmail <span class="onboard-recommended">Most popular</span></div>
+          <div class="start-card-why">Reads emails & labels · 2 min setup</div>
         </div>
       </div>
       <div class="start-card" id="sh-notion" onclick="openIntModal('notion')">
         <div class="start-card-icon">📝</div>
         <div>
           <div class="start-card-name">Notion</div>
-          <div class="start-card-why">All your notes · paste token</div>
+          <div class="start-card-why">Reads pages & notes · paste token</div>
         </div>
       </div>
       <div class="start-card" id="sh-calendar" onclick="openIntModal('google_calendar_ical')">
         <div class="start-card-icon">📅</div>
         <div>
           <div class="start-card-name">Google Calendar</div>
-          <div class="start-card-why">Your schedule · paste URL</div>
+          <div class="start-card-why">Reads events & schedule · paste URL</div>
         </div>
       </div>
+      <div class="start-card" id="sh-m365" onclick="openIntModal('microsoft365')">
+        <div class="start-card-icon">📨</div>
+        <div>
+          <div class="start-card-name">Microsoft 365</div>
+          <div class="start-card-why">Outlook · Teams · OneDrive · token</div>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:10px;font-size:0.78rem;color:var(--text3);">On Apple? <button onclick="openIntModal('apple-notes')" style="background:none;border:none;color:var(--accent);font-size:0.78rem;font-weight:600;cursor:pointer;padding:0;font-family:var(--font);">Connect Notes →</button> &nbsp;·&nbsp; More options below ↓</div>
+    <div style="margin-top:12px;text-align:center;">
+      <button onclick="var s=document.getElementById('allIntegrationsSection');var b=document.getElementById('moreIntBtn');if(s.style.display==='none'){s.style.display='block';b.textContent='Show fewer ▲';}else{s.style.display='none';b.textContent='More integrations (Slack, GitHub, Todoist…) ▾';}" id="moreIntBtn" style="background:none;border:1px solid var(--border2);border-radius:8px;color:var(--text2);font-size:0.78rem;font-weight:500;cursor:pointer;padding:6px 14px;font-family:var(--font);transition:all 0.15s;" onmouseover="this.style.background='var(--surface2)'" onmouseout="this.style.background='none'">More integrations (Slack, GitHub, Todoist…) ▾</button>
+    </div>
+  </div>
+
+  <!-- TRUST BADGE — privacy assurance after user has seen the connect options -->
+  <div style="padding:10px 16px;background:var(--surface);border:1px solid var(--border);border-radius:12px;margin-bottom:14px;">
+    <div style="display:flex;flex-wrap:wrap;gap:6px 20px;align-items:center;margin-bottom:6px;">
+      <span style="font-size:0.8125rem;color:var(--text);display:flex;align-items:center;gap:6px;"><span style="color:#22c55e;font-weight:700;">✓</span> <strong>Read-only</strong> — REM never sends or edits anything</span>
+      <span style="font-size:0.8125rem;color:var(--text);display:flex;align-items:center;gap:6px;"><span style="color:#22c55e;font-weight:700;">✓</span> Free to start — no credit card needed</span>
+      <span style="font-size:0.8125rem;color:var(--text);display:flex;align-items:center;gap:6px;"><span style="color:#22c55e;font-weight:700;">✓</span> Revoke access any time</span>
+      <span style="font-size:0.8125rem;color:var(--text);display:flex;align-items:center;gap:6px;"><span style="color:#22c55e;font-weight:700;">✓</span> Your data is never sold or used to train AI</span>
+      <a href="/privacy" style="font-size:0.8125rem;color:var(--accent);text-decoration:none;font-weight:600;">Privacy policy →</a>
+    </div>
+    <div style="font-size:0.75rem;color:var(--text3);line-height:1.6;border-top:1px solid var(--border);padding-top:6px;">
+      <strong style="color:var(--text2);">What REM reads:</strong> Email subjects, senders, and dates only — never body content. Calendar event titles and times. Notes you've saved. REM never stores raw data permanently.
+    </div>
+  </div>
+
+  <!-- WHILE YOU WAIT — immediate value nudge -->
+  <div style="background:rgba(99,102,241,0.04);border:1px solid rgba(99,102,241,0.15);border-radius:12px;padding:12px 16px;margin-bottom:14px;display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px;">
+    <span style="font-size:0.8125rem;color:var(--text2);flex:1;min-width:160px;">While REM sets up: save notes and ask questions right now — no connection needed.</span>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;">
+      <a href="/memory" style="padding:6px 12px;background:var(--bg);border:1px solid var(--border2);border-radius:8px;font-size:0.8125rem;font-weight:500;color:var(--text);text-decoration:none;white-space:nowrap;">💾 Save a note</a>
+      <a href="/dream" style="padding:6px 12px;background:var(--bg);border:1px solid var(--border2);border-radius:8px;font-size:0.8125rem;font-weight:500;color:var(--text);text-decoration:none;white-space:nowrap;">💬 Ask REM something</a>
     </div>
   </div>
 
   <!-- CONNECTED PROGRESS -->
-  <div class="conn-progress" id="connProgress">
+  <div class="conn-progress" id="connProgress" style="display:none;">
     <span class="conn-progress-text" id="connProgressLabel">Connect your first app →</span>
     <div class="conn-progress-bar"><div class="conn-progress-fill" id="connProgressFill" style="width:0%"></div></div>
-    <span class="conn-progress-count" id="connProgressCount">0</span>
+    <span class="conn-progress-count" id="connProgressCount">0 apps</span>
   </div>
 
-  <!-- TONIGHT STRIP — shown once ≥1 app connected -->
+
+  <!-- SYNC STRIP — shown once ≥1 app connected -->
   <div class="tonight-strip" id="tonightStrip" style="display:none;margin-bottom:28px;">
     <div class="tonight-step">
-      <span class="tonight-icon">✅</span>
+      <span class="tonight-icon">⚡</span>
       <div>
-        <div class="tonight-label">You're all set</div>
-        <div class="tonight-sub">REM runs tonight</div>
+        <div class="tonight-label">Syncing now</div>
+        <div class="tonight-sub">Last 90 days of history</div>
       </div>
     </div>
     <span class="tonight-arrow">→</span>
     <div class="tonight-step">
-      <span class="tonight-icon">🌙</span>
+      <span class="tonight-icon">💡</span>
       <div>
-        <div class="tonight-label">Tonight, ~2 AM</div>
-        <div class="tonight-sub">REM reads your apps</div>
+        <div class="tonight-label">In ~15 minutes</div>
+        <div class="tonight-sub">First insights ready</div>
       </div>
     </div>
     <span class="tonight-arrow">→</span>
     <div class="tonight-step">
-      <span class="tonight-icon">☀️</span>
+      <span class="tonight-icon">🧠</span>
       <div>
-        <div class="tonight-label">Tomorrow, 7 AM</div>
-        <div class="tonight-sub">Your brief is ready</div>
+        <div class="tonight-label">Gets smarter daily</div>
+        <div class="tonight-sub">Learns your patterns over time</div>
       </div>
     </div>
     <span class="tonight-arrow">→</span>
     <div class="tonight-step">
-      <a href="/morning" style="font-size:0.84rem;font-weight:600;color:var(--accent);text-decoration:none;padding:6px 14px;background:rgba(99,102,241,0.08);border:1px solid rgba(99,102,241,0.2);border-radius:8px;">See Today page →</a>
+      <a href="/morning" style="font-size:0.84rem;font-weight:600;color:var(--accent);text-decoration:none;padding:6px 14px;background:rgba(99,102,241,0.08);border:1px solid rgba(99,102,241,0.2);border-radius:10px;">Check your brief →</a>
     </div>
   </div>
 
-  <!-- TRUST BANNER -->
-  <div style="display:flex; align-items:center; gap:20px; background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:16px 20px; margin-bottom:32px; flex-wrap:wrap;">
-    <div style="display:flex; align-items:center; gap:8px; flex:1; min-width:200px;">
-      <span style="font-size:1.1rem; flex-shrink:0;">🔒</span>
-      <div>
-        <div style="font-size:0.9375rem; font-weight:700; color:var(--text); margin-bottom:2px;">✓ Read-only access. REM cannot send emails, post anything, or change your apps. Ever.</div>
-        <div style="font-size:0.8125rem; color:var(--text2); line-height:1.5;">Your data is never sold. If we ever use it to improve our AI, we strip all personal details first — nothing can be traced back to you. Stored on secure US/EU servers, encrypted. AI analysis by Claude (Anthropic) — it only sees summaries, never your raw emails. Disconnect any time. <a href="/privacy" style="color:var(--accent);text-decoration:none;font-weight:500;">Privacy policy →</a></div>
-      </div>
-    </div>
-    <a href="/privacy" style="font-size:0.8rem; color:var(--accent); font-weight:500; text-decoration:none; white-space:nowrap; flex-shrink:0;">Privacy policy →</a>
-  </div>
+  <!-- VALUE NARRATIVE moved above trust badge -->
 
-  <!-- SECTION 1: LIFE APPS -->
-
+  <!-- SECTION 1: LIFE APPS — collapsed by default, revealed via toggle -->
+  <div id="allIntegrationsSection" style="display:none;">
   <!-- ── Connect your most useful apps ── -->
-  <span class="section-label" style="margin-top:8px;">Connect your most useful apps</span>
+  <div style="display:flex;align-items:center;gap:12px;margin-top:8px;margin-bottom:6px;">
+    <span class="section-label" style="margin:0;">All integrations</span>
+    <span style="font-size:0.75rem;color:var(--text3);">— or use "Start here" above to connect your first</span>
+  </div>
   <div class="int-section">
     <div class="int-grid">
 
@@ -458,7 +586,7 @@
           </div>
           <div class="int-tile-name">Gmail</div>
           <div class="int-tile-action">Connect</div>
-          <div class="int-tile-why">Not your real password — a safe read-only key Google provides</div>
+          <div class="int-tile-why">Your emails surface in ~15 min</div>
         </button>
         <div id="google-connected" class="int-tile-connected-overlay" style="display:none;">✓ Connected</div>
       </div>
@@ -471,7 +599,7 @@
           </div>
           <div class="int-tile-name">Google Calendar</div>
           <div class="int-tile-action">Connect</div>
-          <div class="int-tile-why">iCal URL — paste once, no OAuth or approval needed</div>
+          <div class="int-tile-why">Your schedule shapes what REM prioritizes</div>
         </button>
         <div id="google_calendar_ical-connected" class="int-tile-connected-overlay" style="display:none;">✓ Connected</div>
       </div>
@@ -484,7 +612,7 @@
           </div>
           <div class="int-tile-name">Microsoft 365</div>
           <div class="int-tile-action">Connect</div>
-          <div class="int-tile-why">Outlook, OneNote &amp; Calendar — works if you use Microsoft</div>
+          <div class="int-tile-why">Outlook, OneNote &amp; calendar all in your brief</div>
         </button>
         <div id="microsoft365-start-connected" class="int-tile-connected-overlay" style="display:none;">✓ Connected</div>
       </div>
@@ -497,7 +625,7 @@
           </div>
           <div class="int-tile-name">Notion</div>
           <div class="int-tile-action">Connect</div>
-          <div class="int-tile-why">Your knowledge base — REM reads all your notes and pages</div>
+          <div class="int-tile-why">Your notes inform every insight REM surfaces</div>
         </button>
         <div id="notion-connected" class="int-tile-connected-overlay" style="display:none;">✓ Connected</div>
       </div>
@@ -535,6 +663,7 @@
     <span style="font-size:0.8125rem;color:var(--text3);">Don't have these apps? </span>
     <a href="/memory" style="font-size:0.8125rem;color:var(--accent);font-weight:500;text-decoration:none;border-bottom:1px solid rgba(99,102,241,0.3);">Start by saving notes directly →</a>
   </div>
+  </div><!-- /allIntegrationsSection -->
 
 <div id="allAppsExpand" style="display:none;">
 
@@ -1085,7 +1214,7 @@
           <div class="int-tile-logo">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z" fill="#5865F2"/></svg>
           </div>
-          <div class="int-tile-name">Discord</div>
+          <div class="int-tile-name">Discord Bot</div>
           <div class="int-tile-action">Connect</div>
         </button>
         <div id="discord-bot-connected" class="int-tile-connected-overlay" style="display:none;">✓ Connected</div>
@@ -1186,55 +1315,27 @@
     </div>
   </div>
 
-  <!-- ── Coming soon ── -->
-  <span class="section-label">Coming soon</span>
-  <div class="coming-soon-grid">
-    <div class="soon-card">
-      <div class="soon-card-top">
-        <span class="soon-card-icon">🎵</span>
-        <span class="soon-card-name">Spotify</span>
-        <span class="soon-badge">Soon</span>
+  <!-- FINANCE SECTION -->
+  <div style="display:flex;align-items:center;gap:12px;margin-top:20px;margin-bottom:8px;">
+    <span class="section-label" style="margin:0;">Finance & spending</span>
+    <span style="font-size:0.75rem;color:var(--text3);">— track spending patterns alongside your goals</span>
+  </div>
+  <div class="int-section">
+    <div class="int-grid">
+      <div class="int-tile" id="card-plaid">
+        <button class="int-tile-btn" onclick="openIntModal('plaid')">
+          <div class="int-tile-logo">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><rect x="3" y="11" width="18" height="10" rx="2" stroke="#00A88B" stroke-width="1.8" fill="none"/><path d="M7 11V7a5 5 0 0110 0v4" stroke="#00A88B" stroke-width="1.8" stroke-linecap="round"/><circle cx="12" cy="16" r="1.5" fill="#00A88B"/></svg>
+          </div>
+          <div class="int-tile-name">Bank Accounts <span style="display:inline-flex;align-items:center;font-size:0.68rem;font-weight:600;color:var(--accent);background:rgba(99,102,241,0.1);border-radius:100px;padding:2px 8px;margin-left:6px;">via Plaid</span></div>
+          <div class="int-tile-action">Connect</div>
+          <div class="int-tile-why">Spending patterns surface in your brief</div>
+        </button>
+        <div id="plaid-connected" class="int-tile-connected-overlay" style="display:none;">✓ Connected</div>
       </div>
-      <div class="soon-card-desc">Listening history and mood signals added to your memory.</div>
-      <button class="soon-notify-btn" onclick="notifyMe(this)" data-int="Spotify">Notify me →</button>
-    </div>
-    <div class="soon-card">
-      <div class="soon-card-top">
-        <span class="soon-card-icon">❤️</span>
-        <span class="soon-card-name">Apple Health</span>
-        <span class="soon-badge">Soon</span>
-      </div>
-      <div class="soon-card-desc">Sleep, HRV, and activity data woven into your Brief.</div>
-      <button class="soon-notify-btn" onclick="notifyMe(this)" data-int="Apple Health">Notify me →</button>
-    </div>
-    <div class="soon-card">
-      <div class="soon-card-top">
-        <span class="soon-card-icon">𝕏</span>
-        <span class="soon-card-name">X (Twitter)</span>
-        <span class="soon-badge">Soon</span>
-      </div>
-      <div class="soon-card-desc">Your timeline and bookmarks surfaced in your Morning Brief.</div>
-      <button class="soon-notify-btn" onclick="notifyMe(this)" data-int="X">Notify me →</button>
-    </div>
-    <div class="soon-card">
-      <div class="soon-card-top">
-        <span class="soon-card-icon">📋</span>
-        <span class="soon-card-name">Linear</span>
-        <span class="soon-badge">Soon</span>
-      </div>
-      <div class="soon-card-desc">Issues and project progress tracked automatically each night.</div>
-      <button class="soon-notify-btn" onclick="notifyMe(this)" data-int="Linear">Notify me →</button>
-    </div>
-    <div class="soon-card">
-      <div class="soon-card-top">
-        <span class="soon-card-icon">💬</span>
-        <span class="soon-card-name">WhatsApp</span>
-        <span class="soon-badge">Soon</span>
-      </div>
-      <div class="soon-card-desc">Key conversations and decisions captured in your memory.</div>
-      <button class="soon-notify-btn" onclick="notifyMe(this)" data-int="WhatsApp">Notify me →</button>
     </div>
   </div>
+  <div style="font-size:0.76rem;color:var(--text3);margin-top:8px;margin-bottom:18px;display:flex;align-items:center;gap:6px;"><span style="color:#00A88B;font-weight:700;">🔒</span> Read-only access via Plaid — REM never stores account numbers or credentials. 12,000+ banks supported. <a href="/privacy" style="color:var(--accent);text-decoration:none;font-weight:500;">Privacy policy →</a></div>
 
   <div style="background:rgba(99,102,241,0.04);border:1px solid rgba(99,102,241,0.12);border-radius:12px;padding:16px 18px;margin-bottom:20px;display:flex;align-items:flex-start;gap:12px;">
     <span style="font-size:1.2rem;flex-shrink:0;">💡</span>
@@ -1245,11 +1346,21 @@
   </div>
 
 </div>
-<div style="text-align:center;margin:20px 0;">
-  <button onclick="toggleAllApps()" id="allAppsToggleBtn" style="background:none;border:none;color:var(--accent);font-size:0.875rem;font-weight:500;cursor:pointer;transition:opacity 0.15s;font-family:var(--font);padding:4px 0;" onmouseover="this.style.opacity='0.75'" onmouseout="this.style.opacity='1'">
-    Browse all apps ▾
+<div style="text-align:center;margin:20px 0 28px;">
+  <button onclick="toggleAllApps()" id="allAppsToggleBtn" style="background:var(--surface);border:1px solid var(--border2);border-radius:10px;color:var(--text2);font-size:0.875rem;font-weight:500;cursor:pointer;transition:all 0.15s;font-family:var(--font);padding:9px 20px;" onmouseover="this.style.background='var(--surface2)'" onmouseout="this.style.background='var(--surface)'">
+    Browse all 30+ integrations ↓
   </button>
+  <div style="font-size:0.75rem;color:var(--text3);margin-top:6px;">Slack, GitHub, Spotify, Fitbit, Evernote, Notion, Telegram and more</div>
 </div>
+
+  <!-- NEXT STEP BANNER -->
+  <div style="background:rgba(99,102,241,0.04);border:1px solid rgba(99,102,241,0.14);border-radius:12px;padding:16px 20px;margin:8px 0 28px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;">
+    <div>
+      <div style="font-size:0.8125rem;font-weight:600;color:var(--text);margin-bottom:2px;">Connected? First insights appear in about 15 minutes.</div>
+      <div style="font-size:0.75rem;color:var(--text2);">REM syncs your last 90 days immediately — check your brief in 15 min.</div>
+    </div>
+    <a href="/morning" style="display:inline-flex;align-items:center;gap:6px;background:var(--accent);color:#fff;font-size:0.8125rem;font-weight:600;padding:9px 18px;border-radius:10px;text-decoration:none;font-family:var(--font);transition:opacity 0.15s;white-space:nowrap;" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">See your brief →</a>
+  </div>
 
   <!-- SECTION 2: QUICK IMPORT -->
   <span class="section-label">Quick import</span>
@@ -1270,30 +1381,34 @@
   <!-- SECTION 3: AUTOMATIONS -->
   <div class="automation-banner" id="automations">
     <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:8px;flex-wrap:wrap;">
-      <h3 style="margin:0;">⚡ Automations</h3>
-      <a href="/automations" style="font-size:0.8125rem;color:var(--accent);font-weight:500;text-decoration:none;" onmouseover="this.style.opacity='0.75'" onmouseout="this.style.opacity='1'">Manage all →</a>
+      <h3 style="margin:0;">⚡ What REM does automatically</h3>
+      <a href="/automations" style="font-size:0.8125rem;color:var(--accent);font-weight:500;text-decoration:none;" onmouseover="this.style.opacity='0.75'" onmouseout="this.style.opacity='1'">See all →</a>
     </div>
-    <p>REM watches your apps and turns habits into automations. The more you connect, the smarter it gets.</p>
-    <div id="console-auto-preview" style="display:flex;flex-direction:column;gap:8px;margin-bottom:16px;">
-      <div style="font-size:0.8125rem;color:var(--text3);">Loading…</div>
+    <p style="margin-bottom:10px;">Once connected, REM notices patterns in your data and runs these automatically — every morning:</p>
+    <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:14px;">
+      <div style="background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:0.8125rem;color:var(--text2);">📧 <strong style="color:var(--text);">Meeting note saver</strong> — saves notes from calendar events into your memory automatically</div>
+      <div style="background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:0.8125rem;color:var(--text2);">⏰ <strong style="color:var(--text);">Priority email flag</strong> — moves emails you haven't replied to in 3+ days to the top of your brief</div>
+      <div style="background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:0.8125rem;color:var(--text2);">📚 <strong style="color:var(--text);">Topic pattern detector</strong> — when you save 3+ notes on the same topic, REM highlights the theme in your brief</div>
     </div>
-    <a href="/automations" style="display:inline-flex;align-items:center;gap:6px;background:var(--accent);color:#fff;font-size:0.8125rem;font-weight:600;padding:9px 18px;border-radius:9px;text-decoration:none;font-family:var(--font);transition:opacity 0.15s;" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">See patterns &amp; build automations →</a>
+    <div id="console-auto-preview" style="display:none;flex-direction:column;gap:8px;margin-bottom:16px;"></div>
+    <a href="/automations" style="display:inline-flex;align-items:center;gap:6px;background:var(--accent);color:#fff;font-size:0.8125rem;font-weight:600;padding:9px 18px;border-radius:10px;text-decoration:none;font-family:var(--font);transition:opacity 0.15s;" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">Enable these for your account →</a>
   </div>
 
-  <!-- SECTION 4: WATCH THE WEB (Scout) -->
-  <div class="scout-banner">
-    <div class="scout-banner-top">
-      <span style="font-size:1.2rem;">🌐</span>
-      <h3>Watch the web</h3>
-      <span class="help-icon" title="REM will search the web for topics you care about and add fresh content to your brief every morning — no effort needed." style="display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;border-radius:50%;background:var(--surface);border:1px solid var(--border2);font-size:0.65rem;color:var(--text3);cursor:help;margin-left:6px;vertical-align:middle;">?</span>
+  <!-- SECTION 4: WATCH THE WEB (Scout) — collapsible -->
+  <div onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.querySelector('.scout-arrow').style.transform=this.nextElementSibling.style.display==='none'?'':'rotate(90deg)'" style="display:flex;align-items:center;justify-content:space-between;cursor:pointer;padding:14px 18px;background:var(--surface);border:1px solid var(--border);border-radius:12px;margin-bottom:10px;transition:background 0.12s;" onmouseover="this.style.background='var(--surface2)'" onmouseout="this.style.background='var(--surface)'">
+    <span style="font-size:0.8125rem;font-weight:600;color:var(--text2);">🌐 Watch the web — follow topics for your brief</span>
+    <span class="scout-arrow" style="color:var(--text3);font-size:0.75rem;transition:transform 0.2s;">&#9658;</span>
+  </div>
+  <div style="display:none;margin-bottom:14px;">
+    <div class="scout-banner" style="margin-bottom:0;">
+      <p>Tell REM what to follow — a topic, a person, a trend, a company. It checks the web daily and adds what matters to your morning brief.</p>
+      <div style="display:flex;gap:8px;max-width:480px;margin-bottom:10px;">
+        <input id="scout-input" type="text" placeholder="e.g. AI news, Taylor Swift, Bitcoin, my industry…" style="flex:1;padding:8px 12px;border:1px solid var(--border2);border-radius:8px;font-size:0.875rem;font-family:var(--font);background:var(--surface);color:var(--text);outline:none;" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border2)'" onkeydown="if(event.key==='Enter')addScoutTopic()" />
+        <button class="btn btn-primary btn-sm" onclick="addScoutTopic()">Follow</button>
+      </div>
+      <div id="scout-topics-list" style="display:flex;flex-wrap:wrap;gap:6px;"></div>
+      <div id="scout-status" style="font-size:0.78rem;color:var(--text3);min-height:18px;margin-top:6px;"></div>
     </div>
-    <p>Tell REM what to follow — a topic, a person, a trend, a company. It checks the web every night and adds what matters to your morning brief.</p>
-    <div style="display:flex;gap:8px;max-width:480px;margin-bottom:10px;">
-      <input id="scout-input" type="text" placeholder="e.g. AI news, Taylor Swift, Bitcoin, my industry…" style="flex:1;padding:8px 12px;border:1px solid var(--border2);border-radius:8px;font-size:0.875rem;font-family:var(--font);background:var(--surface);color:var(--text);outline:none;" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border2)'" onkeydown="if(event.key==='Enter')addScoutTopic()" />
-      <button class="btn btn-primary btn-sm" onclick="addScoutTopic()">Follow</button>
-    </div>
-    <div id="scout-topics-list" style="display:flex;flex-wrap:wrap;gap:6px;"></div>
-    <div id="scout-status" style="font-size:0.78rem;color:var(--text3);min-height:18px;margin-top:6px;"></div>
   </div>
 
   <!-- SECTION 5: POWER FEATURES (collapsed) -->
@@ -1319,7 +1434,7 @@
 
   <!-- SECTION 5: FOR DEVELOPERS (collapsed) -->
   <div class="dev-toggle" id="dev-toggle" onclick="toggleDev()">
-    <span class="section-label" style="margin-bottom:0;">CLI &amp; Developer API</span>
+    <span class="section-label" style="margin-bottom:0;">Developer tools</span>
     <span class="dev-toggle-arrow" id="dev-arrow">&#9658;</span>
   </div>
   <div class="dev-section" id="dev-section">
@@ -1392,13 +1507,16 @@
         <button class="btn btn-secondary btn-sm" id="modal-cancel">Cancel</button>
         <button class="btn btn-primary btn-sm" id="modal-connect">Connect →</button>
       </div>
+      <div style="text-align:center;margin-top:10px;padding-top:10px;border-top:1px solid var(--border);">
+        <a href="/dream" style="font-size:0.78rem;color:var(--text3);text-decoration:none;" onclick="closeModal()">Looks too complex? Skip setup — <strong style="color:var(--accent);">Ask REM something first →</strong></a>
+      </div>
     </div>
 
     <!-- Success state -->
     <div class="modal-success" id="modal-success">
       <div class="success-icon">&#x2705;</div>
       <div class="success-title">Connected!</div>
-      <div class="success-sub" id="modal-success-sub">REM will read everything tonight — your Morning Brief will be ready tomorrow at 7am. You don't need to do anything.</div>
+      <div class="success-sub" id="modal-success-sub">REM is syncing your last 90 days now — first insights in about 15 minutes. Check your brief soon. You don't need to do anything else.</div>
       <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap;justify-content:center;">
         <a href="/morning" class="btn btn-primary btn-sm" style="text-decoration:none;">See Today →</a>
         <button class="btn btn-secondary btn-sm" id="modal-done">Connect another</button>
@@ -1431,9 +1549,13 @@ async function init() {
     var storedKey = localStorage.getItem('slopshop_api_key') || localStorage.getItem('slop_api_key');
     var hdrs = storedKey ? { 'Authorization': 'Bearer ' + storedKey } : {};
     var r = await fetch(BASE + '/v1/auth/session', { credentials: 'include', headers: hdrs });
-    if (r.status === 401 || r.status === 403) { window.location.replace('/auth/google?return_to=/console'); return; }
+    if (r.status === 401 || r.status === 403) {
+      if (!storedKey) { return; } // new visitor — show page, only redirect when they click Connect
+      window.location.replace('/auth/google?return_to=/console');
+      return;
+    }
     var d = await r.json().catch(function(){ return {}; });
-    if (d.error) { window.location.replace('/auth/google?return_to=/console'); return; }
+    if (d.error && storedKey) { window.location.replace('/auth/google?return_to=/console'); return; }
     currentKey = d.api_key || storedKey;
     var email = (d.user && d.user.email) || d.email || '';
     var currentEmail = email;
@@ -1508,7 +1630,7 @@ function disconnectInt(id) {
   document.querySelectorAll('[id="' + id + '-connected"]').forEach(function(el) { el.style.display = 'none'; });
   document.querySelectorAll('[id="card-' + id + '"] .btn-connect-oauth, [id="card-' + id + '"] .btn-connect-token').forEach(function(el) { el.style.display = ''; });
   document.querySelectorAll('[id="card-' + id + '"]').forEach(function(el) { el.classList.remove('connected'); });
-  toast('Disconnected — data will be removed from tonight\'s brief', 'success');
+  toast('Disconnected — data will be removed from your next brief', 'success');
 }
 
 /* URL import */
@@ -1541,7 +1663,7 @@ var intConfigs = {
     tokenKey: 'notion_token',
     help: '<div style="margin-bottom:10px;font-size:0.8125rem;color:var(--text2);line-height:1.6;">Quick 3-step setup — takes about 2 minutes:</div><div style="display:flex;flex-direction:column;gap:8px;margin-bottom:12px;"><div style="display:flex;gap:10px;font-size:0.8rem;color:var(--text2);"><span style="background:var(--accent);color:#fff;border-radius:50%;width:18px;height:18px;display:inline-flex;align-items:center;justify-content:center;font-size:0.65rem;font-weight:700;flex-shrink:0;margin-top:1px;">1</span><span>Go to <a href="https://www.notion.so/my-integrations" target="_blank" rel="noopener" style="color:var(--accent);">notion.so/my-integrations</a> → click <strong style="color:var(--text);">New integration</strong></span></div><div style="display:flex;gap:10px;font-size:0.8rem;color:var(--text2);"><span style="background:var(--accent);color:#fff;border-radius:50%;width:18px;height:18px;display:inline-flex;align-items:center;justify-content:center;font-size:0.65rem;font-weight:700;flex-shrink:0;margin-top:1px;">2</span><span>Give it any name (like "REM") → click Submit → copy the <strong style="color:var(--text);">Internal Integration Token</strong></span></div><div style="display:flex;gap:10px;font-size:0.8rem;color:var(--text2);"><span style="background:var(--accent);color:#fff;border-radius:50%;width:18px;height:18px;display:inline-flex;align-items:center;justify-content:center;font-size:0.65rem;font-weight:700;flex-shrink:0;margin-top:1px;">3</span><span>In Notion, open a page → click ••• menu → Connections → add your integration</span></div></div><div style="font-size:0.75rem;color:var(--text3);border-top:1px solid var(--border);padding-top:8px;">The token starts with <code>secret_</code>. REM reads your pages — it can never edit or delete them.</div>',
     placeholder: 'secret_xxxxxxxxxxxxxxxxxxxx',
-    successMsg: 'Connected. REM will read your Notion pages tonight and include them in your Morning Brief.',
+    successMsg: 'Connected. REM is syncing your Notion pages now — first insights in ~15 min.',
     extraFields: []
   },
   'github': {
@@ -1550,7 +1672,7 @@ var intConfigs = {
     tokenKey: 'github_token',
     help: 'Go to <a href="https://github.com/settings/tokens" target="_blank" rel="noopener">github.com/settings/tokens</a>, click "Generate new token (classic)", select <strong>repo</strong> scope, and copy the token.',
     placeholder: 'ghp_xxxxxxxxxxxxxxxxxxxx',
-    successMsg: 'Connected. REM will read your GitHub activity tonight and surface what matters in your Brief.',
+    successMsg: 'Connected. REM is syncing your GitHub activity now — first insights in ~15 min.',
     extraFields: [
       { key: 'owner', label: 'GitHub username or org', placeholder: 'e.g. acme-corp', type: 'text' },
       { key: 'repo',  label: 'Repository name',        placeholder: 'e.g. my-project', type: 'text' }
@@ -1562,7 +1684,7 @@ var intConfigs = {
     tokenKey: 'slack_token',
     help: 'Go to <a href="https://api.slack.com/apps" target="_blank" rel="noopener">api.slack.com/apps</a>, create a new app, add <strong>channels:history</strong> and <strong>channels:read</strong> scopes, install to workspace, and copy the <strong>Bot User OAuth Token</strong>.',
     placeholder: 'xoxb-xxxxxxxxxxxx-xxxxxxxxxxxx',
-    successMsg: 'Connected. REM will read your Slack conversations tonight and pull out what\'s important.',
+    successMsg: 'Slack connected. REM is syncing your channel history now — first insights in ~15 min.',
     extraFields: [
       { key: 'channel_id', label: 'Slack channel ID', placeholder: 'e.g. C01234ABCDE (right-click channel → View channel details)', type: 'text' }
     ]
@@ -1573,7 +1695,7 @@ var intConfigs = {
     tokenKey: 'linear_token',
     help: 'Go to <a href="https://linear.app" target="_blank" rel="noopener">linear.app</a> → Settings → API → <strong>Personal API keys</strong> → create a new key and copy it.',
     placeholder: 'lin_api_xxxxxxxxxxxxxxxxxxxx',
-    successMsg: 'Connected. REM will read your Linear issues and projects tonight and track your progress automatically.',
+    successMsg: 'Connected. REM is syncing your Linear history now — first insights in ~15 min.',
     extraFields: []
   },
   'todoist': {
@@ -1582,14 +1704,14 @@ var intConfigs = {
     tokenKey: 'todoist_token',
     help: 'Go to <a href="https://app.todoist.com/app/settings/integrations/developer" target="_blank" rel="noopener">Todoist Settings → Integrations → Developer</a> and copy your <strong>API token</strong>.',
     placeholder: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-    successMsg: 'Connected. REM will read your Todoist tasks tonight and make sure nothing falls through the cracks.',
+    successMsg: 'Connected. REM is syncing your Todoist tasks now — first insights in ~15 min.',
     extraFields: []
   },
   'microsoft365': {
     icon: '🔷', title: 'Connect Microsoft 365',
     endpoint: '/v1/integrations/microsoft365/sync',
     tokenKey: 'ms_token',
-    help: 'Sign in at <a href="https://portal.azure.com" target="_blank" rel="noopener">portal.azure.com</a> → App registrations → your app → Certificates &amp; secrets → New client secret. Or ask your IT admin for a personal access token with <strong>Mail.Read, Calendars.Read, Notes.Read</strong> scopes.',
+    help: '<strong>Option A (non-technical):</strong> Ask your IT admin for a personal access token with <strong>Mail.Read, Calendars.Read, Notes.Read</strong> permissions — paste it below and you\'re done.<br><br><strong>Option B (technical):</strong> Sign in at <a href="https://portal.azure.com" target="_blank" rel="noopener">portal.azure.com</a> → App registrations → your app → Certificates &amp; secrets → New client secret.',
     placeholder: 'Paste your Microsoft Graph access token…',
     successMsg: 'Microsoft 365 is syncing your OneNote, Outlook, and Calendar now.',
     extraFields: []
@@ -1838,9 +1960,9 @@ var intConfigs = {
     icon: '📧', title: 'Connect Gmail',
     endpoint: '/v1/integrations/gmail_imap/sync',
     tokenKey: 'gmail_app_password',
-    help: '<div style="background:rgba(99,102,241,0.06);border:1px solid rgba(99,102,241,0.15);border-radius:10px;padding:16px 18px;margin-bottom:16px;"><div style="font-size:0.8rem;font-weight:700;margin-bottom:10px;color:var(--text);">How to get your App Password (takes 2 min)</div><div style="display:flex;flex-direction:column;gap:8px;"><div style="display:flex;align-items:flex-start;gap:10px;font-size:0.8rem;color:var(--text2);"><span style="background:var(--accent);color:#fff;border-radius:50%;width:18px;height:18px;display:inline-flex;align-items:center;justify-content:center;font-size:0.65rem;font-weight:700;flex-shrink:0;margin-top:1px;">1</span><span>Go to <a href="https://myaccount.google.com/security" target="_blank" rel="noopener" style="color:var(--accent2);">Google Account Security</a></span></div><div style="display:flex;align-items:flex-start;gap:10px;font-size:0.8rem;color:var(--text2);"><span style="background:var(--accent);color:#fff;border-radius:50%;width:18px;height:18px;display:inline-flex;align-items:center;justify-content:center;font-size:0.65rem;font-weight:700;flex-shrink:0;margin-top:1px;">2</span><span>Click <strong style="color:var(--text);">2-Step Verification</strong> (enable it if not on)</span></div><div style="display:flex;align-items:flex-start;gap:10px;font-size:0.8rem;color:var(--text2);"><span style="background:var(--accent);color:#fff;border-radius:50%;width:18px;height:18px;display:inline-flex;align-items:center;justify-content:center;font-size:0.65rem;font-weight:700;flex-shrink:0;margin-top:1px;">3</span><span>Scroll down to <strong style="color:var(--text);">App passwords</strong> → select "Mail" → Generate</span></div><div style="display:flex;align-items:flex-start;gap:10px;font-size:0.8rem;color:var(--text2);"><span style="background:var(--accent);color:#fff;border-radius:50%;width:18px;height:18px;display:inline-flex;align-items:center;justify-content:center;font-size:0.65rem;font-weight:700;flex-shrink:0;margin-top:1px;">4</span><span>Copy the 16-character code (no spaces) and paste it below</span></div></div><div style="margin-top:10px;font-size:0.75rem;color:var(--text3);border-top:1px solid var(--border);padding-top:8px;">This is <strong style="color:var(--text2);">not your Gmail password</strong> — it\'s a one-time access code. REM can only read emails, never send or delete them.</div></div>',
-    placeholder: 'xxxx xxxx xxxx xxxx (your App Password)',
-    successMsg: 'Gmail connected. REM will read your emails tonight — your first brief will be ready tomorrow morning at 7am.',
+    help: '<div style="background:rgba(99,102,241,0.06);border:1px solid rgba(99,102,241,0.15);border-radius:10px;padding:16px 18px;margin-bottom:16px;"><div style="font-size:0.8rem;font-weight:700;margin-bottom:10px;color:var(--text);">How to get your Gmail access code (takes 2 min)</div><div style="display:flex;flex-direction:column;gap:8px;"><div style="display:flex;align-items:flex-start;gap:10px;font-size:0.8rem;color:var(--text2);"><span style="background:var(--accent);color:#fff;border-radius:50%;width:18px;height:18px;display:inline-flex;align-items:center;justify-content:center;font-size:0.65rem;font-weight:700;flex-shrink:0;margin-top:1px;">1</span><span>Go to <a href="https://myaccount.google.com/security" target="_blank" rel="noopener" style="color:var(--accent2);">Google Account Security</a></span></div><div style="display:flex;align-items:flex-start;gap:10px;font-size:0.8rem;color:var(--text2);"><span style="background:var(--accent);color:#fff;border-radius:50%;width:18px;height:18px;display:inline-flex;align-items:center;justify-content:center;font-size:0.65rem;font-weight:700;flex-shrink:0;margin-top:1px;">2</span><span>Click <strong style="color:var(--text);">2-Step Verification</strong> (enable it if not already on)</span></div><div style="display:flex;align-items:flex-start;gap:10px;font-size:0.8rem;color:var(--text2);"><span style="background:var(--accent);color:#fff;border-radius:50%;width:18px;height:18px;display:inline-flex;align-items:center;justify-content:center;font-size:0.65rem;font-weight:700;flex-shrink:0;margin-top:1px;">3</span><span>Scroll down to <strong style="color:var(--text);">App passwords</strong> → select "Mail" → click Generate</span></div><div style="display:flex;align-items:flex-start;gap:10px;font-size:0.8rem;color:var(--text2);"><span style="background:var(--accent);color:#fff;border-radius:50%;width:18px;height:18px;display:inline-flex;align-items:center;justify-content:center;font-size:0.65rem;font-weight:700;flex-shrink:0;margin-top:1px;">4</span><span>Copy the 16-character code (no spaces) and paste it below</span></div></div><div style="margin-top:10px;font-size:0.75rem;color:var(--text3);border-top:1px solid var(--border);padding-top:8px;">This is <strong style="color:var(--text2);">not your Gmail password</strong> — it\'s a read-only access code that only lets REM read your emails. REM can never send, delete, or modify anything.</div></div>',
+    placeholder: 'xxxx xxxx xxxx xxxx (16-character access code)',
+    successMsg: 'Gmail connected. REM is syncing your last 90 days now — first insights in about 15 minutes. Check your brief shortly. ☀️',
     extraFields: [
       { key: 'gmail_address', label: 'Your Gmail address', placeholder: 'you@gmail.com', type: 'text' }
     ]
@@ -1849,7 +1971,7 @@ var intConfigs = {
     icon: '📅', title: 'Connect Google Calendar (iCal)',
     endpoint: '/v1/integrations/google_calendar_ical/sync',
     tokenKey: 'ical_url',
-    help: '<strong>No OAuth or Google approval needed.</strong> Uses your private iCal URL.<br><br>1. Open <a href="https://calendar.google.com" target="_blank" rel="noopener">Google Calendar</a> → Settings (gear icon) → click your calendar under "My calendars".<br>2. Scroll to "Integrate calendar" → copy the <strong>Secret address in iCal format</strong> (starts with webcal://).<br>3. Paste it below.',
+    help: '<strong>No Google approval needed — uses a private calendar link.</strong><br><br>1. Open <a href="https://calendar.google.com" target="_blank" rel="noopener">Google Calendar</a> → Settings (gear icon) → click your calendar under "My calendars".<br>2. Scroll to "Integrate calendar" → copy the <strong>Secret address in iCal format</strong> (a private URL that starts with webcal://).<br>3. Paste it below.',
     placeholder: 'webcal://calendar.google.com/calendar/ical/…/private-…/basic.ics',
     successMsg: 'Google Calendar is syncing. Your events will appear in your Morning Brief.',
     extraFields: []
@@ -2004,7 +2126,7 @@ var intConfigs = {
     tokenKey: 'obsidian_export',
     help: 'Export your vault: in Obsidian go to <strong>File → Export → Markdown</strong> (or zip the vault folder). Paste the contents or upload the export below.',
     placeholder: 'Paste markdown content or vault export path…',
-    successMsg: 'Imported. REM is indexing your Obsidian vault — connections will surface in tomorrow\'s brief.',
+    successMsg: 'Imported. REM is indexing your Obsidian vault — connections will surface in your brief shortly.',
     extraFields: []
   },
   'loom': {
@@ -2013,7 +2135,7 @@ var intConfigs = {
     tokenKey: 'loom_api_key',
     help: 'Go to <a href="https://www.loom.com/settings/integrations" target="_blank" rel="noopener">Loom Settings → Integrations</a> → API → copy your <strong>API key</strong>. REM reads your video transcripts — every word you spoke in recorded meetings is searchable.',
     placeholder: 'Paste your Loom API key…',
-    successMsg: 'Connected. REM will read your Loom transcripts tonight.',
+    successMsg: 'Connected. REM is syncing your Loom transcripts now.',
     extraFields: []
   },
   'apple-health': {
@@ -2040,7 +2162,7 @@ var intConfigs = {
     tokenKey: 'imap_app_password',
     help: 'Connect any email inbox — Gmail, Outlook, Yahoo, or corporate. Uses IMAP for read-only access. For Gmail: generate an App Password at <a href="https://myaccount.google.com/apppasswords" target="_blank" rel="noopener">myaccount.google.com/apppasswords</a> (takes 2 min).',
     placeholder: 'Your App Password or IMAP password…',
-    successMsg: 'Connected. REM will read your inbox tonight and pull out what matters.',
+    successMsg: 'Connected. REM is syncing your inbox now — first insights in ~15 min.',
     extraFields: [
       { key: 'imap_email', label: 'IMAP email address', placeholder: 'you@gmail.com or you@company.com', type: 'text' },
       { key: 'imap_server', label: 'IMAP server (optional — auto-detected for Gmail/Outlook)', placeholder: 'e.g. imap.gmail.com', type: 'text' }
@@ -2059,9 +2181,9 @@ var intConfigs = {
     icon: '💙', title: 'Connect iMessage',
     endpoint: '/v1/integrations/imessage/sync',
     tokenKey: 'imessage_password',
-    help: 'Requires <a href="https://bluebubbles.app" target="_blank" rel="noopener">BlueBubbles</a> running on a Mac. It\'s free and open-source — your Mac becomes a bridge. Once installed, paste your BlueBubbles server URL and password to connect. REM will read your conversations tonight.',
+    help: 'Requires <a href="https://bluebubbles.app" target="_blank" rel="noopener">BlueBubbles</a> running on a Mac. It\'s free and open-source — your Mac becomes a bridge. Once installed, paste your BlueBubbles server URL and password to connect. REM is syncing your conversations now.',
     placeholder: 'BlueBubbles server password…',
-    successMsg: 'Connected to your iMessage bridge. REM will read your conversations tonight.',
+    successMsg: 'Connected to your iMessage bridge. REM is syncing your conversations now.',
     extraFields: [
       { key: 'imessage_server_url', label: 'BlueBubbles server URL', placeholder: 'e.g. http://your-mac.local:1234', type: 'text' }
     ]
@@ -2072,7 +2194,7 @@ var intConfigs = {
     tokenKey: 'telegram_api_key',
     help: 'Get a free API key at <a href="https://my.telegram.org" target="_blank" rel="noopener">my.telegram.org</a> in 30 seconds — log in, go to API Development Tools, create an app, and copy the <strong>api_id</strong> and <strong>api_hash</strong>. REM uses the official Telegram API — no third-party access, no bots.',
     placeholder: 'Paste your Telegram api_hash…',
-    successMsg: 'Connected. REM will read your Telegram conversations tonight.',
+    successMsg: 'Telegram connected. REM is syncing your conversations now — first insights in ~15 min.',
     extraFields: [
       { key: 'telegram_api_id', label: 'Telegram api_id (numeric)', placeholder: 'e.g. 12345678', type: 'text' }
     ]
@@ -2083,7 +2205,7 @@ var intConfigs = {
     tokenKey: 'discord_bot_token',
     help: 'Create a bot at <a href="https://discord.com/developers/applications" target="_blank" rel="noopener">discord.com/developers</a> → New Application → Bot → copy the <strong>Bot Token</strong>. Add the bot to your server with <strong>Read Messages</strong> permission. REM reads your server messages to build context from team conversations.',
     placeholder: 'Bot token (MTxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx)',
-    successMsg: 'Connected. REM will read your Discord server messages tonight.',
+    successMsg: 'Connected. REM is syncing your Discord messages now.',
     extraFields: [
       { key: 'discord_server_id', label: 'Discord Server ID', placeholder: 'Right-click server → Copy Server ID (enable Developer Mode first)', type: 'text' }
     ]
@@ -2094,12 +2216,58 @@ var intConfigs = {
     tokenKey: 'apple_notes_agent',
     help: 'REM for Mac connects to Apple Notes on your Mac via AppleScript. <a href="https://remlabs.ai/mac" target="_blank" rel="noopener">Install the Mac agent</a> to enable this integration — it\'s free and runs locally on your machine.',
     placeholder: 'Agent token (auto-filled by the Mac app)…',
-    successMsg: 'Connected. REM will read your Apple Notes tonight.',
+    successMsg: 'Connected. REM is syncing your Apple Notes now — first insights in ~15 min.',
+    extraFields: []
+  },
+  'plaid': {
+    icon: '🏦', title: 'Connect Bank Accounts (via Plaid)',
+    endpoint: '/v1/integrations/plaid/sync',
+    tokenKey: 'plaid_access_token',
+    help: 'Plaid connects to 12,000+ banks and credit unions — your transactions, categories, and spending patterns surface in your morning brief. Get a free Plaid account at <a href="https://dashboard.plaid.com/signup" target="_blank" rel="noopener">dashboard.plaid.com</a>, create a Sandbox environment, connect a test account using their Quickstart, then paste your <strong>access_token</strong> below. REM reads transaction descriptions, amounts, and categories — never full account numbers or login credentials. Read-only access.',
+    placeholder: 'Paste your Plaid access_token (access-sandbox-xxxxxxxx)…',
+    successMsg: 'Connected. REM will surface spending patterns and financial context in your morning brief.',
     extraFields: []
   }
 };
 
 var activeIntId = null;
+
+/* ── SAFE HTML ── allow-list sanitizer (a, strong, em, code, br only) */
+function safeHtml(html) {
+  if (!html) return '';
+  var parser = new DOMParser();
+  var doc = parser.parseFromString('<div>' + html + '</div>', 'text/html');
+  var root = doc.body.firstChild;
+  function clean(node) {
+    var frag = document.createDocumentFragment();
+    for (var i = 0; i < node.childNodes.length; i++) {
+      var child = node.childNodes[i];
+      if (child.nodeType === 3) {
+        frag.appendChild(document.createTextNode(child.textContent));
+      } else if (child.nodeType === 1) {
+        var tag = child.tagName.toLowerCase();
+        var allowed = { a: true, strong: true, em: true, code: true, br: true };
+        if (allowed[tag]) {
+          var el = document.createElement(tag);
+          if (tag === 'a') {
+            var href = child.getAttribute('href') || '';
+            if (/^https?:\/\//.test(href)) { el.setAttribute('href', href); }
+            el.setAttribute('target', '_blank');
+            el.setAttribute('rel', 'noopener noreferrer');
+          }
+          el.appendChild(clean(child));
+          frag.appendChild(el);
+        } else {
+          frag.appendChild(clean(child));
+        }
+      }
+    }
+    return frag;
+  }
+  var tmp = document.createElement('div');
+  tmp.appendChild(clean(root));
+  return tmp.innerHTML;
+}
 
 function openIntModal(id) {
   if (connected[id]) return;
@@ -2108,7 +2276,7 @@ function openIntModal(id) {
   activeIntId = id;
   document.getElementById('modal-icon').textContent = cfg.icon;
   document.getElementById('modal-title').textContent = cfg.title;
-  document.getElementById('modal-help-text').innerHTML = cfg.help;
+  document.getElementById('modal-help-text').innerHTML = safeHtml(cfg.help);
   document.getElementById('token-input').value = '';
   document.getElementById('token-input').placeholder = cfg.placeholder;
   buildExtraFields(cfg);
@@ -2279,16 +2447,24 @@ function connectGoogle(e) {
   if (params.get('connected') === 'google') {
     toast('Google connected! Syncing your Gmail & Calendar now…', 'success');
     history.replaceState(null, '', window.location.pathname);
+    // Trigger backend sync + background dream so insights are ready ASAP
+    if (currentKey) {
+      fetch(BASE + '/v1/integrations/sync-all', {
+        method: 'POST', credentials: 'include',
+        headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + currentKey },
+        body: JSON.stringify({})
+      }).catch(function() {});
+    }
     setTimeout(function() {
       checkGoogleStatus();
-      // Show overnight briefing message after connection
+      // Show post-connection sync message
       try {
         var existingNote = document.getElementById('post-connect-note');
         if (!existingNote) {
           var note = document.createElement('div');
           note.id = 'post-connect-note';
           note.style.cssText = 'margin-top: 12px; padding: 14px 16px; background: rgba(99,102,241,0.06); border: 1px solid rgba(99,102,241,0.15); border-radius: 10px; font-size: 0.82rem; color: var(--text2); line-height: 1.6; text-align: right;';
-          note.innerHTML = '🌙 <strong>REM will read everything tonight.</strong><br>Your first Morning Brief will be ready tomorrow morning. Come back and check — it will surprise you.';
+          note.innerHTML = '⚡ <strong>REM is syncing your last 90 days now.</strong><br>First insights appear in about 15 minutes — check your <a href="/morning" style="color:var(--accent);font-weight:600;">Morning Brief</a> shortly.';
           var connectedDiv = document.getElementById('google-connected');
           if (connectedDiv) connectedDiv.appendChild(note);
         }
@@ -2315,7 +2491,7 @@ init().then(function() { checkGoogleStatus(); initScout(); initTeam(); initConso
         setTimeout(function() {
           var progressText = document.querySelector('.conn-progress-text');
           if (progressText && progressText.textContent === 'Apps connected') {
-            progressText.textContent = '✓ First app connected — REM runs tonight';
+            progressText.textContent = '✓ First app connected — syncing now, insights in ~15 min';
           }
         }, 800);
       }
@@ -2530,9 +2706,12 @@ function updateConnectedProgress() {
   var fill = document.getElementById('connProgressFill');
   var countEl = document.getElementById('connProgressCount');
   if (fill) fill.style.width = total > 0 ? Math.round((count / Math.max(total, 10)) * 100) + '%' : (count > 0 ? (count * 3) + '%' : '0%');
-  if (countEl) countEl.textContent = count;
+  if (countEl) countEl.textContent = count === 1 ? '1 app' : count + ' apps';
   var lbl = document.getElementById('connProgressLabel');
   if (lbl) lbl.textContent = count === 0 ? 'Connect your first app →' : count === 1 ? '1 app connected — add another for a richer brief' : count + ' apps connected';
+  // Show conn progress only when at least 1 app connected
+  var cp = document.getElementById('connProgress');
+  if (cp && count > 0) cp.style.display = 'flex';
   // Mark start-here cards as done
   ['sh-gmail','sh-notion','sh-calendar'].forEach(function(id) {
     var el = document.getElementById(id);
@@ -2540,8 +2719,8 @@ function updateConnectedProgress() {
     var map = {'sh-gmail': 'google', 'sh-notion': 'notion', 'sh-calendar': 'google_calendar'};
     if (connected[map[id]]) el.classList.add('done');
   });
-  // Hide start-here if all 3 done
-  if (connected.google && connected.notion && connected.google_calendar) {
+  // Hide start-here once at least 1 app is connected (they've done the job)
+  if (count > 0) {
     var sh = document.getElementById('startHere');
     if (sh) sh.style.display = 'none';
   }
@@ -2552,24 +2731,6 @@ function updateConnectedProgress() {
 
 /* Notify-me waitlist for coming-soon cards */
 function showToast(msg) { toast(msg, 'info'); }
-function notifyMe(btn) {
-  if (btn.classList.contains('notified')) return;
-  var intName = btn.getAttribute('data-int') || 'this';
-  localStorage.setItem('rem_notify_' + intName, '1');
-  btn.textContent = '✓ We\'ll notify you';
-  btn.classList.add('notified');
-  var count = parseInt(localStorage.getItem('rem_notify_count_' + intName) || '43');
-  localStorage.setItem('rem_notify_count_' + intName, count + 1);
-  showToast('Got it — we\'ll email you when ' + intName + ' connects.');
-}
-// Restore notified state on page load
-document.querySelectorAll('.soon-notify-btn').forEach(function(btn) {
-  var intName = btn.getAttribute('data-int') || 'this';
-  if (localStorage.getItem('rem_notify_' + intName)) {
-    btn.textContent = '✓ We\'ll notify you';
-    btn.classList.add('notified');
-  }
-});
 </script>
 
 <!-- MOBILE TAB BAR -->

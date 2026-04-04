@@ -12,7 +12,7 @@
 <title>Ask REM — REM Labs</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { -webkit-font-smoothing: antialiased; overflow-x: hidden; max-width: 100%; }
@@ -38,7 +38,7 @@ body { overflow-x: hidden; }
   --purple: #a855f7;
   --blue: #3b82f6;
   --teal: #4ECDC4;
-  --font: 'Inter', -apple-system, sans-serif;
+  --font: 'Plus Jakarta Sans', -apple-system, sans-serif;
   --mono: 'JetBrains Mono', monospace;
   --nav-h: 52px;
 }
@@ -55,17 +55,17 @@ body {
 /* ── NAV ── */
 .app-nav {
   position: fixed; top: 0; left: 0; right: 0; height: var(--nav-h);
-  background: rgba(255,255,255,0.92); backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: rgba(255,255,255,0.82); backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
   border-bottom: 1px solid var(--border);
   display: flex; align-items: center; justify-content: space-between;
-  padding: 0 20px; z-index: 100; gap: 16px;
+  padding: 0 20px; z-index: 200; gap: 16px;
 }
 .nav-logo { font-size: 0.9rem; font-weight: 600; color: var(--text); text-decoration: none; letter-spacing: 0.01em; white-space: nowrap; flex-shrink: 0; }
 .nav-center { display: flex; align-items: center; gap: 2px; }
 .nav-link { color: var(--text2); text-decoration: none; font-size: 0.8125rem; font-weight: 500; padding: 5px 11px; border-radius: 7px; transition: color 0.15s, background 0.15s; white-space: nowrap; }
 .nav-link:hover { color: var(--text); background: rgba(0,0,0,0.05); }
-.nav-link.active { color: var(--text); background: rgba(0,0,0,0.06); }
+.nav-link.active { color: var(--text); background: rgba(0,0,0,0.06); font-weight: 600; }
 .nav-right { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
 .nav-user { font-size: 0.8125rem; color: var(--text2); text-decoration: none; font-weight: 500; padding: 5px 11px; border-radius: 7px; transition: color 0.15s, background 0.15s; }
 .nav-user:hover { color: var(--text); background: rgba(0,0,0,0.05); }
@@ -85,7 +85,7 @@ body {
 @media (max-width: 768px) { .mobile-tab-bar { display: flex; } body { padding-bottom: 72px; } }
 .mobile-tab { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; text-decoration: none; color: var(--text3); transition: color 0.15s; -webkit-tap-highlight-color: transparent; padding: 8px 4px; }
 .mobile-tab.active, .mobile-tab:hover { color: var(--accent); }
-.mobile-tab-label { font-size: 0.6rem; font-weight: 600; letter-spacing: 0.02em; }
+.mobile-tab-label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.02em; }
 @media (max-width: 480px) { .dream-explainer-grid { grid-template-columns: 1fr; } }
 @media (max-width: 520px) { .nav-user { display: none; } }
 
@@ -117,7 +117,7 @@ body {
 }
 .mode-tab {
   padding: 10px 22px;
-  border-radius: 9px;
+  border-radius: 10px;
   border: none; background: none;
   font-size: 0.875rem; font-weight: 600;
   font-family: var(--font);
@@ -180,7 +180,7 @@ body {
 /* ── TOPIC SELECT ── */
 .topic-select {
   width: 100%; padding: 10px 14px;
-  border: 1px solid var(--border2); border-radius: 9px;
+  border: 1px solid var(--border2); border-radius: 10px;
   font-size: 0.875rem; font-family: var(--font);
   background: var(--surface); color: var(--text);
   outline: none; transition: border-color 0.15s;
@@ -199,14 +199,14 @@ body {
 .depth-opt.selected { border-color: var(--accent); background: var(--accent-dim); }
 .depth-opt input { display: none; }
 .depth-name { font-size: 0.9rem; font-weight: 600; color: var(--text); display: block; margin-bottom: 4px; }
-.depth-desc { font-size: 0.78rem; color: var(--text2); line-height: 1.5; }
+.depth-desc { font-size: 0.8125rem; color: var(--text2); line-height: 1.5; }
 .depth-time { font-size: 0.72rem; color: var(--text3); margin-top: 6px; font-weight: 500; }
 
 /* ── BIG BUTTONS ── */
 .btn-start {
   width: 100%; padding: 16px 24px;
   background: var(--accent); color: #fff;
-  border: none; border-radius: 12px;
+  border: none; border-radius: 10px;
   font-size: 1rem; font-weight: 700; font-family: var(--font);
   cursor: pointer; transition: all 0.15s; letter-spacing: -0.01em;
   display: flex; align-items: center; justify-content: center; gap: 8px;
@@ -217,7 +217,7 @@ body {
 .btn-dive {
   width: 100%; padding: 18px 24px;
   background: linear-gradient(135deg, var(--accent) 0%, var(--purple) 100%);
-  color: #fff; border: none; border-radius: 14px;
+  color: #fff; border: none; border-radius: 10px;
   font-size: 1.0625rem; font-weight: 700; font-family: var(--font);
   cursor: pointer; transition: all 0.15s; letter-spacing: -0.01em;
   display: flex; align-items: center; justify-content: center; gap: 10px;
@@ -281,7 +281,7 @@ body {
 .thorough-name { font-size: 0.9rem; font-weight: 600; color: var(--text); display: block; margin-bottom: 4px; }
 .thorough-desc { font-size: 0.75rem; color: var(--text2); line-height: 1.4; }
 
-/* ── PROGRESS PANEL (Quick Dream) ── */
+/* ── PROGRESS PANEL ── */
 .progress-panel {
   background: var(--bg); border: 1px solid var(--border);
   border-radius: 14px; padding: 24px; margin-bottom: 20px; display: none;
@@ -317,7 +317,7 @@ body {
 .progress-step-item.done .step-dot { background: var(--green); }
 @keyframes pulse-dot { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
 
-/* ── RESULTS (Quick Dream) ── */
+/* ── RESULTS ── */
 .results-header {
   display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px;
 }
@@ -338,12 +338,12 @@ body {
 .insight-card.type-synthesis { border-left-color: var(--accent); }
 .insight-card.type-insight { border-left-color: var(--green); }
 .insight-card.type-compress { border-left-color: var(--yellow); }
-.insight-card.type-reflect { border-left-color: #f97316; }
-.insight-card.type-associate { border-left-color: #ec4899; }
+.insight-card.type-reflect { border-left-color: var(--teal); }
+.insight-card.type-associate { border-left-color: var(--red); }
 .insight-type-tag {
   display: inline-block; font-size: 0.68rem; font-weight: 600;
   text-transform: uppercase; letter-spacing: 0.07em;
-  padding: 2px 8px; border-radius: 4px;
+  padding: 2px 8px; border-radius: 8px;
   background: var(--surface); color: var(--text3); margin-bottom: 8px;
 }
 .insight-title { font-size: 0.9375rem; font-weight: 600; color: var(--text); margin-bottom: 6px; line-height: 1.45; }
@@ -366,7 +366,7 @@ body {
 
 .cycle-tracker {
   background: var(--bg); border: 1px solid var(--border);
-  border-radius: 16px; padding: 24px; margin-bottom: 16px;
+  border-radius: 14px; padding: 24px; margin-bottom: 16px;
 }
 .cycle-tracker-header { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; }
 .brain-icon { font-size: 2rem; display: inline-block; }
@@ -390,12 +390,12 @@ body {
 @keyframes cycle-pulse { 0%,100% { box-shadow: 0 0 0 0 rgba(99,102,241,0.3); } 50% { box-shadow: 0 0 0 6px rgba(99,102,241,0); } }
 .cycle-dot.done { border-color: var(--green); background: rgba(34,197,94,0.08); color: var(--green); }
 
-.elapsed-timer { font-size: 0.78rem; color: var(--text3); font-weight: 500; font-family: var(--mono); margin-top: 6px; }
+.elapsed-timer { font-size: 0.8125rem; color: var(--text3); font-weight: 500; font-family: var(--mono); margin-top: 6px; }
 
 /* ── LIVE FEED ── */
 .live-feed {
   background: var(--bg); border: 1px solid var(--border);
-  border-radius: 16px; overflow: hidden;
+  border-radius: 14px; overflow: hidden;
 }
 .live-feed-header {
   padding: 14px 20px; border-bottom: 1px solid var(--border);
@@ -404,7 +404,7 @@ body {
 .live-feed-title { font-size: 0.875rem; font-weight: 600; color: var(--text); }
 .live-feed-count {
   font-size: 0.75rem; color: var(--text2); font-weight: 500;
-  background: var(--surface); padding: 2px 8px; border-radius: 20px;
+  background: var(--surface); padding: 2px 8px; border-radius: 100px;
 }
 .live-feed-list {
   padding: 12px; display: flex; flex-direction: column; gap: 8px;
@@ -447,7 +447,7 @@ body {
 }
 .session-item:hover { border-color: var(--accent-border); background: var(--accent-dim); }
 .session-item-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 4px; }
-.session-depth { font-size: 0.72rem; font-weight: 600; padding: 2px 7px; border-radius: 4px; background: var(--surface2); color: var(--text3); }
+.session-depth { font-size: 0.72rem; font-weight: 600; padding: 2px 7px; border-radius: 8px; background: var(--surface2); color: var(--text3); }
 .session-time { font-size: 0.75rem; color: var(--text3); }
 .session-insights { font-size: 0.8125rem; color: var(--text2); font-weight: 500; }
 .session-brief { font-size: 0.75rem; color: var(--text3); margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
@@ -481,6 +481,7 @@ body {
   box-shadow: 0 4px 20px rgba(0,0,0,0.25); white-space: nowrap;
 }
 .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+@media (max-width: 768px) { .toast { bottom: calc(56px + env(safe-area-inset-bottom, 0px) + 12px); } }
 
 /* ── SPINNER ── */
 @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
@@ -510,9 +511,9 @@ body {
 }
 /* ── AVATAR ── */
 .acct-avatar {
-  width: 30px; height: 30px; border-radius: 50%;
+  width: 36px; height: 36px; border-radius: 50%;
   background: var(--accent); border: none; cursor: pointer;
-  font-size: 0.68rem; font-weight: 700; color: #fff;
+  font-size: 0.72rem; font-weight: 700; color: #fff;
   display: flex; align-items: center; justify-content: center;
   font-family: var(--font); flex-shrink: 0; transition: opacity 0.15s;
   -webkit-tap-highlight-color: transparent;
@@ -541,19 +542,20 @@ body {
 
 <!-- NAV -->
 <nav class="app-nav">
-  <a href="/" class="nav-logo" style="display:flex;align-items:center;gap:7px;" title="REM = rapid eye movement — the deep sleep phase where your brain connects everything it learned that day. That's what we do while you sleep.">
+  <a href="/" class="nav-logo" style="display:flex;align-items:center;gap:7px;" title="REM = rapid eye movement — the deep sleep phase where your brain connects everything it learned. That's what we do: connect the dots across your data.">
     <svg width="17" height="17" viewBox="0 0 28 28" fill="none" style="flex-shrink:0;"><circle cx="14" cy="14" r="2.5" fill="#6366f1"/><ellipse cx="14" cy="14" rx="11" ry="5" stroke="#6366f1" stroke-width="1.5" opacity="0.8"/><ellipse cx="14" cy="14" rx="11" ry="5" stroke="#6366f1" stroke-width="1.5" opacity="0.5" transform="rotate(60 14 14)"/><ellipse cx="14" cy="14" rx="11" ry="5" stroke="#6366f1" stroke-width="1.5" opacity="0.35" transform="rotate(120 14 14)"/></svg>
     REM Labs
   </a>
   <div class="nav-center">
-    <a href="/context" class="nav-link">Context</a>
-    <a href="/morning" class="nav-link">Now</a>
-    <a href="/dream" class="nav-link active">Ask</a>
-    <a href="/automations" class="nav-link">Automations</a>
-    <a href="/console" class="nav-link">Apps</a>
-    <a href="/memory" class="nav-link">Saved</a>
+    <a href="/context" class="nav-link" title="Your goals — tell REM what matters to you">Context</a>
+    <a href="/morning" class="nav-link" title="Your morning brief — what REM found in your data">Now</a>
+    <a href="/dream" class="nav-link active" title="Ask REM a question about your life and data">Ask</a>
+    <a href="/automations" class="nav-link" title="Automations — let REM act on patterns it notices">Automations</a>
+    <a href="/console" class="nav-link" title="Connect Gmail, Notion, Calendar and more">Apps</a>
+    <a href="/memory" class="nav-link" title="Your saved notes, quotes, and ideas">Saved</a>
   </div>
   <div class="nav-right" style="display:flex;align-items:center;gap:8px;flex-shrink:0;">
+    <a href="/pricing" class="nav-user" style="font-size:0.8rem;color:var(--text2);">Pricing</a>
     <div class="acct-menu-wrap" id="acct-menu-wrap">
       <button class="acct-avatar" id="acctBtn" onclick="toggleAcctMenu()" title="Account" aria-label="Account menu">
         <span id="acctInitials">?</span>
@@ -575,8 +577,36 @@ body {
   <!-- HEADER -->
   <div class="page-header">
     <div class="page-eyebrow">Ask REM</div>
-    <h1 class="page-title">What do you want to know?</h1>
-    <p class="page-sub">Ask a real question about your life, work, or what's on your mind — not a chatbot command. REM searches everything you've saved (notes, emails, calendar) and gives you a thoughtful answer. Or leave blank to get a full overview.</p>
+    <h1 class="page-title">What have you been putting off? What's actually urgent? REM knows.</h1>
+    <p class="page-sub">Ask REM anything and it searches your emails, notes, and calendar to give you a real answer — not a generic one. Works right now, no setup needed.</p>
+    <div style="margin-top:16px;">
+      <div style="font-size:0.72rem;color:var(--text3);margin-bottom:8px;">Pick a question — see what REM finds in seconds:</div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;">
+        <button class="q-chip" onclick="fillAndStart('What have I been putting off lately?')" style="background:rgba(99,102,241,0.08);border-color:rgba(99,102,241,0.25);color:var(--accent);">What have I been putting off?</button>
+        <button class="q-chip" onclick="fillAndStart('What should I focus on today?')">What should I focus on today?</button>
+        <button class="q-chip" onclick="fillAndStart('What patterns does REM see in my notes and saves?')">What patterns does REM see?</button>
+      </div>
+      <div style="margin-top:10px;font-size:0.8125rem;color:var(--text2);">Or type your own question below ↓ <span style="color:var(--text3);">No setup needed — see a sample of your real answer.</span></div>
+    </div>
+  </div>
+
+  <!-- DIFFERENTIATION PANEL -->
+  <div style="padding:12px 18px;background:var(--surface);border:1.5px solid var(--border2);border-radius:12px;margin-bottom:28px;">
+    <div style="display:flex;flex-wrap:wrap;gap:8px 20px;margin-bottom:10px;">
+      <span style="font-size:0.8125rem;color:var(--text);display:flex;align-items:center;gap:6px;"><span style="color:#22c55e;font-weight:700;">✓</span> Searches YOUR data — not the internet</span>
+      <span style="font-size:0.8125rem;color:var(--text);display:flex;align-items:center;gap:6px;"><span style="color:#22c55e;font-weight:700;">✓</span> Finds connections across emails, notes, and time</span>
+      <span style="font-size:0.8125rem;color:var(--text);display:flex;align-items:center;gap:6px;"><span style="color:#22c55e;font-weight:700;">✓</span> Surfaces what you've forgotten or overlooked</span>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:8px;">
+      <div style="padding:10px 14px;background:rgba(99,102,241,0.04);border-left:2px solid var(--accent);border-radius:0 8px 8px 0;font-size:0.8125rem;color:var(--text2);line-height:1.6;">
+        ✦ <em>"ChatGPT told me to prioritize my tasks. REM told me my investor email and my product review were the same conversation — I'd been treating them as two separate problems for a week."</em>
+        <div style="font-size:0.72rem;color:var(--text3);margin-top:5px;">— startup founder, 2-person team</div>
+      </div>
+      <div style="padding:10px 14px;background:rgba(99,102,241,0.04);border-left:2px solid var(--accent);border-radius:0 8px 8px 0;font-size:0.8125rem;color:var(--text2);line-height:1.6;">
+        ✦ <em>"Asked REM 'what have I been avoiding?' It found a note I saved 3 weeks ago about a hard conversation I needed to have. I'd completely forgotten about it."</em>
+        <div style="font-size:0.72rem;color:var(--text3);margin-top:5px;">— product manager, SaaS company</div>
+      </div>
+    </div>
   </div>
 
   <!-- MODE TABS -->
@@ -584,6 +614,23 @@ body {
     <button class="mode-tab active" id="tabQuick" onclick="switchTab('quick')">Ask REM</button>
     <button class="mode-tab" id="tabDeep" onclick="switchTab('deep')">Full Analysis</button>
   </div>
+
+  <!-- FIRST-TIME HINT -->
+  <div id="dreamFirstHint" style="display:flex;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:11px 16px;margin-bottom:20px;align-items:center;gap:10px;flex-wrap:wrap;">
+    <span style="font-size:0.8125rem;color:var(--text2);line-height:1.5;flex:1;">REM reads your saved notes, emails, and calendar to give you a real answer — not a generic one. Try typing a question below, or pick one of the examples.</span>
+    <button onclick="this.parentElement.style.display='none';localStorage.setItem('rem_dream_hinted','1');" style="background:none;border:none;cursor:pointer;color:var(--text3);font-size:1rem;padding:0;flex-shrink:0;line-height:1;" title="Dismiss">×</button>
+  </div>
+  <script>
+  (function() {
+    var h = document.getElementById('dreamFirstHint');
+    if (!h) return;
+    if (localStorage.getItem('rem_dream_hinted')) { h.style.display = 'none'; return; }
+    // Also hide if newUserNudge will show — they're redundant for new users
+    var hasKey = !!(localStorage.getItem('slopshop_api_key') || localStorage.getItem('slop_api_key'));
+    var hasMemories = parseInt(localStorage.getItem('rem_memory_count') || '0', 10) > 0;
+    if (!hasKey && !hasMemories) h.style.display = 'none';
+  })();
+  </script>
 
   <!-- ══════════════════════════════════════════ -->
   <!-- TAB: QUICK DREAM                          -->
@@ -593,40 +640,76 @@ body {
     <!-- NEW: entry wrapper -->
     <div id="thinkEntryWrap">
 
-      <!-- Session teaser / history — shown above the question input -->
-      <div id="sessionTeaser" style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:12px 16px;margin-bottom:16px;font-size:0.8rem;color:var(--text3);text-align:center;">
-        Your questions and answers are saved automatically — pick a question above or type your own below.
-      </div>
       <div id="sessionInlineWrap" style="display:none;margin-bottom:16px;"></div>
 
-      <!-- Example question chips — shown when input empty -->
-      <div id="questionChips" style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:20px; align-items:center;">
-        <span style="font-size:0.72rem;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.07em;flex-shrink:0;">Try →</span>
-        <button class="q-chip" onclick="fillQuestion('What have I been putting off lately?')" style="background:rgba(99,102,241,0.08);border-color:rgba(99,102,241,0.25);color:var(--accent);">What have I been putting off?</button>
-        <button class="q-chip" onclick="fillQuestion('What patterns does REM see in my notes and saves?')">What patterns does REM see?</button>
-        <button class="q-chip" onclick="fillQuestion('What do I have coming up this week?')">What\'s coming up this week?</button>
-        <button class="q-chip" onclick="fillQuestion('What have I been working on lately?')">What have I been working on?</button>
-        <button class="q-chip" onclick="fillQuestion('What should I focus on today?')">What should I focus on?</button>
-        <button class="q-chip" onclick="fillQuestion('How has my thinking or priorities shifted recently?')">How has my thinking shifted?</button>
+      <!-- New user nudge — visible by default, hidden for returning users -->
+      <div id="newUserNudge" style="display:block;background:rgba(99,102,241,0.05);border:1px solid rgba(99,102,241,0.18);border-radius:12px;padding:12px 16px;margin-bottom:16px;font-size:0.8125rem;color:var(--text2);line-height:1.5;">
+        <strong style="color:var(--text);">Works right now — no setup needed.</strong> Type any question below and REM shows you exactly what your real answer would look like. <button onclick="fillQuestion('What have I been putting off lately?');document.getElementById('questionInput').form&&document.getElementById('questionInput').form.submit();setTimeout(startQuickDream,50);" style="background:none;border:none;color:var(--accent);font-size:0.8125rem;font-weight:600;cursor:pointer;font-family:var(--font);padding:0;text-decoration:underline;">See a sample now →</button>
+      </div>
+      <script>
+      (function(){
+        var n = document.getElementById('newUserNudge');
+        if (!n) return;
+        var hasKey = !!(localStorage.getItem('slopshop_api_key') || localStorage.getItem('slop_api_key'));
+        var hasMemories = parseInt(localStorage.getItem('rem_memory_count') || '0', 10) > 0;
+        if (hasKey && hasMemories) {
+          n.style.display = 'none'; // hide for returning users with data
+        } else {
+          var btnText = document.getElementById('btnStartQuickText');
+          if (btnText) btnText.textContent = 'See a sample →';
+          var hint = document.getElementById('btnStartQuickHint');
+          if (hint) hint.textContent = 'No real data needed — see how REM thinks';
+        }
+      })();
+      </script>
+
+      <!-- Session history / example result (always visible to new users) -->
+      <div id="sessionTeaser" style="display:block;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px 20px;margin-bottom:20px;">
+        <div style="font-size:0.68rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--accent);margin-bottom:12px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;">
+          <span>Example — this is what REM returns when you ask a question</span>
+        </div>
+        <div style="font-size:0.8125rem;font-weight:600;color:var(--text);margin-bottom:4px;">"What have I been putting off?"</div>
+        <div style="font-size:0.72rem;color:var(--text3);margin-bottom:10px;">REM searched your last 90 days of data · 3 things found</div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div style="background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:10px 14px;font-size:0.8125rem;color:var(--text2);line-height:1.6;">
+            <div style="font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--text3);margin-bottom:4px;">What REM found #1</div>
+            <strong style="color:var(--text);">📧 A reply to Marcus that you've deferred 3 times</strong> — saved a note about it 6 days ago, appears in 3 separate threads. Clear window this morning.
+          </div>
+          <div style="background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:10px 14px;font-size:0.8125rem;color:var(--text2);line-height:1.6;">
+            <div style="font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--text3);margin-bottom:4px;">What REM found #2</div>
+            <strong style="color:var(--text);">📝 Your 'ship v2 by end of quarter' goal</strong> — listed in your notes, but no related calendar events or emails for 7 days. Seven days of silence usually means it's stalled.
+          </div>
+          <div style="background:rgba(99,102,241,0.04);border:1px solid rgba(99,102,241,0.14);border-radius:10px;padding:10px 14px;font-size:0.8125rem;color:var(--text2);line-height:1.6;">
+            <div style="font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--accent);margin-bottom:4px;">Connection REM made</div>
+            <strong style="color:var(--text);">✦ These two are the same thing</strong> — one action handles both. You only need to act once.
+          </div>
+        </div>
+        <div style="font-size:0.72rem;color:var(--text3);margin-top:10px;">Your real answer uses your actual emails and notes — this is just an example. <a href="/console" style="color:var(--accent);font-weight:500;text-decoration:none;">Connect Gmail →</a> or type a question above to try now.</div>
       </div>
 
       <!-- Question input -->
       <div id="questionWrap" style="margin-bottom:16px;">
-        <textarea id="questionInput" placeholder='What do you want to understand? e.g. "What patterns keep coming up for me?" or "What have I been putting off?" — or leave blank for a full scan.' style="width:100%;padding:16px 18px;border:1.5px solid var(--border2);border-radius:14px;font-size:1rem;font-family:var(--font);resize:none;outline:none;line-height:1.6;min-height:90px;max-height:200px;color:var(--text);background:var(--bg);transition:border-color 0.18s,box-shadow 0.18s;display:block;" onfocus="this.style.borderColor='var(--accent)';this.style.boxShadow='0 0 0 3px rgba(99,102,241,0.1)'" onblur="this.style.borderColor='var(--border2)';this.style.boxShadow='none'" oninput="this.style.height='auto';this.style.height=Math.min(this.scrollHeight,200)+'px';document.getElementById('questionChips')&&(document.getElementById('questionChips').style.display=this.value.trim()?'none':'flex');" onkeydown="if((event.ctrlKey||event.metaKey)&&event.key==='Enter'){event.preventDefault();startQuickDream();}"></textarea>
-        <div style="font-size:0.72rem;color:var(--text3);margin-top:4px;text-align:right;">Ctrl+Enter to submit</div>
+        <textarea id="questionInput" placeholder='What do you want to understand? e.g. "What patterns keep coming up for me?" or "What have I been putting off?"' style="width:100%;padding:16px 18px;border:1.5px solid var(--border2);border-radius:14px;font-size:1rem;font-family:var(--font);resize:none;outline:none;line-height:1.6;min-height:90px;max-height:200px;color:var(--text);background:var(--bg);transition:border-color 0.18s,box-shadow 0.18s;display:block;" onfocus="this.style.borderColor='var(--accent)';this.style.boxShadow='0 0 0 3px rgba(99,102,241,0.1)'" onblur="this.style.borderColor='var(--border2)';this.style.boxShadow='none'" oninput="this.style.height='auto';this.style.height=Math.min(this.scrollHeight,200)+'px';document.getElementById('questionChips')&&(document.getElementById('questionChips').style.display=this.value.trim()?'none':'flex');" onkeydown="if((event.ctrlKey||event.metaKey)&&event.key==='Enter'){event.preventDefault();startQuickDream();}"></textarea>
+        <div style="font-size:0.72rem;color:var(--text3);margin-top:4px;text-align:right;">⌘/Ctrl+Enter to submit</div>
       </div>
 
       <!-- Action row -->
       <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
-        <button class="btn-start" id="btnStartQuick" onclick="startQuickDream()" style="min-width:180px;">
-          <span id="btnStartQuickText">Get my answer →</span>
-        </button>
-        <button onclick="toggleAdvanced()" id="advancedToggle" style="background:none;border:none;font-size:0.8125rem;color:var(--text3);cursor:pointer;font-family:var(--font);padding:4px 0;display:inline-flex;align-items:center;gap:5px;transition:color 0.15s;" onmouseover="this.style.color='var(--text2)'" onmouseout="this.style.color='var(--text3)'">
-          <span id="advancedIcon" style="font-size:0.7rem;">▶</span> Options
+        <div style="display:flex;flex-direction:column;align-items:flex-start;gap:4px;">
+          <button class="btn-start" id="btnStartQuick" onclick="startQuickDream()" style="min-width:180px;">
+            <span id="btnStartQuickText">Get my answer →</span>
+          </button>
+          <span id="btnStartQuickHint" style="font-size:0.72rem;color:var(--text3);padding-left:2px;">Searches your saved notes · ~2 min</span>
+        </div>
+        <button onclick="toggleAdvanced()" id="advancedToggle" style="background:none;border:none;font-size:0.78rem;color:var(--text3);cursor:pointer;font-family:var(--font);padding:4px 8px;border-radius:6px;display:inline-flex;align-items:center;gap:4px;" onmouseover="this.style.color='var(--text2)'" onmouseout="this.style.color='var(--text3)'">
+          <span id="advancedIcon" style="font-size:0.65rem;">▶</span> Advanced options
         </button>
       </div>
+      <div style="margin-top:10px;padding-top:10px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:flex-end;flex-wrap:wrap;gap:8px;">
+        <span style="font-size:0.72rem;color:var(--text3);">🔒 Private · REM never trains on your data</span>
+      </div>
 
-      <!-- Advanced options (closed by default) -->
+      <!-- Advanced options (collapsed by default) -->
       <div id="advancedPanel" style="display:none;margin-top:20px;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px 24px;">
         <div id="quickConfig">
           <!-- Topic -->
@@ -650,19 +733,19 @@ body {
               <label class="depth-opt selected" onclick="selectDepth(this,'synthesize','Quick')" title="Quick Look — surfaces the top things that stand out from your saved notes">
                 <input type="radio" name="qdepth" value="synthesize" checked>
                 <span class="depth-name">Quick Look</span>
-                <span class="depth-desc">~2 min · Top things that stand out</span>
+                <span class="depth-desc">Top things that stand out</span>
                 <div class="depth-time">~2 min</div>
               </label>
               <label class="depth-opt" onclick="selectDepth(this,'reflect','Standard')" title="Thorough — finds meaningful connections between things you've saved over time">
                 <input type="radio" name="qdepth" value="reflect">
                 <span class="depth-name">Thorough</span>
-                <span class="depth-desc">~5 min · Finds connections between things</span>
+                <span class="depth-desc">Finds connections between things</span>
                 <div class="depth-time">~5 min</div>
               </label>
               <label class="depth-opt" onclick="selectDepth(this,'deep_synthesis','Deep')" title="Creative — builds the full picture and finds creative leaps across everything you've saved">
                 <input type="radio" name="qdepth" value="deep_synthesis">
                 <span class="depth-name">Creative</span>
-                <span class="depth-desc">~12 min · Full picture and creative leaps</span>
+                <span class="depth-desc">Full picture and creative leaps</span>
                 <div class="depth-time">~12 min</div>
               </label>
             </div>
@@ -714,6 +797,7 @@ body {
       <div class="insight-cards" id="insightCards"></div>
       <div class="btn-row">
         <button class="btn btn-secondary" onclick="resetQuickDream()">Ask another question</button>
+        <button class="btn btn-secondary" onclick="(function(){var el=document.getElementById('insightCards');if(!el)return;var t=el.innerText||el.textContent;if(!t)return;var inp=document.querySelector('.quick-input,#quickInput');if(inp){inp.value='REM insight: '+t.substring(0,200).replace(/\s+/g,' ').trim();inp.dispatchEvent(new Event('input'));var bar=document.querySelector('.quick-memory-wrap');if(bar)bar.scrollIntoView({behavior:'smooth'});}})();">Save to Memory Hub</button>
         <a href="/dream-reports" class="btn btn-secondary">All reports →</a>
       </div>
     </div>
@@ -729,14 +813,14 @@ body {
     <div style="background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:18px 20px;margin-bottom:24px;">
       <div style="font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.09em;color:var(--accent);margin-bottom:8px;">What does Full Analysis do?</div>
       <div class="dream-explainer-grid">
-        <div style="font-size:0.78rem;color:var(--text2);"><strong style="color:var(--text);display:block;margin-bottom:3px;">1 · Read</strong>REM reads everything from your connected apps — emails, notes, and calendar events.</div>
-        <div style="font-size:0.78rem;color:var(--text2);"><strong style="color:var(--text);display:block;margin-bottom:3px;">2 · Connect</strong>It finds relationships between things across time — connections you wouldn't make on your own.</div>
-        <div style="font-size:0.78rem;color:var(--text2);"><strong style="color:var(--text);display:block;margin-bottom:3px;">3 · Filter</strong>Filters everything through your goals — what moved forward? What needs attention today?</div>
-        <div style="font-size:0.78rem;color:var(--text2);"><strong style="color:var(--text);display:block;margin-bottom:3px;">4 · Write</strong>Writes up the insights, patterns, and suggestions — personalised to your life and goals.</div>
+        <div style="font-size:0.8125rem;color:var(--text2);"><strong style="color:var(--text);display:block;margin-bottom:3px;">1 · Read</strong>REM reads everything from your connected apps — emails, notes, and calendar events.</div>
+        <div style="font-size:0.8125rem;color:var(--text2);"><strong style="color:var(--text);display:block;margin-bottom:3px;">2 · Connect</strong>It finds relationships between things across time — connections you wouldn't make on your own.</div>
+        <div style="font-size:0.8125rem;color:var(--text2);"><strong style="color:var(--text);display:block;margin-bottom:3px;">3 · Filter</strong>Filters everything through your goals — what moved forward? What needs attention today?</div>
+        <div style="font-size:0.8125rem;color:var(--text2);"><strong style="color:var(--text);display:block;margin-bottom:3px;">4 · Write</strong>Writes up the insights, patterns, and suggestions — personalised to your life and goals.</div>
       </div>
       <div style="margin-top:12px;padding-top:12px;border-top:1px solid var(--border);display:flex;gap:16px;flex-wrap:wrap;">
         <span style="font-size:0.72rem;color:var(--text3);">🔒 Private · encrypted · your data never leaves REM</span>
-        <span style="font-size:0.72rem;color:var(--text3);">⏱ More passes = richer analysis, takes longer</span>
+        <span style="font-size:0.72rem;color:var(--text3);">⏱ More depth = richer insights, takes a bit longer</span>
       </div>
     </div>
 
@@ -751,9 +835,10 @@ body {
         <!-- Cycles -->
         <div style="margin-bottom:28px">
           <div class="cycles-label-row">
-            <span class="cycles-label">How long should it think? <span style="font-size:0.72rem;font-weight:400;color:var(--text3);">3 is recommended</span></span>
-            <span><span class="cycles-count" id="cyclesDisplay">3</span><span class="cycles-unit"> rounds of analysis</span></span>
+            <span class="cycles-label">How deep should REM look? <span style="font-size:0.72rem;font-weight:400;color:var(--text3);">3 is the sweet spot</span></span>
+            <span><span class="cycles-count" id="cyclesDisplay">3</span><span class="cycles-unit"> reads</span></span>
           </div>
+          <div style="font-size:0.75rem;color:var(--text3);margin-bottom:10px;line-height:1.5;">Each read = one full scan of your data, looking for new connections. More reads = richer insights, but takes longer. Most people use 3.</div>
           <input type="range" class="cycles-slider" id="cyclesSlider" min="1" max="10" value="3" oninput="updateCycles(this.value)">
           <div class="cycles-ticks">
             <span class="cycle-tick" onclick="setCycles(1)">1</span>
@@ -767,20 +852,20 @@ body {
         <div style="margin-bottom:28px">
           <span class="thorough-name" style="display:block;margin-bottom:12px;font-size:0.9375rem;font-weight:600;color:var(--text)">Depth</span>
           <div class="thorough-grid">
-            <label class="thorough-opt selected" onclick="selectThoroughness(this,'synthesize','Quick')" title="Quick Look — faster scan that surfaces key ideas only">
+            <label class="thorough-opt selected" onclick="selectThoroughness(this,'synthesize','Quick')" title="Quick Look — surfaces the top things that stand out from your saved notes">
               <input type="radio" name="dThoroughness" value="synthesize" checked>
-              <span class="thorough-name">⚡ Quick Look</span>
-              <span class="thorough-desc">Faster — key ideas only</span>
+              <span class="thorough-name">Quick Look</span>
+              <span class="thorough-desc">Top things that stand out</span>
             </label>
-            <label class="thorough-opt" onclick="selectThoroughness(this,'reflect','Balanced')" title="Pattern Recognition — the recommended default; finds connections and recurring themes">
+            <label class="thorough-opt" onclick="selectThoroughness(this,'reflect','Thorough')" title="Thorough — finds meaningful connections between things you've saved over time">
               <input type="radio" name="dThoroughness" value="reflect">
-              <span class="thorough-name">⚖️ Pattern Recognition</span>
-              <span class="thorough-desc">Recommended default</span>
+              <span class="thorough-name">Thorough</span>
+              <span class="thorough-desc">Finds connections between things</span>
             </label>
-            <label class="thorough-opt" onclick="selectThoroughness(this,'deep_synthesis','Exhaustive')" title="Creative Synthesis — slower and deeper; finds creative leaps and everything worth knowing">
+            <label class="thorough-opt" onclick="selectThoroughness(this,'deep_synthesis','Creative')" title="Creative — builds the full picture and finds creative leaps across everything you've saved">
               <input type="radio" name="dThoroughness" value="deep_synthesis">
-              <span class="thorough-name">🔬 Creative Synthesis</span>
-              <span class="thorough-desc">Slower — finds everything</span>
+              <span class="thorough-name">Creative</span>
+              <span class="thorough-desc">Full picture and creative leaps</span>
             </label>
           </div>
         </div>
@@ -817,7 +902,7 @@ body {
           <span class="brain-icon" id="brainIcon">🧠</span>
           <div>
             <div class="tracker-title" id="diveTrackerTitle">Starting to think…</div>
-            <div class="tracker-subtitle" id="diveTrackerSub">Initializing</div>
+            <div class="tracker-subtitle" id="diveTrackerSub">Getting ready…</div>
           </div>
         </div>
         <div class="cycle-dots" id="cycleDots"></div>
@@ -840,7 +925,8 @@ body {
       <div class="final-summary-meta" id="finalMeta"></div>
       <div class="final-stats" id="finalStats"></div>
       <div class="btn-row">
-        <button class="btn btn-secondary" onclick="resetDeepDive()">Go deeper on something else</button>
+        <button class="btn btn-secondary" onclick="resetDeepDive()">Start a new analysis</button>
+        <button class="btn btn-secondary" onclick="(function(){var el=document.getElementById('finalSummary');if(!el)return;var t=el.innerText||el.textContent;if(!t)return;var inp=document.querySelector('.quick-input,#quickInput');if(inp){inp.value='Analysis insight: '+t.substring(0,200).replace(/\s+/g,' ').trim();inp.dispatchEvent(new Event('input'));var bar=document.querySelector('.quick-memory-wrap');if(bar)bar.scrollIntoView({behavior:'smooth'});}})();">Save to Memory Hub</button>
         <a href="/dream-reports" class="btn btn-secondary">All reports →</a>
       </div>
     </div>
@@ -852,7 +938,7 @@ body {
     <div style="display:flex;align-items:flex-start;gap:14px;flex-wrap:wrap;">
       <div style="flex:1;min-width:200px;">
         <div style="font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.09em;color:var(--accent);margin-bottom:6px;">How this works</div>
-        <p style="font-size:0.8125rem;color:var(--text2);line-height:1.6;margin-bottom:0;">When you ask a question, REM searches everything you've saved, pulls the most relevant pieces, and synthesizes them into a coherent answer. The deeper the strategy, the more of your data it considers. Leave the question blank to get a full pattern scan across everything.</p>
+        <p style="font-size:0.8125rem;color:var(--text2);line-height:1.6;margin-bottom:0;">When you ask a question, REM searches everything you've saved, finds the most relevant pieces, and connects them into a clear answer. The more depth you choose, the more of your data it reads through. Leave the question blank to get a full pattern scan across everything.</p>
       </div>
       <div style="display:flex;flex-direction:column;gap:8px;flex-shrink:0;min-width:180px;">
         <div style="font-size:0.72rem;color:var(--text3);display:flex;align-items:center;gap:6px;"><span style="font-size:0.8rem;">🔒</span> <strong style="color:var(--text2);">Private by design</strong></div>
@@ -867,10 +953,10 @@ body {
     <div style="font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.09em;color:var(--accent);margin-bottom:6px;">🎯 How goal-filtering works</div>
     <p style="font-size:0.8125rem;color:var(--text2);line-height:1.6;margin-bottom:14px;">When you ask a question, REM searches your notes, emails, and saved items — and ranks what's most relevant to your goals. It then thinks through the top results and gives you an answer built from your own data, not made up.</p>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:8px;">
-      <div style="font-size:0.75rem;color:var(--text3);background:var(--bg2);border-radius:8px;padding:9px 11px;"><strong style="color:var(--text);display:block;margin-bottom:2px;">1 · Retrieve</strong>Searches everything you've saved, scored by recency + your goals</div>
-      <div style="font-size:0.75rem;color:var(--text3);background:var(--bg2);border-radius:8px;padding:9px 11px;"><strong style="color:var(--text);display:block;margin-bottom:2px;">2 · Filter</strong>Low-relevance items dropped, not guessed from</div>
-      <div style="font-size:0.75rem;color:var(--text3);background:var(--bg2);border-radius:8px;padding:9px 11px;"><strong style="color:var(--text);display:block;margin-bottom:2px;">3 · Ground</strong>Claude given relevant pieces as context — answers cite real data</div>
-      <div style="font-size:0.75rem;color:var(--text3);background:var(--bg2);border-radius:8px;padding:9px 11px;"><strong style="color:var(--text);display:block;margin-bottom:2px;">4 · Surface</strong>Insights tagged by type (pattern, connection, synthesis) + confidence score</div>
+      <div style="font-size:0.75rem;color:var(--text3);background:var(--surface);border-radius:8px;padding:9px 11px;"><strong style="color:var(--text);display:block;margin-bottom:2px;">1 · Retrieve</strong>Searches everything you've saved, scored by recency + your goals</div>
+      <div style="font-size:0.75rem;color:var(--text3);background:var(--surface);border-radius:8px;padding:9px 11px;"><strong style="color:var(--text);display:block;margin-bottom:2px;">2 · Filter</strong>Low-relevance items dropped, not guessed from</div>
+      <div style="font-size:0.75rem;color:var(--text3);background:var(--surface);border-radius:8px;padding:9px 11px;"><strong style="color:var(--text);display:block;margin-bottom:2px;">3 · Ground</strong>Claude given relevant pieces as context — answers cite real data</div>
+      <div style="font-size:0.75rem;color:var(--text3);background:var(--surface);border-radius:8px;padding:9px 11px;"><strong style="color:var(--text);display:block;margin-bottom:2px;">4 · Surface</strong>Insights tagged by type (pattern, connection, synthesis) + confidence score</div>
     </div>
     <div style="margin-top:10px;padding-top:10px;border-top:1px solid var(--border);">
       <span style="font-size:0.72rem;color:var(--text3);">Results are ranked by relevance to your goals — the more goals you've set, the sharper the output.</span>
@@ -879,9 +965,9 @@ body {
 
   <!-- RECENT SESSIONS -->
   <div class="sessions-card">
-    <span class="sessions-title">Previous Sessions</span>
+    <span class="sessions-title">Past analyses</span>
     <div class="session-list" id="sessionList">
-      <div class="sessions-empty">Loading sessions…</div>
+      <div class="sessions-empty">Your past analyses will appear here</div>
     </div>
   </div>
 
@@ -904,6 +990,15 @@ function fillQuestion(text) {
   if (chips) chips.style.display = 'none';
 }
 
+function fillAndStart(text) {
+  fillQuestion(text);
+  var hasKey = !!(localStorage.getItem('slopshop_api_key') || localStorage.getItem('slop_api_key'));
+  var hasMemories = parseInt(localStorage.getItem('rem_memory_count') || '0', 10) > 0;
+  if (!hasKey && !hasMemories) {
+    setTimeout(function() { startQuickDream(); }, 80);
+  }
+}
+
 var currentKey = null;
 
 /* ── SHARED STATE ── */
@@ -922,7 +1017,11 @@ async function init() {
   var storedKey = localStorage.getItem('slopshop_api_key') || localStorage.getItem('slop_api_key');
   var headers = storedKey ? { 'Authorization': 'Bearer ' + storedKey } : {};
   var r = await fetch('/v1/auth/session', { credentials: 'include', headers: headers }).catch(function() { return { status: 500 }; });
-  if (r.status === 401 || r.status === 403) { window.location.replace('/auth/google?return_to=/dream'); return; }
+  if (r.status === 401 || r.status === 403) {
+    if (!storedKey) { return; } // new visitor — page body already visible, stay and show sample
+    window.location.replace('/auth/google?return_to=/dream');
+    return;
+  }
   var d = await r.json().catch(function() { return {}; });
   currentKey = d.api_key || storedKey;
   if (d.user && d.user.email) {
@@ -931,11 +1030,19 @@ async function init() {
   }
   loadSessions();
   loadLastDream();
-  // Show nudge if user has no connected apps yet
+  // For users without connected apps: keep sample analysis visible (more motivating than bare message)
   var hasConnected = localStorage.getItem('rem_console_connected');
   var teaser = document.getElementById('sessionTeaser');
   if (!hasConnected && teaser) {
-    teaser.innerHTML = 'No apps connected yet — <a href="/console" style="color:var(--accent);font-weight:600;text-decoration:none;">connect one in 2 minutes →</a> and REM will have real data to work with. Or type a question below to try with your manually saved notes.';
+    teaser.style.display = 'block';
+    // Add a connect nudge below the sample, don't replace it
+    if (!document.getElementById('teaserConnectNudge')) {
+      var nudge = document.createElement('div');
+      nudge.id = 'teaserConnectNudge';
+      nudge.style.cssText = 'margin-top:12px;padding-top:12px;border-top:1px solid var(--border);';
+      nudge.innerHTML = '<a href="/console" style="font-size:0.8125rem;color:var(--accent);font-weight:600;text-decoration:none;">Connect an app — see your real version →</a> <span style="font-size:0.78rem;color:var(--text3);margin-left:8px;">or ask a question above to see a sample</span>';
+      teaser.appendChild(nudge);
+    }
   }
 }
 
@@ -960,12 +1067,12 @@ function toggleAdvanced() {
   var btn = document.getElementById('advancedToggle');
   if (panel.style.display === 'none' || !panel.style.display) {
     panel.style.display = 'block';
-    icon.textContent = '▲';
-    btn.childNodes[btn.childNodes.length - 1].textContent = ' Fewer options';
+    icon.textContent = '▼';
+    btn.childNodes[btn.childNodes.length - 1].textContent = ' Depth & scope';
   } else {
     panel.style.display = 'none';
     icon.textContent = '▶';
-    btn.childNodes[btn.childNodes.length - 1].textContent = ' Options';
+    btn.childNodes[btn.childNodes.length - 1].textContent = ' Depth & scope';
   }
 }
 
@@ -975,6 +1082,71 @@ function selectDepth(el, strategy, label) {
   el.classList.add('selected');
   qDreamStrategy = strategy;
   document.getElementById('qDepthVal').textContent = label;
+}
+
+/* ── SAMPLE MODE — shown to new users without data ── */
+function showSampleDreamResponse(question) {
+  var q = (question || 'What have I been putting off?').trim();
+  // Build 3 sample insight cards tailored to the question theme
+  var isGoals = /goal|track|on track|progress/i.test(q);
+  var isFocus = /focus|priorit|today|work on|do first/i.test(q);
+  var isPutOff = /put(ting)? off|procrastin|avoid|behind/i.test(q);
+  var isPattern = /pattern|often|repeat|tend to|week/i.test(q);
+
+  var card1, card2, card3;
+  if (isGoals) {
+    card1 = '<strong style="color:var(--text);">⚠️ "Get ahead on finances" — stalled 11 days</strong><br>Saved this goal on a Sunday. Zero follow-up since. REM cross-referenced your calendar: Friday 9–11am has been free <em>every week for a month</em> — and you\'ve never used it for this.';
+    card2 = '<strong style="color:var(--text);">✅ "Finish the course" — actually moving</strong><br>4 note interactions this week. You\'re on a 3-day streak. REM noticed you always open it after your 4pm meetings — that slot seems to be your learning window.';
+    card3 = '<strong style="color:var(--accent);">↗ Cross-goal pattern</strong><br>Your two stalled goals have the same blocker: you set them on "ambitious" days and never scheduled the first 20-minute step. Goals with a calendar slot close at 3× the rate of goals without one.';
+  } else if (isFocus) {
+    card1 = '<strong style="color:var(--text);">🟢 Your best window today: 9–11:30am</strong><br>Based on your note activity over 3 weeks, you do 80% of your best thinking before noon. Right now your calendar is clear until 12:30. That\'s 3.5 hours — your longest open block in 8 days.';
+    card2 = '<strong style="color:var(--text);">⏰ Two things aged past 5 days today</strong><br>Both appeared on your "important" list. Neither takes more than 25 minutes. REM flagged one as time-sensitive — the subject line says "by end of week."';
+    card3 = '<strong style="color:var(--accent);">↗ The Monday trap</strong><br>You take on new tasks on Monday at a 2× higher rate than any other day — but close them before Thursday only 30% of the time. The backlog isn\'t a willpower problem. It\'s an intake problem.';
+  } else if (isPutOff) {
+    card1 = '<strong style="color:var(--text);">📧 That reply — saved 6 times, sent 0 times</strong><br>First appeared in your notes 8 days ago. You\'ve circled back to it 6 times. A 40-minute window opened at 10am this morning — you didn\'t use it. REM thinks this one has emotional weight, not just a time problem.';
+    card2 = '<strong style="color:var(--text);">📋 "Sort out the contract" — silent for 9 days</strong><br>Zero activity in email, calendar, or notes since you first saved it. Seven quiet days is REM\'s signal that something is actually blocking forward motion — usually clarity, not time.';
+    card3 = '<strong style="color:var(--accent);">↗ These two are the same thing</strong><br>The reply and the contract reference the same person. One conversation handles both. REM estimates this as a 20-minute call that clears 9 days of mental load.';
+  } else if (isPattern) {
+    card1 = '<strong style="color:var(--text);">🔁 You process during transitions, not at your desk</strong><br>73% of your notes land within 25 minutes of a calendar event ending. You\'re not a planner-ahead type — you\'re a capture-right-after type. Your setup should match that.';
+    card2 = '<strong style="color:var(--text);">📊 Tuesday = your hidden output day</strong><br>More closes, more notes, fewer distractions than any other day. Wednesday is your lowest. This has held for 6 of the last 7 weeks. REM thinks something about your Tuesday morning sets the tone.';
+    card3 = '<strong style="color:var(--accent);">↗ Three "someday" notes, one unnamed project</strong><br>You\'ve saved "look into this," "follow up on that idea," and "revisit the proposal" across three separate weeks. They all point at the same underlying thing. This isn\'t a list of tasks. It\'s a project you haven\'t decided to start yet.';
+  } else {
+    card1 = '<strong style="color:var(--text);">📧 Two threads went quiet — both need you</strong><br>One from 4 days ago, one from 6. The 6-day one has a "following up" in the subject — REM flagged it as time-sensitive. The other is softer but still waiting. Neither reply takes more than 5 minutes.';
+    card2 = '<strong style="color:var(--text);">🎯 The thing you\'re actually thinking about</strong><br>One topic appeared in 5 of your notes this week, across 3 different framings. You haven\'t explicitly named it as a goal — but REM thinks this is what\'s taking up the most mental space right now.';
+    card3 = '<strong style="color:var(--accent);">↗ Two separate problems, one root cause</strong><br>You\'ve been treating these as two different things. The thread on scheduling and the note about capacity are describing the same constraint from opposite directions. Fix the constraint once — both resolve.';
+  }
+
+  var html = '<div style="margin-top:16px;">'
+    + '<div style="background:rgba(99,102,241,0.06);border:1px solid rgba(99,102,241,0.2);border-radius:12px;padding:10px 14px;margin-bottom:14px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;">'
+    + '<span style="background:var(--accent);color:#fff;border-radius:100px;padding:3px 10px;font-size:0.72rem;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;flex-shrink:0;">DEMO</span>'
+    + '<span style="font-size:0.8125rem;color:var(--text2);flex:1;">These are <strong>not your real results</strong> — this is what REM\'s output looks like. <a href="/console" style="color:var(--accent);font-weight:600;text-decoration:none;">Connect an app →</a> for real data, or <a href="/memory" style="color:var(--accent);font-weight:600;text-decoration:none;">save a few notes →</a> and ask again.</span></div>'
+    + '<div style="font-size:0.9375rem;font-weight:600;color:var(--text);margin-bottom:14px;line-height:1.4;">"' + escapeHtml(q) + '"</div>'
+    + '<div style="display:flex;flex-direction:column;gap:10px;margin-bottom:16px;">'
+    + '<div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px 16px;font-size:0.8125rem;color:var(--text2);line-height:1.65;">' + card1 + '</div>'
+    + '<div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px 16px;font-size:0.8125rem;color:var(--text2);line-height:1.65;">' + card2 + '</div>'
+    + '<div style="background:rgba(99,102,241,0.04);border:1px solid rgba(99,102,241,0.16);border-radius:12px;padding:14px 16px;font-size:0.8125rem;color:var(--text2);line-height:1.65;">' + card3 + '</div>'
+    + '</div>'
+    + '<div style="padding:13px 16px;background:var(--accent-dim);border:1px solid var(--accent-border);border-radius:12px;font-size:0.8125rem;color:var(--text2);line-height:1.6;margin-bottom:14px;">'
+    + '<strong style="color:var(--text);">This is what your real answer looks like, once connected.</strong> REM reads your emails, calendar, and notes — and surfaces the stuff that actually matters, not just the loudest thing in your inbox.'
+    + '</div>'
+    + '<div style="display:flex;gap:10px;flex-wrap:wrap;">'
+    + '<a href="/console" style="padding:10px 20px;background:var(--accent);color:#fff;border-radius:10px;font-size:0.875rem;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:6px;">Connect an app — run this on my real data →</a>'
+    + '<a href="/memory" style="padding:10px 16px;background:none;border:1px solid var(--border2);border-radius:10px;font-size:0.875rem;color:var(--text2);text-decoration:none;display:inline-flex;align-items:center;gap:6px;">Save notes first →</a>'
+    + '<button onclick="document.getElementById(\'sampleWrap\').style.display=\'none\';document.getElementById(\'thinkEntryWrap\').style.display=\'block\';" style="padding:10px 16px;background:none;border:none;font-size:0.8125rem;color:var(--text3);cursor:pointer;font-family:var(--font);">Try another question</button>'
+    + '</div>'
+    + '</div>';
+
+  document.getElementById('thinkEntryWrap').style.display = 'none';
+  var sampleWrap = document.getElementById('sampleWrap');
+  if (!sampleWrap) {
+    sampleWrap = document.createElement('div');
+    sampleWrap.id = 'sampleWrap';
+    var quickPanel = document.getElementById('panelQuick');
+    if (quickPanel) quickPanel.insertBefore(sampleWrap, quickPanel.firstChild);
+  }
+  sampleWrap.innerHTML = html;
+  sampleWrap.style.display = 'block';
+  sampleWrap.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
 
 /* ── INLINE HELP ── */
@@ -1028,6 +1200,14 @@ async function startQuickDream() {
     return;
   }
 
+  // SAMPLE MODE — for users without connected apps/data, show a live demo response
+  var hasKey = !!(localStorage.getItem('slopshop_api_key') || localStorage.getItem('slop_api_key'));
+  var hasMemories = parseInt(localStorage.getItem('rem_memory_count') || '0', 10) > 0;
+  if (!hasKey && !hasMemories) {
+    showSampleDreamResponse(question);
+    return;
+  }
+
   var btn = document.getElementById('btnStartQuick');
   btn.disabled = true;
   document.getElementById('btnStartQuickText').innerHTML = '<span class="spinner"></span> Starting…';
@@ -1035,9 +1215,11 @@ async function startQuickDream() {
   document.getElementById('quickProgress').classList.add('visible');
 
   var topic = document.getElementById('qTopic').value;
-  var body = { strategy: qDreamStrategy, budget: 20 };
+  // Detect depth: 'deep' if question is long or contains complexity keywords
+  var autoDepth = (question && (question.length > 300 || /\b(explain|analyz|comprehensive|compare|evaluat|research|elaborate|in.depth|synthes|strateg|recommend|forecast|reflect|deep.dive|thorough|full.report)\b/i.test(question))) ? 'deep' : 'standard';
+  var body = { strategy: qDreamStrategy, budget: 20, depth: autoDepth };
   if (topic) body.topic = topic;
-  if (question) body.query = question;
+  if (question) body.question = question; // 'question' not 'query' — matches backend smart model selector
 
   var res = await fetch('/v1/memory/dream/start', {
     method: 'POST', credentials: 'include', headers: authHeaders(), body: JSON.stringify(body)
@@ -1157,7 +1339,7 @@ function renderQuickResults(data) {
   var cards = document.getElementById('insightCards');
   cards.innerHTML = '';
   if (!count) {
-    cards.innerHTML = '<div class="empty-state"><div class="empty-icon">🔍</div><div class="empty-title">Ask anything about your notes, goals, or life — REM will search everything you\'ve saved.</div><div class="empty-desc">REM needs more to work with. <a href="/console" style="color:var(--accent);text-decoration:none;">Connect an app →</a> or <a href="/memory" style="color:var(--accent);text-decoration:none;">add notes manually →</a></div></div>';
+    cards.innerHTML = '<div class="empty-state"><div class="empty-icon">🔍</div><div class="empty-title">No results for this query yet — try a different question or save more context.</div><div class="empty-desc">REM searches what you\'ve saved. <a href="/memory" style="color:var(--accent);text-decoration:none;">Add notes →</a> or <a href="/console" style="color:var(--accent);text-decoration:none;">connect an app →</a> to get richer answers.</div></div>';
     return;
   }
 
@@ -1183,7 +1365,7 @@ function resetQuickDream() {
   clearTimeout(pollTimer);
   document.getElementById('thinkEntryWrap').style.display = '';
   document.getElementById('advancedPanel').style.display = 'block';
-  document.getElementById('advancedIcon').textContent = '▲';
+  document.getElementById('advancedIcon').textContent = '▼';
   document.getElementById('quickProgress').classList.remove('visible');
   document.getElementById('quickResults').style.display = 'none';
   document.getElementById('insightCards').innerHTML = '';
@@ -1238,6 +1420,23 @@ async function startDeepDive() {
   deepAborted = false;
   totalInsights = [];
 
+  // SAMPLE MODE — show demo for users without connected apps/data
+  var hasKey = !!(localStorage.getItem('slopshop_api_key') || localStorage.getItem('slop_api_key'));
+  var hasMemories = parseInt(localStorage.getItem('rem_memory_count') || '0', 10) > 0;
+  if (!hasKey && !hasMemories) {
+    // Show inline notice inside the Full Analysis panel
+    var deepPanel = document.getElementById('panelDeep');
+    var existing = document.getElementById('deepDemoNotice');
+    if (!existing) {
+      var notice = document.createElement('div');
+      notice.id = 'deepDemoNotice';
+      notice.style.cssText = 'background:rgba(99,102,241,0.06);border:1px solid rgba(99,102,241,0.2);border-radius:12px;padding:14px 18px;margin-bottom:18px;font-size:0.8125rem;color:var(--text2);line-height:1.6;';
+      notice.innerHTML = '<span style="background:var(--accent);color:#fff;border-radius:100px;padding:3px 10px;font-size:0.72rem;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;margin-right:10px;">DEMO</span>Full Analysis runs on your actual email and notes — it needs real data to find real patterns. <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;"><a href="/console" style="padding:8px 16px;background:var(--accent);color:#fff;border-radius:8px;font-weight:600;text-decoration:none;font-size:0.8125rem;">Connect an app →</a><a href="/memory" style="padding:8px 14px;background:none;border:1px solid var(--border2);border-radius:8px;color:var(--text2);text-decoration:none;font-size:0.8125rem;">Save notes first →</a></div>';
+      deepPanel.insertBefore(notice, deepPanel.firstChild);
+    }
+    return;
+  }
+
   var btn = document.getElementById('btnStartDeep');
   btn.disabled = true;
   document.getElementById('btnDeepText').innerHTML = '<span class="spinner"></span> Running…';
@@ -1253,7 +1452,7 @@ async function startDeepDive() {
   elapsedStart = Date.now();
   elapsedInterval = setInterval(updateElapsed, 1000);
 
-  document.getElementById('diveTrackerTitle').textContent = 'Running ' + deepCycles + ' rounds of analysis…';
+  document.getElementById('diveTrackerTitle').textContent = 'Scanning your data ' + deepCycles + ' times…';
   document.getElementById('brainIcon').classList.add('pulsing');
 
   var topic = document.getElementById('dTopic').value;
@@ -1261,7 +1460,7 @@ async function startDeepDive() {
   for (var c = 1; c <= deepCycles; c++) {
     if (deepAborted) break;
     setCycleDotState(c, 'running');
-    document.getElementById('diveTrackerSub').textContent = 'Pass ' + c + ' of ' + deepCycles;
+    document.getElementById('diveTrackerSub').textContent = 'Read ' + c + ' of ' + deepCycles;
 
     var body = { strategy: dThoroughnessVal, budget: 15 };
     if (topic) body.topic = topic;
@@ -1367,8 +1566,8 @@ function updateElapsed() {
 /* ── SESSIONS ── */
 var strategyLabels = {
   'synthesize': 'Quick Look',
-  'reflect': 'Deep Dive',
-  'deep_synthesis': 'Creative Synthesis',
+  'reflect': 'Thorough',
+  'deep_synthesis': 'Creative',
   'pattern': 'Pattern Detection',
   'compress': 'Compression',
   'associate': 'Associations',
@@ -1406,7 +1605,7 @@ async function loadSessions() {
   if (sessions.length && teaser && inlineWrap) {
     teaser.style.display = 'none';
     inlineWrap.style.display = 'block';
-    inlineWrap.innerHTML = '<span class="sessions-title" style="font-size:0.72rem;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:var(--text3);margin-bottom:10px;display:block;">Previous Sessions</span>';
+    inlineWrap.innerHTML = '<span class="sessions-title" style="font-size:0.72rem;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:var(--text3);margin-bottom:10px;display:block;">Past analyses</span>';
     var inlineList = document.createElement('div');
     inlineList.className = 'session-list';
     sessions.slice(0, 3).forEach(function(s) { inlineList.appendChild(buildSessionItem(s)); });
@@ -1456,14 +1655,13 @@ function quickAsk() {
   var input = document.getElementById('quickAskInput');
   var q = (input ? input.value : '').trim();
   if (!q) return;
-  // Pre-fill the quick dream question field and trigger a run
-  var qField = document.getElementById('questionInput') || document.getElementById('quickQuestion') || document.querySelector('[name="question"]') || document.querySelector('.quick-question-input');
+  // Pre-fill the question field and trigger a run
+  var qField = document.getElementById('questionInput') || document.querySelector('[name="question"]');
   if (qField) { qField.value = q; }
-  // Try to trigger the existing startDream/quickDream function
-  if (typeof startQuickDream === 'function') { startQuickDream(); }
-  else if (typeof startDream === 'function') { startDream(); }
-  else if (typeof runQuickDream === 'function') { runQuickDream(); }
-  else if (typeof submitDream === 'function') { submitDream(); }
+  // Trigger the ask function
+  if (typeof startQuickAsk === 'function') { startQuickAsk(); }
+  else if (typeof startAsk === 'function') { startAsk(); }
+  else if (typeof submitQuestion === 'function') { submitQuestion(); }
 }
 
 function computeInitials(email) {

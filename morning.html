@@ -18,7 +18,7 @@
 <title>Now — REM Labs</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { -webkit-font-smoothing: antialiased; }
@@ -38,11 +38,11 @@ html { -webkit-font-smoothing: antialiased; }
   --accent-dim: rgba(99,102,241,0.06);
   --accent-border: rgba(99,102,241,0.2);
   --teal: #4ECDC4;
-  --green: #34c759;
+  --green: #22c55e;
   --yellow: #f59e0b;
   --red: #ef4444;
   --nav-h: 52px;
-  --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
   --mono: 'JetBrains Mono', monospace;
   --muted: #6e6e73;
 }
@@ -75,7 +75,7 @@ body {
   padding: 5px 11px; border-radius: 7px; transition: color 0.15s, background 0.15s; white-space: nowrap;
 }
 .nav-link:hover { color: var(--text); background: rgba(0,0,0,0.05); }
-.nav-link.active { color: var(--text); background: rgba(0,0,0,0.07); }
+.nav-link.active { color: var(--text); background: rgba(0,0,0,0.06); font-weight: 600; }
 .nav-right { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
 .nav-user {
   font-size: 0.8125rem; color: var(--text2); text-decoration: none; font-weight: 500;
@@ -97,25 +97,25 @@ body {
 @media (max-width: 768px) { .mobile-tab-bar { display: flex; } body { padding-bottom: 72px; } }
 .mobile-tab { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; text-decoration: none; color: var(--text3); transition: color 0.15s; -webkit-tap-highlight-color: transparent; padding: 8px 4px; }
 .mobile-tab.active, .mobile-tab:hover { color: var(--accent); }
-.mobile-tab-label { font-size: 0.6rem; font-weight: 600; letter-spacing: 0.02em; }
+.mobile-tab-label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.02em; }
 
 /* ── PAGE WRAP ── */
 .page {
   padding-top: calc(var(--nav-h) + 48px);
   padding-bottom: 100px;
-  max-width: 860px;
+  max-width: 800px;
   margin: 0 auto;
   padding-left: 24px;
   padding-right: 24px;
 }
 
 /* ── NOW CARD SYSTEM ── */
-.now-card { background: var(--bg); border: 1px solid var(--border2); border-radius: 16px; padding: 20px 22px; position: relative; transition: opacity 0.2s, transform 0.2s; }
+.now-card { background: var(--bg); border: 1px solid var(--border2); border-radius: 14px; padding: 20px 22px; position: relative; transition: opacity 0.2s, transform 0.2s; }
 .now-hero { border-color: rgba(99,102,241,0.2); background: rgba(99,102,241,0.02); }
 .now-card-eyebrow { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text3); margin-bottom: 8px; }
 .now-card-headline { font-size: 1.125rem; font-weight: 600; color: var(--text); line-height: 1.35; margin-bottom: 8px; letter-spacing: -0.02em; }
 .now-card-body { font-size: 0.875rem; color: var(--text2); line-height: 1.6; margin-bottom: 16px; }
-.now-card-action { display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; background: var(--accent); color: #fff; border: none; border-radius: 8px; font-size: 0.8125rem; font-weight: 600; cursor: pointer; text-decoration: none; font-family: var(--font); transition: opacity 0.15s; }
+.now-card-action { display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; min-height: 44px; background: var(--accent); color: #fff; border: none; border-radius: 10px; font-size: 0.8125rem; font-weight: 600; cursor: pointer; text-decoration: none; font-family: var(--font); transition: opacity 0.15s; }
 .now-card-action:hover { opacity: 0.88; }
 .now-card-dismiss { position: absolute; top: 14px; right: 14px; background: none; border: none; cursor: pointer; color: var(--text3); font-size: 1rem; line-height: 1; padding: 2px 4px; }
 .now-card-dismiss:hover { color: var(--text2); }
@@ -124,7 +124,7 @@ body {
 .support-card-icon { font-size: 1.5rem; margin-bottom: 10px; }
 .support-card-title { font-size: 0.9375rem; font-weight: 600; color: var(--text); margin-bottom: 5px; }
 .support-card-body { font-size: 0.8125rem; color: var(--text2); line-height: 1.55; margin-bottom: 14px; }
-.card-border-blue { border-left: 3px solid #3b82f6; }
+.card-border-blue { border-left: 3px solid var(--accent); }
 .card-border-amber { border-left: 3px solid #f59e0b; }
 .card-border-purple { border-left: 3px solid var(--accent); }
 .card-border-green { border-left: 3px solid #22c55e; }
@@ -139,7 +139,7 @@ body {
 .glow-small-label { font-size: 0.65rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text3); display: block; }
 .glow-tooltip {
   position: absolute; top: calc(100% + 10px); right: 0;
-  background: var(--text); color: #fff; font-size: 0.78rem; font-weight: 400;
+  background: var(--text); color: #fff; font-size: 0.8125rem; font-weight: 400;
   padding: 10px 14px; border-radius: 10px;
   opacity: 0; pointer-events: none; transition: opacity 0.2s;
   z-index: 10; max-width: 240px; white-space: normal; line-height: 1.5; text-align: left;
@@ -150,8 +150,8 @@ body {
 
 /* ── REFRESH ROW ── */
 .refresh-row { display: flex; align-items: center; justify-content: space-between; margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--border); }
-.refresh-time { font-size: 0.8rem; color: var(--text3); }
-.refresh-btn { background: none; border: 1px solid var(--border2); border-radius: 7px; padding: 5px 12px; font-size: 0.8rem; color: var(--text2); cursor: pointer; font-family: var(--font); transition: all 0.15s; }
+.refresh-time { font-size: 0.8125rem; color: var(--text3); }
+.refresh-btn { background: none; border: 1px solid var(--border2); border-radius: 8px; padding: 7px 14px; font-size: 0.8125rem; color: var(--text2); cursor: pointer; font-family: var(--font); transition: all 0.15s; }
 .refresh-btn:hover { background: var(--surface); color: var(--text); }
 
 /* ── AUTOMATIONS TEASER ── */
@@ -187,7 +187,7 @@ body {
   transition: bottom 0.15s ease;
 }
 .quick-memory-inner {
-  max-width: 860px; margin: 0 auto;
+  max-width: 800px; margin: 0 auto;
   display: flex; align-items: center; gap: 10px;
 }
 .quick-input {
@@ -202,8 +202,9 @@ body {
 .quick-input::placeholder { color: var(--text3); }
 .btn-save-mem {
   padding: 10px 18px; background: var(--accent); color: #fff; border: none;
-  border-radius: 9px; font-size: 0.8125rem; font-weight: 600; font-family: var(--font);
+  border-radius: 10px; font-size: 0.8125rem; font-weight: 600; font-family: var(--font);
   cursor: pointer; transition: all 0.15s; white-space: nowrap; flex-shrink: 0;
+  min-height: 44px;
 }
 .btn-save-mem:hover { opacity: 0.88; }
 .btn-save-mem:disabled { opacity: 0.45; cursor: not-allowed; }
@@ -219,7 +220,7 @@ body {
 }
 .modal-overlay.open { opacity: 1; pointer-events: all; }
 .modal-box {
-  background: var(--surface); border-radius: 18px;
+  background: var(--surface); border-radius: 14px;
   width: 100%; max-width: 500px;
   box-shadow: 0 20px 60px rgba(0,0,0,0.18);
   overflow: hidden;
@@ -231,7 +232,7 @@ body {
 }
 .modal-title { font-size: 1.05rem; font-weight: 700; color: var(--text); }
 .modal-close {
-  width: 30px; height: 30px; border-radius: 50%; background: rgba(0,0,0,0.06);
+  width: 40px; height: 40px; border-radius: 50%; background: rgba(0,0,0,0.06);
   border: none; cursor: pointer; font-size: 1rem; color: var(--text2);
   display: flex; align-items: center; justify-content: center; flex-shrink: 0;
   transition: background 0.15s;
@@ -242,13 +243,13 @@ body {
 .modal-btns { display: flex; gap: 10px; justify-content: flex-end; flex-wrap: wrap; }
 .btn-confirm {
   padding: 10px 22px; background: var(--accent); color: #fff; border: none;
-  border-radius: 9px; font-size: 0.875rem; font-weight: 600; font-family: var(--font);
-  cursor: pointer; transition: all 0.15s;
+  border-radius: 10px; font-size: 0.875rem; font-weight: 600; font-family: var(--font);
+  cursor: pointer; transition: all 0.15s; min-height: 44px;
 }
 .btn-confirm:hover { opacity: 0.88; }
 .btn-cancel {
   padding: 10px 18px; background: transparent; color: var(--text2);
-  border: 1px solid var(--border2); border-radius: 9px;
+  border: 1px solid var(--border2); border-radius: 10px;
   font-size: 0.875rem; font-weight: 500; font-family: var(--font);
   cursor: pointer; transition: all 0.15s;
 }
@@ -279,7 +280,7 @@ body {
 /* ── LOADING / SKELETON ── */
 .skeleton { background: linear-gradient(90deg, #f0f0f0 25%, #e8e8e8 50%, #f0f0f0 75%); background-size: 200% 100%; animation: shimmer 1.5s infinite; border-radius: 8px; }
 @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
-.skel-block { height: 16px; border-radius: 6px; background: linear-gradient(90deg, #f0f0f0 25%, #e8e8e8 50%, #f0f0f0 75%); background-size: 200% 100%; animation: shimmer 1.5s infinite; }
+.skel-block { height: 16px; border-radius: 8px; background: linear-gradient(90deg, #f0f0f0 25%, #e8e8e8 50%, #f0f0f0 75%); background-size: 200% 100%; animation: shimmer 1.5s infinite; }
 .skeleton-wrap { padding-top: 20px; display: flex; flex-direction: column; gap: 16px; }
 .skel-greeting { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 20px 24px; background: #fafafa; border: 1px solid rgba(0,0,0,0.06); border-radius: 16px; }
 .skel-greeting-text { flex: 1; display: flex; flex-direction: column; gap: 8px; }
@@ -317,9 +318,9 @@ body {
 
 /* ── AVATAR ── */
 .acct-avatar {
-  width: 30px; height: 30px; border-radius: 50%;
+  width: 36px; height: 36px; border-radius: 50%;
   background: var(--accent); border: none; cursor: pointer;
-  font-size: 0.68rem; font-weight: 700; color: #fff;
+  font-size: 0.72rem; font-weight: 700; color: #fff;
   display: flex; align-items: center; justify-content: center;
   font-family: var(--font); flex-shrink: 0; transition: opacity 0.15s;
   -webkit-tap-highlight-color: transparent;
@@ -348,13 +349,11 @@ html, body { overflow-x: hidden; max-width: 100%; }
   .quick-memory-wrap { bottom: calc(56px + env(safe-area-inset-bottom, 0px)); z-index: 400; }
   body { padding-bottom: calc(130px + env(safe-area-inset-bottom, 0px)) !important; }
   input, textarea, select { font-size: 16px !important; }
-}
-@supports (height: 100dvh) {
-  .quick-memory-wrap { bottom: env(safe-area-inset-bottom, 0); }
+  .toast { bottom: calc(56px + env(safe-area-inset-bottom, 0px) + 12px); }
 }
 .just-saved-list { display: none; flex-direction: column; gap: 4px; margin-top: 10px; }
 .just-saved-list.has-items { display: flex; }
-.just-saved-item { display: flex; align-items: flex-start; gap: 8px; font-size: 0.78rem; color: var(--text2); padding: 7px 10px; background: rgba(99,102,241,0.04); border: 1px solid rgba(99,102,241,0.12); border-radius: 8px; }
+.just-saved-item { display: flex; align-items: flex-start; gap: 8px; font-size: 0.8125rem; color: var(--text2); padding: 7px 10px; background: rgba(99,102,241,0.04); border: 1px solid rgba(99,102,241,0.12); border-radius: 8px; }
 .just-saved-item-text { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
@@ -365,19 +364,20 @@ html, body { overflow-x: hidden; max-width: 100%; }
 
 <!-- NAV -->
 <nav class="app-nav">
-  <a href="/" class="nav-logo" style="display:flex;align-items:center;gap:7px;" title="REM = rapid eye movement — the deep sleep phase where your brain connects everything it learned that day. That's what we do while you sleep.">
+  <a href="/" class="nav-logo" style="display:flex;align-items:center;gap:7px;" title="REM = rapid eye movement — the deep sleep phase where your brain connects everything it learned. That's what we do: connect the dots across your data.">
     <svg width="17" height="17" viewBox="0 0 28 28" fill="none" style="flex-shrink:0;"><circle cx="14" cy="14" r="2.5" fill="#6366f1"/><ellipse cx="14" cy="14" rx="11" ry="5" stroke="#6366f1" stroke-width="1.5" opacity="0.8"/><ellipse cx="14" cy="14" rx="11" ry="5" stroke="#6366f1" stroke-width="1.5" opacity="0.5" transform="rotate(60 14 14)"/><ellipse cx="14" cy="14" rx="11" ry="5" stroke="#6366f1" stroke-width="1.5" opacity="0.35" transform="rotate(120 14 14)"/></svg>
     REM Labs
   </a>
   <div class="nav-center">
-    <a href="/context" class="nav-link">Context</a>
-    <a href="/morning" class="nav-link active">Now</a>
-    <a href="/dream" class="nav-link">Ask</a>
-    <a href="/automations" class="nav-link">Automations</a>
-    <a href="/console" class="nav-link">Apps</a>
-    <a href="/memory" class="nav-link">Saved</a>
+    <a href="/context" class="nav-link" title="Your goals — tell REM what matters to you">Context</a>
+    <a href="/morning" class="nav-link active" title="Your morning brief — what REM found in your data">Now</a>
+    <a href="/dream" class="nav-link" title="Ask REM a question about your life and data">Ask</a>
+    <a href="/automations" class="nav-link" title="Automations — let REM act on patterns it notices">Automations</a>
+    <a href="/console" class="nav-link" title="Connect Gmail, Notion, Calendar and more">Apps</a>
+    <a href="/memory" class="nav-link" title="Your saved notes, quotes, and ideas">Saved</a>
   </div>
   <div class="nav-right" style="display:flex;align-items:center;gap:8px;flex-shrink:0;">
+    <a href="/pricing" class="nav-user" style="font-size:0.8rem;color:var(--text2);">Pricing</a>
     <div class="acct-menu-wrap" id="acct-menu-wrap">
       <button class="acct-avatar" id="acctBtn" onclick="toggleAcctMenu()" title="Account" aria-label="Account menu">
         <span id="acctInitials">?</span>
@@ -397,7 +397,7 @@ html, body { overflow-x: hidden; max-width: 100%; }
 <div class="page">
 
   <!-- Loading skeleton: 3 skeleton cards -->
-  <div id="loadingWrap" class="skeleton-wrap">
+  <div id="loadingWrap" class="skeleton-wrap" style="display:none">
     <div class="skel-greeting">
       <div class="skel-greeting-text">
         <div class="skel-block" style="width:55%;height:22px;"></div>
@@ -426,39 +426,30 @@ html, body { overflow-x: hidden; max-width: 100%; }
   </div>
 
   <!-- CONTENT (shown after load) -->
-  <div id="mainContent" style="display:none;">
+  <div id="mainContent">
 
-    <!-- STATS BAR -->
-    <div id="statsBar" class="stats-bar" style="margin-bottom:24px;">
-      <div class="stat-item">
-        <div class="stat-num" id="statMemories">—</div>
-        <div class="stat-lbl">Notes</div>
-      </div>
-      <div class="stat-div"></div>
-      <div class="stat-item" id="statAnalysesWrap">
-        <div class="stat-num" id="statNights">—</div>
-        <div class="stat-lbl">Analyses</div>
-      </div>
-      <div class="stat-div" id="statStreakDiv"></div>
-      <div class="stat-item">
-        <div class="stat-num" id="statStreak">—</div>
-        <div class="stat-lbl">Streak</div>
-      </div>
-    </div>
+    <!-- STATIC PAGE HEADER — always visible to set context -->
+    <div style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.09em;color:var(--accent);margin-bottom:4px;">Your morning brief</div>
+    <h1 style="font-size:1.4rem;font-weight:700;color:var(--text);margin-bottom:4px;line-height:1.3;">REM reads your inbox overnight — you wake up to what matters today.</h1>
+    <div style="font-size:0.875rem;color:var(--text2);margin-bottom:14px;line-height:1.5;">No scrolling, no noise. Just the 3–5 things that actually need your attention — ranked by what you care about.</div>
 
-    <!-- GREETING ROW -->
+    <!-- GREETING ROW — shown only for users with real data (hidden until JS runs with real brief) -->
+    <div id="greetingRowWrap" style="display:none;">
+    <div style="font-size:0.9375rem;color:var(--text2);margin-bottom:12px;line-height:1.5;">Connect Gmail once — get a personalized briefing every morning. REM reads your inbox, calendar, and saved notes overnight and surfaces what actually matters today.</div>
     <div class="greeting-row" id="greetingRow">
       <div class="greeting-left">
-        <div class="greeting-word" id="greetingWord"></div>
-        <div class="greeting-date" id="greetingDate"></div>
+        <div class="greeting-word" id="greetingWord">Good morning</div>
+        <div class="greeting-date" id="greetingDate">Saturday, April 4</div>
         <div id="streakBadge" class="streak-badge" style="display:none;"></div>
       </div>
       <div class="glow-small" id="glowSmall" role="button" tabindex="0" aria-label="Brain Glow score">
-        <span class="glow-small-score" id="glowSmallScore">—</span>
+        <span class="glow-small-score" id="glowSmallScore">25</span>
         <span class="glow-small-label">Brain Glow</span>
+        <span style="font-size:0.62rem;color:var(--text3);letter-spacing:0.01em;display:block;margin-top:1px;">insight quality (0–250)</span>
+        <span style="font-size:0.58rem;color:var(--text3);letter-spacing:0.02em;" id="glowSmallLevel">Starter · gets smarter as you use it</span>
         <div class="glow-tooltip">
-          <div style="font-weight:700;margin-bottom:6px;">REM Intelligence Score</div>
-          <div style="margin-bottom:8px;">Grows every night as REM learns more about you.</div>
+          <div style="font-weight:700;margin-bottom:6px;">Brain Glow score</div>
+          <div style="margin-bottom:8px;">Grows as REM learns more from your data.</div>
           <div style="font-size:0.78rem;color:rgba(232,230,240,0.6);line-height:1.7;">
             <div>25 — Starter · REM knows the basics</div>
             <div>50 — Growing · patterns start forming</div>
@@ -468,21 +459,190 @@ html, body { overflow-x: hidden; max-width: 100%; }
         </div>
       </div>
     </div>
+    </div><!-- /greetingRowWrap -->
 
-    <!-- HERO CARD -->
-    <div id="heroCard"></div>
+    <!-- HERO CARD (first content users see) -->
+    <div id="heroCard" class="now-card now-hero" style="position:relative;">
+      <div style="position:absolute;top:14px;right:16px;font-size:0.6rem;font-weight:600;text-transform:uppercase;letter-spacing:0.07em;color:var(--text3);background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:2px 6px;">Example</div>
+      <div class="now-card-eyebrow">Today's top priority</div>
+      <div class="now-card-headline" style="margin-bottom:12px;">Alex replied 3 days ago — and it's blocking your Q2 deal. REM caught it so you don't have to.</div>
+      <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:12px;">
+        <div style="background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:10px 14px;">
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:8px;">
+            <div style="font-size:0.8125rem;color:var(--text2);line-height:1.6;flex:1;">📧 <strong style="color:var(--text);">Alex Johnson replied to your proposal — 3 days ago.</strong> You haven't responded. His deadline is Friday.</div>
+            <span style="font-size:0.68rem;color:var(--text3);white-space:nowrap;margin-top:2px;">3 days ago</span>
+          </div>
+          <div style="display:flex;gap:6px;margin-top:8px;">
+            <span style="font-size:0.72rem;padding:3px 8px;background:var(--surface);border:1px solid var(--border);border-radius:6px;color:var(--text2);cursor:pointer;">Reply now</span>
+            <span style="font-size:0.72rem;padding:3px 8px;background:var(--surface);border:1px solid var(--border);border-radius:6px;color:var(--text2);cursor:pointer;">Snooze</span>
+            <span style="font-size:0.72rem;padding:3px 8px;background:var(--surface);border:1px solid var(--border);border-radius:6px;color:var(--text2);cursor:pointer;">Save note</span>
+          </div>
+        </div>
+        <div style="background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:10px 14px;">
+          <div style="font-size:0.8125rem;color:var(--text2);line-height:1.6;">📅 <strong style="color:var(--text);">Your calendar is clear until 3pm today</strong> — longest block this week. Based on your goals, this is your deep-work window.</div>
+        </div>
+        <div style="background:rgba(99,102,241,0.05);border:1px solid rgba(99,102,241,0.15);border-radius:10px;padding:10px 14px;">
+          <div style="font-size:0.8125rem;color:var(--text2);line-height:1.6;">✦ <strong style="color:var(--text);">REM's connection:</strong> Alex's reply and your Thursday task are the same thing — one email handles both. You only need to act once.</div>
+        </div>
+      </div>
+      <a href="/console" class="now-card-action">Connect Gmail free — first insights in ~15 min →</a>
+      <div style="margin-top:8px;font-size:0.8125rem;color:var(--text2);">Reads email subjects only, never body content · revoke any time</div>
+    </div>
 
-    <!-- SUPPORT CARDS -->
-    <div class="support-cards-grid" id="supportCards"></div>
+    <!-- STATS BAR -->
+    <div id="statsBar" class="stats-bar" style="display:none;margin-bottom:28px;margin-top:20px;">
+      <a href="/memory" class="stat-item" style="text-decoration:none;cursor:pointer;" title="View saved notes">
+        <div class="stat-num" id="statMemories">0</div>
+        <div class="stat-lbl">Notes</div>
+        <div id="statMemoriesHint" style="font-size:0.75rem;font-weight:500;color:var(--accent);margin-top:1px;">save a thought →</div>
+      </a>
+      <div class="stat-div"></div>
+      <a href="/dream" class="stat-item" id="statAnalysesWrap" style="text-decoration:none;cursor:pointer;" title="Ask REM">
+        <div class="stat-num" id="statNights">0</div>
+        <div class="stat-lbl">Insights</div>
+        <div id="statNightsHint" style="font-size:0.75rem;font-weight:500;color:var(--accent);margin-top:1px;">ask REM →</div>
+      </a>
+      <div class="stat-div" id="statStreakDiv"></div>
+      <div class="stat-item" title="Consecutive days you've opened your brief">
+        <div class="stat-num" id="statStreak">1</div>
+        <div class="stat-lbl">Day streak</div>
+        <div style="font-size:0.6rem;color:var(--text3);margin-top:1px;">grows daily</div>
+      </div>
+    </div>
+
+    <!-- PRIVACY TRUST LINE -->
+    <div style="font-size:0.72rem;color:var(--text3);margin-top:-18px;margin-bottom:16px;display:flex;align-items:center;gap:6px;flex-wrap:wrap;">
+      <span><span style="color:#22c55e;font-weight:700;">🔒</span> Encrypted · read-only · never sold</span>
+      <a href="/privacy" style="color:var(--accent);text-decoration:none;font-weight:500;">Privacy policy →</a>
+    </div>
+
+    <!-- NEW USER SETUP TRACKER -->
+    <div id="setupTracker" style="display:none;flex-wrap:wrap;background:rgba(99,102,241,0.04);border:1px solid rgba(99,102,241,0.15);border-radius:14px;padding:14px 18px;margin-bottom:24px;flex-direction:column;">
+      <div style="font-size:0.68rem;font-weight:700;text-transform:uppercase;letter-spacing:0.09em;color:var(--accent);margin-bottom:10px;">Get started — 3 steps</div>
+      <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;">
+        <a href="/context" id="setupStep1" style="display:flex;align-items:center;gap:7px;padding:7px 12px;background:var(--bg);border:1.5px solid var(--border2);border-radius:10px;text-decoration:none;color:var(--text);font-size:0.8125rem;font-weight:500;transition:border-color 0.15s;">
+          <span id="setupStep1Icon">🎯</span><span>Set your goals</span>
+        </a>
+        <span style="color:var(--text3);font-size:0.8rem;">→</span>
+        <a href="/console" id="setupStep2" style="display:flex;align-items:center;gap:7px;padding:7px 12px;background:var(--bg);border:1.5px solid var(--border2);border-radius:10px;text-decoration:none;color:var(--text);font-size:0.8125rem;font-weight:500;transition:border-color 0.15s;">
+          <span id="setupStep2Icon">🔌</span><span>Connect an app</span>
+        </a>
+        <span style="color:var(--text3);font-size:0.8rem;">→</span>
+        <div style="display:flex;align-items:center;gap:7px;padding:7px 12px;background:var(--surface);border:1.5px solid var(--border);border-radius:10px;color:var(--text3);font-size:0.8125rem;font-weight:500;" title="REM syncs 90 days of history and surfaces first insights in ~15 minutes">
+          <span>💡</span><span>Brief appears after connecting</span>
+        </div>
+        <button onclick="document.getElementById('setupTracker').style.display='none';localStorage.setItem('rem_setup_dismissed','1');" style="margin-left:auto;background:none;border:none;color:var(--text3);font-size:0.75rem;cursor:pointer;font-family:var(--font);padding:4px 8px;">Dismiss</button>
+      </div>
+    </div>
+    <script>
+    (function() {
+      var t = document.getElementById('setupTracker');
+      if (!t) return;
+      // Show setup tracker only for returning users who have started but not completed onboarding
+      // New users see the hero card CTA and immediateValueWrap instead
+      var hasSomeProgress = localStorage.getItem('rem_ctx_first_save') || localStorage.getItem('slopshop_api_key') || localStorage.getItem('rem_console_connected');
+      if (!hasSomeProgress) return; // new user — stay hidden
+      if (localStorage.getItem('rem_setup_dismissed') || localStorage.getItem('rem_onboarded')) return;
+      t.style.display = 'flex';
+      // Mark completed steps
+      if (localStorage.getItem('rem_ctx_first_save')) {
+        var s1 = document.getElementById('setupStep1');
+        if (s1) { s1.style.borderColor = 'var(--green)'; s1.style.color = 'var(--green)'; }
+        var i1 = document.getElementById('setupStep1Icon');
+        if (i1) i1.textContent = '✓';
+      }
+      if (localStorage.getItem('slopshop_api_key') || localStorage.getItem('rem_console_connected')) {
+        var s2 = document.getElementById('setupStep2');
+        if (s2) { s2.style.borderColor = 'var(--green)'; s2.style.color = 'var(--green)'; }
+        var i2 = document.getElementById('setupStep2Icon');
+        if (i2) i2.textContent = '✓';
+      }
+    })();
+    </script>
+
+    <!-- IMMEDIATE VALUE — shown only to new users who haven't been onboarded -->
+    <div id="immediateValueWrap" style="display:none;margin-bottom:20px;">
+      <div style="font-size:0.68rem;font-weight:700;text-transform:uppercase;letter-spacing:0.09em;color:var(--text3);margin-bottom:8px;padding:0 2px;">Available right now — no wait required</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+        <a href="/memory" style="display:flex;flex-direction:column;gap:4px;padding:12px 14px;background:var(--surface);border:1px solid var(--border);border-radius:12px;text-decoration:none;transition:border-color 0.15s;" onmouseover="this.style.borderColor='rgba(99,102,241,0.4)'" onmouseout="this.style.borderColor='var(--border)'">
+          <span style="font-size:1.1rem;">💾</span>
+          <span style="font-size:0.8125rem;font-weight:600;color:var(--text);">Save your first note</span>
+          <span style="font-size:0.75rem;color:var(--text2);line-height:1.4;">Add ideas, quotes, or goals. REM builds on these even before you connect apps.</span>
+        </a>
+        <a href="/dream" style="display:flex;flex-direction:column;gap:4px;padding:12px 14px;background:var(--surface);border:1px solid var(--border);border-radius:12px;text-decoration:none;transition:border-color 0.15s;" onmouseover="this.style.borderColor='rgba(99,102,241,0.4)'" onmouseout="this.style.borderColor='var(--border)'">
+          <span style="font-size:1.1rem;">💬</span>
+          <span style="font-size:0.8125rem;font-weight:600;color:var(--text);">Ask REM a question</span>
+          <span style="font-size:0.75rem;color:var(--text2);line-height:1.4;">Works with whatever you've saved. Great for thinking through a problem.</span>
+        </a>
+      </div>
+    </div>
+    <script>
+    (function() {
+      var w = document.getElementById('immediateValueWrap');
+      if (!w) return;
+      if (!localStorage.getItem('rem_setup_dismissed') && !localStorage.getItem('rem_onboarded')) {
+        w.style.display = 'block';
+      }
+    })();
+    </script>
+
+    <!-- SUPPORT CARDS (replaced by real brief data when JS runs) -->
+    <div style="font-size:0.72rem;color:var(--text3);margin-bottom:10px;">Example of what REM surfaces from your inbox — your real names and priorities replace these once Gmail is connected:</div>
+    <div class="support-cards-grid" id="supportCards">
+
+      <!-- Sample card 1: Emails -->
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px;">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
+          <div style="font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--text3);">Waiting on your reply</div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px;font-size:0.8125rem;">
+          <div style="padding:8px 10px;background:rgba(99,102,241,0.04);border:1px solid rgba(99,102,241,0.1);border-radius:8px;">
+            <div style="font-weight:600;color:var(--text);margin-bottom:2px;">Maya Chen</div>
+            <div style="color:var(--text2);">Re: project proposal — "let me know what you think, happy to jump on a call"</div>
+            <div style="font-size:0.72rem;color:var(--text3);margin-top:3px;">3 days ago · no reply yet</div>
+          </div>
+          <div style="padding:8px 10px;background:rgba(99,102,241,0.04);border:1px solid rgba(99,102,241,0.1);border-radius:8px;">
+            <div style="font-weight:600;color:var(--text);margin-bottom:2px;">James Okafor</div>
+            <div style="color:var(--text2);">"Did you have a chance to look at the contract draft?"</div>
+            <div style="font-size:0.72rem;color:var(--text3);margin-top:3px;">2 days ago · no reply yet</div>
+          </div>
+        </div>
+        <div style="font-size:0.72rem;color:var(--accent);margin-top:10px;font-weight:500;">→ Connect Gmail and your real priorities replace these examples</div>
+      </div>
+
+      <!-- Sample card 2: Focus window -->
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px;">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
+          <div style="font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--text3);">Your focus window today</div>
+        </div>
+        <div style="font-size:0.875rem;font-weight:600;color:var(--text);margin-bottom:6px;">Focus window: 9am–12pm</div>
+        <div style="font-size:0.8125rem;color:var(--text2);line-height:1.6;">Calendar is clear until noon. Based on your stated goals, this is your best window for deep work today.</div>
+        <div style="margin-top:10px;padding:7px 10px;background:rgba(34,197,94,0.06);border:1px solid rgba(34,197,94,0.2);border-radius:8px;font-size:0.75rem;color:#16a34a;">✓ REM matched this to your goal: "deep work before noon"</div>
+        <div style="font-size:0.72rem;color:var(--accent);margin-top:10px;font-weight:500;">→ Built from your calendar after connecting</div>
+      </div>
+
+      <!-- Sample card 3: Cross-app insight -->
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px;grid-column:1/-1;">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
+          <div style="font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--accent);">REM's connection</div>
+        </div>
+        <div style="padding:10px 12px;background:rgba(99,102,241,0.05);border-left:3px solid var(--accent);border-radius:0 8px 8px 0;font-size:0.8125rem;color:var(--text2);line-height:1.6;">
+          ✦ <strong style="color:var(--text);">The Maya email and the James contract are the same project.</strong> One reply to Maya — copy James — handles both. You only need to act once.
+        </div>
+        <div style="font-size:0.75rem;color:var(--text3);margin-top:10px;line-height:1.5;">This is what REM does that your inbox can't: it spots connections across threads, apps, and time — so you don't have to.</div>
+        <a href="/console" style="display:inline-flex;align-items:center;gap:6px;margin-top:12px;padding:8px 16px;background:var(--accent);color:#fff;border-radius:10px;font-size:0.8125rem;font-weight:600;text-decoration:none;">Connect Gmail — see your real version in ~15 min →</a>
+      </div>
+
+    </div>
 
     <!-- REFRESH ROW -->
-    <div class="refresh-row" id="refreshRow">
+    <div class="refresh-row" id="refreshRow" style="display:none;">
       <span class="refresh-time" id="refreshTime">Last updated just now</span>
       <button class="refresh-btn" onclick="loadMorning()">Refresh →</button>
     </div>
 
     <!-- AUTOMATIONS TEASER -->
-    <div class="auto-teaser" id="autoTeaser"></div>
+    <div class="auto-teaser" id="autoTeaser">💡 REM has detected patterns in your workflow — <a href="/automations">view suggested automations →</a></div>
 
   </div><!-- /mainContent -->
 
@@ -491,8 +651,8 @@ html, body { overflow-x: hidden; max-width: 100%; }
 <!-- QUICK MEMORY BAR -->
 <div class="quick-memory-wrap">
   <div class="quick-memory-inner">
-    <input type="text" class="quick-input" id="quickInput" placeholder="Tell REM something — a thought, a link, a quote, anything…" maxlength="500" />
-    <span class="quick-hint">Cmd+Enter to save</span>
+    <input type="text" class="quick-input" id="quickInput" placeholder="Save a note to REM — a thought, quote, or link to remember. REM surfaces it when it becomes relevant." maxlength="500" />
+    <span class="quick-hint">Enter to save</span>
     <button class="btn-save-mem" id="btnSaveMem" onclick="saveQuickMemory()">Save</button>
   </div>
   <div class="just-saved-list" id="justSavedList"></div>
@@ -506,7 +666,7 @@ html, body { overflow-x: hidden; max-width: 100%; }
 <div class="modal-overlay" id="actionModal">
   <div class="modal-box">
     <div class="modal-header">
-      <div class="modal-title" id="actionModalTitle">Action preview</div>
+      <div class="modal-title" id="actionModalTitle">Confirm action</div>
       <button class="modal-close" onclick="closeModal('actionModal')">×</button>
     </div>
     <div class="modal-body">
@@ -523,7 +683,7 @@ html, body { overflow-x: hidden; max-width: 100%; }
 <div class="modal-overlay" id="dreamModal">
   <div class="modal-box">
     <div class="modal-header">
-      <div class="modal-title">Run a dream session</div>
+      <div class="modal-title">Ask REM a question</div>
       <button class="modal-close" onclick="closeModal('dreamModal')">×</button>
     </div>
     <div class="modal-body">
@@ -547,11 +707,11 @@ html, body { overflow-x: hidden; max-width: 100%; }
       </div>
       <div class="dream-spinner-wrap" id="dreamSpinner">
         <span class="dream-spinner-icon">💭</span>
-        <div class="dream-spinner-text" id="dreamSpinnerText">Starting dream session…</div>
+        <div class="dream-spinner-text" id="dreamSpinnerText">Analyzing your data…</div>
       </div>
       <div class="modal-btns" id="dreamModalBtns">
         <button class="btn-cancel" onclick="closeModal('dreamModal')">Cancel</button>
-        <button class="btn-confirm" onclick="startDream()">Start Dream →</button>
+        <button class="btn-confirm" onclick="startDream()">Ask REM →</button>
       </div>
     </div>
   </div>
@@ -576,13 +736,31 @@ function readAuthHash() {
   }
 }
 
+async function showNewUserState() {
+  // New visitor with no account — show demo content instead of redirecting to auth
+  document.getElementById('loadingWrap').style.display = 'none';
+  document.getElementById('mainContent').style.display = '';
+}
+
 async function init() {
+  document.getElementById('loadingWrap').style.display = 'block';
+  document.getElementById('mainContent').style.display = 'none';
   readAuthHash();
   var storedKey = localStorage.getItem('slopshop_api_key') || localStorage.getItem('slop_api_key');
   var headers = storedKey ? { 'Authorization': 'Bearer ' + storedKey } : {};
   var r = await fetch('/v1/auth/session', { credentials: 'include', headers: headers }).catch(function() { return { status: 500 }; });
   if (r.status === 401 || r.status === 403) {
+    if (!storedKey) {
+      // No account, no key — show the demo hero content instead of sending them away
+      showNewUserState();
+      return;
+    }
     window.location.replace('/auth/google?return_to=/morning');
+    return;
+  }
+  if (r.status === 500) {
+    // Server unavailable — show demo content gracefully
+    showNewUserState();
     return;
   }
   var d = await r.json().catch(function() { return {}; });
@@ -600,7 +778,9 @@ async function init() {
     acctPlanEl.textContent = acctPlan + ' plan';
   }
 
-  // Greeting
+  // Greeting — show greeting row since user has real session
+  var grw = document.getElementById('greetingRowWrap');
+  if (grw) grw.style.display = 'block';
   renderGreeting(currentEmail);
   updateStreak();
 
@@ -699,7 +879,9 @@ async function loadMorning() {
   renderNowCards(brief);
   renderStatsBar(memData, dreamData);
 
-  // Update refresh time
+  // Show and update refresh row
+  var rr = document.getElementById('refreshRow');
+  if (rr) rr.style.display = 'flex';
   var rt = document.getElementById('refreshTime');
   if (rt) {
     var now = new Date();
@@ -712,6 +894,12 @@ function renderBrainGlow(score) {
   var s = score.score || score.brain_glow || score.value || null;
   var el = document.getElementById('glowSmallScore');
   if (el) el.textContent = s !== null ? Math.round(s) : '0';
+  var lvlEl = document.getElementById('glowSmallLevel');
+  if (lvlEl && s !== null) {
+    var v = Math.round(s);
+    var lbl = v >= 200 ? 'Expert · predictive' : v >= 100 ? 'Sharp · tailored insights' : v >= 50 ? 'Growing · patterns forming' : 'Starter · gets smarter as you use it';
+    lvlEl.textContent = lbl;
+  }
 }
 
 /* ── NOW CARDS ── */
@@ -728,13 +916,7 @@ function renderHeroCard(brief) {
   var hasHeadline = !!(brief.headline || brief.summary);
 
   if (!hasApps && !hasHeadline) {
-    // No apps connected state
-    container.className = 'now-card now-hero';
-    container.innerHTML =
-      '<div class="now-card-eyebrow">Get started</div>' +
-      '<div class="now-card-headline">Connect your first app to unlock your brief</div>' +
-      '<div class="now-card-body">REM reads Gmail, Notion, Calendar, and more to build your personalized daily brief every morning.</div>' +
-      '<a href="/console" class="now-card-action">Connect an app →</a>';
+    // Static HTML already shows a sample brief — keep it visible
     return;
   }
 
@@ -742,10 +924,10 @@ function renderHeroCard(brief) {
     // Logged in, no brief yet
     container.className = 'now-card now-hero';
     container.innerHTML =
-      '<div class="now-card-eyebrow">REM is ready</div>' +
-      '<div class="now-card-headline">Ask REM anything about your life →</div>' +
-      '<div class="now-card-body">Your overnight brief will appear here each morning. In the meantime, ask REM a question about your notes and memory.</div>' +
-      '<a href="/dream" class="now-card-action">Ask REM →</a>';
+      '<div class="now-card-eyebrow">Syncing your history now</div>' +
+      '<div class="now-card-headline">REM is reading your last 90 days — first insights in ~15 minutes.</div>' +
+      '<div class="now-card-body">While REM syncs, ask it anything you\'ve got on your mind. It can answer questions right now from whatever you\'ve saved, and gets sharper as the sync completes.</div>' +
+      '<a href="/dream" class="now-card-action">Ask REM something →</a>';
     return;
   }
 
@@ -856,7 +1038,7 @@ async function loadSuggestions() {
 
   var teaser = document.getElementById('autoTeaser');
   if (teaser) {
-    teaser.style.display = '';
+    teaser.style.display = 'block';
     teaser.innerHTML = '💡 REM detected <strong>' + patterns.length + '</strong> pattern' + (patterns.length === 1 ? '' : 's') + ' this week — <a href="/automations">view automations →</a>';
   }
 }
@@ -869,7 +1051,8 @@ function renderStatsBar(memData, dreamData) {
   try {
     var total = (memData.total != null) ? memData.total : ((memData.count != null) ? memData.count : (Array.isArray(memData.memories) ? memData.memories.length : (Array.isArray(memData) ? memData.length : null)));
     var el = document.getElementById('statMemories');
-    if (el) el.textContent = (total != null && total > 999) ? (total/1000).toFixed(1) + 'k' : (total != null ? total : 0);
+    if (el) el.textContent = (total != null && total > 999) ? (total/1000).toFixed(1) + 'k' : (total != null && total > 0 ? total : '—');
+    if (total > 0) { var mh = document.getElementById('statMemoriesHint'); if (mh) mh.style.display = 'none'; }
 
     var nights = parseInt(localStorage.getItem('rem_nights_processed') || '0');
     var sessions = (dreamData.sessions || dreamData.dreams || []);
@@ -893,7 +1076,13 @@ function renderStatsBar(memData, dreamData) {
     }
 
     var nightEl = document.getElementById('statNights');
-    if (nightEl) nightEl.textContent = nights > 0 ? nights : '0';
+    if (nightEl) nightEl.textContent = nights > 0 ? nights : '—';
+    if (nights > 0) { var nh = document.getElementById('statNightsHint'); if (nh) nh.style.display = 'none'; }
+    // Show stats bar only when there's real data
+    if ((total != null && total > 0) || nights > 0) {
+      var sb = document.getElementById('statsBar');
+      if (sb) sb.style.display = 'flex';
+    }
   } catch(e) {}
 }
 
@@ -937,7 +1126,7 @@ async function startDream() {
 
   var res = await fetch('/v1/memory/dream/start', {
     method: 'POST', credentials: 'include', headers: headers,
-    body: JSON.stringify({ strategy: selectedDreamStrategy, budget: 20 })
+    body: JSON.stringify({ strategy: selectedDreamStrategy, budget: 20, depth: 'standard' })
   }).catch(function() { return null; });
 
   if (res && res.ok) {
@@ -1103,7 +1292,47 @@ if (window.visualViewport) {
 init();
 </script>
 
-<div id="addHomeNudge" style="display:none;position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:rgba(15,14,23,0.97);border:1px solid rgba(99,102,241,0.3);border-radius:14px;padding:14px 20px;font-size:0.82rem;color:rgba(255,255,255,0.7);text-align:center;z-index:999;max-width:280px;box-shadow:0 8px 32px rgba(0,0,0,0.4);">
+<!-- FIRST-RUN ONBOARDING MODAL -->
+<div id="onboardModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.45);z-index:800;align-items:center;justify-content:center;padding:20px;">
+  <div style="background:#fff;border-radius:18px;padding:32px 28px;max-width:420px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,0.2);">
+    <div style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.09em;color:var(--accent);margin-bottom:10px;">Welcome to REM</div>
+    <div style="font-size:1.25rem;font-weight:700;color:var(--text);margin-bottom:8px;line-height:1.3;">Your AI that connects the dots in your data</div>
+    <div style="font-size:0.875rem;color:var(--text2);margin-bottom:24px;line-height:1.65;">Get set up in 3 minutes. Connect one app and REM syncs your last 90 days — first insights in ~15 minutes.</div>
+    <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:24px;">
+      <a href="/context" onclick="dismissOnboard()" style="display:flex;align-items:center;gap:14px;padding:14px 16px;background:var(--surface);border-radius:12px;text-decoration:none;color:var(--text);transition:background 0.15s;" onmouseover="this.style.background='var(--surface2)'" onmouseout="this.style.background='var(--surface)'">
+        <span style="font-size:1.3rem;flex-shrink:0;">🎯</span>
+        <div style="flex:1;"><div style="font-weight:600;font-size:0.875rem;margin-bottom:2px;">Set your goals</div><div style="font-size:0.78rem;color:var(--text2);">Tell REM what you're working toward · 1 min</div></div>
+        <span style="color:var(--text3);">→</span>
+      </a>
+      <a href="/console" onclick="dismissOnboard()" style="display:flex;align-items:center;gap:14px;padding:14px 16px;background:var(--surface);border-radius:12px;text-decoration:none;color:var(--text);transition:background 0.15s;" onmouseover="this.style.background='var(--surface2)'" onmouseout="this.style.background='var(--surface)'">
+        <span style="font-size:1.3rem;flex-shrink:0;">🔌</span>
+        <div style="flex:1;"><div style="font-weight:600;font-size:0.875rem;margin-bottom:2px;">Connect one app</div><div style="font-size:0.78rem;color:var(--text2);">Gmail, Notion, or Calendar · 2 min</div></div>
+        <span style="color:var(--text3);">→</span>
+      </a>
+      <div style="display:flex;align-items:center;gap:14px;padding:14px 16px;background:rgba(99,102,241,0.03);border:1px dashed rgba(99,102,241,0.2);border-radius:12px;">
+        <span style="font-size:1.3rem;flex-shrink:0;opacity:0.5;">☀️</span>
+        <div style="flex:1;"><div style="font-weight:600;font-size:0.875rem;margin-bottom:2px;color:var(--text2);">Your brief appears here</div><div style="font-size:0.78rem;color:var(--text3);">First insights ~15 min after connecting</div></div>
+      </div>
+    </div>
+    <button onclick="dismissOnboard()" style="width:100%;padding:13px;background:var(--accent);color:#fff;border:none;border-radius:10px;font-size:0.9375rem;font-weight:600;cursor:pointer;font-family:var(--font);transition:opacity 0.15s;" onmouseover="this.style.opacity='0.88'" onmouseout="this.style.opacity='1'">Get started →</button>
+    <div style="text-align:center;margin-top:12px;"><button onclick="dismissOnboard()" style="background:none;border:none;color:var(--text3);font-size:0.78rem;cursor:pointer;font-family:var(--font);">Already set up — skip</button></div>
+  </div>
+</div>
+<script>
+function dismissOnboard() {
+  document.getElementById('onboardModal').style.display='none';
+  localStorage.setItem('rem_onboarded','1');
+}
+(function() {
+  // Only show onboarding to users who have connected (have a key) but haven't been onboarded yet
+  // Never show to brand-new visitors — they should see the demo first
+  if (!localStorage.getItem('rem_onboarded') && localStorage.getItem('slopshop_api_key')) {
+    document.getElementById('onboardModal').style.display='flex';
+  }
+})();
+</script>
+
+<div id="addHomeNudge" style="display:none;position:fixed;bottom:calc(56px + env(safe-area-inset-bottom, 0px) + 16px);left:50%;transform:translateX(-50%);background:rgba(15,14,23,0.97);border:1px solid rgba(99,102,241,0.3);border-radius:14px;padding:14px 20px;font-size:0.82rem;color:rgba(255,255,255,0.7);text-align:center;z-index:999;max-width:280px;box-shadow:0 8px 32px rgba(0,0,0,0.4);">
   <div style="color:#fff;font-weight:600;margin-bottom:4px;">Add REM to your home screen</div>
   Tap <strong style="color:#fff;">Share → Add to Home Screen</strong> for the best experience.
   <div style="margin-top:10px;"><button onclick="document.getElementById('addHomeNudge').style.display='none';localStorage.setItem('rem_home_nudge_seen','1');" style="background:transparent;border:1px solid rgba(255,255,255,0.25);border-radius:8px;padding:5px 14px;color:rgba(255,255,255,0.7);font-size:0.78rem;cursor:pointer;font-family:var(--font);">Got it</button></div>
